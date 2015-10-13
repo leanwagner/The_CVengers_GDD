@@ -9,3 +9,4 @@ C:\Users\Leandro\Desktop\TP Aerolinea FRBA 1.1 - 2C 2015\Aplicacion Desktop\Aero
 C:\Users\Leandro\Desktop\TP Aerolinea FRBA 1.1 - 2C 2015\Aplicacion Desktop\AerolineaFrba\AerolineaFrba\obj\Debug\AerolineaFrba.exe
 C:\Users\Leandro\Desktop\TP Aerolinea FRBA 1.1 - 2C 2015\Aplicacion Desktop\AerolineaFrba\AerolineaFrba\obj\Debug\AerolineaFrba.pdb
 C:\Users\Leandro\Desktop\TP Aerolinea FRBA 1.1 - 2C 2015\Aplicacion Desktop\AerolineaFrba\AerolineaFrba\obj\Debug\AerolineaFrba.Form1.resources
+C:\Users\Mike\Desktop\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\bin\Debug\AerolineaFrba.exe.config
