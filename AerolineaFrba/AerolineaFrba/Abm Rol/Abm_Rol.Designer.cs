@@ -1,6 +1,6 @@
 ﻿namespace AerolineaFrba.Abm_Rol
 {
-    partial class Form1
+    partial class Rol
     {
         /// <summary>
         /// Required designer variable.
@@ -35,8 +35,8 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.button2 = new System.Windows.Forms.Button();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -116,6 +116,16 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Listado Roles";
             // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(590, 162);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(107, 42);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "Modificar";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 3;
@@ -130,33 +140,54 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(602, 100);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // button2
-            // 
-            this.button2.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(590, 162);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(107, 42);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Modificar";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::AerolineaFrba.Properties.Resources.mapa_rutas_internacionales_aerolineas_argentinas;
             this.ClientSize = new System.Drawing.Size(794, 505);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Enabled = false;
             this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "ABM ROL";
+            this.Text = "ROL";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
 
+        }
+
+        private void Form1_Load(object sender, System.EventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private void groupBox1_Enter(object sender, System.EventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private void button1_Click(object sender, System.EventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private void checkedListBox1_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private void label1_Click(object sender, System.EventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private void textBox1_TextChanged(object sender, System.EventArgs e)
+        {
+            throw new System.NotImplementedException();
         }
 
         #endregion
