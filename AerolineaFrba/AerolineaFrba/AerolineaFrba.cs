@@ -22,10 +22,9 @@ namespace AerolineaFrba
 
         }
 
-        private void Rol_Click(object sender, EventArgs e)
+        private void boton_Rol_Click(object sender, EventArgs e)
         {
             Abm_Rol.Rol unRol = new Abm_Rol.Rol();
-            unRol.MdiParent = this;
             unRol.Show();
         }
     }

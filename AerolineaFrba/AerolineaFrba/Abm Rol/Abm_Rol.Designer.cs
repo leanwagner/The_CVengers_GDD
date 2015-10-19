@@ -162,32 +162,32 @@
 
         private void Form1_Load(object sender, System.EventArgs e)
         {
-            throw new System.NotImplementedException();
+           
         }
 
         private void groupBox1_Enter(object sender, System.EventArgs e)
         {
-            throw new System.NotImplementedException();
+           
         }
 
         private void button1_Click(object sender, System.EventArgs e)
         {
-            throw new System.NotImplementedException();
+          
         }
 
         private void checkedListBox1_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-            throw new System.NotImplementedException();
+           
         }
 
         private void label1_Click(object sender, System.EventArgs e)
         {
-            throw new System.NotImplementedException();
+            
         }
 
         private void textBox1_TextChanged(object sender, System.EventArgs e)
         {
-            throw new System.NotImplementedException();
+            
         }
 
         #endregion

@@ -1,6 +1,6 @@
-﻿namespace AerolineaFrba.Canje_Millas
+﻿namespace AerolineaFrba.Registro_de_Usuario
 {
-    partial class Form1
+    partial class Registro_Usuario
     {
         /// <summary>
         /// Required designer variable.

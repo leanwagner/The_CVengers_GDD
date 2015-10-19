@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AerolineaFrba.Canje_Millas
+namespace AerolineaFrba.Listado_Estadistico
 {
-    public partial class Form1 : Form
+    public partial class Listado_Estadistico : Form
     {
-        public Form1()
+        public Listado_Estadistico()
         {
             InitializeComponent();
         }

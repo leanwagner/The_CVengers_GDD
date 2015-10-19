@@ -1,6 +1,6 @@
-﻿namespace AerolineaFrba.Abm_Aeronave
+﻿namespace AerolineaFrba.Devolucion
 {
-    partial class Form1
+    partial class Devolucion
     {
         /// <summary>
         /// Required designer variable.

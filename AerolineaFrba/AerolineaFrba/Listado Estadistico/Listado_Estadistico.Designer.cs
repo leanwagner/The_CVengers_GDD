@@ -1,6 +1,6 @@
-﻿namespace AerolineaFrba.Abm_Ciudad
+﻿namespace AerolineaFrba.Listado_Estadistico
 {
-    partial class Form1
+    partial class Listado_Estadistico
     {
         /// <summary>
         /// Required designer variable.

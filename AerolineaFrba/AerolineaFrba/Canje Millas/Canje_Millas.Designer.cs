@@ -1,6 +1,6 @@
-﻿namespace AerolineaFrba.Abm_Ruta
+﻿namespace AerolineaFrba.Canje_Millas
 {
-    partial class Form1
+    partial class Canje_Millas
     {
         /// <summary>
         /// Required designer variable.

@@ -20,3 +20,13 @@ C:\UTN\GDD\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\obj\Debug\AerolineaFrba.
 C:\UTN\GDD\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\obj\Debug\AerolineaFrba.pdb
 C:\UTN\GDD\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\obj\Debug\AerolineaFrba.Abm_Rol.Rol.resources
 C:\UTN\GDD\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\obj\Debug\AerolineaFrba.AerolineaFrba.resources
+C:\Users\Leandro\Documents\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\bin\Debug\AerolineaFrba.exe.config
+C:\Users\Leandro\Documents\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\bin\Debug\AerolineaFrba.exe
+C:\Users\Leandro\Documents\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\bin\Debug\AerolineaFrba.pdb
+C:\Users\Leandro\Documents\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\obj\Debug\AerolineaFrba.csprojResolveAssemblyReference.cache
+C:\Users\Leandro\Documents\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\obj\Debug\AerolineaFrba.Abm_Rol.Rol.resources
+C:\Users\Leandro\Documents\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\obj\Debug\AerolineaFrba.AerolineaFrba.resources
+C:\Users\Leandro\Documents\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\obj\Debug\AerolineaFrba.Properties.Resources.resources
+C:\Users\Leandro\Documents\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\obj\Debug\AerolineaFrba.csproj.GenerateResource.Cache
+C:\Users\Leandro\Documents\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\obj\Debug\AerolineaFrba.exe
+C:\Users\Leandro\Documents\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\obj\Debug\AerolineaFrba.pdb

@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AerolineaFrba.Listado_Estadistico
+namespace AerolineaFrba.Consulta_Millas
 {
-    public partial class Form1 : Form
+    public partial class Consulta_Millas : Form
     {
-        public Form1()
+        public Consulta_Millas()
         {
             InitializeComponent();
         }

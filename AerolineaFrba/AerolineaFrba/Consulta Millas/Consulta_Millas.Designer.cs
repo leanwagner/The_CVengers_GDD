@@ -1,6 +1,6 @@
-﻿namespace AerolineaFrba.Listado_Estadistico
+﻿namespace AerolineaFrba.Consulta_Millas
 {
-    partial class Form1
+    partial class Consulta_Millas
     {
         /// <summary>
         /// Required designer variable.

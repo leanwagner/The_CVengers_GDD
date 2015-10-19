@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AerolineaFrba.Abm_Ciudad
+namespace AerolineaFrba.Generacion_Viaje
 {
-    public partial class Form1 : Form
+    public partial class Generacion_Viaje : Form
     {
-        public Form1()
+        public Generacion_Viaje()
         {
             InitializeComponent();
         }
