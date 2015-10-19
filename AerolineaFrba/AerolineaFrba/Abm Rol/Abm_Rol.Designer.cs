@@ -140,7 +140,7 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(602, 100);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // Form1
+            // Rol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -150,8 +150,8 @@
             this.Controls.Add(this.groupBox1);
             this.Enabled = false;
             this.MaximizeBox = false;
-            this.Name = "Form1";
-            this.Text = "ROL";
+            this.Name = "Rol";
+            this.Text = "ABM Rol";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

@@ -30,3 +30,4 @@ C:\Users\Leandro\Documents\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\obj\Debu
 C:\Users\Leandro\Documents\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\obj\Debug\AerolineaFrba.csproj.GenerateResource.Cache
 C:\Users\Leandro\Documents\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\obj\Debug\AerolineaFrba.exe
 C:\Users\Leandro\Documents\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\obj\Debug\AerolineaFrba.pdb
+C:\Users\Leandro\Documents\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\obj\Debug\AerolineaFrba.Abm_Aeronave.Abm_Aeronave.resources
