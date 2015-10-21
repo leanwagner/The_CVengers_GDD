@@ -16,5 +16,11 @@ namespace AerolineaFrba.Abm_Ciudad
         {
             InitializeComponent();
         }
+
+        private void Abm_Ciudad_Load(object sender, EventArgs e)
+        {
+            Conexion pepe = new Conexion();
+            pepe.llenarTabla(dataGridView1);
+        }
     }
 }

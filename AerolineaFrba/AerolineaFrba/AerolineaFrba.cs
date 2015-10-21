@@ -77,16 +77,26 @@ namespace AerolineaFrba
             Generar_Viaje.Show();
         }
 
-        private void boton_Registro_Llegada_Click(object sender, EventArgs e)
+        private void boton_Listado_Estadistico_Click(object sender, EventArgs e)
         {
-            Registro_Llegada_Destino.Registro_LlegadaDestino Registro_Llegada = new Registro_Llegada_Destino.Registro_LlegadaDestino();
-            Registro_Llegada.Show();
+            Listado_Estadistico.Listado_Estadistico ListadoE = new Listado_Estadistico.Listado_Estadistico();
+            ListadoE.Show();
         }
 
         private void boton_Registro_Usuario_Click(object sender, EventArgs e)
         {
-            Registro_de_Usuario.Registro_Usuario Registro_Usuario = new Registro_de_Usuario.Registro_Usuario();
-            Registro_Usuario.Show();
+            Registro_de_Usuario.Registro_Usuario RegistroUsuario = new Registro_de_Usuario.Registro_Usuario();
+            RegistroUsuario.Show();
+
         }
+
+        private void boton_Registro_Llegada_Click(object sender, EventArgs e)
+        {
+            Registro_Llegada_Destino.Registro_LlegadaDestino RegistroLlegada = new Registro_Llegada_Destino.Registro_LlegadaDestino();
+            RegistroLlegada.Show();
+        }
+
+  
+       
     }
 }
