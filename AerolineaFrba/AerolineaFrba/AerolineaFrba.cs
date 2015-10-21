@@ -26,7 +26,6 @@ namespace AerolineaFrba
         {
             Abm_Rol.Rol Rol = new Abm_Rol.Rol();
             Rol.Show();
-            this.Close();
         }
 
         private void boton_ABM_Ciudad_Click(object sender, EventArgs e)
