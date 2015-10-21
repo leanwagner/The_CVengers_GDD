@@ -22,7 +22,7 @@ namespace AerolineaFrba
 
 
             try {
-                conexionDB = new SqlConnection("Data Source=LEANDRO\\SQLSERVER2012;Initial Catalog=GD2C2015;Integrated Security=True");                
+                conexionDB = new SqlConnection("Server=localhost\\SQLSERVER2012;Initial Catalog=GD2C2015;Integrated Security=True");                
                 conexionDB.Open();
                }
             catch (Exception ex){
