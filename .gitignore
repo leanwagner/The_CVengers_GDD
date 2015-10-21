@@ -20,7 +20,7 @@ $RECYCLE.BIN/
 *.userprefs
 
 # Build results
-[Dd]ebug/
+Debug/
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
@@ -28,8 +28,8 @@ x64/
 x86/
 build/
 bld/
-[Bb]in/
-[Oo]bj/
+bin/
+obj/
 
 # Visual Studio 2015 cache/options directory
 .vs/
