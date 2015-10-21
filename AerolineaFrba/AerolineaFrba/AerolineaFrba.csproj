@@ -32,8 +32,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -80,6 +87,7 @@
     <Compile Include="Compra\Compra.Designer.cs">
       <DependentUpon>Compra.cs</DependentUpon>
     </Compile>
+    <Compile Include="Conexion.cs" />
     <Compile Include="Consulta Millas\Consulta_Millas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +105,11 @@
     </Compile>
     <Compile Include="AerolineaFrba.Designer.cs">
       <DependentUpon>AerolineaFrba.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GD2C2015DataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GD2C2015DataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Generacion Viaje\Generacion_Viaje.cs">
       <SubType>Form</SubType>
@@ -127,6 +140,9 @@
     <EmbeddedResource Include="Abm Aeronave\Abm_Aeronave.resx">
       <DependentUpon>Abm_Aeronave.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Abm Ciudad\Abm_Ciudad.resx">
+      <DependentUpon>Abm_Ciudad.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Abm Rol\Abm_Rol.resx">
       <DependentUpon>Abm_Rol.cs</DependentUpon>
     </EmbeddedResource>
@@ -143,6 +159,18 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="GD2C2015DataSet.xsc">
+      <DependentUpon>GD2C2015DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="GD2C2015DataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GD2C2015DataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GD2C2015DataSet.xss">
+      <DependentUpon>GD2C2015DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -161,6 +189,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Images\mapa-rutas-internacionales-aerolineas-argentinas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

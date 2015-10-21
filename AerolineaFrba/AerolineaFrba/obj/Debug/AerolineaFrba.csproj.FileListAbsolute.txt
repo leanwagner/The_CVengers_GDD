@@ -31,3 +31,6 @@ C:\Users\Leandro\Documents\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\obj\Debu
 C:\Users\Leandro\Documents\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\obj\Debug\AerolineaFrba.exe
 C:\Users\Leandro\Documents\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\obj\Debug\AerolineaFrba.pdb
 C:\Users\Leandro\Documents\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\obj\Debug\AerolineaFrba.Abm_Aeronave.Abm_Aeronave.resources
+C:\Users\Leandro\Documents\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\obj\Debug\AerolineaFrba.Abm_Ciudad.Abm_Ciudad.resources
+C:\Users\Leandro\Documents\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\bin\Debug\EntityFramework.dll
+C:\Users\Leandro\Documents\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\bin\Debug\EntityFramework.xml
