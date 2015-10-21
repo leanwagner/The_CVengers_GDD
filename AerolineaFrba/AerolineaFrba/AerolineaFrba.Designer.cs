@@ -53,10 +53,10 @@
             this.boton_Rol.UseVisualStyleBackColor = true;
             this.boton_Rol.Click += new System.EventHandler(this.boton_ABM_Rol_Click);
             // 
-            // ABM_Ciudad
+            // boton_ABM_Ciudad
             // 
             this.boton_ABM_Ciudad.Location = new System.Drawing.Point(222, 35);
-            this.boton_ABM_Ciudad.Name = "ABM_Ciudad";
+            this.boton_ABM_Ciudad.Name = "boton_ABM_Ciudad";
             this.boton_ABM_Ciudad.Size = new System.Drawing.Size(142, 33);
             this.boton_ABM_Ciudad.TabIndex = 1;
             this.boton_ABM_Ciudad.Text = "ABM Ciudad";
@@ -141,6 +141,7 @@
             this.boton_Listado_Estadistico.TabIndex = 9;
             this.boton_Listado_Estadistico.Text = "Listado Estadístico";
             this.boton_Listado_Estadistico.UseVisualStyleBackColor = true;
+            this.boton_Listado_Estadistico.Click += new System.EventHandler(this.boton_Listado_Estadistico_Click);
             // 
             // boton_Registro_Usuario
             // 
@@ -150,6 +151,7 @@
             this.boton_Registro_Usuario.TabIndex = 10;
             this.boton_Registro_Usuario.Text = "Registro de Usuario";
             this.boton_Registro_Usuario.UseVisualStyleBackColor = true;
+            this.boton_Registro_Usuario.Click += new System.EventHandler(this.boton_Registro_Usuario_Click);
             // 
             // boton_Registro_Llegada
             // 
@@ -159,7 +161,7 @@
             this.boton_Registro_Llegada.TabIndex = 11;
             this.boton_Registro_Llegada.Text = "Registro Llegada a Destino";
             this.boton_Registro_Llegada.UseVisualStyleBackColor = true;
-            this.boton_Registro_Llegada.Click += new System.EventHandler(this.boton_Registro_Usuario_Click);
+            this.boton_Registro_Llegada.Click += new System.EventHandler(this.boton_Registro_Llegada_Click);
             // 
             // AerolineaFrba
             // 
