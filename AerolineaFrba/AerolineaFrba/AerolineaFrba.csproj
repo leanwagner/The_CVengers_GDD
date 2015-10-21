@@ -33,12 +33,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -106,11 +108,6 @@
     <Compile Include="AerolineaFrba.Designer.cs">
       <DependentUpon>AerolineaFrba.cs</DependentUpon>
     </Compile>
-    <Compile Include="GD2C2015DataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GD2C2015DataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Generacion Viaje\Generacion_Viaje.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -159,17 +156,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="GD2C2015DataSet.xsc">
-      <DependentUpon>GD2C2015DataSet.xsd</DependentUpon>
-    </None>
-    <None Include="GD2C2015DataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>GD2C2015DataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="GD2C2015DataSet.xss">
-      <DependentUpon>GD2C2015DataSet.xsd</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -14,6 +14,7 @@ namespace AerolineaFrba
         [STAThread]
         static void Main()
         {
+            Conexion.getConexion();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new AerolineaFrba());

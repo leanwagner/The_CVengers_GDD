@@ -13,7 +13,6 @@ C:\Users\Mike\Desktop\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\bin\Debug\Aer
 C:\UTN\GDD\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\bin\Debug\AerolineaFrba.exe.config
 C:\UTN\GDD\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\bin\Debug\AerolineaFrba.exe
 C:\UTN\GDD\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\bin\Debug\AerolineaFrba.pdb
-C:\UTN\GDD\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\obj\Debug\AerolineaFrba.csprojResolveAssemblyReference.cache
 C:\UTN\GDD\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\obj\Debug\AerolineaFrba.Properties.Resources.resources
 C:\UTN\GDD\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\obj\Debug\AerolineaFrba.csproj.GenerateResource.Cache
 C:\UTN\GDD\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\obj\Debug\AerolineaFrba.exe
@@ -34,3 +33,10 @@ C:\Users\Leandro\Documents\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\obj\Debu
 C:\Users\Leandro\Documents\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\obj\Debug\AerolineaFrba.Abm_Ciudad.Abm_Ciudad.resources
 C:\Users\Leandro\Documents\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\bin\Debug\EntityFramework.dll
 C:\Users\Leandro\Documents\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\bin\Debug\EntityFramework.xml
+C:\UTN\GDD\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\obj\Debug\AerolineaFrba.Abm_Aeronave.Abm_Aeronave.resources
+C:\UTN\GDD\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\obj\Debug\AerolineaFrba.Abm_Ciudad.Abm_Ciudad.resources
+C:\UTN\GDD\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\bin\Debug\EntityFramework.dll
+C:\UTN\GDD\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\bin\Debug\EntityFramework.SqlServer.dll
+C:\UTN\GDD\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\bin\Debug\EntityFramework.xml
+C:\UTN\GDD\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\bin\Debug\EntityFramework.SqlServer.xml
+C:\UTN\GDD\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\obj\Debug\AerolineaFrba.csprojResolveAssemblyReference.cache
