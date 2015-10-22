@@ -12,31 +12,35 @@ namespace AerolineaFrba
 {
     class Conexion
     {
-        SqlConnection conexionDB;
-        SqlCommand comando;
-        SqlDataReader reader;
-        SqlDataAdapter adapter;
-        DataTable tabla;
+        private static SqlConnection conexionDB = null;
+        private static SqlDataAdapter adapter;
+        private static DataTable tabla;
 
-        public Conexion() {
+        public static SqlConnection getConexion()
+        {
+            if (conexionDB == null)
+            {
+                try
+                {
+                    conexionDB = new SqlConnection("Server=localhost\\SQLSERVER2012;Initial Catalog=GD2C2015;Integrated Security=True");
+                    conexionDB.Open();
+                    return conexionDB;
+                }
 
+                catch (Exception ex)
+                {
+                    MessageBox.Show("No se pudo establecer conexion con la base de datos: " + ex);
+                }
 
-            try {
-                conexionDB = new SqlConnection("Server=localhost\\SQLSERVER2012;Initial Catalog=GD2C2015;Integrated Security=True");                
-                conexionDB.Open();
-               }
-            catch (Exception ex){
-
-                MessageBox.Show("rompe pepe" + ex);
-            
-            
             }
+            return conexionDB;
         }
-        public void llenarTabla(DataGridView dgv) 
+
+        public static void llenarTabla(DataGridView dgv, String nombreTabla) 
         {
 
             try {
-                adapter = new SqlDataAdapter("SELECT * FROM CIUDAD;",conexionDB);
+                adapter = new SqlDataAdapter("SELECT * FROM THE_CVENGERS." + nombreTabla + ";",conexionDB);
                 tabla = new DataTable();
                 adapter.Fill(tabla);
                 dgv.DataSource=tabla;
@@ -46,10 +50,6 @@ namespace AerolineaFrba
                 MessageBox.Show("rompe pepe mostrando tabla" + ex);
             
             }
-        
-        
-        
-        }
-
+        }       
     }
 }

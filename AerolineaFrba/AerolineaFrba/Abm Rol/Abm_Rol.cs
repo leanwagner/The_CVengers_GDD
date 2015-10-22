@@ -13,7 +13,6 @@ namespace AerolineaFrba.Abm_Rol
 {
     public partial class Rol : Form
     {
-        private SqlConnection connection = null;
 
         public Rol()
         {
