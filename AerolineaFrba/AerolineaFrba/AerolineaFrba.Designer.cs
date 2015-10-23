@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AerolineaFrba));
             this.boton_Rol = new System.Windows.Forms.Button();
             this.boton_ABM_Ciudad = new System.Windows.Forms.Button();
-            this.boton_ABM_Aeronave = new System.Windows.Forms.Button();
             this.boton_ABM_Ruta = new System.Windows.Forms.Button();
             this.boton_Canje_Millas = new System.Windows.Forms.Button();
             this.boton_Compra = new System.Windows.Forms.Button();
@@ -41,6 +40,7 @@
             this.boton_Listado_Estadistico = new System.Windows.Forms.Button();
             this.boton_Registro_Usuario = new System.Windows.Forms.Button();
             this.boton_Registro_Llegada = new System.Windows.Forms.Button();
+            this.boton_ABM_Aeronave = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // boton_Rol
@@ -62,16 +62,6 @@
             this.boton_ABM_Ciudad.Text = "ABM Ciudad";
             this.boton_ABM_Ciudad.UseVisualStyleBackColor = true;
             this.boton_ABM_Ciudad.Click += new System.EventHandler(this.boton_ABM_Ciudad_Click);
-            // 
-            // boton_ABM_Aeronave
-            // 
-            this.boton_ABM_Aeronave.Location = new System.Drawing.Point(410, 35);
-            this.boton_ABM_Aeronave.Name = "boton_ABM_Aeronave";
-            this.boton_ABM_Aeronave.Size = new System.Drawing.Size(163, 33);
-            this.boton_ABM_Aeronave.TabIndex = 2;
-            this.boton_ABM_Aeronave.Text = "ABM Aeronave";
-            this.boton_ABM_Aeronave.UseVisualStyleBackColor = true;
-            this.boton_ABM_Aeronave.Click += new System.EventHandler(this.boton_ABM_Ciudad_Click);
             // 
             // boton_ABM_Ruta
             // 
@@ -163,11 +153,22 @@
             this.boton_Registro_Llegada.UseVisualStyleBackColor = true;
             this.boton_Registro_Llegada.Click += new System.EventHandler(this.boton_Registro_Llegada_Click);
             // 
+            // boton_ABM_Aeronave
+            // 
+            this.boton_ABM_Aeronave.Location = new System.Drawing.Point(424, 35);
+            this.boton_ABM_Aeronave.Name = "boton_ABM_Aeronave";
+            this.boton_ABM_Aeronave.Size = new System.Drawing.Size(163, 33);
+            this.boton_ABM_Aeronave.TabIndex = 12;
+            this.boton_ABM_Aeronave.Text = "ABM Aeronave";
+            this.boton_ABM_Aeronave.UseVisualStyleBackColor = true;
+            this.boton_ABM_Aeronave.Click += new System.EventHandler(this.boton_ABM_Aeronave_Click);
+            // 
             // AerolineaFrba
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(667, 342);
+            this.Controls.Add(this.boton_ABM_Aeronave);
             this.Controls.Add(this.boton_Registro_Llegada);
             this.Controls.Add(this.boton_Registro_Usuario);
             this.Controls.Add(this.boton_Listado_Estadistico);
@@ -177,7 +178,6 @@
             this.Controls.Add(this.boton_Compra);
             this.Controls.Add(this.boton_Canje_Millas);
             this.Controls.Add(this.boton_ABM_Ruta);
-            this.Controls.Add(this.boton_ABM_Aeronave);
             this.Controls.Add(this.boton_ABM_Ciudad);
             this.Controls.Add(this.boton_Rol);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -199,7 +199,6 @@
 
         private System.Windows.Forms.Button boton_Rol;
         private System.Windows.Forms.Button boton_ABM_Ciudad;
-        private System.Windows.Forms.Button boton_ABM_Aeronave;
         private System.Windows.Forms.Button boton_ABM_Ruta;
         private System.Windows.Forms.Button boton_Canje_Millas;
         private System.Windows.Forms.Button boton_Compra;
@@ -209,6 +208,7 @@
         private System.Windows.Forms.Button boton_Listado_Estadistico;
         private System.Windows.Forms.Button boton_Registro_Usuario;
         private System.Windows.Forms.Button boton_Registro_Llegada;
+        private System.Windows.Forms.Button boton_ABM_Aeronave;
 
 
     }

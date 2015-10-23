@@ -42,12 +42,15 @@ namespace AerolineaFrba
             try {
                 adapter = new SqlDataAdapter("SELECT * FROM THE_CVENGERS." + nombreTabla + ";",conexionDB);
                 tabla = new DataTable();
+                
                 adapter.Fill(tabla);
                 dgv.DataSource=tabla;
+                dgv.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+                adapter.Dispose();
             }
             catch (Exception ex) {
 
-                MessageBox.Show("rompe pepe mostrando tabla" + ex);
+                MessageBox.Show("Rompe mostrando tabla " + nombreTabla + ex);
             
             }
         }       

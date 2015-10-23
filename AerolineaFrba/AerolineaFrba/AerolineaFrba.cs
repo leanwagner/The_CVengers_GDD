@@ -34,13 +34,6 @@ namespace AerolineaFrba
             Ciudad.Show();
         }
 
-        private void boton_ABM_Aeronave_Click(object sender, EventArgs e)
-        {
-            Abm_Aeronave.Abm_Aeronave Aeronave = new Abm_Aeronave.Abm_Aeronave();
-            Aeronave.Show();
-            
-        }
-
         private void boton_ABM_Ruta_Click(object sender, EventArgs e)
         {
             Abm_Ruta.Abm_Ruta Ruta = new Abm_Ruta.Abm_Ruta();
@@ -94,6 +87,13 @@ namespace AerolineaFrba
         {
             Registro_Llegada_Destino.Registro_LlegadaDestino RegistroLlegada = new Registro_Llegada_Destino.Registro_LlegadaDestino();
             RegistroLlegada.Show();
+        }
+
+        private void boton_ABM_Aeronave_Click(object sender, EventArgs e)
+        {
+            Abm_Aeronave.Abm_Aeronave Aeronave = new Abm_Aeronave.Abm_Aeronave();
+            Aeronave.Show();
+            
         }
 
   

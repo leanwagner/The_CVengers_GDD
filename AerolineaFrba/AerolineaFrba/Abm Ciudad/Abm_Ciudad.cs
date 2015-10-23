@@ -19,7 +19,29 @@ namespace AerolineaFrba.Abm_Ciudad
 
         private void Abm_Ciudad_Load(object sender, EventArgs e)
         {
+           
             Conexion.llenarTabla(dataGridView1, "CIUDAD");
+        }
+
+        private void boton_Agregar_Ciudad_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            boton_Agregar_Ciudad.Enabled = true;
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            boton_Modificar.Enabled = true;
+        }
+
+        private void boton_Modificar_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow seleccionado = dataGridView1.SelectedRows[0];
+            MessageBox.Show(seleccionado.Cells[1].Value.ToString());
         }
     }
 }
