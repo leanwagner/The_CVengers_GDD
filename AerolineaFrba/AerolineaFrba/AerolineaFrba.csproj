@@ -89,7 +89,7 @@
     <Compile Include="Compra\Compra.Designer.cs">
       <DependentUpon>Compra.cs</DependentUpon>
     </Compile>
-    <Compile Include="Conexion.cs" />
+    <Compile Include="Conexion\Conexion.cs" />
     <Compile Include="Consulta Millas\Consulta_Millas.cs">
       <SubType>Form</SubType>
     </Compile>
