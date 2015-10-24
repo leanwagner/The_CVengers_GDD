@@ -8,13 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AerolineaFrba.Abm_Ruta
+namespace AerolineaFrba.Login
 {
-    public partial class Abm_Ruta : Form
+    public partial class Login : Form
     {
-        public Abm_Ruta()
+        public Login()
         {
             InitializeComponent();
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -22,10 +27,14 @@ namespace AerolineaFrba.Abm_Ruta
 
         }
 
-        private void boton_Modificar_Click(object sender, EventArgs e)
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            RutaModificar rutaAModificar = new RutaModificar();
-            rutaAModificar.Show();
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

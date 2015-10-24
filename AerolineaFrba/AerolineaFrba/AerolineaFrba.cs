@@ -24,7 +24,7 @@ namespace AerolineaFrba
 
         private void boton_ABM_Rol_Click(object sender, EventArgs e)
         {
-            Abm_Rol.Rol Rol = new Abm_Rol.Rol();
+            Abm_Ruta.Rol Rol = new Abm_Ruta.Rol();
             Rol.Show();
         }
 
