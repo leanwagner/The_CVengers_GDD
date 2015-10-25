@@ -38,7 +38,6 @@
             this.boton_Devolucion = new System.Windows.Forms.Button();
             this.boton_Generar_Viaje = new System.Windows.Forms.Button();
             this.boton_Listado_Estadistico = new System.Windows.Forms.Button();
-            this.boton_Registro_Usuario = new System.Windows.Forms.Button();
             this.boton_Registro_Llegada = new System.Windows.Forms.Button();
             this.boton_ABM_Aeronave = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -133,19 +132,9 @@
             this.boton_Listado_Estadistico.UseVisualStyleBackColor = true;
             this.boton_Listado_Estadistico.Click += new System.EventHandler(this.boton_Listado_Estadistico_Click);
             // 
-            // boton_Registro_Usuario
-            // 
-            this.boton_Registro_Usuario.Location = new System.Drawing.Point(323, 220);
-            this.boton_Registro_Usuario.Name = "boton_Registro_Usuario";
-            this.boton_Registro_Usuario.Size = new System.Drawing.Size(200, 32);
-            this.boton_Registro_Usuario.TabIndex = 10;
-            this.boton_Registro_Usuario.Text = "Registro de Usuario";
-            this.boton_Registro_Usuario.UseVisualStyleBackColor = true;
-            this.boton_Registro_Usuario.Click += new System.EventHandler(this.boton_Registro_Usuario_Click);
-            // 
             // boton_Registro_Llegada
             // 
-            this.boton_Registro_Llegada.Location = new System.Drawing.Point(193, 271);
+            this.boton_Registro_Llegada.Location = new System.Drawing.Point(318, 222);
             this.boton_Registro_Llegada.Name = "boton_Registro_Llegada";
             this.boton_Registro_Llegada.Size = new System.Drawing.Size(255, 31);
             this.boton_Registro_Llegada.TabIndex = 11;
@@ -167,10 +156,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(667, 342);
+            this.ClientSize = new System.Drawing.Size(650, 284);
             this.Controls.Add(this.boton_ABM_Aeronave);
             this.Controls.Add(this.boton_Registro_Llegada);
-            this.Controls.Add(this.boton_Registro_Usuario);
             this.Controls.Add(this.boton_Listado_Estadistico);
             this.Controls.Add(this.boton_Generar_Viaje);
             this.Controls.Add(this.boton_Devolucion);
@@ -206,7 +194,6 @@
         private System.Windows.Forms.Button boton_Devolucion;
         private System.Windows.Forms.Button boton_Generar_Viaje;
         private System.Windows.Forms.Button boton_Listado_Estadistico;
-        private System.Windows.Forms.Button boton_Registro_Usuario;
         private System.Windows.Forms.Button boton_Registro_Llegada;
         private System.Windows.Forms.Button boton_ABM_Aeronave;
 

@@ -27,5 +27,10 @@ namespace AerolineaFrba.Abm_Ruta
             RutaModificar rutaAModificar = new RutaModificar();
             rutaAModificar.Show();
         }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }
