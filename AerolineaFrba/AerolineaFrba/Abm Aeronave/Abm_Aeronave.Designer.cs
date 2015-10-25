@@ -46,12 +46,14 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
             this.groupBox1.AutoSize = true;
+            this.groupBox1.Controls.Add(this.linkLabel1);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.textBox5);
             this.groupBox1.Controls.Add(this.label7);
@@ -166,7 +168,7 @@
             // 
             this.textBox3.Location = new System.Drawing.Point(156, 212);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(232, 20);
+            this.textBox3.Size = new System.Drawing.Size(131, 20);
             this.textBox3.TabIndex = 15;
             // 
             // textBox4
@@ -208,6 +210,17 @@
             this.textBox5.Size = new System.Drawing.Size(232, 20);
             this.textBox5.TabIndex = 19;
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(293, 215);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(95, 13);
+            this.linkLabel1.TabIndex = 22;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Ver Mapa Butacas";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
             // Abm_Aeronave
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -246,6 +259,7 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.LinkLabel linkLabel1;
 
     }
 }

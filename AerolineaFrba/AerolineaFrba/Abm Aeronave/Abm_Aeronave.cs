@@ -36,5 +36,11 @@ namespace AerolineaFrba.Abm_Aeronave
         {
 
         }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Butacas butacas = new Butacas();
+            butacas.Show();
+        }
     }
 }

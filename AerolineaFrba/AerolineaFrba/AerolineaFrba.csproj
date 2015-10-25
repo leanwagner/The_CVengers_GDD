@@ -59,6 +59,12 @@
     <Compile Include="Abm Aeronave\Abm_Aeronave.Designer.cs">
       <DependentUpon>Abm_Aeronave.cs</DependentUpon>
     </Compile>
+    <Compile Include="Abm Aeronave\Butacas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Aeronave\Butacas.Designer.cs">
+      <DependentUpon>Butacas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Abm Ciudad\Abm_Ciudad.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -149,6 +155,9 @@
     <EmbeddedResource Include="Abm Aeronave\Abm_Aeronave.resx">
       <DependentUpon>Abm_Aeronave.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Abm Aeronave\Butacas.resx">
+      <DependentUpon>Butacas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Abm Ciudad\Abm_Ciudad.resx">
       <DependentUpon>Abm_Ciudad.cs</DependentUpon>
     </EmbeddedResource>
@@ -199,6 +208,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\mapa butacas.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

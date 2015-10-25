@@ -73,6 +73,16 @@ namespace AerolineaFrba.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap mapa_butacas {
+            get {
+                object obj = ResourceManager.GetObject("mapa butacas", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap mapa_rutas_internacionales_aerolineas_argentinas {
             get {
                 object obj = ResourceManager.GetObject("mapa-rutas-internacionales-aerolineas-argentinas", resourceCulture);
