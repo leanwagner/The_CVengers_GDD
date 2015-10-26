@@ -40,11 +40,16 @@
             this.boton_Listado_Estadistico = new System.Windows.Forms.Button();
             this.boton_Registro_Llegada = new System.Windows.Forms.Button();
             this.boton_ABM_Aeronave = new System.Windows.Forms.Button();
+            this.groupKiosko = new System.Windows.Forms.GroupBox();
+            this.groupUsuario = new System.Windows.Forms.GroupBox();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.groupKiosko.SuspendLayout();
+            this.groupUsuario.SuspendLayout();
             this.SuspendLayout();
             // 
             // boton_Rol
             // 
-            this.boton_Rol.Location = new System.Drawing.Point(38, 35);
+            this.boton_Rol.Location = new System.Drawing.Point(23, 39);
             this.boton_Rol.Name = "boton_Rol";
             this.boton_Rol.Size = new System.Drawing.Size(146, 33);
             this.boton_Rol.TabIndex = 0;
@@ -54,7 +59,7 @@
             // 
             // boton_ABM_Ciudad
             // 
-            this.boton_ABM_Ciudad.Location = new System.Drawing.Point(222, 35);
+            this.boton_ABM_Ciudad.Location = new System.Drawing.Point(189, 39);
             this.boton_ABM_Ciudad.Name = "boton_ABM_Ciudad";
             this.boton_ABM_Ciudad.Size = new System.Drawing.Size(142, 33);
             this.boton_ABM_Ciudad.TabIndex = 1;
@@ -64,7 +69,7 @@
             // 
             // boton_ABM_Ruta
             // 
-            this.boton_ABM_Ruta.Location = new System.Drawing.Point(51, 98);
+            this.boton_ABM_Ruta.Location = new System.Drawing.Point(532, 39);
             this.boton_ABM_Ruta.Name = "boton_ABM_Ruta";
             this.boton_ABM_Ruta.Size = new System.Drawing.Size(113, 33);
             this.boton_ABM_Ruta.TabIndex = 3;
@@ -74,7 +79,7 @@
             // 
             // boton_Canje_Millas
             // 
-            this.boton_Canje_Millas.Location = new System.Drawing.Point(247, 98);
+            this.boton_Canje_Millas.Location = new System.Drawing.Point(106, 96);
             this.boton_Canje_Millas.Name = "boton_Canje_Millas";
             this.boton_Canje_Millas.Size = new System.Drawing.Size(127, 33);
             this.boton_Canje_Millas.TabIndex = 4;
@@ -84,7 +89,7 @@
             // 
             // boton_Compra
             // 
-            this.boton_Compra.Location = new System.Drawing.Point(452, 98);
+            this.boton_Compra.Location = new System.Drawing.Point(133, 37);
             this.boton_Compra.Name = "boton_Compra";
             this.boton_Compra.Size = new System.Drawing.Size(94, 32);
             this.boton_Compra.TabIndex = 5;
@@ -94,9 +99,9 @@
             // 
             // boton_Consulta_Millas
             // 
-            this.boton_Consulta_Millas.Location = new System.Drawing.Point(38, 159);
+            this.boton_Consulta_Millas.Location = new System.Drawing.Point(295, 37);
             this.boton_Consulta_Millas.Name = "boton_Consulta_Millas";
-            this.boton_Consulta_Millas.Size = new System.Drawing.Size(146, 31);
+            this.boton_Consulta_Millas.Size = new System.Drawing.Size(146, 32);
             this.boton_Consulta_Millas.TabIndex = 6;
             this.boton_Consulta_Millas.Text = "Consulta Millas";
             this.boton_Consulta_Millas.UseVisualStyleBackColor = true;
@@ -104,9 +109,9 @@
             // 
             // boton_Devolucion
             // 
-            this.boton_Devolucion.Location = new System.Drawing.Point(253, 159);
+            this.boton_Devolucion.Location = new System.Drawing.Point(262, 96);
             this.boton_Devolucion.Name = "boton_Devolucion";
-            this.boton_Devolucion.Size = new System.Drawing.Size(121, 30);
+            this.boton_Devolucion.Size = new System.Drawing.Size(121, 33);
             this.boton_Devolucion.TabIndex = 7;
             this.boton_Devolucion.Text = "Devolución";
             this.boton_Devolucion.UseVisualStyleBackColor = true;
@@ -114,9 +119,9 @@
             // 
             // boton_Generar_Viaje
             // 
-            this.boton_Generar_Viaje.Location = new System.Drawing.Point(424, 159);
+            this.boton_Generar_Viaje.Location = new System.Drawing.Point(409, 96);
             this.boton_Generar_Viaje.Name = "boton_Generar_Viaje";
-            this.boton_Generar_Viaje.Size = new System.Drawing.Size(149, 31);
+            this.boton_Generar_Viaje.Size = new System.Drawing.Size(149, 33);
             this.boton_Generar_Viaje.TabIndex = 8;
             this.boton_Generar_Viaje.Text = "Generar Viaje";
             this.boton_Generar_Viaje.UseVisualStyleBackColor = true;
@@ -124,7 +129,7 @@
             // 
             // boton_Listado_Estadistico
             // 
-            this.boton_Listado_Estadistico.Location = new System.Drawing.Point(89, 220);
+            this.boton_Listado_Estadistico.Location = new System.Drawing.Point(74, 161);
             this.boton_Listado_Estadistico.Name = "boton_Listado_Estadistico";
             this.boton_Listado_Estadistico.Size = new System.Drawing.Size(184, 33);
             this.boton_Listado_Estadistico.TabIndex = 9;
@@ -134,7 +139,7 @@
             // 
             // boton_Registro_Llegada
             // 
-            this.boton_Registro_Llegada.Location = new System.Drawing.Point(318, 222);
+            this.boton_Registro_Llegada.Location = new System.Drawing.Point(303, 163);
             this.boton_Registro_Llegada.Name = "boton_Registro_Llegada";
             this.boton_Registro_Llegada.Size = new System.Drawing.Size(255, 31);
             this.boton_Registro_Llegada.TabIndex = 11;
@@ -144,7 +149,7 @@
             // 
             // boton_ABM_Aeronave
             // 
-            this.boton_ABM_Aeronave.Location = new System.Drawing.Point(424, 35);
+            this.boton_ABM_Aeronave.Location = new System.Drawing.Point(350, 39);
             this.boton_ABM_Aeronave.Name = "boton_ABM_Aeronave";
             this.boton_ABM_Aeronave.Size = new System.Drawing.Size(163, 33);
             this.boton_ABM_Aeronave.TabIndex = 12;
@@ -152,29 +157,72 @@
             this.boton_ABM_Aeronave.UseVisualStyleBackColor = true;
             this.boton_ABM_Aeronave.Click += new System.EventHandler(this.boton_ABM_Aeronave_Click);
             // 
+            // groupKiosko
+            // 
+            this.groupKiosko.AutoSize = true;
+            this.groupKiosko.Controls.Add(this.linkLabel1);
+            this.groupKiosko.Controls.Add(this.boton_Compra);
+            this.groupKiosko.Controls.Add(this.boton_Consulta_Millas);
+            this.groupKiosko.Location = new System.Drawing.Point(69, 29);
+            this.groupKiosko.Name = "groupKiosko";
+            this.groupKiosko.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.groupKiosko.Size = new System.Drawing.Size(605, 158);
+            this.groupKiosko.TabIndex = 13;
+            this.groupKiosko.TabStop = false;
+            this.groupKiosko.Text = "Ingreso Kiosko";
+            // 
+            // groupUsuario
+            // 
+            this.groupUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupUsuario.AutoSize = true;
+            this.groupUsuario.Controls.Add(this.boton_Rol);
+            this.groupUsuario.Controls.Add(this.boton_ABM_Ciudad);
+            this.groupUsuario.Controls.Add(this.boton_ABM_Aeronave);
+            this.groupUsuario.Controls.Add(this.boton_ABM_Ruta);
+            this.groupUsuario.Controls.Add(this.boton_Registro_Llegada);
+            this.groupUsuario.Controls.Add(this.boton_Canje_Millas);
+            this.groupUsuario.Controls.Add(this.boton_Listado_Estadistico);
+            this.groupUsuario.Controls.Add(this.boton_Devolucion);
+            this.groupUsuario.Controls.Add(this.boton_Generar_Viaje);
+            this.groupUsuario.Location = new System.Drawing.Point(29, 212);
+            this.groupUsuario.Name = "groupUsuario";
+            this.groupUsuario.Size = new System.Drawing.Size(677, 221);
+            this.groupUsuario.TabIndex = 14;
+            this.groupUsuario.TabStop = false;
+            this.groupUsuario.Text = "Ingreso Usuario";
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(354, 116);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(219, 20);
+            this.linkLabel1.TabIndex = 7;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Iniciar Sesión con Usuario";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
             // AerolineaFrba
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(650, 284);
-            this.Controls.Add(this.boton_ABM_Aeronave);
-            this.Controls.Add(this.boton_Registro_Llegada);
-            this.Controls.Add(this.boton_Listado_Estadistico);
-            this.Controls.Add(this.boton_Generar_Viaje);
-            this.Controls.Add(this.boton_Devolucion);
-            this.Controls.Add(this.boton_Consulta_Millas);
-            this.Controls.Add(this.boton_Compra);
-            this.Controls.Add(this.boton_Canje_Millas);
-            this.Controls.Add(this.boton_ABM_Ruta);
-            this.Controls.Add(this.boton_ABM_Ciudad);
-            this.Controls.Add(this.boton_Rol);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(752, 463);
+            this.Controls.Add(this.groupUsuario);
+            this.Controls.Add(this.groupKiosko);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "AerolineaFrba";
             this.Text = "AerolineaFRBA";
             this.Load += new System.EventHandler(this.AerolineaFrba_Load);
+            this.groupKiosko.ResumeLayout(false);
+            this.groupKiosko.PerformLayout();
+            this.groupUsuario.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -196,6 +244,9 @@
         private System.Windows.Forms.Button boton_Listado_Estadistico;
         private System.Windows.Forms.Button boton_Registro_Llegada;
         private System.Windows.Forms.Button boton_ABM_Aeronave;
+        private System.Windows.Forms.GroupBox groupKiosko;
+        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.GroupBox groupUsuario;
 
 
     }

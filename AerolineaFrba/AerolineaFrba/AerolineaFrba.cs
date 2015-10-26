@@ -19,6 +19,8 @@ namespace AerolineaFrba
 
         private void AerolineaFrba_Load(object sender, EventArgs e)
         {
+            //this.AutoSize = true;
+            this.AutoSizeMode = AutoSizeMode.GrowAndShrink;
 
         }
 
@@ -94,6 +96,13 @@ namespace AerolineaFrba
             Abm_Aeronave.Abm_Aeronave Aeronave = new Abm_Aeronave.Abm_Aeronave();
             Aeronave.Show();
             
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            //groupUsuario.Visible = true; <-- tiene que estar en algún lado para hacer visible al groupbox
+            Login.Login Loguearme = new Login.Login();
+            Loguearme.Show();
         }
 
   
