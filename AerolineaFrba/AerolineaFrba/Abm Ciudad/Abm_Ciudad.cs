@@ -41,7 +41,7 @@ namespace AerolineaFrba.Abm_Ciudad
         private void boton_Modificar_Click(object sender, EventArgs e)
         {
             DataGridViewRow seleccionado = dataGridView1.SelectedRows[0];
-            MessageBox.Show(seleccionado.Cells[1].Value.ToString());
+            MessageBox.Show("La ciudad seleccionada es: " + seleccionado.Cells[1].Value.ToString());
         }
     }
 }

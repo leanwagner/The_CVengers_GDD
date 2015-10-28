@@ -16,5 +16,9 @@ namespace AerolineaFrba.Registro_Llegada_Destino
         {
             InitializeComponent();
         }
+
+     
+
+        
     }
 }
