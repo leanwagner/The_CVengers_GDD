@@ -173,6 +173,9 @@
     <EmbeddedResource Include="AerolineaFrba.resx">
       <DependentUpon>AerolineaFrba.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Generacion Viaje\Generacion_Viaje.resx">
+      <DependentUpon>Generacion_Viaje.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>

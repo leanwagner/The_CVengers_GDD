@@ -52,7 +52,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
-            this.textBox_HoraLlegada = new System.Windows.Forms.TextBox();
+            this.dateTimePicker_HoraLlegada = new System.Windows.Forms.DateTimePicker();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -277,19 +277,19 @@
             this.label10.TabIndex = 12;
             this.label10.Text = "Hora Llegada a Destino:";
             // 
-            // textBox_HoraLlegada
+            // dateTimePicker_HoraLlegada
             // 
-            this.textBox_HoraLlegada.Location = new System.Drawing.Point(206, 296);
-            this.textBox_HoraLlegada.Name = "textBox_HoraLlegada";
-            this.textBox_HoraLlegada.Size = new System.Drawing.Size(100, 20);
-            this.textBox_HoraLlegada.TabIndex = 13;
+            this.dateTimePicker_HoraLlegada.Location = new System.Drawing.Point(208, 299);
+            this.dateTimePicker_HoraLlegada.Name = "dateTimePicker_HoraLlegada";
+            this.dateTimePicker_HoraLlegada.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker_HoraLlegada.TabIndex = 13;
             // 
             // Registro_LlegadaDestino
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(591, 405);
-            this.Controls.Add(this.textBox_HoraLlegada);
+            this.Controls.Add(this.dateTimePicker_HoraLlegada);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label9);
@@ -299,6 +299,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Registro_LlegadaDestino";
             this.Text = "Registro Llegada a Destino";
+            this.Load += new System.EventHandler(this.Registro_LlegadaDestino_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -333,6 +334,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox_HoraLlegada;
+        private System.Windows.Forms.DateTimePicker dateTimePicker_HoraLlegada;
     }
 }

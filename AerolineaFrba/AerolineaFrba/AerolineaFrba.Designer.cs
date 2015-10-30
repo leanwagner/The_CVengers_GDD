@@ -41,8 +41,8 @@
             this.boton_Registro_Llegada = new System.Windows.Forms.Button();
             this.boton_ABM_Aeronave = new System.Windows.Forms.Button();
             this.groupKiosko = new System.Windows.Forms.GroupBox();
-            this.groupUsuario = new System.Windows.Forms.GroupBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.groupUsuario = new System.Windows.Forms.GroupBox();
             this.groupKiosko.SuspendLayout();
             this.groupUsuario.SuspendLayout();
             this.SuspendLayout();
@@ -171,6 +171,17 @@
             this.groupKiosko.TabStop = false;
             this.groupKiosko.Text = "Ingreso Kiosko";
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(354, 116);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(219, 20);
+            this.linkLabel1.TabIndex = 7;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Iniciar Sesión con Usuario";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
             // groupUsuario
             // 
             this.groupUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -193,17 +204,6 @@
             this.groupUsuario.TabStop = false;
             this.groupUsuario.Text = "Ingreso Usuario";
             // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(354, 116);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(219, 20);
-            this.linkLabel1.TabIndex = 7;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Iniciar Sesión con Usuario";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
-            // 
             // AerolineaFrba
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
@@ -216,6 +216,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "AerolineaFrba";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AerolineaFRBA";
             this.Load += new System.EventHandler(this.AerolineaFrba_Load);
             this.groupKiosko.ResumeLayout(false);

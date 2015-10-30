@@ -47,12 +47,20 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.dataGridView_Aeronaves = new System.Windows.Forms.DataGridView();
+            this.boton_Agregar_Aeronave = new System.Windows.Forms.Button();
+            this.boton_Eliminar_Aeronave = new System.Windows.Forms.Button();
+            this.boton_Modificar_Aeronave = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Aeronaves)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
             this.groupBox1.AutoSize = true;
+            this.groupBox1.Controls.Add(this.boton_Agregar_Aeronave);
             this.groupBox1.Controls.Add(this.linkLabel1);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.textBox5);
@@ -72,7 +80,7 @@
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Location = new System.Drawing.Point(28, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(436, 333);
+            this.groupBox1.Size = new System.Drawing.Size(435, 371);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Agregar Aeronave";
@@ -221,13 +229,64 @@
             this.textBox1.Size = new System.Drawing.Size(232, 20);
             this.textBox1.TabIndex = 3;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.boton_Modificar_Aeronave);
+            this.groupBox2.Controls.Add(this.boton_Eliminar_Aeronave);
+            this.groupBox2.Controls.Add(this.dataGridView_Aeronaves);
+            this.groupBox2.Location = new System.Drawing.Point(28, 403);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(435, 289);
+            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Listado Aeronaves";
+            // 
+            // dataGridView_Aeronaves
+            // 
+            this.dataGridView_Aeronaves.AllowUserToAddRows = false;
+            this.dataGridView_Aeronaves.AllowUserToDeleteRows = false;
+            this.dataGridView_Aeronaves.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_Aeronaves.Location = new System.Drawing.Point(41, 43);
+            this.dataGridView_Aeronaves.Name = "dataGridView_Aeronaves";
+            this.dataGridView_Aeronaves.ReadOnly = true;
+            this.dataGridView_Aeronaves.Size = new System.Drawing.Size(347, 192);
+            this.dataGridView_Aeronaves.TabIndex = 0;
+            // 
+            // boton_Agregar_Aeronave
+            // 
+            this.boton_Agregar_Aeronave.Location = new System.Drawing.Point(296, 329);
+            this.boton_Agregar_Aeronave.Name = "boton_Agregar_Aeronave";
+            this.boton_Agregar_Aeronave.Size = new System.Drawing.Size(113, 23);
+            this.boton_Agregar_Aeronave.TabIndex = 23;
+            this.boton_Agregar_Aeronave.Text = "Agregar Aeronave";
+            this.boton_Agregar_Aeronave.UseVisualStyleBackColor = true;
+            // 
+            // boton_Eliminar_Aeronave
+            // 
+            this.boton_Eliminar_Aeronave.Location = new System.Drawing.Point(223, 260);
+            this.boton_Eliminar_Aeronave.Name = "boton_Eliminar_Aeronave";
+            this.boton_Eliminar_Aeronave.Size = new System.Drawing.Size(75, 23);
+            this.boton_Eliminar_Aeronave.TabIndex = 1;
+            this.boton_Eliminar_Aeronave.Text = "Eliminar";
+            this.boton_Eliminar_Aeronave.UseVisualStyleBackColor = true;
+            // 
+            // boton_Modificar_Aeronave
+            // 
+            this.boton_Modificar_Aeronave.Location = new System.Drawing.Point(313, 260);
+            this.boton_Modificar_Aeronave.Name = "boton_Modificar_Aeronave";
+            this.boton_Modificar_Aeronave.Size = new System.Drawing.Size(75, 23);
+            this.boton_Modificar_Aeronave.TabIndex = 2;
+            this.boton_Modificar_Aeronave.Text = "Modificar";
+            this.boton_Modificar_Aeronave.UseVisualStyleBackColor = true;
+            // 
             // Abm_Aeronave
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this.ClientSize = new System.Drawing.Size(499, 376);
+            this.ClientSize = new System.Drawing.Size(516, 717);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Abm_Aeronave";
@@ -235,6 +294,8 @@
             this.Text = "ABM Aeronave";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Aeronaves)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -260,6 +321,11 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.Button boton_Agregar_Aeronave;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button boton_Modificar_Aeronave;
+        private System.Windows.Forms.Button boton_Eliminar_Aeronave;
+        private System.Windows.Forms.DataGridView dataGridView_Aeronaves;
 
     }
 }

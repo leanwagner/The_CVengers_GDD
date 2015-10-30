@@ -32,11 +32,11 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.boton_Cerrar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.boton_Modificar = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.boton_Agregar_Ciudad = new System.Windows.Forms.Button();
-            this.boton_Modificar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -80,6 +80,17 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Listado de Ciudades";
             // 
+            // boton_Modificar
+            // 
+            this.boton_Modificar.Enabled = false;
+            this.boton_Modificar.Location = new System.Drawing.Point(264, 226);
+            this.boton_Modificar.Name = "boton_Modificar";
+            this.boton_Modificar.Size = new System.Drawing.Size(75, 23);
+            this.boton_Modificar.TabIndex = 1;
+            this.boton_Modificar.Text = "Modificar";
+            this.boton_Modificar.UseVisualStyleBackColor = true;
+            this.boton_Modificar.Click += new System.EventHandler(this.boton_Modificar_Click);
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.label1);
@@ -119,17 +130,6 @@
             this.boton_Agregar_Ciudad.Text = "Agregar";
             this.boton_Agregar_Ciudad.UseVisualStyleBackColor = true;
             // 
-            // boton_Modificar
-            // 
-            this.boton_Modificar.Enabled = false;
-            this.boton_Modificar.Location = new System.Drawing.Point(264, 226);
-            this.boton_Modificar.Name = "boton_Modificar";
-            this.boton_Modificar.Size = new System.Drawing.Size(75, 23);
-            this.boton_Modificar.TabIndex = 1;
-            this.boton_Modificar.Text = "Modificar";
-            this.boton_Modificar.UseVisualStyleBackColor = true;
-            this.boton_Modificar.Click += new System.EventHandler(this.boton_Modificar_Click);
-            // 
             // Abm_Ciudad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -140,6 +140,7 @@
             this.Controls.Add(this.boton_Cerrar);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Abm_Ciudad";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ABM Ciudad";
             this.Load += new System.EventHandler(this.Abm_Ciudad_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

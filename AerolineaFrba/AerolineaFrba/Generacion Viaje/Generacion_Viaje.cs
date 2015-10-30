@@ -16,5 +16,14 @@ namespace AerolineaFrba.Generacion_Viaje
         {
             InitializeComponent();
         }
+
+        private void Generacion_Viaje_Load(object sender, EventArgs e)
+        {
+            dateTimePicker_Salida.Format = DateTimePickerFormat.Time;
+            dateTimePicker_Salida.ShowUpDown = true;
+          
+        }
+
+        
     }
 }
