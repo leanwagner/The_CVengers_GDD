@@ -40,7 +40,7 @@ namespace AerolineaFrba
         {
 
             try {
-                adapter = new SqlDataAdapter("SELECT * FROM THE_CVENGERS." + nombreTabla + ";",conexionDB);
+                adapter = new SqlDataAdapter("EXECUTE [THE_CVENGERS].getAll @RECV = '[THE_CVENGERS]." + nombreTabla+"';", conexionDB);
                 tabla = new DataTable();
                 
                 adapter.Fill(tabla);
