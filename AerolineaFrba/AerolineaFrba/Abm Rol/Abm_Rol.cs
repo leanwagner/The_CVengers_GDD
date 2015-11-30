@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AerolineaFrba.Llenador;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,7 +18,9 @@ namespace AerolineaFrba.Abm_Ruta
         public Rol()
         {
             InitializeComponent();
-           
+            LlenadorDeTablas lleni = new LlenadorDeTablas();
+            lleni.llenarListBox(ref listBox1, "ROL", "ROL_NOMBRE");
+            lleni.llenarCheckedListBox(ref checkedListBox1, "FUNCIONALIDAD", "FUNC_NOMBRE");
         }
      
     }

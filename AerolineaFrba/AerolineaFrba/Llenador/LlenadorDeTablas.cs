@@ -27,5 +27,39 @@ namespace AerolineaFrba.Llenador
         
         }
 
+        public void llenarListBox(ref ListBox miCombo, String nombreTabla, String nombreColumna)
+        {
+
+            SqlCommand sqlCmd = new SqlCommand("SELECT * FROM THE_CVENGERS." + nombreTabla, Conexion.getConexion());
+
+            SqlDataReader sqlReader = sqlCmd.ExecuteReader();
+
+            while (sqlReader.Read())
+            {
+                miCombo.Items.Add(sqlReader[nombreColumna].ToString());
+            }
+
+            sqlReader.Close();
+
+        }
+
+        public void llenarCheckedListBox(ref CheckedListBox miCombo, String nombreTabla, String nombreColumna)
+        {
+
+            SqlCommand sqlCmd = new SqlCommand("SELECT * FROM THE_CVENGERS." + nombreTabla, Conexion.getConexion());
+
+            SqlDataReader sqlReader = sqlCmd.ExecuteReader();
+
+            while (sqlReader.Read())
+            {
+                miCombo.Items.Add(sqlReader[nombreColumna].ToString());
+            }
+
+            sqlReader.Close();
+
+        }
+
+    
+
     }
 }
