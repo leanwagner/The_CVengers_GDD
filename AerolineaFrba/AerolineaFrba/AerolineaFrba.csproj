@@ -132,6 +132,7 @@
     <Compile Include="Listado Estadistico\Listado_Estadistico.Designer.cs">
       <DependentUpon>Listado_Estadistico.cs</DependentUpon>
     </Compile>
+    <Compile Include="Llenador\LlenadorDeTablas.cs" />
     <Compile Include="Login\Login.cs">
       <SubType>Form</SubType>
     </Compile>

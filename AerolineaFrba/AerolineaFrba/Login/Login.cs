@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AerolineaFrba.Llenador;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +14,9 @@ namespace AerolineaFrba.Login
 {
     public partial class Login : Form
     {
+
+        LlenadorDeTablas llenador = new LlenadorDeTablas();
+
         public Login()
         {
             InitializeComponent();
@@ -46,18 +50,7 @@ namespace AerolineaFrba.Login
 
         public void mostrarRolesDisponibles()
         {
-            SqlCommand sqlCmd = new SqlCommand("SELECT * FROM THE_CVENGERS.CIUDAD", Conexion.getConexion());
-
-            //Conexion.getConexion().Open();
-
-            SqlDataReader sqlReader = sqlCmd.ExecuteReader();
-
-            while (sqlReader.Read())
-            {
-                comboBox_roles.Items.Add(sqlReader["CIUDAD_NOMBRE"].ToString()); 
-            }
-
-            sqlReader.Close();
+            llenador.llenarComboBox(ref comboBox_roles, "ROL", "ROL_NOMBRE");
             
         }
     }
