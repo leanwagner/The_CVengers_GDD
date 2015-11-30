@@ -41,7 +41,7 @@ CREATE TABLE [THE_CVENGERS].USUARIO(
 	USR_ID NUMERIC(18,0) IDENTITY PRIMARY KEY,
 	USR_FALLIDOS NUMERIC (18,0),
 	USR_USERNAME NVARCHAR(100) UNIQUE NOT NULL,
-	USR_PASS CHAR(4) NOT NULL,
+	USR_PASS VARCHAR(100) NOT NULL,
 	USR_ESTADO BIT NOT NULL,
 )
 GO
@@ -471,8 +471,39 @@ EXECUTE [THE_CVENGERS].INIC_COMPRAXPASAJE
 EXECUTE [THE_CVENGERS].INIC_COMPRAXENCOMIENDA
 EXECUTE [THE_CVENGERS].INIC_BUTACAXVIAJE
 
---EXECUTE [THE_CVENGERS].getAll @RECV = '[THE_CVENGERS].CIUDAD'
+insert into [THE_CVENGERS].ROL (ROL_NOMBRE, ROL_ESTADO) values ('Administrador', 1)
+insert into [THE_CVENGERS].ROL (ROL_NOMBRE, ROL_ESTADO) values ('Cliente', 1)
 
+insert into [THE_CVENGERS].FUNCIONALIDAD (FUNC_NOMBRE, FUNC_DESCRIPCION) values ('ABM Ruta', 'Crear, modificar y eliminar Rutas'),
+																				 ('ABM Aeronave', 'Crear, modificar y eliminar Aeronaves'),
+																				 ('Generar viaje', 'Autorizacion para crear un viaje'),
+																				 ('Registrar llegada a destino', 'Autorizacion para registrar la llegada de una aeronave'),
+																				 ('Comprar pasaje - encomienda', 'Autorización para comprar pasajes y encomiendas'),
+																				 ('Cancelación pasaje o encomienda', 'Autorizacion para cancelar pasajes o encomiendas'),
+																				 ('ABM Rol', 'Crear, modificar y eliminar Roles'),
+																				 ('Consultar Millas', 'Autorizacion para consultar millas'),
+																				 ('Canje Millas', 'Autorizacion para canjear millas'),
+																				 ('Listado Estadístico', 'Autorizacion para ver el listado estadístico')
+go
+insert into [THE_CVENGERS].FUNCIONXROL (FXR_ROL_ID, FXR_FUNC_ID) values (1,1),
+																		(1,2),
+																		(1,3),
+																		(1,4),
+																		(1,5),
+																		(1,6),
+																		(1,7),
+																		(1,8),
+																		(1,9),
+																		(1,10),
+																		(2,5),
+																		(2,8)
+
+go
+
+
+
+
+--EXECUTE [THE_CVENGERS].getAll @RECV = '[THE_CVENGERS].CIUDAD'
 
 
 /*DROP TABLE [THE_CVENGERS].MILLA
