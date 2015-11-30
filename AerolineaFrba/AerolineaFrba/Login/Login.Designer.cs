@@ -29,21 +29,22 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox_usuario = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox_roles = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox_contraseña = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // textBox1
+            // textBox_usuario
             // 
-            this.textBox1.Location = new System.Drawing.Point(80, 23);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(151, 20);
-            this.textBox1.TabIndex = 0;
+            this.textBox_usuario.Location = new System.Drawing.Point(80, 23);
+            this.textBox_usuario.Name = "textBox_usuario";
+            this.textBox_usuario.Size = new System.Drawing.Size(151, 20);
+            this.textBox_usuario.TabIndex = 0;
+            this.textBox_usuario.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label2
             // 
@@ -54,14 +55,14 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Usuario";
             // 
-            // comboBox1
+            // comboBox_roles
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(91, 126);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 4;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.comboBox_roles.FormattingEnabled = true;
+            this.comboBox_roles.Location = new System.Drawing.Point(91, 126);
+            this.comboBox_roles.Name = "comboBox_roles";
+            this.comboBox_roles.Size = new System.Drawing.Size(121, 21);
+            this.comboBox_roles.TabIndex = 4;
+            this.comboBox_roles.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -72,13 +73,13 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "Contraseña";
             // 
-            // textBox2
+            // textBox_contraseña
             // 
-            this.textBox2.Location = new System.Drawing.Point(80, 73);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(151, 20);
-            this.textBox2.TabIndex = 5;
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.textBox_contraseña.Location = new System.Drawing.Point(80, 73);
+            this.textBox_contraseña.Name = "textBox_contraseña";
+            this.textBox_contraseña.Size = new System.Drawing.Size(151, 20);
+            this.textBox_contraseña.TabIndex = 5;
+            this.textBox_contraseña.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // label3
             // 
@@ -110,10 +111,10 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.textBox_contraseña);
+            this.Controls.Add(this.comboBox_roles);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBox_usuario);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Login";
@@ -127,11 +128,11 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox_usuario;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBox_roles;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox_contraseña;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button1;
     }

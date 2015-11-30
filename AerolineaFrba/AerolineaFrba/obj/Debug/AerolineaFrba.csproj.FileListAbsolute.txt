@@ -30,3 +30,5 @@ C:\UTN\GDD\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\obj\Debug\AerolineaFrba.
 C:\UTN\GDD\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\obj\Debug\AerolineaFrba.Abm_Ruta.Rol.resources
 C:\UTN\GDD\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\obj\Debug\AerolineaFrba.Abm_Ruta.RutaModificar.resources
 C:\UTN\GDD\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\obj\Debug\AerolineaFrba.Abm_Aeronave.Butacas.resources
+C:\UTN\GDD\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\obj\Debug\AerolineaFrba.Generacion_Viaje.Generacion_Viaje.resources
+C:\UTN\GDD\The_CVengers_GDD\AerolineaFrba\AerolineaFrba\obj\Debug\AerolineaFrba.Registro_Llegada_Destino.Registro_LlegadaDestino.resources
