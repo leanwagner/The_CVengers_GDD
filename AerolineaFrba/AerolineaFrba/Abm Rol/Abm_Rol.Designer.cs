@@ -39,11 +39,16 @@ namespace AerolineaFrba.Abm_Ruta
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.button5 = new System.Windows.Forms.Button();
+            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.button4 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBox1
@@ -96,7 +101,7 @@ namespace AerolineaFrba.Abm_Ruta
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Location = new System.Drawing.Point(33, 23);
+            this.groupBox1.Location = new System.Drawing.Point(208, 23);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(331, 194);
             this.groupBox1.TabIndex = 4;
@@ -116,29 +121,21 @@ namespace AerolineaFrba.Abm_Ruta
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.button2);
             this.groupBox2.Controls.Add(this.button3);
             this.groupBox2.Controls.Add(this.listBox1);
-            this.groupBox2.Controls.Add(this.button2);
             this.groupBox2.Location = new System.Drawing.Point(33, 223);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(331, 161);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Listado Roles";
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(26, 20);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.ScrollAlwaysVisible = true;
-            this.listBox1.Size = new System.Drawing.Size(199, 134);
-            this.listBox1.TabIndex = 2;
+            this.groupBox2.Text = "Roles Habilitados";
             // 
             // button2
             // 
+            this.button2.Enabled = false;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(231, 109);
+            this.button2.Location = new System.Drawing.Point(231, 69);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(94, 42);
             this.button2.TabIndex = 1;
@@ -148,20 +145,77 @@ namespace AerolineaFrba.Abm_Ruta
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(231, 65);
+            this.button3.Enabled = false;
+            this.button3.Location = new System.Drawing.Point(231, 117);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(94, 38);
             this.button3.TabIndex = 3;
-            this.button3.Text = "Eliminar";
+            this.button3.Text = "Deshabilitar";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(26, 20);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.ScrollAlwaysVisible = true;
+            this.listBox1.Size = new System.Drawing.Size(199, 134);
+            this.listBox1.TabIndex = 2;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.button5);
+            this.groupBox3.Controls.Add(this.listBox2);
+            this.groupBox3.Controls.Add(this.button4);
+            this.groupBox3.Location = new System.Drawing.Point(370, 223);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(314, 161);
+            this.groupBox3.TabIndex = 6;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Roles Deshabilitados";
+            // 
+            // button5
+            // 
+            this.button5.Enabled = false;
+            this.button5.Location = new System.Drawing.Point(211, 116);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(94, 38);
+            this.button5.TabIndex = 4;
+            this.button5.Text = "Habilitar";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // listBox2
+            // 
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.Location = new System.Drawing.Point(6, 20);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.ScrollAlwaysVisible = true;
+            this.listBox2.Size = new System.Drawing.Size(199, 134);
+            this.listBox2.TabIndex = 3;
+            this.listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
+            // 
+            // button4
+            // 
+            this.button4.Enabled = false;
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.Location = new System.Drawing.Point(211, 69);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(94, 42);
+            this.button4.TabIndex = 2;
+            this.button4.Text = "Modificar";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // Rol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(393, 386);
+            this.ClientSize = new System.Drawing.Size(695, 386);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -169,10 +223,12 @@ namespace AerolineaFrba.Abm_Ruta
             this.Name = "Rol";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Rol";
+            this.Activated += new System.EventHandler(this.Rol_Activated);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -260,5 +316,9 @@ namespace AerolineaFrba.Abm_Ruta
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ListBox listBox1;
         private Button button3;
+        private GroupBox groupBox3;
+        private Button button5;
+        private ListBox listBox2;
+        private Button button4;
     }
 }

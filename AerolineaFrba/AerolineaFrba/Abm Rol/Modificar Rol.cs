@@ -33,7 +33,7 @@ namespace AerolineaFrba.Abm_Rol
             Llenador.LlenadorDeTablas llenu = new Llenador.LlenadorDeTablas();
             llenu.llenarListBoxConCondicion(ref listBox1, "FUNCIONALIDAD f, THE_CVENGERS.FUNCIONXROL fxr, THE_CVENGERS.ROL r", "FUNC_NOMBRE", "fxr.FXR_FUNC_ID = f.FUNC_ID and fxr.FXR_ROL_ID = r.ROL_ID and r.ROL_NOMBRE = '" + rol + "'");
             llenu.llenarListBoxSacandoLosDelOtro(ref listBox2,ref listBox1, "FUNCIONALIDAD", "FUNC_NOMBRE");
-           
+            textBox1.Text = rol;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -87,6 +87,15 @@ namespace AerolineaFrba.Abm_Rol
         private void button3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            SqlCommand sqlCmd = new SqlCommand("update THE_CVENGERS.ROL set ROL_NOMBRE = '"+textBox1.Text+"' where ROL_NOMBRE = '"+rol+"'", Conexion.getConexion());
+            sqlCmd.ExecuteNonQuery();
+            this.Text = textBox1.Text;
+            this.rol = textBox1.Text;
+            this.Refresh();
         }
     }
 }
