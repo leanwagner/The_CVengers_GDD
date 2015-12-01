@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -62,11 +63,16 @@ namespace AerolineaFrba.Abm_Aeronave
             String idServ = sqlReader["SERVICIO_ID"].ToString();
             sqlReader.Close();
 
-            sqlCmd.CommandText = "insert into THE_CVENGERS.AERONAVE(AERONAVE_CANTIDAD_BUTACAS,AERONAVE_FABRICANTE_AVION,AERONAVE_ESPACIO_ENCOMIENDAS,AERONAVE_MATRICULA_AVION,AERONAVE_MODELO_AVION,AERONAVE_SERVICIO) VALUES ('"+textBox3.Text+"',"+idFab+"," +textBox4.Text + ",'"+textBox1.Text+"','"+textBox2.Text+"',"+idServ+")";
+            sqlCmd.CommandText = "insert into THE_CVENGERS.AERONAVE(AERONAVE_CANTIDAD_BUTACAS,AERONAVE_FABRICANTE_AVION,AERONAVE_ESPACIO_ENCOMIENDAS,AERONAVE_MATRICULA_AVION,AERONAVE_MODELO_AVION,AERONAVE_SERVICIO) VALUES ('" + textBox3.Value.ToString() + "'," + idFab + "," + textBox4.Value.ToString(CultureInfo.InvariantCulture) + ",'" + textBox1.Text + "','" + textBox2.Text + "'," + idServ + ")";
             sqlCmd.ExecuteNonQuery();
-
             listBox1.Items.Add(textBox1.Text);
             listBox1.Refresh();
+
+            textBox1.ResetText();
+            textBox2.ResetText();
+            textBox3.ResetText();
+            textBox4.ResetText();
+            
         }
 
         private void Abm_Aeronave_Load(object sender, EventArgs e)
@@ -126,8 +132,8 @@ namespace AerolineaFrba.Abm_Aeronave
             textBox7.Text = sqlReader["AERONAVE_MODELO_AVION"].ToString();
             comboBox4.SelectedIndex = comboBox4.Items.IndexOf(sqlReader["FABRICANTE_NOMBRE"].ToString());
             comboBox3.SelectedIndex = comboBox3.Items.IndexOf(sqlReader["SERVICIO_NOMBRE"].ToString());
-            textBox6.Text = sqlReader["AERONAVE_CANTIDAD_BUTACAS"].ToString();
-            textBox5.Text = sqlReader["AERONAVE_ESPACIO_ENCOMIENDAS"].ToString();
+            textBox6.Value = decimal.Parse(sqlReader["AERONAVE_CANTIDAD_BUTACAS"].ToString());
+            textBox5.Value = decimal.Parse(sqlReader["AERONAVE_ESPACIO_ENCOMIENDAS"].ToString());
            
             sqlReader.Close();
         }
@@ -155,9 +161,10 @@ namespace AerolineaFrba.Abm_Aeronave
 
 
 
-    sqlCmd.CommandText = "UPDATE THE_CVENGERS.AERONAVE set AERONAVE_CANTIDAD_BUTACAS = " + textBox5.Text + ",AERONAVE_FABRICANTE_AVION = '" + idFab + "',AERONAVE_ESPACIO_ENCOMIENDAS = " + textBox5.Text + ",AERONAVE_MATRICULA_AVION = '" + textBox8.Text + "',AERONAVE_MODELO_AVION = '" + textBox7.Text + "',AERONAVE_SERVICIO = '" + idServ + "' where AERONAVE_MATRICULA_AVION = '"+textBox8.Text+"'";
+            sqlCmd.CommandText = "UPDATE THE_CVENGERS.AERONAVE set AERONAVE_CANTIDAD_BUTACAS = " + textBox6.Value.ToString() + ",AERONAVE_FABRICANTE_AVION = '" + idFab + "',AERONAVE_ESPACIO_ENCOMIENDAS = " + textBox5.Value.ToString(CultureInfo.InvariantCulture) + ",AERONAVE_MATRICULA_AVION = '" + textBox8.Text + "',AERONAVE_MODELO_AVION = '" + textBox7.Text + "',AERONAVE_SERVICIO = '" + idServ + "' where AERONAVE_MATRICULA_AVION = '" + textBox8.Text + "'";
     
             sqlCmd.ExecuteNonQuery();
+            groupBox3.Visible = false;
         }
 
         
