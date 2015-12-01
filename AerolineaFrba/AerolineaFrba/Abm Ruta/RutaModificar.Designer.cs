@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.comboBox_ciudadDestino = new System.Windows.Forms.ComboBox();
+            this.comboBox_ciudadOrigen = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
@@ -36,17 +40,15 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.boton_Agregar_Ciudad = new System.Windows.Forms.Button();
-            this.comboBox_ciudadOrigen = new System.Windows.Forms.ComboBox();
-            this.comboBox_ciudadDestino = new System.Windows.Forms.ComboBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.checkBox_bajaLogica = new System.Windows.Forms.CheckBox();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.checkBox_bajaLogica);
             this.groupBox2.Controls.Add(this.numericUpDown2);
             this.groupBox2.Controls.Add(this.numericUpDown1);
             this.groupBox2.Controls.Add(this.comboBox_ciudadDestino);
@@ -60,10 +62,40 @@
             this.groupBox2.Controls.Add(this.boton_Agregar_Ciudad);
             this.groupBox2.Location = new System.Drawing.Point(30, 26);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(377, 197);
+            this.groupBox2.Size = new System.Drawing.Size(377, 235);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Modificar Ruta";
+            // 
+            // numericUpDown2
+            // 
+            this.numericUpDown2.Location = new System.Drawing.Point(130, 145);
+            this.numericUpDown2.Name = "numericUpDown2";
+            this.numericUpDown2.Size = new System.Drawing.Size(153, 20);
+            this.numericUpDown2.TabIndex = 18;
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(130, 118);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(153, 20);
+            this.numericUpDown1.TabIndex = 17;
+            // 
+            // comboBox_ciudadDestino
+            // 
+            this.comboBox_ciudadDestino.FormattingEnabled = true;
+            this.comboBox_ciudadDestino.Location = new System.Drawing.Point(130, 46);
+            this.comboBox_ciudadDestino.Name = "comboBox_ciudadDestino";
+            this.comboBox_ciudadDestino.Size = new System.Drawing.Size(153, 21);
+            this.comboBox_ciudadDestino.TabIndex = 16;
+            // 
+            // comboBox_ciudadOrigen
+            // 
+            this.comboBox_ciudadOrigen.FormattingEnabled = true;
+            this.comboBox_ciudadOrigen.Location = new System.Drawing.Point(130, 18);
+            this.comboBox_ciudadOrigen.Name = "comboBox_ciudadOrigen";
+            this.comboBox_ciudadOrigen.Size = new System.Drawing.Size(153, 21);
+            this.comboBox_ciudadOrigen.TabIndex = 15;
             // 
             // label5
             // 
@@ -122,55 +154,35 @@
             // boton_Agregar_Ciudad
             // 
             this.boton_Agregar_Ciudad.Enabled = false;
-            this.boton_Agregar_Ciudad.Location = new System.Drawing.Point(296, 168);
+            this.boton_Agregar_Ciudad.Location = new System.Drawing.Point(296, 195);
             this.boton_Agregar_Ciudad.Name = "boton_Agregar_Ciudad";
             this.boton_Agregar_Ciudad.Size = new System.Drawing.Size(75, 23);
             this.boton_Agregar_Ciudad.TabIndex = 0;
             this.boton_Agregar_Ciudad.Text = "Modificar";
             this.boton_Agregar_Ciudad.UseVisualStyleBackColor = true;
             // 
-            // comboBox_ciudadOrigen
+            // checkBox_bajaLogica
             // 
-            this.comboBox_ciudadOrigen.FormattingEnabled = true;
-            this.comboBox_ciudadOrigen.Location = new System.Drawing.Point(130, 18);
-            this.comboBox_ciudadOrigen.Name = "comboBox_ciudadOrigen";
-            this.comboBox_ciudadOrigen.Size = new System.Drawing.Size(153, 21);
-            this.comboBox_ciudadOrigen.TabIndex = 15;
-            // 
-            // comboBox_ciudadDestino
-            // 
-            this.comboBox_ciudadDestino.FormattingEnabled = true;
-            this.comboBox_ciudadDestino.Location = new System.Drawing.Point(130, 46);
-            this.comboBox_ciudadDestino.Name = "comboBox_ciudadDestino";
-            this.comboBox_ciudadDestino.Size = new System.Drawing.Size(153, 21);
-            this.comboBox_ciudadDestino.TabIndex = 16;
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Location = new System.Drawing.Point(130, 118);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(153, 20);
-            this.numericUpDown1.TabIndex = 17;
-            // 
-            // numericUpDown2
-            // 
-            this.numericUpDown2.Location = new System.Drawing.Point(130, 145);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(153, 20);
-            this.numericUpDown2.TabIndex = 18;
+            this.checkBox_bajaLogica.AutoSize = true;
+            this.checkBox_bajaLogica.Location = new System.Drawing.Point(169, 182);
+            this.checkBox_bajaLogica.Name = "checkBox_bajaLogica";
+            this.checkBox_bajaLogica.Size = new System.Drawing.Size(78, 17);
+            this.checkBox_bajaLogica.TabIndex = 19;
+            this.checkBox_bajaLogica.Text = "Baja lógica";
+            this.checkBox_bajaLogica.UseVisualStyleBackColor = true;
             // 
             // RutaModificar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(436, 250);
+            this.ClientSize = new System.Drawing.Size(436, 273);
             this.Controls.Add(this.groupBox2);
             this.Name = "RutaModificar";
             this.Text = "Rutas - Modificar";
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -189,6 +201,7 @@
         private System.Windows.Forms.ComboBox comboBox_ciudadOrigen;
         private System.Windows.Forms.NumericUpDown numericUpDown2;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.CheckBox checkBox_bajaLogica;
 
     }
 }
