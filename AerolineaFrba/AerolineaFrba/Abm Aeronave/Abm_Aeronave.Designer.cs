@@ -62,21 +62,18 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-          
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textBox3)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textBox5)).BeginInit();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textBox4)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
             this.groupBox1.AutoSize = true;
-            this.groupBox1.Controls.Add(this.textBox4);
-            this.groupBox1.Controls.Add(this.textBox3);
             this.groupBox1.Controls.Add(this.boton_Agregar_Aeronave);
             this.groupBox1.Controls.Add(this.textBox4);
             this.groupBox1.Controls.Add(this.textBox3);
@@ -110,15 +107,32 @@
             // 
             // textBox4
             // 
+            this.textBox4.DecimalPlaces = 2;
+            this.textBox4.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
             this.textBox4.Location = new System.Drawing.Point(156, 252);
+            this.textBox4.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(131, 20);
             this.textBox4.TabIndex = 16;
+            this.textBox4.ThousandsSeparator = true;
             this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(156, 212);
+            this.textBox3.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(131, 20);
             this.textBox3.TabIndex = 15;
@@ -341,16 +355,33 @@
             // textBox6
             // 
             this.textBox6.Location = new System.Drawing.Point(156, 212);
+            this.textBox6.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(131, 20);
             this.textBox6.TabIndex = 15;
             // 
             // textBox5
             // 
+            this.textBox5.DecimalPlaces = 2;
+            this.textBox5.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
             this.textBox5.Location = new System.Drawing.Point(156, 252);
+            this.textBox5.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(131, 20);
             this.textBox5.TabIndex = 16;
+            this.textBox5.ThousandsSeparator = true;
             // 
             // groupBox3
             // 
@@ -371,7 +402,7 @@
             this.groupBox3.Controls.Add(this.textBox8);
             this.groupBox3.Location = new System.Drawing.Point(20, 3);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(355, 354);
+            this.groupBox3.Size = new System.Drawing.Size(310, 354);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Modificar Aeronave";
@@ -397,12 +428,6 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // numericUpDown1
-            // 
-           
-            // numericUpDown2
-            // 
-           // 
             // Abm_Aeronave
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -420,13 +445,13 @@
             this.Load += new System.EventHandler(this.Abm_Aeronave_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textBox3)).EndInit();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.textBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textBox5)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textBox4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
