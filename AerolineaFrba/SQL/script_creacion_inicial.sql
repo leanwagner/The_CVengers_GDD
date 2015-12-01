@@ -764,6 +764,18 @@ END
 return
 end
 
+go
+create view THE_CVENGERS.RutasDisponibles
+as
+select R.RUTA_CODIGO 'Código de Rutas', (select C.CIUDAD_NOMBRE 
+										FROM THE_CVENGERS.CIUDAD C 
+										WHERE C.CIUDAD_ID = R.RUTA_ORIGEN) 'Origen', (select C.CIUDAD_NOMBRE 
+																						FROM THE_CVENGERS.CIUDAD C 
+																						WHERE C.CIUDAD_ID = R.RUTA_DESTINO) 'Destino', R.RUTA_PRECIO_BASE_POR_KILO 'Precio Base por Kilo', R.RUTA_PRECIO_BASE_POR_PASAJE 'Precio Base por Pasaje'
+from THE_CVENGERS.RUTA R
+where R.RUTA_ESTADO = 1
+
+GO
 
 --EXECUTE [THE_CVENGERS].getAll @RECV = '[THE_CVENGERS].CIUDAD'
 
@@ -816,6 +828,7 @@ DROP PROCEDURE [THE_CVENGERS].resetearFallidos
 DROP TRIGGER [THE_CVENGERS].deshabilitacionRol
 DROP PROCEDURE [THE_CVENGERS].creacionRuta
 DROP PROCEDURE [THE_CVENGERS].modificacionRuta
+DROP VIEW [THE_CVENGERS].rutasDisponibles
 DROP PROCEDURE [THE_CVENGERS].getAll 
 DROP SCHEMA [THE_CVENGERS]*/
 
