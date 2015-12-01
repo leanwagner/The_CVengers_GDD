@@ -57,10 +57,12 @@
             // 
             // comboBox_roles
             // 
+            this.comboBox_roles.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_roles.FormattingEnabled = true;
             this.comboBox_roles.Location = new System.Drawing.Point(91, 126);
             this.comboBox_roles.Name = "comboBox_roles";
             this.comboBox_roles.Size = new System.Drawing.Size(121, 21);
+            this.comboBox_roles.Sorted = true;
             this.comboBox_roles.TabIndex = 4;
             this.comboBox_roles.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
