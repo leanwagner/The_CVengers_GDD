@@ -17,7 +17,7 @@ GO
 CREATE TABLE [THE_CVENGERS].ROL(
 	ROL_ID NUMERIC(18,0) IDENTITY PRIMARY KEY,
 	ROL_NOMBRE NVARCHAR(100) NOT NULL,
-	ROL_ESTADO BIT NOT NULL
+	ROL_ESTADO BIT default 1 NOT NULL
 )
 GO
 
@@ -471,8 +471,8 @@ EXECUTE [THE_CVENGERS].INIC_COMPRAXPASAJE
 EXECUTE [THE_CVENGERS].INIC_COMPRAXENCOMIENDA
 EXECUTE [THE_CVENGERS].INIC_BUTACAXVIAJE
 
-insert into [THE_CVENGERS].ROL (ROL_NOMBRE, ROL_ESTADO) values ('Administrador', 1)
-insert into [THE_CVENGERS].ROL (ROL_NOMBRE, ROL_ESTADO) values ('Cliente', 1)
+insert into [THE_CVENGERS].ROL (ROL_NOMBRE) values ('Administrador')
+insert into [THE_CVENGERS].ROL (ROL_NOMBRE) values ('Cliente')
 
 insert into [THE_CVENGERS].FUNCIONALIDAD (FUNC_NOMBRE, FUNC_DESCRIPCION) values ('ABM Ruta', 'Crear, modificar y eliminar Rutas'),
 																				 ('ABM Aeronave', 'Crear, modificar y eliminar Aeronaves'),
@@ -502,7 +502,9 @@ go
 insert into THE_CVENGERS.USUARIO (USR_USERNAME) values ('Pepe'), ('Carlos'), ('Ricardo')
 
 go
-insert into THE_CVENGERS.ROLXUSUARIO (ROLXUSUARIO_ROL, ROLXUSUARIO_USUARIO) values (1,1), (1,2), (1,3) 
+insert into THE_CVENGERS.ROLXUSUARIO (ROLXUSUARIO_ROL, ROLXUSUARIO_USUARIO) values (1,1), (1,2), (1,3)
+
+go
 
 
 --EXECUTE [THE_CVENGERS].getAll @RECV = '[THE_CVENGERS].CIUDAD'
