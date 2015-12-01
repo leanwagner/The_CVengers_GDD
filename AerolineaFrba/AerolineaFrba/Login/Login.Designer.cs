@@ -79,6 +79,7 @@
             // 
             this.textBox_contraseña.Location = new System.Drawing.Point(80, 73);
             this.textBox_contraseña.Name = "textBox_contraseña";
+            this.textBox_contraseña.PasswordChar = '*';
             this.textBox_contraseña.Size = new System.Drawing.Size(151, 20);
             this.textBox_contraseña.TabIndex = 5;
             this.textBox_contraseña.TextChanged += new System.EventHandler(this.textBox2_TextChanged);

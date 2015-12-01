@@ -153,6 +153,7 @@
     <Compile Include="Registro Llegada Destino\Registro_LlegadaDestino.Designer.cs">
       <DependentUpon>Registro_LlegadaDestino.cs</DependentUpon>
     </Compile>
+    <Compile Include="TipoTerminal\Terminal.cs" />
     <EmbeddedResource Include="Abm Aeronave\Abm_Aeronave.resx">
       <DependentUpon>Abm_Aeronave.cs</DependentUpon>
     </EmbeddedResource>
