@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -59,7 +60,26 @@ namespace AerolineaFrba.Llenador
 
         }
 
-    
+        public void llenarDataGridView(DataGridView dgv, String nombreTabla) 
+        {
+            SqlDataAdapter adapter;
+            DataTable tabla;
+
+            try {
+                adapter = new SqlDataAdapter("EXECUTE [THE_CVENGERS].getAll @RECV = '[THE_CVENGERS]." + nombreTabla+"';", Conexion.getConexion());
+                tabla = new DataTable();
+                
+                adapter.Fill(tabla);
+                dgv.DataSource=tabla;
+                dgv.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+                adapter.Dispose();
+            }
+            catch (Exception ex) {
+
+                MessageBox.Show("Rompe mostrando tabla " + nombreTabla + ex);
+            
+            }
+        } 
 
     }
 }

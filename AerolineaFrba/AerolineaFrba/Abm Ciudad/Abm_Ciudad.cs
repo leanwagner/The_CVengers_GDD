@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AerolineaFrba.Llenador;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,8 @@ namespace AerolineaFrba.Abm_Ciudad
 {
     public partial class Abm_Ciudad : Form
     {
+        public LlenadorDeTablas llenador = new LlenadorDeTablas();
+
         public Abm_Ciudad()
         {
             InitializeComponent();
@@ -20,7 +23,7 @@ namespace AerolineaFrba.Abm_Ciudad
         private void Abm_Ciudad_Load(object sender, EventArgs e)
         {
            
-            Conexion.llenarTabla(dataGridView1, "CIUDAD");
+            llenador.llenarDataGridView(dataGridView1, "CIUDAD");
         }
 
         private void boton_Agregar_Ciudad_Click(object sender, EventArgs e)
