@@ -86,38 +86,54 @@ namespace AerolineaFrba.Login
 
         public void validarLogin()
         {
-            int resultadoLectura;
-
             if (!string.IsNullOrWhiteSpace(textBox_usuario.Text) && !string.IsNullOrWhiteSpace(textBox_contraseña.Text))
             {
-                SqlCommand sqlCmd = new SqlCommand("EXEC THE_CVENGERS.chequeoLogin(" + textBox_usuario + "," + textBox_contraseña + ")", Conexion.getConexion());
 
-                SqlDataReader sqlReader = sqlCmd.ExecuteReader();
+                SqlCommand sqlCmd = new SqlCommand("EXEC THE_CVENGERS.chequeoLogin @P1 = " + textBox_usuario.Text + ",@P2 = " + textBox_contraseña.Text, Conexion.getConexion());
 
-                resultadoLectura =  sqlReader.GetInt32(0);
-
-                switch (resultadoLectura)
+                try
                 {
-                    case 1:   AerolineaFrba pantallaInicial = new AerolineaFrba(Terminal.Usuario);
-                              pantallaInicial.Show();
-                              this.Hide();
-                              break;
-
-                    case 2:   MessageBox.Show("Reingrese su contraseña.");
-                              break;
-
-                    case 3:   MessageBox.Show("El usuario con el que intenta ingresar no existe.");
-                              break;
-
-                    case 4:   MessageBox.Show("El usuario con el que intenta ingresar no tiene permisos de administrador.");
-                              break;
-
-                    case 5:   MessageBox.Show("El usuario con el que intenta ingresar se encuenta inhabilitado.");
-                              break;
+                    sqlCmd.ExecuteScalar();
+                    AerolineaFrba pantallaInicial = new AerolineaFrba(Terminal.Usuario);
+                    pantallaInicial.Show();
+                    this.Hide();
                 }
 
-                sqlReader.Close();
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK);
+                }
+            }
+
+            else
+            {
+                if (string.IsNullOrWhiteSpace(textBox_usuario.Text))
+
+                {
+                    MessageBox.Show("Ingrese un Nombre de Usuario", "Error: Nombre de Usuario", MessageBoxButtons.OK);
+                }
+
+                if (string.IsNullOrWhiteSpace(textBox_contraseña.Text))
+                {
+                    MessageBox.Show("Ingrese una contraseña ", "Error: Contraseña", MessageBoxButtons.OK);
+                }
+
             }
         }
+
+        private void textBox_usuario_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Tab)
+
+            {
+                textBox_contraseña.Focus();
+            }
+        }
+
+        private void textBox_contraseña_Enter(object sender, EventArgs e)
+        {
+            ActiveForm.AcceptButton = button1;
+        }
+
     }
 }
