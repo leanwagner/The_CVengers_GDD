@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AerolineaFrba.Login
+namespace AerolineaFrba
 {
     static class Program
     {
@@ -13,11 +13,12 @@ namespace AerolineaFrba.Login
         /// </summary>
         [STAThread]
         static void Main()
-        {
+        {;
+
             Conexion.getConexion();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Login());
+            Application.Run(new Login.Login());
         }
     }
 }
