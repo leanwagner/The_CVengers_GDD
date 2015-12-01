@@ -767,7 +767,7 @@ end
 go
 create view THE_CVENGERS.RutasDisponibles
 as
-select R.RUTA_CODIGO 'Código de Rutas', (select C.CIUDAD_NOMBRE 
+select R.RUTA_ID 'Id', R.RUTA_CODIGO 'Código de Rutas', (select C.CIUDAD_NOMBRE 
 										FROM THE_CVENGERS.CIUDAD C 
 										WHERE C.CIUDAD_ID = R.RUTA_ORIGEN) 'Origen', (select C.CIUDAD_NOMBRE 
 																						FROM THE_CVENGERS.CIUDAD C 
@@ -776,6 +776,15 @@ from THE_CVENGERS.RUTA R
 where R.RUTA_ESTADO = 1
 
 GO
+create view THE_CVENGERS.listadoAeronaves
+as
+select A.AERONAVE_MATRICULA_AVION 'Matrícula', (SELECT FABRICANTE_NOMBRE 
+												FROM THE_CVENGERS.FABRICANTE
+												WHERE FABRICANTE_ID = A.AERONAVE_FABRICANTE_AVION ) 'Fabricante',(select SERVICIO_NOMBRE 
+																													FROM THE_CVENGERS.SERVICIO
+																													WHERE SERVICIO_ID = A.AERONAVE_SERVICIO) 'Servicio', a.AERONAVE_CANTIDAD_BUTACAS 'Cantidad de Butacas', (case WHEN A.AERONAVE_EN_TALLER = 1 THEN 'Sí' ELSE 'NO' END) 'Aeronave en taller',  a.AERONAVE_ESPACIO_ENCOMIENDAS 'Espacio para encomiendas', a.AERONAVE_FECHA_DE_ALTA 'Fecha de alta'
+from THE_CVENGERS.AERONAVE A
+where a.AERONAVE_ESTADO = 1
 
 --EXECUTE [THE_CVENGERS].getAll @RECV = '[THE_CVENGERS].CIUDAD'
 
@@ -829,6 +838,7 @@ DROP TRIGGER [THE_CVENGERS].deshabilitacionRol
 DROP PROCEDURE [THE_CVENGERS].creacionRuta
 DROP PROCEDURE [THE_CVENGERS].modificacionRuta
 DROP VIEW [THE_CVENGERS].rutasDisponibles
+DROP VIEW [THE_CVENGERS].listadoAeronaves
 DROP PROCEDURE [THE_CVENGERS].getAll 
 DROP SCHEMA [THE_CVENGERS]*/
 
