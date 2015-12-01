@@ -274,6 +274,7 @@
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(131, 20);
             this.textBox8.TabIndex = 3;
+            this.textBox8.TextChanged += new System.EventHandler(this.textBox8_TextChanged);
             // 
             // label12
             // 
@@ -290,6 +291,7 @@
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(131, 20);
             this.textBox7.TabIndex = 5;
+            this.textBox7.TextChanged += new System.EventHandler(this.textBox8_TextChanged);
             // 
             // label11
             // 
@@ -363,6 +365,7 @@
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(131, 20);
             this.textBox6.TabIndex = 15;
+            this.textBox6.ValueChanged += new System.EventHandler(this.textBox8_TextChanged);
             // 
             // textBox5
             // 
@@ -382,6 +385,9 @@
             this.textBox5.Size = new System.Drawing.Size(131, 20);
             this.textBox5.TabIndex = 16;
             this.textBox5.ThousandsSeparator = true;
+            this.textBox5.ValueChanged += new System.EventHandler(this.textBox8_TextChanged);
+            this.textBox3.ValueChanged += new System.EventHandler(this.textBox8_TextChanged);
+            this.textBox4.ValueChanged += new System.EventHandler(this.textBox8_TextChanged);
             // 
             // groupBox3
             // 
