@@ -60,6 +60,23 @@ namespace AerolineaFrba.Llenador
 
         }
 
+        public void llenarComboBoxSacandoLosDelOtro(ref ComboBox miCombo, ref ComboBox list, String nombreTabla, String nombreColumna)
+        {
+
+            SqlCommand sqlCmd = new SqlCommand("SELECT * FROM THE_CVENGERS." + nombreTabla, Conexion.getConexion());
+
+            SqlDataReader sqlReader = sqlCmd.ExecuteReader();
+
+            while (sqlReader.Read())
+            {
+                if (!list.Items.Contains(sqlReader[nombreColumna].ToString()))
+                    miCombo.Items.Add(sqlReader[nombreColumna].ToString());
+            }
+
+            sqlReader.Close();
+
+        }
+
         public void llenarListBoxConCondicion(ref ListBox miCombo, String nombreTabla, String nombreColumna, String condicion)
         {
 

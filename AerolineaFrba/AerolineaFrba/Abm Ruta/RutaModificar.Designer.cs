@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RutaModificar));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.checkBox_bajaLogica = new System.Windows.Forms.CheckBox();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.comboBox_ciudadDestino = new System.Windows.Forms.ComboBox();
@@ -40,7 +42,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.boton_Agregar_Ciudad = new System.Windows.Forms.Button();
-            this.checkBox_bajaLogica = new System.Windows.Forms.CheckBox();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
@@ -66,6 +67,16 @@
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Modificar Ruta";
+            // 
+            // checkBox_bajaLogica
+            // 
+            this.checkBox_bajaLogica.AutoSize = true;
+            this.checkBox_bajaLogica.Location = new System.Drawing.Point(169, 182);
+            this.checkBox_bajaLogica.Name = "checkBox_bajaLogica";
+            this.checkBox_bajaLogica.Size = new System.Drawing.Size(78, 17);
+            this.checkBox_bajaLogica.TabIndex = 19;
+            this.checkBox_bajaLogica.Text = "Baja lógica";
+            this.checkBox_bajaLogica.UseVisualStyleBackColor = true;
             // 
             // numericUpDown2
             // 
@@ -161,23 +172,15 @@
             this.boton_Agregar_Ciudad.Text = "Modificar";
             this.boton_Agregar_Ciudad.UseVisualStyleBackColor = true;
             // 
-            // checkBox_bajaLogica
-            // 
-            this.checkBox_bajaLogica.AutoSize = true;
-            this.checkBox_bajaLogica.Location = new System.Drawing.Point(169, 182);
-            this.checkBox_bajaLogica.Name = "checkBox_bajaLogica";
-            this.checkBox_bajaLogica.Size = new System.Drawing.Size(78, 17);
-            this.checkBox_bajaLogica.TabIndex = 19;
-            this.checkBox_bajaLogica.Text = "Baja lógica";
-            this.checkBox_bajaLogica.UseVisualStyleBackColor = true;
-            // 
             // RutaModificar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(436, 273);
             this.Controls.Add(this.groupBox2);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "RutaModificar";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Rutas - Modificar";
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

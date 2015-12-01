@@ -15,6 +15,8 @@ namespace AerolineaFrba.Abm_Ruta
     {
 
         LlenadorDeTablas llenador = new LlenadorDeTablas();
+        object elementoQuitadoTablaDestino;
+        object elementoQuitadoTablaOrigen;
 
         public Abm_Ruta()
         {
@@ -22,6 +24,8 @@ namespace AerolineaFrba.Abm_Ruta
             this.mostrarServicios();
             this.mostrarCiudad(ref comboBox_ciudadOrigen);
             this.mostrarCiudad(ref comboBox_ciudadDestino);
+            comboBox_ciudadOrigen.Focus();
+            this.mostrarRutas();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -58,9 +62,47 @@ namespace AerolineaFrba.Abm_Ruta
 
         }
 
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        public void mostrarRutas()
+        {
+            llenador.llenarDataGridView(dataGridView_listadoRutas,"RUTA");
+        }
+      
+
+        private void groupBox1_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox_ciudadOrigen_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+            if(elementoQuitadoTablaDestino != null)
+            comboBox_ciudadDestino.Items.Add(elementoQuitadoTablaDestino);
+
+            int indiceElegido = comboBox_ciudadDestino.Items.IndexOf(comboBox_ciudadOrigen.SelectedItem);
+            elementoQuitadoTablaDestino = comboBox_ciudadOrigen.SelectedItem;
+
+            comboBox_ciudadDestino.Items.RemoveAt(indiceElegido);
+
+            comboBox_ciudadDestino.Refresh();
+        }
+
+        private void comboBox_ciudadDestino_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (elementoQuitadoTablaOrigen!= null)
+                comboBox_ciudadOrigen.Items.Add(elementoQuitadoTablaOrigen);
+
+            int indiceElegido = comboBox_ciudadOrigen.Items.IndexOf(comboBox_ciudadDestino.SelectedItem);
+            elementoQuitadoTablaOrigen = comboBox_ciudadDestino.SelectedItem;
+                
+            comboBox_ciudadOrigen.Items.RemoveAt(indiceElegido);
+
+            comboBox_ciudadOrigen.Refresh();
         }
     }
 }
