@@ -41,6 +41,7 @@ namespace AerolineaFrba.Abm_Ruta
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -115,11 +116,12 @@ namespace AerolineaFrba.Abm_Ruta
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.button3);
             this.groupBox2.Controls.Add(this.listBox1);
             this.groupBox2.Controls.Add(this.button2);
-            this.groupBox2.Location = new System.Drawing.Point(33, 257);
+            this.groupBox2.Location = new System.Drawing.Point(33, 223);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(331, 127);
+            this.groupBox2.Size = new System.Drawing.Size(331, 161);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Listado Roles";
@@ -130,19 +132,29 @@ namespace AerolineaFrba.Abm_Ruta
             this.listBox1.Location = new System.Drawing.Point(26, 20);
             this.listBox1.Name = "listBox1";
             this.listBox1.ScrollAlwaysVisible = true;
-            this.listBox1.Size = new System.Drawing.Size(199, 82);
+            this.listBox1.Size = new System.Drawing.Size(199, 134);
             this.listBox1.TabIndex = 2;
             // 
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(231, 60);
+            this.button2.Location = new System.Drawing.Point(231, 109);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(94, 42);
             this.button2.TabIndex = 1;
             this.button2.Text = "Modificar";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(231, 65);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(94, 38);
+            this.button3.TabIndex = 3;
+            this.button3.Text = "Eliminar";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // Rol
             // 
@@ -247,5 +259,6 @@ namespace AerolineaFrba.Abm_Ruta
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ListBox listBox1;
+        private Button button3;
     }
 }

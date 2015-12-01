@@ -19,7 +19,7 @@ namespace AerolineaFrba.Abm_Ruta
         {
             InitializeComponent();
             LlenadorDeTablas lleni = new LlenadorDeTablas();
-            lleni.llenarListBox(ref listBox1, "ROL", "ROL_NOMBRE");
+            lleni.llenarListBoxConCondicion(ref listBox1, "ROL", "ROL_NOMBRE","ROL_ESTADO = 1");
             lleni.llenarCheckedListBox(ref checkedListBox1, "FUNCIONALIDAD", "FUNC_NOMBRE");
         }
 
@@ -44,6 +44,21 @@ namespace AerolineaFrba.Abm_Ruta
             Abm_Rol.ModificarRol mod = new Abm_Rol.ModificarRol(asz);
        
             mod.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            SqlCommand sqlCmd = new SqlCommand("select * from THE_CVENGERS.ROL where ROL_NOMBRE ='" + listBox1.SelectedItem.ToString() + "'", Conexion.getConexion());
+            SqlDataReader sqlReader;
+            sqlReader = sqlCmd.ExecuteReader();
+            sqlReader.Read();
+            String idRol = sqlReader["ROL_ID"].ToString();
+            sqlReader.Close();
+
+            sqlCmd.CommandText = "update THE_CVENGERS.ROL set ROL_ESTADO = 0 where ROL_ID = " + idRol;
+            int x = listBox1.SelectedIndex;
+            listBox1.Items.RemoveAt(x);
+            listBox1.Refresh();
         }
 
 
