@@ -250,7 +250,14 @@ namespace AerolineaFrba.Abm_Ruta
            
             SqlCommand sqlCmd = new SqlCommand("insert into THE_CVENGERS.ROL(ROL_NOMBRE,ROL_ESTADO) values ('"+ textBox1.Text+"',1)", Conexion.getConexion());
             SqlDataReader sqlReader;
-            sqlCmd.ExecuteNonQuery();
+            try
+            {
+                sqlCmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ya existe un rol con ese nombre", "Error", MessageBoxButtons.OK);
+            }
 
             sqlCmd.CommandText = "select * from THE_CVENGERS.ROL where ROL_NOMBRE ='" + textBox1.Text + "'";
             sqlReader = sqlCmd.ExecuteReader();
@@ -267,8 +274,12 @@ namespace AerolineaFrba.Abm_Ruta
                 sqlReader.Close();
                 //hacer el insert
                 sqlCmd.CommandText = "insert into THE_CVENGERS.FUNCIONXROL(FXR_ROL_ID,FXR_FUNC_ID) values (" + idRol + "," + idFuncion + ")";
-                sqlCmd.ExecuteNonQuery();
-            }
+                try
+                {
+                    sqlCmd.ExecuteNonQuery();
+                }
+                catch (Exception exc) { MessageBox.Show(exc.Message, "Error", MessageBoxButtons.OK); }
+                }
             sqlCmd.Dispose();
             for (int i = 0; i < checkedListBox1.Items.Count; i++)
                 checkedListBox1.SetItemCheckState(i, (CheckState.Unchecked));

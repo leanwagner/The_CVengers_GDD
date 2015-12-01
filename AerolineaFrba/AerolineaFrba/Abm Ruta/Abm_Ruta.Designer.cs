@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Abm_Ruta));
             this.button_modificarRuta = new System.Windows.Forms.Button();
             this.dataGridView_listadoRutas = new System.Windows.Forms.DataGridView();
@@ -47,12 +48,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.button_agregarRuta = new System.Windows.Forms.Button();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_listadoRutas)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // button_modificarRuta
@@ -92,7 +95,6 @@
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Listado de Rutas";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // button_eliminarRuta
             // 
@@ -125,7 +127,6 @@
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Crear Ruta";
-            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // numericUpDown3
             // 
@@ -147,7 +148,6 @@
             this.label6.Size = new System.Drawing.Size(69, 13);
             this.label6.TabIndex = 19;
             this.label6.Text = "Código Ruta:";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // numericUpDown2
             // 
@@ -263,12 +263,18 @@
             // 
             // button_agregarRuta
             // 
+            this.button_agregarRuta.Enabled = false;
             this.button_agregarRuta.Location = new System.Drawing.Point(296, 212);
             this.button_agregarRuta.Name = "button_agregarRuta";
             this.button_agregarRuta.Size = new System.Drawing.Size(75, 23);
             this.button_agregarRuta.TabIndex = 6;
             this.button_agregarRuta.Text = "Agregar";
             this.button_agregarRuta.UseVisualStyleBackColor = true;
+            this.button_agregarRuta.Click += new System.EventHandler(this.button_agregarRuta_Click);
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // Abm_Ruta
             // 
@@ -292,6 +298,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -314,7 +321,8 @@
         private System.Windows.Forms.ComboBox comboBox_ciudadOrigen;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.NumericUpDown numericUpDown2;
-        private System.Windows.Forms.NumericUpDown numericUpDown3;
         private System.Windows.Forms.Label label6;
+        private MyNumericUpDown.MyNumericUpDown numericUpDown3;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

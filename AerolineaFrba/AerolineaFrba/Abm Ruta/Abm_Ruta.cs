@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -39,11 +40,6 @@ namespace AerolineaFrba.Abm_Ruta
             rutaAModificar.Show();
         }
 
-        private void groupBox2_Enter(object sender, EventArgs e)
-        {
-
-        }
-
         private void Abm_Ruta_Load(object sender, EventArgs e)
         {
 
@@ -67,17 +63,6 @@ namespace AerolineaFrba.Abm_Ruta
             llenador.llenarDataGridView(dataGridView_listadoRutas,"RUTA");
         }
       
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void comboBox_ciudadOrigen_SelectedIndexChanged(object sender, EventArgs e)
         {
            
@@ -103,6 +88,55 @@ namespace AerolineaFrba.Abm_Ruta
             comboBox_ciudadOrigen.Items.RemoveAt(indiceElegido);
 
             comboBox_ciudadOrigen.Refresh();
+        }
+
+        private void button_agregarRuta_Click(object sender, EventArgs e)
+        {
+            
+            String servicio1 = null;
+            String servicio2 = null;
+            String servicio3 = null;
+
+            if(checkedListBox_servicios.CheckedItems.Contains(checkedListBox_servicios.Items[0]))
+                servicio1 = checkedListBox_servicios.Items[0].ToString();
+
+            if(checkedListBox_servicios.CheckedItems.Contains(checkedListBox_servicios.Items[1]))
+                servicio1 = checkedListBox_servicios.Items[1].ToString();
+
+            if(checkedListBox_servicios.CheckedItems.Contains(checkedListBox_servicios.Items[2]))
+                servicio1 = checkedListBox_servicios.Items[2].ToString();
+
+            if (comboBox_ciudadOrigen.SelectedItem != null && comboBox_ciudadDestino.SelectedItem != null && numericUpDown1.Value > 0 && numericUpDown2.Value > 0)
+            {
+                try
+                {
+                    SqlCommand sqlCmd = new SqlCommand("EXEC THE_CVENGERS.creacionRuta @P1 = " + numericUpDown3.Value +
+                        ",@P2 = " + comboBox_ciudadOrigen.SelectedItem.ToString() +
+                        ",@P3 = " + comboBox_ciudadDestino.SelectedItem.ToString() +
+                        ",@P4 = " + numericUpDown1.Value +
+                        ",@P5 = " + numericUpDown2.Value +
+                        ",@P6 = " + servicio1 +
+                        ",@P7 = " + servicio2 +
+                        ",@P8 = " + servicio3, Conexion.getConexion());
+
+                    dataGridView_listadoRutas.Refresh();
+
+                }
+
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
+                }
+            }
+
+            else
+            {
+                if(comboBox_ciudadOrigen.SelectedItem == null)
+                    MessageBox.Show("Por favor seleccione una Ciudad de Origen", "Error: No Hay una Ciudad de Origen Seleccionada", MessageBoxButtons.OK);
+
+                if (comboBox_ciudadDestino.SelectedItem == null)
+                    MessageBox.Show("Por favor seleccione una Ciudad de Origen", "Error: No Hay una Ciudad de Origen Seleccionada", MessageBoxButtons.OK);
+            }
         }
     }
 
