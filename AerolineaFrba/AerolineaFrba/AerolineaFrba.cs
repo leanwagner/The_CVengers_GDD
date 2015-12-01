@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AerolineaFrba.TipoTerminal;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,10 +13,21 @@ namespace AerolineaFrba
 {
     public partial class AerolineaFrba : Form
     {
-        public AerolineaFrba()
+        public AerolineaFrba(Terminal tipoTerminal )
         {
             InitializeComponent();
-        }
+
+            switch (tipoTerminal)
+            {
+
+                case Terminal.Kiosco: groupUsuario.Visible = false;
+                    break;
+
+                case Terminal.Usuario: groupKiosko.Visible = true;
+                    break;
+
+            }
+         }
 
         private void AerolineaFrba_Load(object sender, EventArgs e)
         {
@@ -105,7 +117,11 @@ namespace AerolineaFrba
             Loguearme.Show();
         }
 
-  
+        public void mostrarmeKiosco()
+        {
+            groupUsuario.Visible = false;
+      
+        }
        
     }
 }

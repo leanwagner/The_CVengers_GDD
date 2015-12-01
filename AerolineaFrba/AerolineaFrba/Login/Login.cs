@@ -1,4 +1,5 @@
 ﻿using AerolineaFrba.Llenador;
+using AerolineaFrba.TipoTerminal;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -39,8 +40,10 @@ namespace AerolineaFrba.Login
             }
             else
             {
-                AerolineaFrba pantallaInicial = new AerolineaFrba();
-                pantallaInicial.Show(); 
+                AerolineaFrba pantallaInicial = new AerolineaFrba(Terminal.Kiosco);
+                pantallaInicial.Show();
+                this.Hide();
+
             }
 
 
@@ -83,23 +86,54 @@ namespace AerolineaFrba.Login
 
         public void validarLogin()
         {
-            int resultadoLectura;
-
             if (!string.IsNullOrWhiteSpace(textBox_usuario.Text) && !string.IsNullOrWhiteSpace(textBox_contraseña.Text))
             {
-                SqlCommand sqlCmd = new SqlCommand("THE_CVENGERS.chequeoLogin(" + textBox_usuario + "," + textBox_contraseña + ")", Conexion.getConexion());
 
-                SqlDataReader sqlReader = sqlCmd.ExecuteReader();
+                SqlCommand sqlCmd = new SqlCommand("EXEC THE_CVENGERS.chequeoLogin @P1 = " + textBox_usuario.Text + ",@P2 = " + textBox_contraseña.Text, Conexion.getConexion());
 
-                resultadoLectura =  sqlReader.GetInt32(0);
-
-                switch (resultadoLectura)
+                try
                 {
-                    case 1:   AerolineaFrba pantallaInicial = new AerolineaFrba();
-                              pantallaInicial.Show(); 
-                              break;
+                    sqlCmd.ExecuteScalar();
+                    AerolineaFrba pantallaInicial = new AerolineaFrba(Terminal.Usuario);
+                    pantallaInicial.Show();
+                    this.Hide();
+                }
+
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK);
                 }
             }
+
+            else
+            {
+                if (string.IsNullOrWhiteSpace(textBox_usuario.Text))
+
+                {
+                    MessageBox.Show("Ingrese un Nombre de Usuario", "Error: Nombre de Usuario", MessageBoxButtons.OK);
+                }
+
+                if (string.IsNullOrWhiteSpace(textBox_contraseña.Text))
+                {
+                    MessageBox.Show("Ingrese una contraseña ", "Error: Contraseña", MessageBoxButtons.OK);
+                }
+
+            }
         }
+
+        private void textBox_usuario_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Tab)
+
+            {
+                textBox_contraseña.Focus();
+            }
+        }
+
+        private void textBox_contraseña_Enter(object sender, EventArgs e)
+        {
+            ActiveForm.AcceptButton = button1;
+        }
+
     }
 }

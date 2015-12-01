@@ -77,6 +77,12 @@
     <Compile Include="Abm Rol\Abm_Rol.Designer.cs">
       <DependentUpon>Abm_Rol.cs</DependentUpon>
     </Compile>
+    <Compile Include="Abm Rol\Modificar Rol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Rol\Modificar Rol.Designer.cs">
+      <DependentUpon>Modificar Rol.cs</DependentUpon>
+    </Compile>
     <Compile Include="Abm Ruta\RutaModificar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -153,6 +159,7 @@
     <Compile Include="Registro Llegada Destino\Registro_LlegadaDestino.Designer.cs">
       <DependentUpon>Registro_LlegadaDestino.cs</DependentUpon>
     </Compile>
+    <Compile Include="TipoTerminal\Terminal.cs" />
     <EmbeddedResource Include="Abm Aeronave\Abm_Aeronave.resx">
       <DependentUpon>Abm_Aeronave.cs</DependentUpon>
     </EmbeddedResource>
@@ -164,6 +171,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Rol\Abm_Rol.resx">
       <DependentUpon>Abm_Rol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Rol\Modificar Rol.resx">
+      <DependentUpon>Modificar Rol.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Ruta\Abm_Ruta.resx">
       <DependentUpon>Abm_Ruta.cs</DependentUpon>
