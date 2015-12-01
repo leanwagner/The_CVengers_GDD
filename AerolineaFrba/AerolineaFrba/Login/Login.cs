@@ -24,7 +24,10 @@ namespace AerolineaFrba.Login
             mostrarRolesDisponibles();
             textBox_usuario.Enabled = false;
             textBox_contraseña.Enabled = false;
-            comboBox_roles.SelectedItem = "Cliente"; 
+            comboBox_roles.SelectedItem = "Administrador";
+            textBox_usuario.Text = "Pepe";
+            textBox_contraseña.Text = "w23e";
+
         }
 
         private void Login_Load(object sender, EventArgs e)

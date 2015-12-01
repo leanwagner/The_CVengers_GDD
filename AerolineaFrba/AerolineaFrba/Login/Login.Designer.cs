@@ -43,10 +43,9 @@
             this.textBox_usuario.Location = new System.Drawing.Point(80, 23);
             this.textBox_usuario.Name = "textBox_usuario";
             this.textBox_usuario.Size = new System.Drawing.Size(151, 20);
-            this.textBox_usuario.TabIndex = 0;
+            this.textBox_usuario.TabIndex = 4;
             this.textBox_usuario.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.textBox_usuario.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_usuario_KeyDown);
-
             // 
             // label2
             // 

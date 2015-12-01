@@ -83,6 +83,7 @@
     <Compile Include="Abm Rol\Modificar Rol.Designer.cs">
       <DependentUpon>Modificar Rol.cs</DependentUpon>
     </Compile>
+    <Compile Include="Abm Ruta\llenadorDeTablas.cs" />
     <Compile Include="Abm Ruta\RutaModificar.cs">
       <SubType>Form</SubType>
     </Compile>
