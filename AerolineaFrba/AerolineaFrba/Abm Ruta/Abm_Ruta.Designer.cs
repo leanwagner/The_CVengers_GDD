@@ -263,7 +263,6 @@
             // 
             // button_agregarRuta
             // 
-            this.button_agregarRuta.Enabled = false;
             this.button_agregarRuta.Location = new System.Drawing.Point(296, 212);
             this.button_agregarRuta.Name = "button_agregarRuta";
             this.button_agregarRuta.Size = new System.Drawing.Size(75, 23);
