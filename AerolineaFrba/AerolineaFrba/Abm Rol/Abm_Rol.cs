@@ -37,6 +37,15 @@ namespace AerolineaFrba.Abm_Ruta
             }
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+            String asz = listBox1.SelectedItem.ToString();
+            Abm_Rol.ModificarRol mod = new Abm_Rol.ModificarRol(asz);
+       
+            mod.Show();
+        }
+
 
      
     }
