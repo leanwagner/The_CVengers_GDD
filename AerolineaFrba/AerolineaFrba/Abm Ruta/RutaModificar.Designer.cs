@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RutaModificar));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.numericUpDown_codRuta = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
             this.checkBox_bajaLogica = new System.Windows.Forms.CheckBox();
             this.numericUpDown_precioPasaje = new System.Windows.Forms.NumericUpDown();
@@ -43,11 +44,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.boton_Agregar_Ciudad = new System.Windows.Forms.Button();
-            this.numericUpDown_codRuta = new System.Windows.Forms.NumericUpDown();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_codRuta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_precioPasaje)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_precioKG)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_codRuta)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -72,6 +72,18 @@
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Modificar Ruta";
+            // 
+            // numericUpDown_codRuta
+            // 
+            this.numericUpDown_codRuta.Location = new System.Drawing.Point(128, 27);
+            this.numericUpDown_codRuta.Maximum = new decimal(new int[] {
+            1000000000,
+            0,
+            0,
+            0});
+            this.numericUpDown_codRuta.Name = "numericUpDown_codRuta";
+            this.numericUpDown_codRuta.Size = new System.Drawing.Size(153, 20);
+            this.numericUpDown_codRuta.TabIndex = 21;
             // 
             // label6
             // 
@@ -120,6 +132,7 @@
             // 
             // comboBox_ciudadDestino
             // 
+            this.comboBox_ciudadDestino.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_ciudadDestino.FormattingEnabled = true;
             this.comboBox_ciudadDestino.Location = new System.Drawing.Point(128, 81);
             this.comboBox_ciudadDestino.Name = "comboBox_ciudadDestino";
@@ -128,6 +141,7 @@
             // 
             // comboBox_ciudadOrigen
             // 
+            this.comboBox_ciudadOrigen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_ciudadOrigen.FormattingEnabled = true;
             this.comboBox_ciudadOrigen.Location = new System.Drawing.Point(128, 53);
             this.comboBox_ciudadOrigen.Name = "comboBox_ciudadOrigen";
@@ -198,18 +212,6 @@
             this.boton_Agregar_Ciudad.Text = "Modificar";
             this.boton_Agregar_Ciudad.UseVisualStyleBackColor = true;
             // 
-            // numericUpDown_codRuta
-            // 
-            this.numericUpDown_codRuta.Location = new System.Drawing.Point(128, 27);
-            this.numericUpDown_codRuta.Maximum = new decimal(new int[] {
-            1000000000,
-            0,
-            0,
-            0});
-            this.numericUpDown_codRuta.Name = "numericUpDown_codRuta";
-            this.numericUpDown_codRuta.Size = new System.Drawing.Size(153, 20);
-            this.numericUpDown_codRuta.TabIndex = 21;
-            // 
             // RutaModificar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -221,9 +223,9 @@
             this.Text = "Rutas - Modificar";
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_codRuta)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_precioPasaje)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_precioKG)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_codRuta)).EndInit();
             this.ResumeLayout(false);
 
         }
