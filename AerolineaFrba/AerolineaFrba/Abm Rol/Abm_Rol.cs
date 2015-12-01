@@ -22,6 +22,22 @@ namespace AerolineaFrba.Abm_Ruta
             lleni.llenarListBox(ref listBox1, "ROL", "ROL_NOMBRE");
             lleni.llenarCheckedListBox(ref checkedListBox1, "FUNCIONALIDAD", "FUNC_NOMBRE");
         }
+
+        private void checkedListBox1_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            if (textBox1.Text.Length != 0 && !button1.Enabled && e.NewValue == CheckState.Checked)
+            {
+                button1.Enabled = true;
+
+            }
+            else if(button1.Enabled && e.NewValue == CheckState.Unchecked && checkedListBox1.CheckedItems.Count<=1)
+            {
+                button1.Enabled = false;
+
+            }
+        }
+
+
      
     }
 }

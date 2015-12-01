@@ -1,4 +1,7 @@
-﻿namespace AerolineaFrba.Abm_Ruta
+﻿using System;
+using System.Data.SqlClient;
+using System.Windows.Forms;
+namespace AerolineaFrba.Abm_Ruta
 {
     partial class Rol
     {
@@ -63,15 +66,18 @@
             // 
             // checkedListBox1
             // 
+            this.checkedListBox1.Enabled = false;
             this.checkedListBox1.FormattingEnabled = true;
             this.checkedListBox1.Location = new System.Drawing.Point(26, 96);
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.Size = new System.Drawing.Size(199, 79);
             this.checkedListBox1.TabIndex = 2;
+            this.checkedListBox1.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBox1_ItemCheck);
             this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
             // 
             // button1
             // 
+            this.button1.Enabled = false;
             this.button1.Font = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(231, 134);
             this.button1.Name = "button1";
@@ -123,6 +129,7 @@
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(26, 20);
             this.listBox1.Name = "listBox1";
+            this.listBox1.ScrollAlwaysVisible = true;
             this.listBox1.Size = new System.Drawing.Size(199, 82);
             this.listBox1.TabIndex = 2;
             // 
@@ -170,12 +177,43 @@
 
         private void button1_Click(object sender, System.EventArgs e)
         {
-          
+
+           
+            SqlCommand sqlCmd = new SqlCommand("insert into THE_CVENGERS.ROL(ROL_NOMBRE,ROL_ESTADO) values ('"+ textBox1.Text+"',1)", Conexion.getConexion());
+            SqlDataReader sqlReader;
+            sqlCmd.ExecuteNonQuery();
+
+            sqlCmd.CommandText = "select * from THE_CVENGERS.ROL where ROL_NOMBRE ='" + textBox1.Text + "'";
+            sqlReader = sqlCmd.ExecuteReader();
+            sqlReader.Read();
+            String idRol = sqlReader["ROL_ID"].ToString();
+            sqlReader.Close();
+
+            foreach (String funcion in checkedListBox1.CheckedItems)
+            {
+                sqlCmd.CommandText = "select * from THE_CVENGERS.FUNCIONALIDAD where FUNC_NOMBRE ='"+funcion+"'";
+                sqlReader = sqlCmd.ExecuteReader();
+                sqlReader.Read();
+                String idFuncion = sqlReader["FUNC_ID"].ToString();
+                sqlReader.Close();
+                //hacer el insert
+                sqlCmd.CommandText = "insert into THE_CVENGERS.FUNCIONXROL(FXR_ROL_ID,FXR_FUNC_ID) values (" + idRol + "," + idFuncion + ")";
+                sqlCmd.ExecuteNonQuery();
+            }
+            sqlCmd.Dispose();
+            for (int i = 0; i < checkedListBox1.Items.Count; i++)
+                checkedListBox1.SetItemCheckState(i, (CheckState.Unchecked));
+            checkedListBox1.Refresh();
+            listBox1.Items.Add(textBox1.Text);
+            listBox1.Refresh();
+             textBox1.Clear();
+             button1.Enabled = false;
+            
         }
 
         private void checkedListBox1_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-           
+            
         }
 
         private void label1_Click(object sender, System.EventArgs e)
@@ -185,9 +223,18 @@
 
         private void textBox1_TextChanged(object sender, System.EventArgs e)
         {
-            
+            if (textBox1.Text.Length != 0)
+            {
+               
+                checkedListBox1.Enabled = true;
+            }
+            else
+            {
+                
+                checkedListBox1.Enabled = false;
+                button1.Enabled = false;
+            }
         }
-
         #endregion
 
         private System.Windows.Forms.TextBox textBox1;
