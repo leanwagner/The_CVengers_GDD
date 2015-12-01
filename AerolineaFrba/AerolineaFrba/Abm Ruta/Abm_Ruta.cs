@@ -20,6 +20,8 @@ namespace AerolineaFrba.Abm_Ruta
         {
             InitializeComponent();
             this.mostrarServicios();
+            this.mostrarCiudad(ref comboBox_ciudadOrigen);
+            this.mostrarCiudad(ref comboBox_ciudadDestino);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -47,6 +49,12 @@ namespace AerolineaFrba.Abm_Ruta
         {
 
             llenador.llenarCheckedListBox(ref checkedListBox_servicios,"SERVICIO","SERVICIO_NOMBRE");
+
+        }
+
+        public void mostrarCiudad(ref ComboBox miCombo)
+        {
+            llenador.llenarComboBox(ref miCombo, "CIUDAD", "CIUDAD_NOMBRE");
 
         }
 
