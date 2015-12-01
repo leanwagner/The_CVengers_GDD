@@ -13,8 +13,6 @@ namespace AerolineaFrba
     class Conexion
     {
         private static SqlConnection conexionDB = null;
-        private static SqlDataAdapter adapter;
-        private static DataTable tabla;
 
         public static SqlConnection getConexion()
         {
@@ -34,25 +32,6 @@ namespace AerolineaFrba
 
             }
             return conexionDB;
-        }
-
-        public static void llenarTabla(DataGridView dgv, String nombreTabla) 
-        {
-
-            try {
-                adapter = new SqlDataAdapter("EXECUTE [THE_CVENGERS].getAll @RECV = '[THE_CVENGERS]." + nombreTabla+"';", conexionDB);
-                tabla = new DataTable();
-                
-                adapter.Fill(tabla);
-                dgv.DataSource=tabla;
-                dgv.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
-                adapter.Dispose();
-            }
-            catch (Exception ex) {
-
-                MessageBox.Show("Rompe mostrando tabla " + nombreTabla + ex);
-            
-            }
-        }       
+        }      
     }
 }
