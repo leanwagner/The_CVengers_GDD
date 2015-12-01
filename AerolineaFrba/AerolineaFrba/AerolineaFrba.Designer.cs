@@ -41,7 +41,6 @@
             this.boton_Registro_Llegada = new System.Windows.Forms.Button();
             this.boton_ABM_Aeronave = new System.Windows.Forms.Button();
             this.groupKiosko = new System.Windows.Forms.GroupBox();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.groupUsuario = new System.Windows.Forms.GroupBox();
             this.groupKiosko.SuspendLayout();
             this.groupUsuario.SuspendLayout();
@@ -89,7 +88,7 @@
             // 
             // boton_Compra
             // 
-            this.boton_Compra.Location = new System.Drawing.Point(133, 37);
+            this.boton_Compra.Location = new System.Drawing.Point(166, 37);
             this.boton_Compra.Name = "boton_Compra";
             this.boton_Compra.Size = new System.Drawing.Size(94, 32);
             this.boton_Compra.TabIndex = 5;
@@ -99,7 +98,7 @@
             // 
             // boton_Consulta_Millas
             // 
-            this.boton_Consulta_Millas.Location = new System.Drawing.Point(295, 37);
+            this.boton_Consulta_Millas.Location = new System.Drawing.Point(344, 37);
             this.boton_Consulta_Millas.Name = "boton_Consulta_Millas";
             this.boton_Consulta_Millas.Size = new System.Drawing.Size(146, 32);
             this.boton_Consulta_Millas.TabIndex = 6;
@@ -160,27 +159,15 @@
             // groupKiosko
             // 
             this.groupKiosko.AutoSize = true;
-            this.groupKiosko.Controls.Add(this.linkLabel1);
             this.groupKiosko.Controls.Add(this.boton_Compra);
             this.groupKiosko.Controls.Add(this.boton_Consulta_Millas);
-            this.groupKiosko.Location = new System.Drawing.Point(69, 29);
+            this.groupKiosko.Location = new System.Drawing.Point(52, 29);
             this.groupKiosko.Name = "groupKiosko";
             this.groupKiosko.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.groupKiosko.Size = new System.Drawing.Size(605, 158);
+            this.groupKiosko.Size = new System.Drawing.Size(622, 114);
             this.groupKiosko.TabIndex = 13;
             this.groupKiosko.TabStop = false;
             this.groupKiosko.Text = "Ingreso Kiosko";
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(354, 116);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(219, 20);
-            this.linkLabel1.TabIndex = 7;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Iniciar Sesión con Usuario";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // groupUsuario
             // 
@@ -220,7 +207,6 @@
             this.Text = "AerolineaFRBA";
             this.Load += new System.EventHandler(this.AerolineaFrba_Load);
             this.groupKiosko.ResumeLayout(false);
-            this.groupKiosko.PerformLayout();
             this.groupUsuario.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -246,7 +232,6 @@
         private System.Windows.Forms.Button boton_Registro_Llegada;
         private System.Windows.Forms.Button boton_ABM_Aeronave;
         private System.Windows.Forms.GroupBox groupKiosko;
-        private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.GroupBox groupUsuario;
 
 

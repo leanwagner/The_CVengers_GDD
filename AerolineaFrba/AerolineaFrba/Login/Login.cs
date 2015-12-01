@@ -1,4 +1,5 @@
 ﻿using AerolineaFrba.Llenador;
+using AerolineaFrba.TipoTerminal;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -39,8 +40,10 @@ namespace AerolineaFrba.Login
             }
             else
             {
-                AerolineaFrba pantallaInicial = new AerolineaFrba();
-                pantallaInicial.Show(); 
+                AerolineaFrba pantallaInicial = new AerolineaFrba(Terminal.Kiosco);
+                pantallaInicial.Show();
+                this.Hide();
+
             }
 
 
@@ -87,7 +90,7 @@ namespace AerolineaFrba.Login
 
             if (!string.IsNullOrWhiteSpace(textBox_usuario.Text) && !string.IsNullOrWhiteSpace(textBox_contraseña.Text))
             {
-                SqlCommand sqlCmd = new SqlCommand("THE_CVENGERS.chequeoLogin(" + textBox_usuario + "," + textBox_contraseña + ")", Conexion.getConexion());
+                SqlCommand sqlCmd = new SqlCommand("EXEC THE_CVENGERS.chequeoLogin(" + textBox_usuario + "," + textBox_contraseña + ")", Conexion.getConexion());
 
                 SqlDataReader sqlReader = sqlCmd.ExecuteReader();
 
@@ -95,10 +98,25 @@ namespace AerolineaFrba.Login
 
                 switch (resultadoLectura)
                 {
-                    case 1:   AerolineaFrba pantallaInicial = new AerolineaFrba();
-                              pantallaInicial.Show(); 
+                    case 1:   AerolineaFrba pantallaInicial = new AerolineaFrba(Terminal.Usuario);
+                              pantallaInicial.Show();
+                              this.Hide();
+                              break;
+
+                    case 2:   MessageBox.Show("Reingrese su contraseña.");
+                              break;
+
+                    case 3:   MessageBox.Show("El usuario con el que intenta ingresar no existe.");
+                              break;
+
+                    case 4:   MessageBox.Show("El usuario con el que intenta ingresar no tiene permisos de administrador.");
+                              break;
+
+                    case 5:   MessageBox.Show("El usuario con el que intenta ingresar se encuenta inhabilitado.");
                               break;
                 }
+
+                sqlReader.Close();
             }
         }
     }
