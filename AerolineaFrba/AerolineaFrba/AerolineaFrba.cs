@@ -116,6 +116,21 @@ namespace AerolineaFrba
             Login.Login Loguearme = new Login.Login();
             Loguearme.Show();
         }
+
+        private void AerolineaFrba_FormClosing(object sender, FormClosingEventArgs e)
+        {
+           // if (MessageBox.Show("¿Está seguro de salir?", "Cerrar programa", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            //{
+                Environment.Exit(1);
+            //}
+            //else { e.Cancel = true; }  <--- comentado para hacer mas rapido el testing, descomentar despues
+        }
+
+      
+
+      
        
     }
+
 }
+ 

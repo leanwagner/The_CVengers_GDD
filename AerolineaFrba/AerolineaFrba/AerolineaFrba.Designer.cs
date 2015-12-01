@@ -205,6 +205,7 @@
             this.Name = "AerolineaFrba";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AerolineaFRBA";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AerolineaFrba_FormClosing);
             this.Load += new System.EventHandler(this.AerolineaFrba_Load);
             this.groupKiosko.ResumeLayout(false);
             this.groupUsuario.ResumeLayout(false);

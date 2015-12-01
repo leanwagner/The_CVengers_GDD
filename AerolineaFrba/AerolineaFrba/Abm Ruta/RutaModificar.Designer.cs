@@ -30,9 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RutaModificar));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.numericUpDown_codRuta = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown_codRuta = new MyNumericUpDown.MyNumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
-            this.checkBox_bajaLogica = new System.Windows.Forms.CheckBox();
             this.numericUpDown_precioPasaje = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown_precioKG = new System.Windows.Forms.NumericUpDown();
             this.comboBox_ciudadDestino = new System.Windows.Forms.ComboBox();
@@ -54,7 +53,6 @@
             // 
             this.groupBox2.Controls.Add(this.numericUpDown_codRuta);
             this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.checkBox_bajaLogica);
             this.groupBox2.Controls.Add(this.numericUpDown_precioPasaje);
             this.groupBox2.Controls.Add(this.numericUpDown_precioKG);
             this.groupBox2.Controls.Add(this.comboBox_ciudadDestino);
@@ -94,20 +92,10 @@
             this.label6.TabIndex = 20;
             this.label6.Text = "Código de Ruta:";
             // 
-            // checkBox_bajaLogica
-            // 
-            this.checkBox_bajaLogica.AutoSize = true;
-            this.checkBox_bajaLogica.Location = new System.Drawing.Point(167, 217);
-            this.checkBox_bajaLogica.Name = "checkBox_bajaLogica";
-            this.checkBox_bajaLogica.Size = new System.Drawing.Size(78, 17);
-            this.checkBox_bajaLogica.TabIndex = 19;
-            this.checkBox_bajaLogica.Text = "Baja lógica";
-            this.checkBox_bajaLogica.UseVisualStyleBackColor = true;
-            // 
             // numericUpDown_precioPasaje
             // 
             this.numericUpDown_precioPasaje.DecimalPlaces = 2;
-            this.numericUpDown_precioPasaje.Location = new System.Drawing.Point(128, 180);
+            this.numericUpDown_precioPasaje.Location = new System.Drawing.Point(128, 195);
             this.numericUpDown_precioPasaje.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -120,7 +108,7 @@
             // numericUpDown_precioKG
             // 
             this.numericUpDown_precioKG.DecimalPlaces = 2;
-            this.numericUpDown_precioKG.Location = new System.Drawing.Point(128, 153);
+            this.numericUpDown_precioKG.Location = new System.Drawing.Point(128, 168);
             this.numericUpDown_precioKG.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -138,6 +126,7 @@
             this.comboBox_ciudadDestino.Name = "comboBox_ciudadDestino";
             this.comboBox_ciudadDestino.Size = new System.Drawing.Size(153, 21);
             this.comboBox_ciudadDestino.TabIndex = 16;
+            this.comboBox_ciudadDestino.SelectedIndexChanged += new System.EventHandler(this.comboBox_ciudadDestino_SelectedIndexChanged);
             // 
             // comboBox_ciudadOrigen
             // 
@@ -147,11 +136,12 @@
             this.comboBox_ciudadOrigen.Name = "comboBox_ciudadOrigen";
             this.comboBox_ciudadOrigen.Size = new System.Drawing.Size(153, 21);
             this.comboBox_ciudadOrigen.TabIndex = 15;
+            this.comboBox_ciudadOrigen.SelectedIndexChanged += new System.EventHandler(this.comboBox_ciudadOrigen_SelectedIndexChanged);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(20, 179);
+            this.label5.Location = new System.Drawing.Point(20, 194);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(102, 13);
             this.label5.TabIndex = 14;
@@ -160,7 +150,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(39, 153);
+            this.label4.Location = new System.Drawing.Point(39, 168);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(83, 13);
             this.label4.TabIndex = 12;
@@ -171,7 +161,7 @@
             this.checkedListBox_servicios.FormattingEnabled = true;
             this.checkedListBox_servicios.Location = new System.Drawing.Point(128, 110);
             this.checkedListBox_servicios.Name = "checkedListBox_servicios";
-            this.checkedListBox_servicios.Size = new System.Drawing.Size(153, 34);
+            this.checkedListBox_servicios.Size = new System.Drawing.Size(153, 49);
             this.checkedListBox_servicios.TabIndex = 10;
             // 
             // label3
@@ -244,7 +234,6 @@
         private System.Windows.Forms.ComboBox comboBox_ciudadOrigen;
         private System.Windows.Forms.NumericUpDown numericUpDown_precioPasaje;
         private System.Windows.Forms.NumericUpDown numericUpDown_precioKG;
-        private System.Windows.Forms.CheckBox checkBox_bajaLogica;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.NumericUpDown numericUpDown_codRuta;
 
