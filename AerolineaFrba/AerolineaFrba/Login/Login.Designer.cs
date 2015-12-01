@@ -126,6 +126,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AerolineaFrba";
             this.Load += new System.EventHandler(this.Login_Load);
+            this.Enter += new System.EventHandler(this.textBox_contraseña_Enter);
             this.ResumeLayout(false);
             this.PerformLayout();
 

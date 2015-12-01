@@ -116,12 +116,6 @@ namespace AerolineaFrba
             Login.Login Loguearme = new Login.Login();
             Loguearme.Show();
         }
-
-        public void mostrarmeKiosco()
-        {
-            groupUsuario.Visible = false;
-      
-        }
        
     }
 }
