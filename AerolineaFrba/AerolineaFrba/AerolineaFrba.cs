@@ -119,7 +119,11 @@ namespace AerolineaFrba
 
         private void AerolineaFrba_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Environment.Exit(1);
+           // if (MessageBox.Show("¿Está seguro de salir?", "Cerrar programa", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            //{
+                Environment.Exit(1);
+            //}
+            //else { e.Cancel = true; }  <--- comentado para hacer mas rapido el testing, descomentar despues
         }
 
       

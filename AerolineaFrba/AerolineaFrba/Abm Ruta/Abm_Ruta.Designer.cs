@@ -92,7 +92,6 @@
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Listado de Rutas";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // button_eliminarRuta
             // 
@@ -125,7 +124,6 @@
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Crear Ruta";
-            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // numericUpDown3
             // 
@@ -147,7 +145,6 @@
             this.label6.Size = new System.Drawing.Size(69, 13);
             this.label6.TabIndex = 19;
             this.label6.Text = "Código Ruta:";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // numericUpDown2
             // 

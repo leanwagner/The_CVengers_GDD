@@ -39,11 +39,6 @@ namespace AerolineaFrba.Abm_Ruta
             rutaAModificar.Show();
         }
 
-        private void groupBox2_Enter(object sender, EventArgs e)
-        {
-
-        }
-
         private void Abm_Ruta_Load(object sender, EventArgs e)
         {
 
@@ -67,17 +62,6 @@ namespace AerolineaFrba.Abm_Ruta
             llenador.llenarDataGridView(dataGridView_listadoRutas,"RUTA");
         }
       
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void comboBox_ciudadOrigen_SelectedIndexChanged(object sender, EventArgs e)
         {
            
