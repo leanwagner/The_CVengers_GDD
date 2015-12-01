@@ -45,6 +45,8 @@
             this.textBox_usuario.Size = new System.Drawing.Size(151, 20);
             this.textBox_usuario.TabIndex = 0;
             this.textBox_usuario.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox_usuario.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_usuario_KeyDown);
+
             // 
             // label2
             // 
@@ -83,6 +85,7 @@
             this.textBox_contraseña.Size = new System.Drawing.Size(151, 20);
             this.textBox_contraseña.TabIndex = 5;
             this.textBox_contraseña.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.textBox_contraseña.Enter += new System.EventHandler(this.textBox_contraseña_Enter);
             // 
             // label3
             // 

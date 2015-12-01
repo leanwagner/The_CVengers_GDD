@@ -23,7 +23,7 @@ namespace AerolineaFrba
                 case Terminal.Kiosco: groupUsuario.Visible = false;
                     break;
 
-                case Terminal.Usuario: groupKiosko.Visible = false;
+                case Terminal.Usuario: groupKiosko.Visible = true;
                     break;
 
             }
