@@ -101,5 +101,65 @@ namespace AerolineaFrba.Abm_Aeronave
                 boton_Agregar_Aeronave.Enabled = true;
             else boton_Agregar_Aeronave.Enabled = false;
         }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+         
+            boton_Modificar_Aeronave.Enabled = true;
+            boton_Eliminar_Aeronave.Enabled = true;
+        }
+
+        private void boton_Modificar_Aeronave_Click(object sender, EventArgs e)
+        {
+            groupBox3.Visible = true;
+            groupBox3.Refresh();
+            this.Refresh();
+            Llenador.LlenadorDeTablas lleni = new Llenador.LlenadorDeTablas();
+            lleni.llenarComboBox(ref comboBox4, "FABRICANTE", "FABRICANTE_NOMBRE");
+            lleni.llenarComboBox(ref comboBox3, "SERVICIO", "SERVICIO_NOMBRE");
+
+            SqlCommand sqlCmd = new SqlCommand("select * from THE_CVENGERS.AERONAVE, THE_CVENGERS.SERVICIO, THE_CVENGERS.FABRICANTE where AERONAVE_FABRICANTE_AVION = FABRICANTE_ID and AERONAVE_SERVICIO = SERVICIO_ID and AERONAVE_MATRICULA_AVION ='" + listBox1.SelectedItem.ToString() + "'", Conexion.getConexion());
+            SqlDataReader sqlReader;
+            sqlReader = sqlCmd.ExecuteReader();
+            sqlReader.Read();
+            textBox8.Text = sqlReader["AERONAVE_MATRICULA_AVION"].ToString();
+            textBox7.Text = sqlReader["AERONAVE_MODELO_AVION"].ToString();
+            comboBox4.SelectedIndex = comboBox4.Items.IndexOf(sqlReader["FABRICANTE_NOMBRE"].ToString());
+            comboBox3.SelectedIndex = comboBox3.Items.IndexOf(sqlReader["SERVICIO_NOMBRE"].ToString());
+            textBox6.Text = sqlReader["AERONAVE_CANTIDAD_BUTACAS"].ToString();
+            textBox5.Text = sqlReader["AERONAVE_ESPACIO_ENCOMIENDAS"].ToString();
+           
+            sqlReader.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            groupBox3.Visible = false;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            
+            SqlCommand sqlCmd = new SqlCommand("select * from THE_CVENGERS.FABRICANTE where FABRICANTE_NOMBRE ='" + comboBox4.SelectedItem.ToString() + "'", Conexion.getConexion());
+            SqlDataReader sqlReader;
+            sqlReader = sqlCmd.ExecuteReader();
+            sqlReader.Read();
+            String idFab = sqlReader["FABRICANTE_ID"].ToString();
+            sqlReader.Close();
+
+            sqlCmd.CommandText = "select * from THE_CVENGERS.SERVICIO where SERVICIO_NOMBRE ='" + comboBox3.SelectedItem.ToString() + "'";
+            sqlReader = sqlCmd.ExecuteReader();
+            sqlReader.Read();
+            String idServ = sqlReader["SERVICIO_ID"].ToString();
+            sqlReader.Close();
+
+
+
+    sqlCmd.CommandText = "UPDATE THE_CVENGERS.AERONAVE set AERONAVE_CANTIDAD_BUTACAS = " + textBox5.Text + ",AERONAVE_FABRICANTE_AVION = '" + idFab + "',AERONAVE_ESPACIO_ENCOMIENDAS = " + textBox5.Text + ",AERONAVE_MATRICULA_AVION = '" + textBox8.Text + "',AERONAVE_MODELO_AVION = '" + textBox7.Text + "',AERONAVE_SERVICIO = '" + idServ + "' where AERONAVE_MATRICULA_AVION = '"+textBox8.Text+"'";
+    
+            sqlCmd.ExecuteNonQuery();
+        }
+
+        
     }
 }
