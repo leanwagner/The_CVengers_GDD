@@ -19,15 +19,16 @@ namespace AerolineaFrba.Abm_Ruta
         
 
 
-        public RutaModificar()
+        public RutaModificar(int cod_ruta, string ciudad_origen, string ciudad_destino,decimal precio_KG, decimal precio_pasaje)
         {
             InitializeComponent();
             this.mostrarCiudad(ref comboBox_ciudadOrigen);
             this.mostrarCiudad(ref comboBox_ciudadDestino);
             this.mostrarServicios(); 
             //comboBox_ciudadDestino.SelectedItem="Chicago"; --- SETEOS PARA LEVANTAR
-            //numericUpDown_codRuta.Value = 6; <- funciona, arriba no
-        
+            numericUpDown_codRuta.Value = cod_ruta;
+            numericUpDown_precioKG.Value = precio_KG;
+            numericUpDown_precioPasaje.Value = precio_pasaje;
         }
 
         public void mostrarCiudad(ref ComboBox miCombo)

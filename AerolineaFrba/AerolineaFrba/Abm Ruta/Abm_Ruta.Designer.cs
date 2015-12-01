@@ -60,6 +60,7 @@
             // 
             // button_modificarRuta
             // 
+            this.button_modificarRuta.Enabled = false;
             this.button_modificarRuta.Location = new System.Drawing.Point(208, 226);
             this.button_modificarRuta.Name = "button_modificarRuta";
             this.button_modificarRuta.Size = new System.Drawing.Size(75, 23);
@@ -83,6 +84,7 @@
             this.dataGridView_listadoRutas.ShowEditingIcon = false;
             this.dataGridView_listadoRutas.Size = new System.Drawing.Size(343, 177);
             this.dataGridView_listadoRutas.TabIndex = 0;
+            this.dataGridView_listadoRutas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_listadoRutas_CellContentClick);
             // 
             // groupBox1
             // 

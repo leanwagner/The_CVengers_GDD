@@ -36,8 +36,8 @@ namespace AerolineaFrba.Abm_Ruta
 
         private void boton_Modificar_Click(object sender, EventArgs e)
         {
-            RutaModificar rutaAModificar = new RutaModificar();
-            rutaAModificar.Show();
+           // RutaModificar rutaAModificar = new RutaModificar();
+            //rutaAModificar.Show();
         }
 
         private void Abm_Ruta_Load(object sender, EventArgs e)
@@ -106,40 +106,25 @@ namespace AerolineaFrba.Abm_Ruta
             if(checkedListBox_servicios.CheckedItems.Contains(checkedListBox_servicios.Items[2]))
                 servicio3 = checkedListBox_servicios.Items[2].ToString();
 
-            MessageBox.Show(servicio1);
-            MessageBox.Show(servicio2);
-            MessageBox.Show(servicio3);
             if (comboBox_ciudadOrigen.SelectedItem != null && comboBox_ciudadDestino.SelectedItem != null && numericUpDown1.Value > 0 && numericUpDown2.Value > 0)
             {
                 try
                 {
-                    string comandin = "EXEC THE_CVENGERS.creacionRuta @P1 = " + numericUpDown3.Value +
-                           ", @P2 = '" + (comboBox_ciudadOrigen.SelectedItem.ToString()).Substring(1) +
-                           "', @P3 = '" + (comboBox_ciudadDestino.SelectedItem.ToString()).Substring(1) +
-                           "', @P4 = " + numericUpDown1.Value +
-                           ", @P5 = " + numericUpDown2.Value +
-                           ", @P6 = '" + servicio1 +
-                           "', @P7 = '" + servicio2 +
-                           "', @P8 = '" + servicio3 + "'";
-                    MessageBox.Show(comandin);
-
-
-
-
-                    SqlCommand sqlCmd = new SqlCommand("EXEC THE_CVENGERS.creacionRuta @P1 = " + numericUpDown3.Value +
+                       SqlCommand sqlCmd = new SqlCommand("EXEC THE_CVENGERS.creacionRuta @P1 = " + numericUpDown3.Value +
                         ", @P2 = " + comboBox_ciudadOrigen.SelectedItem.ToString() +
                         ", @P3 = " + comboBox_ciudadDestino.SelectedItem.ToString() +
                         ", @P4 = " + numericUpDown1.Value +
                         ", @P5 = " + numericUpDown2.Value +
-                        ", @P6 = " + servicio1 +
-                        ", @P7 = " + servicio2 +
+                        ", @P6 = '" + servicio1 +
+                        "', @P7 = " + servicio2 +
                         ", @P8 = " + servicio3, Conexion.getConexion());
 
                     sqlCmd.ExecuteScalar();
 
+                    
+                    MessageBox.Show("La Ruta ha sido creada con éxito.");
+                    dataGridView_listadoRutas.Update();
                     dataGridView_listadoRutas.Refresh();
-                    MessageBox.Show("ya inserte todo");
-
                 }
 
                 catch (Exception ex)
@@ -156,6 +141,15 @@ namespace AerolineaFrba.Abm_Ruta
                 if (comboBox_ciudadDestino.SelectedItem == null)
                     MessageBox.Show("Por favor seleccione una Ciudad de Origen", "Error: No Hay una Ciudad de Origen Seleccionada", MessageBoxButtons.OK);
             }*/
+        }
+
+        private void dataGridView_listadoRutas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+         
+            button_modificarRuta.Enabled=true;
+
+
+
         }
     }
 
