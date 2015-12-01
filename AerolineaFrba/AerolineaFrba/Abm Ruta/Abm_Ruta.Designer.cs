@@ -34,7 +34,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button_eliminarRuta = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown3 = new MyNumericUpDown.MyNumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
