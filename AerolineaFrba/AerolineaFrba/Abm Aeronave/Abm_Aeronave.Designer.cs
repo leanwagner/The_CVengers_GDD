@@ -30,11 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Abm_Aeronave));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.label8 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.boton_Agregar_Aeronave = new System.Windows.Forms.Button();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -48,24 +44,17 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.dataGridView_Aeronaves = new System.Windows.Forms.DataGridView();
-            this.boton_Agregar_Aeronave = new System.Windows.Forms.Button();
-            this.boton_Eliminar_Aeronave = new System.Windows.Forms.Button();
             this.boton_Modificar_Aeronave = new System.Windows.Forms.Button();
+            this.boton_Eliminar_Aeronave = new System.Windows.Forms.Button();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Aeronaves)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
             this.groupBox1.AutoSize = true;
             this.groupBox1.Controls.Add(this.boton_Agregar_Aeronave);
-            this.groupBox1.Controls.Add(this.linkLabel1);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.textBox5);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.dateTimePicker1);
             this.groupBox1.Controls.Add(this.textBox4);
             this.groupBox1.Controls.Add(this.textBox3);
             this.groupBox1.Controls.Add(this.label6);
@@ -80,60 +69,29 @@
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Location = new System.Drawing.Point(28, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(435, 371);
+            this.groupBox1.Size = new System.Drawing.Size(304, 335);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Agregar Aeronave";
             // 
-            // linkLabel1
+            // boton_Agregar_Aeronave
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(293, 215);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(95, 13);
-            this.linkLabel1.TabIndex = 22;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Ver Mapa Butacas";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(38, 22);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(96, 13);
-            this.label8.TabIndex = 20;
-            this.label8.Text = "Numero Aeronave:";
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(156, 19);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(232, 20);
-            this.textBox5.TabIndex = 19;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(73, 300);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(61, 13);
-            this.label7.TabIndex = 18;
-            this.label7.Text = "Fecha Alta:";
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(156, 294);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(232, 20);
-            this.dateTimePicker1.TabIndex = 17;
+            this.boton_Agregar_Aeronave.Enabled = false;
+            this.boton_Agregar_Aeronave.Location = new System.Drawing.Point(174, 293);
+            this.boton_Agregar_Aeronave.Name = "boton_Agregar_Aeronave";
+            this.boton_Agregar_Aeronave.Size = new System.Drawing.Size(113, 23);
+            this.boton_Agregar_Aeronave.TabIndex = 23;
+            this.boton_Agregar_Aeronave.Text = "Agregar Aeronave";
+            this.boton_Agregar_Aeronave.UseVisualStyleBackColor = true;
+            this.boton_Agregar_Aeronave.Click += new System.EventHandler(this.boton_Agregar_Aeronave_Click);
             // 
             // textBox4
             // 
             this.textBox4.Location = new System.Drawing.Point(156, 252);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(232, 20);
+            this.textBox4.Size = new System.Drawing.Size(131, 20);
             this.textBox4.TabIndex = 16;
+            this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
             // textBox3
             // 
@@ -141,6 +99,7 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(131, 20);
             this.textBox3.TabIndex = 15;
+            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // label6
             // 
@@ -174,7 +133,7 @@
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(156, 170);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(232, 21);
+            this.comboBox2.Size = new System.Drawing.Size(131, 21);
             this.comboBox2.TabIndex = 9;
             // 
             // label3
@@ -191,7 +150,7 @@
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(156, 130);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(232, 21);
+            this.comboBox1.Size = new System.Drawing.Size(131, 21);
             this.comboBox1.TabIndex = 7;
             // 
             // label2
@@ -208,7 +167,7 @@
             // 
             this.textBox2.Location = new System.Drawing.Point(156, 87);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(232, 20);
+            this.textBox2.Size = new System.Drawing.Size(131, 20);
             this.textBox2.TabIndex = 5;
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
@@ -226,58 +185,47 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(156, 49);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(232, 20);
+            this.textBox1.Size = new System.Drawing.Size(131, 20);
             this.textBox1.TabIndex = 3;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.listBox1);
             this.groupBox2.Controls.Add(this.boton_Modificar_Aeronave);
             this.groupBox2.Controls.Add(this.boton_Eliminar_Aeronave);
-            this.groupBox2.Controls.Add(this.dataGridView_Aeronaves);
-            this.groupBox2.Location = new System.Drawing.Point(28, 403);
+            this.groupBox2.Location = new System.Drawing.Point(28, 363);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(435, 289);
+            this.groupBox2.Size = new System.Drawing.Size(302, 195);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Listado Aeronaves";
             // 
-            // dataGridView_Aeronaves
+            // boton_Modificar_Aeronave
             // 
-            this.dataGridView_Aeronaves.AllowUserToAddRows = false;
-            this.dataGridView_Aeronaves.AllowUserToDeleteRows = false;
-            this.dataGridView_Aeronaves.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_Aeronaves.Location = new System.Drawing.Point(41, 43);
-            this.dataGridView_Aeronaves.Name = "dataGridView_Aeronaves";
-            this.dataGridView_Aeronaves.ReadOnly = true;
-            this.dataGridView_Aeronaves.Size = new System.Drawing.Size(347, 192);
-            this.dataGridView_Aeronaves.TabIndex = 0;
-            // 
-            // boton_Agregar_Aeronave
-            // 
-            this.boton_Agregar_Aeronave.Location = new System.Drawing.Point(296, 329);
-            this.boton_Agregar_Aeronave.Name = "boton_Agregar_Aeronave";
-            this.boton_Agregar_Aeronave.Size = new System.Drawing.Size(113, 23);
-            this.boton_Agregar_Aeronave.TabIndex = 23;
-            this.boton_Agregar_Aeronave.Text = "Agregar Aeronave";
-            this.boton_Agregar_Aeronave.UseVisualStyleBackColor = true;
+            this.boton_Modificar_Aeronave.Location = new System.Drawing.Point(221, 165);
+            this.boton_Modificar_Aeronave.Name = "boton_Modificar_Aeronave";
+            this.boton_Modificar_Aeronave.Size = new System.Drawing.Size(75, 23);
+            this.boton_Modificar_Aeronave.TabIndex = 2;
+            this.boton_Modificar_Aeronave.Text = "Modificar";
+            this.boton_Modificar_Aeronave.UseVisualStyleBackColor = true;
             // 
             // boton_Eliminar_Aeronave
             // 
-            this.boton_Eliminar_Aeronave.Location = new System.Drawing.Point(223, 260);
+            this.boton_Eliminar_Aeronave.Location = new System.Drawing.Point(140, 165);
             this.boton_Eliminar_Aeronave.Name = "boton_Eliminar_Aeronave";
             this.boton_Eliminar_Aeronave.Size = new System.Drawing.Size(75, 23);
             this.boton_Eliminar_Aeronave.TabIndex = 1;
             this.boton_Eliminar_Aeronave.Text = "Eliminar";
             this.boton_Eliminar_Aeronave.UseVisualStyleBackColor = true;
             // 
-            // boton_Modificar_Aeronave
+            // listBox1
             // 
-            this.boton_Modificar_Aeronave.Location = new System.Drawing.Point(313, 260);
-            this.boton_Modificar_Aeronave.Name = "boton_Modificar_Aeronave";
-            this.boton_Modificar_Aeronave.Size = new System.Drawing.Size(75, 23);
-            this.boton_Modificar_Aeronave.TabIndex = 2;
-            this.boton_Modificar_Aeronave.Text = "Modificar";
-            this.boton_Modificar_Aeronave.UseVisualStyleBackColor = true;
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(3, 16);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(284, 134);
+            this.listBox1.TabIndex = 3;
             // 
             // Abm_Aeronave
             // 
@@ -285,17 +233,17 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this.ClientSize = new System.Drawing.Size(516, 717);
+            this.ClientSize = new System.Drawing.Size(342, 566);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Abm_Aeronave";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ABM Aeronave";
+            this.Load += new System.EventHandler(this.Abm_Aeronave_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Aeronaves)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -308,8 +256,6 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label6;
@@ -318,14 +264,11 @@
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Button boton_Agregar_Aeronave;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button boton_Modificar_Aeronave;
         private System.Windows.Forms.Button boton_Eliminar_Aeronave;
-        private System.Windows.Forms.DataGridView dataGridView_Aeronaves;
+        private System.Windows.Forms.ListBox listBox1;
 
     }
 }
