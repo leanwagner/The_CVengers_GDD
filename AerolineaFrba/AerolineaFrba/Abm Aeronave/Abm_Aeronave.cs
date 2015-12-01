@@ -14,6 +14,8 @@ namespace AerolineaFrba.Abm_Aeronave
 {
     public partial class Abm_Aeronave : Form
     {
+
+        String matAnt;
         public Abm_Aeronave()
         {
             InitializeComponent();
@@ -37,8 +39,7 @@ namespace AerolineaFrba.Abm_Aeronave
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
-            if (textBox1.Text.Length != 0 && textBox2.Text.Length != 0 && textBox3.Text.Length != 0 && textBox4.Text.Length != 0)
-                boton_Agregar_Aeronave.Enabled = true;
+            if (textBox1.Text.Length != 0 && textBox2.Text.Length != 0 && textBox3.Value != 0 && textBox4.Value != 0) boton_Agregar_Aeronave.Enabled = true;
             else boton_Agregar_Aeronave.Enabled = false;
         }
 
@@ -64,7 +65,14 @@ namespace AerolineaFrba.Abm_Aeronave
             sqlReader.Close();
 
             sqlCmd.CommandText = "insert into THE_CVENGERS.AERONAVE(AERONAVE_CANTIDAD_BUTACAS,AERONAVE_FABRICANTE_AVION,AERONAVE_ESPACIO_ENCOMIENDAS,AERONAVE_MATRICULA_AVION,AERONAVE_MODELO_AVION,AERONAVE_SERVICIO) VALUES ('" + textBox3.Value.ToString() + "'," + idFab + "," + textBox4.Value.ToString(CultureInfo.InvariantCulture) + ",'" + textBox1.Text + "','" + textBox2.Text + "'," + idServ + ")";
-            sqlCmd.ExecuteNonQuery();
+            try
+            {
+                sqlCmd.ExecuteNonQuery();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show("Ya existe un avion con esa matricula","Error",MessageBoxButtons.OK);
+            }
             listBox1.Items.Add(textBox1.Text);
             listBox1.Refresh();
 
@@ -87,23 +95,21 @@ namespace AerolineaFrba.Abm_Aeronave
 
         private void textBox4_TextChanged(object sender, EventArgs e)
         {
-            if (textBox1.Text.Length != 0 && textBox2.Text.Length != 0 && textBox3.Text.Length != 0 && textBox4.Text.Length != 0)
-                boton_Agregar_Aeronave.Enabled = true;
+            if (textBox1.Text.Length != 0 && textBox2.Text.Length != 0 && textBox3.Value != 0 && textBox4.Value != 0) boton_Agregar_Aeronave.Enabled = true;
             else boton_Agregar_Aeronave.Enabled = false;
         }
 
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
 
-            if (textBox1.Text.Length != 0 && textBox2.Text.Length != 0 && textBox3.Text.Length != 0 && textBox4.Text.Length != 0)
-                boton_Agregar_Aeronave.Enabled = true;
+            if (textBox1.Text.Length != 0 && textBox2.Text.Length != 0 && textBox3.Value != 0 && textBox4.Value != 0) boton_Agregar_Aeronave.Enabled = true;
             else boton_Agregar_Aeronave.Enabled = false;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
-            if (textBox1.Text.Length != 0 && textBox2.Text.Length != 0 && textBox3.Text.Length != 0 && textBox4.Text.Length != 0)
+            if (textBox1.Text.Length != 0 && textBox2.Text.Length != 0 && textBox3.Value != 0 && textBox4.Value != 0)
                 boton_Agregar_Aeronave.Enabled = true;
             else boton_Agregar_Aeronave.Enabled = false;
         }
@@ -134,7 +140,7 @@ namespace AerolineaFrba.Abm_Aeronave
             comboBox3.SelectedIndex = comboBox3.Items.IndexOf(sqlReader["SERVICIO_NOMBRE"].ToString());
             textBox6.Value = decimal.Parse(sqlReader["AERONAVE_CANTIDAD_BUTACAS"].ToString());
             textBox5.Value = decimal.Parse(sqlReader["AERONAVE_ESPACIO_ENCOMIENDAS"].ToString());
-           
+            matAnt = sqlReader["AERONAVE_ID"].ToString();
             sqlReader.Close();
         }
 
@@ -161,10 +167,31 @@ namespace AerolineaFrba.Abm_Aeronave
 
 
 
-            sqlCmd.CommandText = "UPDATE THE_CVENGERS.AERONAVE set AERONAVE_CANTIDAD_BUTACAS = " + textBox6.Value.ToString() + ",AERONAVE_FABRICANTE_AVION = '" + idFab + "',AERONAVE_ESPACIO_ENCOMIENDAS = " + textBox5.Value.ToString(CultureInfo.InvariantCulture) + ",AERONAVE_MATRICULA_AVION = '" + textBox8.Text + "',AERONAVE_MODELO_AVION = '" + textBox7.Text + "',AERONAVE_SERVICIO = '" + idServ + "' where AERONAVE_MATRICULA_AVION = '" + textBox8.Text + "'";
-    
-            sqlCmd.ExecuteNonQuery();
+            sqlCmd.CommandText = "UPDATE THE_CVENGERS.AERONAVE set AERONAVE_CANTIDAD_BUTACAS = " + textBox6.Value.ToString() + ",AERONAVE_FABRICANTE_AVION = '" + idFab + "',AERONAVE_ESPACIO_ENCOMIENDAS = " + textBox5.Value.ToString(CultureInfo.InvariantCulture) + ",AERONAVE_MATRICULA_AVION = '" + textBox8.Text + "',AERONAVE_MODELO_AVION = '" + textBox7.Text + "',AERONAVE_SERVICIO = '" + idServ + "' where AERONAVE_ID = " + matAnt;
+
+            try
+            {
+                sqlCmd.ExecuteNonQuery();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show("Ya existe un avion con esa matricula", "Error", MessageBoxButtons.OK);
+            }
             groupBox3.Visible = false;
+        }
+
+        private void textBox8_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox5.Value != 0 && textBox6.Value != 0 && textBox7.Text.Length != 0 && textBox8.Text.Length != 0)
+            {
+            
+                button2.Enabled = true;
+            }
+            else
+            {
+                
+                button2.Enabled = false;
+            }
         }
 
         
