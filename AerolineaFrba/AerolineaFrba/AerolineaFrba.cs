@@ -116,6 +116,17 @@ namespace AerolineaFrba
             Login.Login Loguearme = new Login.Login();
             Loguearme.Show();
         }
+
+        private void AerolineaFrba_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Environment.Exit(1);
+        }
+
+      
+
+      
        
     }
+
 }
+ 
