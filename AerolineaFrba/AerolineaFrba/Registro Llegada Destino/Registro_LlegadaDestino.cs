@@ -15,7 +15,6 @@ namespace AerolineaFrba.Registro_Llegada_Destino
     public partial class Registro_LlegadaDestino : Form
     {
         LlenadorDeTablas llenador = new LlenadorDeTablas();
-        DateTimeHandler manejadorDeFechas = new DateTimeHandler();
         object elementoQuitadoTablaDestino;
         object elementoQuitadoTablaOrigen;
 
@@ -26,7 +25,7 @@ namespace AerolineaFrba.Registro_Llegada_Destino
             llenarCombosCiudad(ref comboBox_AeropuertoSalida);
             llenarComboMatricula(ref comboBox_matricula);
             errorProvider_buscarAeronave.SetError(button_BuscarAeronave, "Para desbloquear el boton deben haberse llenado todos los campos");
-            dateTimePicker1.Value = manejadorDeFechas.devolverFechaDB();
+            dateTimePicker1.Value = DateTimeHandler.devolverFechaDB();
 
 
         }

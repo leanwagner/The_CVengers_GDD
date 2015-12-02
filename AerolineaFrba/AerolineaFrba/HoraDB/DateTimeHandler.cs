@@ -10,15 +10,16 @@ namespace AerolineaFrba.HoraDB
 {
     public class DateTimeHandler
     {
-        public DateTime devolverFechaDB()
+        public static DateTime devolverFechaDB()
         {
             SqlCommand sqlCmd = new SqlCommand("SELECT THE_CVENGERS.fechaReal() AS f", Conexion.getConexion());
 
             SqlDataReader reader = sqlCmd.ExecuteReader();
 
             reader.Read();
-
-            return SqlDateTime.Parse(reader["f"].ToString()).Value;
+            DateTime retu = SqlDateTime.Parse(reader["f"].ToString()).Value;
+            reader.Close();
+            return retu;
         }
     }
 }
