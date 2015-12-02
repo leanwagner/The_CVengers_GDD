@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -63,6 +64,11 @@ namespace AerolineaFrba.Abm_Ruta
 
             RutaModificar rutaAModificar = new RutaModificar(Int32.Parse(seleccionado.Cells[0].Value.ToString()), Int32.Parse(seleccionado.Cells[1].Value.ToString()), seleccionado.Cells[2].Value.ToString(), seleccionado.Cells[3].Value.ToString(), System.Convert.ToDecimal(seleccionado.Cells[4].Value.ToString()), System.Convert.ToDecimal(seleccionado.Cells[5].Value.ToString()), seleccionado.Cells[6].Value.ToString(), seleccionado.Cells[7].Value.ToString(),seleccionado.Cells[8].Value.ToString());
            rutaAModificar.Show();
+
+           inicializarTodoAFabrica();
+
+           llenador.llenarDGV_ABMRutas(dataGridView_listadoRutas);
+
         }
 
         private void Abm_Ruta_Load(object sender, EventArgs e)
@@ -146,9 +152,9 @@ namespace AerolineaFrba.Abm_Ruta
                         ", @P2 = '" + comboBox_ciudadOrigen.SelectedItem.ToString().Substring(1) +
                         "', @P3 = '" + comboBox_ciudadDestino.SelectedItem.ToString().Substring(1) +
 
-                        "', @P4 = " + numericUpDown1.Value +
-                        ", @P5 = " + numericUpDown2.Value +
-                        ", @P6 = '" + servicio1 +
+                        "', @P4 = '" + numericUpDown1.Value.ToString(CultureInfo.InvariantCulture) +
+                        "', @P5 = '" + numericUpDown2.Value.ToString(CultureInfo.InvariantCulture) +
+                        "', @P6 = '" + servicio1 +
                         "', @P7 = " + servicio2 +
                         ", @P8 = " + servicio3, Conexion.getConexion());
 
@@ -201,6 +207,8 @@ namespace AerolineaFrba.Abm_Ruta
             button_modificarRuta.Enabled = true;
             
         }
+
+        
     }
 
 }

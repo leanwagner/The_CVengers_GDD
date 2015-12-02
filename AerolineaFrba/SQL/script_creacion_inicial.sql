@@ -683,7 +683,7 @@ RAISERROR('No se puede modificar esta ruta debido a que existen viajes en curso 
 return
 END
 
-if(exists(select R.RUTA_ID FROM THE_CVENGERS.RUTA R WHERE R.RUTA_ORIGEN = @ORIGEN AND R.RUTA_DESTINO = @DESTINO AND R.RUTA_ESTADO = 1))
+if(exists(select R.RUTA_ID FROM THE_CVENGERS.RUTA R WHERE R.RUTA_ORIGEN = @ORIGEN AND R.RUTA_DESTINO = @DESTINO AND R.RUTA_ESTADO = 1 and r.RUTA_ID <> @P0))
 BEGIN
 RAISERROR('Ya existe una ruta con ese mismo origen y destino.',16,1)
 return
