@@ -108,6 +108,22 @@ namespace AerolineaFrba.Llenador
             sqlReader.Close();
 
         }
+        public void llenarCheckedListBoxMRuta(ref CheckedListBox miCombo,List<int> lista)
+        {
+
+            SqlCommand sqlCmd = new SqlCommand("SELECT * FROM THE_CVENGERS.SERVICIO", Conexion.getConexion());
+
+            SqlDataReader sqlReader = sqlCmd.ExecuteReader();
+
+            while (sqlReader.Read())
+            {
+
+                miCombo.Items.Add(sqlReader["SERVICIO_NOMBRE"].ToString());
+            }
+
+            sqlReader.Close();
+
+        }
 
         public void llenarDataGridView(DataGridView dgv, String nombreTabla) 
         {

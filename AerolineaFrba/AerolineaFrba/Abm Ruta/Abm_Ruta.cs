@@ -121,9 +121,9 @@ namespace AerolineaFrba.Abm_Ruta
                 try
                 {
                        SqlCommand sqlCmd = new SqlCommand("EXEC THE_CVENGERS.creacionRuta @P1 = " + numericUpDown3.Value +
-                        ", @P2 = " + comboBox_ciudadOrigen.SelectedItem.ToString() +
-                        ", @P3 = " + comboBox_ciudadDestino.SelectedItem.ToString() +
-                        ", @P4 = " + numericUpDown1.Value +
+                        ", @P2 = '" + comboBox_ciudadOrigen.SelectedItem.ToString() +
+                        "', @P3 = '" + comboBox_ciudadDestino.SelectedItem.ToString() +
+                        "', @P4 = " + numericUpDown1.Value +
                         ", @P5 = " + numericUpDown2.Value +
                         ", @P6 = '" + servicio1 +
                         "', @P7 = " + servicio2 +
