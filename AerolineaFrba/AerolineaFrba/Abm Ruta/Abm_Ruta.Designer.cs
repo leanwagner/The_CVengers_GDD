@@ -50,8 +50,8 @@ namespace AerolineaFrba.Abm_Ruta
             this.label10 = new System.Windows.Forms.Label();
             this.comboBox_filtroOrigen = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.myNumericUpDown_codRuta = new NumericUpDownModified();
+            this.label8 = new System.Windows.Forms.Label();
             this.button_filtrar = new System.Windows.Forms.Button();
             this.button_limpiar = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
@@ -151,7 +151,7 @@ namespace AerolineaFrba.Abm_Ruta
             this.groupBox1.Controls.Add(this.dataGridView_listadoRutas);
             this.groupBox1.Location = new System.Drawing.Point(35, 223);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(606, 421);
+            this.groupBox1.Size = new System.Drawing.Size(621, 421);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Listado de Rutas";
@@ -323,7 +323,7 @@ namespace AerolineaFrba.Abm_Ruta
             this.label9.Text = "Ciudad Origen:";
             // 
             // myNumericUpDown_codRuta
-                        // 
+            // 
             this.myNumericUpDown_codRuta.Location = new System.Drawing.Point(139, 41);
             this.myNumericUpDown_codRuta.Maximum = new decimal(new int[] {
             99999999,
@@ -343,7 +343,7 @@ namespace AerolineaFrba.Abm_Ruta
             0,
             0,
             -2147483648});
-                        // 
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -409,13 +409,13 @@ namespace AerolineaFrba.Abm_Ruta
             this.groupBox2.Controls.Add(this.button_agregarRuta);
             this.groupBox2.Location = new System.Drawing.Point(35, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(606, 183);
+            this.groupBox2.Size = new System.Drawing.Size(621, 183);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Crear Ruta";
             // 
             // numericUpDown3
-                        // 
+            // 
             this.numericUpDown3.Location = new System.Drawing.Point(139, 27);
             this.numericUpDown3.Maximum = new decimal(new int[] {
             99999999,
@@ -425,7 +425,7 @@ namespace AerolineaFrba.Abm_Ruta
             this.numericUpDown3.Name = "numericUpDown3";
             this.numericUpDown3.Size = new System.Drawing.Size(153, 20);
             this.numericUpDown3.TabIndex = 0;
-                        // 
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -580,10 +580,12 @@ namespace AerolineaFrba.Abm_Ruta
             // errorProvider_precioKgHasta
             // 
             this.errorProvider_precioKgHasta.ContainerControl = this;
+            this.errorProvider_precioKgHasta.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider_precioKgHasta.Icon")));
             // 
             // errorProvider_precioPasajeHasta
             // 
             this.errorProvider_precioPasajeHasta.ContainerControl = this;
+            this.errorProvider_precioPasajeHasta.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider_precioPasajeHasta.Icon")));
             // 
             // Abm_Ruta
             // 
