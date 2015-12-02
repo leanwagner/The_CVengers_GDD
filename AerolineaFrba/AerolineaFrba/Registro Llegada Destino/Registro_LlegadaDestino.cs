@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -25,6 +26,7 @@ namespace AerolineaFrba.Registro_Llegada_Destino
             llenarCombosCiudad(ref comboBox_AeropuertoSalida);
             llenarComboMatricula(ref comboBox_matricula);
             errorProvider_buscarAeronave.SetError(button_BuscarAeronave, "Para desbloquear el boton deben haberse llenado todos los campos");
+            groupBox3.Enabled = false;
 
 
         }
@@ -63,12 +65,12 @@ namespace AerolineaFrba.Registro_Llegada_Destino
 
         private void comboBox_AeropuertoLlegada_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (elementoQuitadoTablaOrigen!= null)
+            if (elementoQuitadoTablaOrigen != null)
                 comboBox_AeropuertoSalida.Items.Add(elementoQuitadoTablaOrigen);
 
             int indiceElegido = comboBox_AeropuertoSalida.Items.IndexOf(comboBox_AeropuertoLlegada.SelectedItem);
             elementoQuitadoTablaOrigen = comboBox_AeropuertoLlegada.SelectedItem;
-                
+
             comboBox_AeropuertoSalida.Items.RemoveAt(indiceElegido);
 
             comboBox_AeropuertoSalida.Refresh();
@@ -83,7 +85,7 @@ namespace AerolineaFrba.Registro_Llegada_Destino
                 errorProvider_buscarAeronave.Clear();
                 button_BuscarAeronave.Enabled = true;
             }
-                
+
         }
 
         private void comboBox_matricula_SelectedIndexChanged(object sender, EventArgs e)
@@ -96,13 +98,24 @@ namespace AerolineaFrba.Registro_Llegada_Destino
 
             var fechaFormateada = dateTimePicker1.Value.ToString("yyyy-MM-dd HH:mm:ss");
             fechaFormateada = fechaFormateada + ".000";
-            
+
 
 
         }
 
         private void button_BuscarAeronave_Click(object sender, EventArgs e)
         {
+            SqlCommand sqlCmd = new SqlCommand("SELECT THE_CVENGERS.viajeARegistrar (@P1 ='" + comboBox_matricula.SelectedItem.ToString()  + 
+                "', @P2 ='" + comboBox_AeropuertoSalida.SelectedItem.ToString().Substring(1) + 
+            "', @P3 ='" + comboBox_AeropuertoLlegada.SelectedItem.ToString().Substring(1) + "') AS resultado ", Conexion.getConexion());
+
+            SqlDataReader reader = sqlCmd.ExecuteReader();
+            
+            reader.Read();
+
+            String viajeId = reader["resultado"].ToString();
+            
+            groupBox3.Enabled = true;
 
         }
 
