@@ -507,6 +507,7 @@ set @fechaFinal = dateadd(second, @diffsegundo, @fechaRecibida)
 return @fechaFinal
 end
 
+go
 insert into [THE_CVENGERS].ROL (ROL_NOMBRE) values ('Administrador')
 insert into [THE_CVENGERS].ROL (ROL_NOMBRE) values ('Cliente')
 
