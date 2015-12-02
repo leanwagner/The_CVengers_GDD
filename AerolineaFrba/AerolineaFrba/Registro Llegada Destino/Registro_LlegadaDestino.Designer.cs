@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Registro_LlegadaDestino));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -47,14 +48,14 @@
             this.label4 = new System.Windows.Forms.Label();
             this.button_BuscarAeronave = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.comboBox_matricula = new System.Windows.Forms.ComboBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label9 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.label10 = new System.Windows.Forms.Label();
-            this.dateTimePicker_HoraLlegada = new System.Windows.Forms.DateTimePicker();
-            this.comboBox_matricula = new System.Windows.Forms.ComboBox();
+            this.errorProvider_buscarAeronave = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_buscarAeronave)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -241,12 +242,22 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Búsqueda";
             // 
+            // comboBox_matricula
+            // 
+            this.comboBox_matricula.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_matricula.FormattingEnabled = true;
+            this.comboBox_matricula.Location = new System.Drawing.Point(144, 22);
+            this.comboBox_matricula.Name = "comboBox_matricula";
+            this.comboBox_matricula.Size = new System.Drawing.Size(100, 21);
+            this.comboBox_matricula.Sorted = true;
+            this.comboBox_matricula.TabIndex = 0;
+            this.comboBox_matricula.SelectedIndexChanged += new System.EventHandler(this.comboBox_matricula_SelectedIndexChanged);
+            // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.Checked = false;
             this.dateTimePicker1.Location = new System.Drawing.Point(206, 263);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.ShowCheckBox = true;
             this.dateTimePicker1.Size = new System.Drawing.Size(253, 20);
             this.dateTimePicker1.TabIndex = 9;
             // 
@@ -261,46 +272,23 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(400, 348);
+            this.button1.Location = new System.Drawing.Point(417, 318);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(113, 23);
             this.button1.TabIndex = 11;
             this.button1.Text = "Registrar Llegada";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // label10
+            // errorProvider_buscarAeronave
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(63, 299);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(122, 13);
-            this.label10.TabIndex = 12;
-            this.label10.Text = "Hora Llegada a Destino:";
-            // 
-            // dateTimePicker_HoraLlegada
-            // 
-            this.dateTimePicker_HoraLlegada.Location = new System.Drawing.Point(208, 299);
-            this.dateTimePicker_HoraLlegada.Name = "dateTimePicker_HoraLlegada";
-            this.dateTimePicker_HoraLlegada.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker_HoraLlegada.TabIndex = 13;
-            // 
-            // comboBox_matricula
-            // 
-            this.comboBox_matricula.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_matricula.FormattingEnabled = true;
-            this.comboBox_matricula.Location = new System.Drawing.Point(144, 22);
-            this.comboBox_matricula.Name = "comboBox_matricula";
-            this.comboBox_matricula.Size = new System.Drawing.Size(100, 21);
-            this.comboBox_matricula.Sorted = true;
-            this.comboBox_matricula.TabIndex = 0;
+            this.errorProvider_buscarAeronave.ContainerControl = this;
             // 
             // Registro_LlegadaDestino
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(591, 405);
-            this.Controls.Add(this.dateTimePicker_HoraLlegada);
-            this.Controls.Add(this.label10);
+            this.ClientSize = new System.Drawing.Size(592, 372);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.dateTimePicker1);
@@ -314,6 +302,7 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_buscarAeronave)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -342,8 +331,7 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.DateTimePicker dateTimePicker_HoraLlegada;
         private System.Windows.Forms.ComboBox comboBox_matricula;
+        private System.Windows.Forms.ErrorProvider errorProvider_buscarAeronave;
     }
 }

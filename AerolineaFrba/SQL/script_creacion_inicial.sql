@@ -13,6 +13,11 @@ END
 
 GO
 
+create table [THE_CVENGERS].FECHA(
+	FECHA_ID numeric(18,0) identity primary key,
+	FECHA_RECIBIDA DATETIME,
+	FECHA_REFERENCIA DATETIME
+)
 
 CREATE TABLE [THE_CVENGERS].ROL(
 	ROL_ID NUMERIC(18,0) IDENTITY PRIMARY KEY,
@@ -469,6 +474,39 @@ EXECUTE [THE_CVENGERS].INIC_COMPRAXPASAJE
 EXECUTE [THE_CVENGERS].INIC_COMPRAXENCOMIENDA
 EXECUTE [THE_CVENGERS].INIC_BUTACAXVIAJE
 
+
+go
+create procedure THE_CVENGERS.setearFecha @P1 as datetime
+as
+begin
+INSERT INTO THE_CVENGERS.FECHA (FECHA_RECIBIDA, FECHA_REFERENCIA)
+VALUES (@P1,getdate())
+end
+
+go
+create function THE_CVENGERS.fechaReal()
+returns datetime
+as
+begin
+
+declare @fechaRecibida datetime
+set @fechaRecibida = (select F.FECHA_RECIBIDA from THE_CVENGERS.FECHA F where F.FECHA_ID > (select max(F1.FECHA_ID)
+																							FROM THE_CVENGERS.FECHA F1
+																							WHERE F1.FECHA_ID <> F.FECHA_ID))
+declare @fechaReferencia datetime
+set @fechaReferencia = (select F.FECHA_REFERENCIA from THE_CVENGERS.FECHA F where F.FECHA_ID > (select max(F1.FECHA_ID)
+																							FROM THE_CVENGERS.FECHA F1
+																							WHERE F1.FECHA_ID <> F.FECHA_ID))
+
+declare @diffsegundo numeric(20,0)
+set @diffsegundo = DATEDIFF(second, @fechaReferencia, getdate())
+
+declare @fechaFinal datetime
+set @fechaFinal = dateadd(second, @diffsegundo, @fechaRecibida)
+
+return @fechaFinal
+end
+
 insert into [THE_CVENGERS].ROL (ROL_NOMBRE) values ('Administrador')
 insert into [THE_CVENGERS].ROL (ROL_NOMBRE) values ('Cliente')
 
@@ -800,8 +838,8 @@ return
 end
 
 insert into THE_CVENGERS.AERONAVE (AERONAVE_MATRICULA_AVION,AERONAVE_MODELO_AVION,AERONAVE_FABRICANTE_AVION,
-									AERONAVE_SERVICIO, AERONAVE_CANTIDAD_BUTACAS, AERONAVE_ESPACIO_ENCOMIENDAS) values
-									(@matri, @model, @fabricante, @serv, @butacas, @espacio)
+									AERONAVE_SERVICIO, AERONAVE_CANTIDAD_BUTACAS, AERONAVE_ESPACIO_ENCOMIENDAS, AERONAVE_FECHA_DE_ALTA) values
+									(@matri, @model, @fabricante, @serv, @butacas, @espacio, THE_CVENGERS.fechaReal())
 
 declare @aeronave numeric(18,0)
 set @aeronave = (select AERONAVE_ID  from THE_CVENGERS.AERONAVE where AERONAVE_MATRICULA_AVION = @matri)
@@ -832,10 +870,13 @@ set @numbut = @numbut +1
 end
 end
 
+
+
 --EXECUTE [THE_CVENGERS].getAll @RECV = '[THE_CVENGERS].CIUDAD'
 
 
 /*DROP TABLE [THE_CVENGERS].MILLA
+DROP TABLE [THE_CVENGERS].FECHA
 DROP TABLE [THE_CVENGERS].CANJE
 DROP TABLE [THE_CVENGERS].DEVOLUCION
 DROP TABLE [THE_CVENGERS].PRODUCTO
@@ -886,6 +927,8 @@ DROP PROCEDURE [THE_CVENGERS].modificacionRuta
 DROP VIEW [THE_CVENGERS].rutasDisponibles
 DROP VIEW [THE_CVENGERS].listadoAeronaves
 DROP PROCEDURE [THE_CVENGERS].ingresoAeronave
+DROP PROCEDURE [THE_CVENGERS].setearFecha
+DROP FUNCTION [THE_CVENGERS].fechaReal
 DROP PROCEDURE [THE_CVENGERS].getAll 
 DROP SCHEMA [THE_CVENGERS]*/
 

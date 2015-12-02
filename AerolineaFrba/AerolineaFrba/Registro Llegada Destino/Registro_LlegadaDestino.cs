@@ -23,14 +23,15 @@ namespace AerolineaFrba.Registro_Llegada_Destino
             llenarCombosCiudad(ref comboBox_AeropuertoLlegada);
             llenarCombosCiudad(ref comboBox_AeropuertoSalida);
             llenarComboMatricula(ref comboBox_matricula);
+            errorProvider_buscarAeronave.SetError(button_BuscarAeronave, "Para desbloquear el boton deben haberse llenado todos los campos");
 
 
         }
 
         private void Registro_LlegadaDestino_Load(object sender, EventArgs e)
         {
-            dateTimePicker_HoraLlegada.Format = DateTimePickerFormat.Time;
-            dateTimePicker_HoraLlegada.ShowUpDown = true;
+            dateTimePicker1.Format = DateTimePickerFormat.Custom;
+            dateTimePicker1.CustomFormat = "dd-MM-yyyy HH:mm:ss";
         }
 
         public void llenarCombosCiudad(ref ComboBox miCombo)
@@ -54,6 +55,8 @@ namespace AerolineaFrba.Registro_Llegada_Destino
             comboBox_AeropuertoLlegada.Items.RemoveAt(indiceElegido);
 
             comboBox_AeropuertoLlegada.Refresh();
+
+            activarBotonBuscarAeronave();
         }
 
         private void comboBox_AeropuertoLlegada_SelectedIndexChanged(object sender, EventArgs e)
@@ -67,7 +70,34 @@ namespace AerolineaFrba.Registro_Llegada_Destino
             comboBox_AeropuertoSalida.Items.RemoveAt(indiceElegido);
 
             comboBox_AeropuertoSalida.Refresh();
+
+            activarBotonBuscarAeronave();
         }
-        
+
+        public void activarBotonBuscarAeronave()
+        {
+            if (comboBox_AeropuertoLlegada.SelectedItem != null && comboBox_AeropuertoSalida.SelectedItem != null && comboBox_matricula.SelectedItem != null)
+            {
+                errorProvider_buscarAeronave.Clear();
+                button_BuscarAeronave.Enabled = true;
+            }
+                
+        }
+
+        private void comboBox_matricula_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            activarBotonBuscarAeronave();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            var fechaFormateada = dateTimePicker1.Value.ToString("yyyy-MM-dd HH:mm:ss");
+            fechaFormateada = fechaFormateada + ".000";
+            
+
+
+        }
+
     }
 }
