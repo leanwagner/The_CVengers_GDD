@@ -50,7 +50,7 @@ namespace AerolineaFrba.Abm_Ruta
             this.label10 = new System.Windows.Forms.Label();
             this.comboBox_filtroOrigen = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.myNumericUpDown_codRuta = new NumericUpDownModified();
+            this.myNumericUpDown_codRuta = new NumericUpDownTextEmpty();
             this.label8 = new System.Windows.Forms.Label();
             this.button_filtrar = new System.Windows.Forms.Button();
             this.button_limpiar = new System.Windows.Forms.Button();
@@ -75,6 +75,8 @@ namespace AerolineaFrba.Abm_Ruta
             this.errorProvider_Servicios = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProvider_precioKg = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProvider_precioPasaje = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider_precioKgHasta = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider_precioPasajeHasta = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_listadoRutas)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_pasajeHasta)).BeginInit();
@@ -91,6 +93,8 @@ namespace AerolineaFrba.Abm_Ruta
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_Servicios)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_precioKg)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_precioPasaje)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_precioKgHasta)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_precioPasajeHasta)).BeginInit();
             this.SuspendLayout();
             // 
             // button_modificarRuta
@@ -326,9 +330,19 @@ namespace AerolineaFrba.Abm_Ruta
             0,
             0,
             0});
+            this.myNumericUpDown_codRuta.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147483648});
             this.myNumericUpDown_codRuta.Name = "myNumericUpDown_codRuta";
             this.myNumericUpDown_codRuta.Size = new System.Drawing.Size(153, 20);
             this.myNumericUpDown_codRuta.TabIndex = 20;
+            this.myNumericUpDown_codRuta.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147483648});
             // 
             // label8
             // 
@@ -563,6 +577,14 @@ namespace AerolineaFrba.Abm_Ruta
             // 
             this.errorProvider_precioPasaje.ContainerControl = this;
             // 
+            // errorProvider_precioKgHasta
+            // 
+            this.errorProvider_precioKgHasta.ContainerControl = this;
+            // 
+            // errorProvider_precioPasajeHasta
+            // 
+            this.errorProvider_precioPasajeHasta.ContainerControl = this;
+            // 
             // Abm_Ruta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -596,6 +618,8 @@ namespace AerolineaFrba.Abm_Ruta
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_Servicios)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_precioKg)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_precioPasaje)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_precioKgHasta)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_precioPasajeHasta)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -635,7 +659,7 @@ namespace AerolineaFrba.Abm_Ruta
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox comboBox_filtroOrigen;
         private System.Windows.Forms.Label label9;
-        private MyNumericUpDown.NumericUpDownModified myNumericUpDown_codRuta;
+        private MyNumericUpDown.NumericUpDownTextEmpty myNumericUpDown_codRuta;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.NumericUpDown numericUpDown_pasajeHasta;
@@ -644,5 +668,7 @@ namespace AerolineaFrba.Abm_Ruta
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.NumericUpDown numericUpDown_kgHasta;
+        private System.Windows.Forms.ErrorProvider errorProvider_precioKgHasta;
+        private System.Windows.Forms.ErrorProvider errorProvider_precioPasajeHasta;
     }
 }

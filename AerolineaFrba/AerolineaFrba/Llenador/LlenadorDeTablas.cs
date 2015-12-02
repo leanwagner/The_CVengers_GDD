@@ -151,7 +151,31 @@ namespace AerolineaFrba.Llenador
              
 
             }
-        } 
+        }
+
+        public void filtrarDataGridView(DataGridView miDataGridView, String sqlQuery)
+        {
+
+            SqlDataAdapter adapter;
+            DataTable tabla;
+
+            try
+            {
+                adapter = new SqlDataAdapter(sqlQuery, Conexion.getConexion());
+                tabla = new DataTable();
+
+                adapter.Fill(tabla);
+                miDataGridView.DataSource = tabla;
+                miDataGridView.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+                adapter.Dispose();
+            }
+            catch (Exception e)
+            {
+
+                MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK);
+
+            }
+        }
 
     }
 }

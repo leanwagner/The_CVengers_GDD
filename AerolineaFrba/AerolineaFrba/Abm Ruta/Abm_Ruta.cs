@@ -212,6 +212,37 @@ namespace AerolineaFrba.Abm_Ruta
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+            String sqlQuery = "SELECT * FROM THE_CVENGERS.RutasDisponibles WHERE 1=1";
+            
+
+            if (comboBox_filtroOrigen.SelectedItem != null)
+                sqlQuery = sqlQuery + " AND Origen LIKE '_" + comboBox_filtroOrigen.SelectedItem.ToString().Substring(1) + "'";
+
+            if (comboBox_filtroDestino.SelectedItem != null)
+                sqlQuery = sqlQuery + " AND Destino LIKE '_" + comboBox_filtroDestino.SelectedItem.ToString().Substring(1) + "'";
+
+            if (numericUpDown_kgHasta.Value > numericUpDown_kgDesde.Value)
+            {
+                errorProvider_precioKgHasta.Clear();
+                sqlQuery = sqlQuery + " AND [Precio Base Por Kilo] BETWEEN " + numericUpDown_kgDesde.Value.ToString(CultureInfo.InvariantCulture) + " AND " + numericUpDown_kgHasta.Value.ToString(CultureInfo.InvariantCulture);
+            }
+            else
+                errorProvider_precioKgHasta.SetError(numericUpDown_kgHasta, "El valor del Campo Hasta debe ser mayor al del campo Desde");
+
+            if (numericUpDown_pasajeHasta.Value > numericUpDown_pasajeDesde.Value)
+            {
+                errorProvider_precioPasajeHasta.Clear();
+                sqlQuery = sqlQuery + " AND [Precio Base Por Pasaje] BETWEEN " + numericUpDown_pasajeDesde.Value.ToString(CultureInfo.InvariantCulture) + " AND " + numericUpDown_pasajeHasta.Value.ToString(CultureInfo.InvariantCulture);
+            }
+            else
+                errorProvider_precioPasajeHasta.SetError(numericUpDown_pasajeHasta, "El valor del Campo Hasta debe ser mayor al del campo Desde");
+
+
+            if (myNumericUpDown_codRuta.Text != "")
+                sqlQuery = sqlQuery + " AND [Código de Rutas] = " + myNumericUpDown_codRuta.Value.ToString();
+
+            llenador.filtrarDataGridView(dataGridView_listadoRutas, sqlQuery);
+
 
         }
 
@@ -221,7 +252,7 @@ namespace AerolineaFrba.Abm_Ruta
             numericUpDown_kgHasta.Value = 0;
             numericUpDown_pasajeDesde.Value = 0;
             numericUpDown_pasajeHasta.Value = 0;
-            myNumericUpDown_codRuta.Value = 0;
+            myNumericUpDown_codRuta.Value = -1;
 
             comboBox_filtroDestino.Items.Clear();
             mostrarCiudad(ref comboBox_filtroDestino);
@@ -230,6 +261,8 @@ namespace AerolineaFrba.Abm_Ruta
 
             quitadoFiltroDestino = null;
             quitadoFiltroOrigen = null;
+
+            llenador.llenarDGV_ABMRutas(dataGridView_listadoRutas);
         }
 
         private void comboBox_filtroOrigen_SelectedIndexChanged(object sender, EventArgs e)
