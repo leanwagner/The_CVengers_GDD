@@ -11,7 +11,7 @@ using System.Configuration;
 
 namespace AerolineaFrba
 {
-    class Conexion
+    public class Conexion
     {
         private static SqlConnection conexionDB = null;
 
@@ -21,6 +21,7 @@ namespace AerolineaFrba
             {
                 try
                 {
+                    inicializarFechaSistema();
                     conexionDB = new SqlConnection(ConfigurationManager.AppSettings["confSQL"].ToString());
                     conexionDB.Open();
                     return conexionDB;
@@ -33,6 +34,11 @@ namespace AerolineaFrba
 
             }
             return conexionDB;
-        }      
+        }
+
+        public static void inicializarFechaSistema()
+        {
+            DateTime fechaSistema = Convert.ToDateTime(ConfigurationManager.AppSettings["fecha"]);
+        }
     }
 }
