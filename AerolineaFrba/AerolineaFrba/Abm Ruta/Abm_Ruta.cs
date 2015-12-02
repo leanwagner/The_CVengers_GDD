@@ -61,7 +61,7 @@ namespace AerolineaFrba.Abm_Ruta
             
             DataGridViewRow seleccionado = dataGridView_listadoRutas.SelectedRows[0];
 
-            RutaModificar rutaAModificar = new RutaModificar(Int32.Parse(seleccionado.Cells[0].Value.ToString()), Int32.Parse(seleccionado.Cells[1].Value.ToString()), seleccionado.Cells[2].Value.ToString(), seleccionado.Cells[3].Value.ToString(), System.Convert.ToDecimal(seleccionado.Cells[4].Value.ToString()), System.Convert.ToDecimal(seleccionado.Cells[5].Value.ToString()));
+            RutaModificar rutaAModificar = new RutaModificar(Int32.Parse(seleccionado.Cells[0].Value.ToString()), Int32.Parse(seleccionado.Cells[1].Value.ToString()), seleccionado.Cells[2].Value.ToString(), seleccionado.Cells[3].Value.ToString(), System.Convert.ToDecimal(seleccionado.Cells[4].Value.ToString()), System.Convert.ToDecimal(seleccionado.Cells[5].Value.ToString()), seleccionado.Cells[6].Value.ToString(), seleccionado.Cells[7].Value.ToString(),seleccionado.Cells[8].Value.ToString());
            rutaAModificar.Show();
         }
 

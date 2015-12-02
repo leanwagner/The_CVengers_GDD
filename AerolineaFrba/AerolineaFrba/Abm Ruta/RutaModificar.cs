@@ -20,12 +20,12 @@ namespace AerolineaFrba.Abm_Ruta
         
 
 
-        public RutaModificar(int ruta_id, int cod_ruta, string ciudad_origen, string ciudad_destino,decimal precio_KG, decimal precio_pasaje)
+        public RutaModificar(int ruta_id, int cod_ruta, string ciudad_origen, string ciudad_destino,decimal precio_KG, decimal precio_pasaje, string tipo_primera, string tipo_eco, string tipo_turista)
         {
             InitializeComponent();
             this.mostrarCiudad(ref comboBox_ciudadOrigen);
             this.mostrarCiudad(ref comboBox_ciudadDestino);
-            this.mostrarServicios(sacoServicios(ruta_id)); 
+            this.mostrarServicios(ref checkedListBox_servicios,tipo_primera,tipo_eco,tipo_turista); 
             comboBox_ciudadDestino.SelectedItem= ciudad_destino; // SETEOS PARA LEVANTAR la vista
             comboBox_ciudadOrigen.SelectedItem = ciudad_origen;
             numericUpDown_codRuta.Value = cod_ruta;
@@ -42,11 +42,16 @@ namespace AerolineaFrba.Abm_Ruta
 
         }
 
-        public void mostrarServicios(List<int> lista)
+        public void mostrarServicios(ref CheckedListBox  miCombo,  string t_primera,string t_eco,string t_turista)
         {
+            
+            miCombo.Items.Add("Primera Clase");
+            miCombo.Items.Add("Ejecutivo");
+            miCombo.Items.Add("Turista");
 
-            llenador.llenarCheckedListBoxMRuta(ref checkedListBox_servicios,lista);
-
+            if (t_primera == "Sí") { miCombo.SetItemCheckState(0, CheckState.Checked); }
+            if (t_eco == "Sí") { miCombo.SetItemCheckState(1, CheckState.Checked); }
+            if (t_turista == "Sí") { miCombo.SetItemCheckState(2, CheckState.Checked); }        
         } 
 
         private void comboBox_ciudadOrigen_SelectedIndexChanged(object sender, EventArgs e)
@@ -64,28 +69,7 @@ namespace AerolineaFrba.Abm_Ruta
         }
 
 
-        public static List<int> sacoServicios(int ruta_id) {
-
-            List<int> list = new List<int>();
-          
-
-            SqlCommand sqlCmd = new SqlCommand("SELECT * FROM [GD2C2015].[THE_CVENGERS].[SERVICIOXRUTA] WHERE SERVICIOXRUTA_RUTA =" + ruta_id, Conexion.getConexion());
-
-            SqlDataReader sqlReader = sqlCmd.ExecuteReader();
-
-            while (sqlReader.Read())
-            {
-                list.Add(Int32.Parse(sqlReader["SERVICIOXRUTA_SERVICIO"].ToString()));
-
-                MessageBox.Show(sqlReader["SERVICIOXRUTA_SERVICIO"].ToString());
-            }
-
-            sqlReader.Close();
-
-            return list;
-        }
-
-
+      
         private void comboBox_ciudadDestino_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (elementoQuitadoTablaOrigen != null)
