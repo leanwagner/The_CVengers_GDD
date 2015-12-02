@@ -62,6 +62,8 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
+            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textBox3)).BeginInit();
@@ -69,11 +71,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.textBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textBox5)).BeginInit();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
             this.groupBox1.AutoSize = true;
+            this.groupBox1.Controls.Add(this.numericUpDown2);
+            this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.boton_Agregar_Aeronave);
             this.groupBox1.Controls.Add(this.textBox4);
             this.groupBox1.Controls.Add(this.textBox3);
@@ -89,7 +94,7 @@
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Location = new System.Drawing.Point(20, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(310, 354);
+            this.groupBox1.Size = new System.Drawing.Size(310, 373);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Agregar Aeronave";
@@ -97,7 +102,7 @@
             // boton_Agregar_Aeronave
             // 
             this.boton_Agregar_Aeronave.Enabled = false;
-            this.boton_Agregar_Aeronave.Location = new System.Drawing.Point(174, 293);
+            this.boton_Agregar_Aeronave.Location = new System.Drawing.Point(174, 331);
             this.boton_Agregar_Aeronave.Name = "boton_Agregar_Aeronave";
             this.boton_Agregar_Aeronave.Size = new System.Drawing.Size(113, 23);
             this.boton_Agregar_Aeronave.TabIndex = 23;
@@ -124,6 +129,7 @@
             this.textBox4.TabIndex = 16;
             this.textBox4.ThousandsSeparator = true;
             this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
+            this.textBox4.ValueChanged += new System.EventHandler(this.textBox8_TextChanged);
             // 
             // textBox3
             // 
@@ -137,6 +143,7 @@
             this.textBox3.Size = new System.Drawing.Size(131, 20);
             this.textBox3.TabIndex = 15;
             this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            this.textBox3.ValueChanged += new System.EventHandler(this.textBox8_TextChanged);
             // 
             // label6
             // 
@@ -386,8 +393,6 @@
             this.textBox5.TabIndex = 16;
             this.textBox5.ThousandsSeparator = true;
             this.textBox5.ValueChanged += new System.EventHandler(this.textBox8_TextChanged);
-            this.textBox3.ValueChanged += new System.EventHandler(this.textBox8_TextChanged);
-            this.textBox4.ValueChanged += new System.EventHandler(this.textBox8_TextChanged);
             // 
             // groupBox3
             // 
@@ -408,7 +413,7 @@
             this.groupBox3.Controls.Add(this.textBox8);
             this.groupBox3.Location = new System.Drawing.Point(20, 3);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(310, 354);
+            this.groupBox3.Size = new System.Drawing.Size(310, 373);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Modificar Aeronave";
@@ -416,7 +421,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(131, 306);
+            this.button2.Location = new System.Drawing.Point(131, 331);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 18;
@@ -426,13 +431,44 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(212, 306);
+            this.button1.Location = new System.Drawing.Point(212, 331);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 17;
             this.button1.Text = "Cancelar";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(54, 298);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(80, 13);
+            this.label14.TabIndex = 24;
+            this.label14.Text = "Cantidad Pisos:";
+            // 
+            // numericUpDown2
+            // 
+            this.numericUpDown2.Location = new System.Drawing.Point(156, 293);
+            this.numericUpDown2.Maximum = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
+            this.numericUpDown2.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown2.Name = "numericUpDown2";
+            this.numericUpDown2.Size = new System.Drawing.Size(131, 20);
+            this.numericUpDown2.TabIndex = 25;
+            this.numericUpDown2.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // Abm_Aeronave
             // 
@@ -458,6 +494,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.textBox5)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -502,6 +539,8 @@
         private System.Windows.Forms.NumericUpDown textBox6;
         private System.Windows.Forms.NumericUpDown textBox4;
         private System.Windows.Forms.NumericUpDown textBox3;
+        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.Label label14;
 
     }
 }

@@ -187,6 +187,12 @@
     <EmbeddedResource Include="AerolineaFrba.resx">
       <DependentUpon>AerolineaFrba.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Canje Millas\Canje_Millas.resx">
+      <DependentUpon>Canje_Millas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Consulta Millas\Consulta_Millas.resx">
+      <DependentUpon>Consulta_Millas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Generacion Viaje\Generacion_Viaje.resx">
       <DependentUpon>Generacion_Viaje.cs</DependentUpon>
     </EmbeddedResource>
