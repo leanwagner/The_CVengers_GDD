@@ -45,7 +45,11 @@ namespace AerolineaFrba.Generacion_Viaje
             errorProvider1.SetError(comboBox1, "Debe seleccionar una ruta");
             button1.Enabled = false;
 
-            MessageBox.Show(DateTimeHandler.devolverFechaDB().ToString());
+            datePicker1.Value = DateTimeHandler.devolverFechaDB();
+            datePicker2.Value = DateTimeHandler.devolverFechaDB();
+            timePicker1.Value = DateTimeHandler.devolverFechaDB();
+            timePicker2.Value = DateTimeHandler.devolverFechaDB();
+            
            
 
         }
@@ -117,6 +121,16 @@ namespace AerolineaFrba.Generacion_Viaje
             else { button1.Enabled = false;
             
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SqlCommand sqlCmd = new SqlCommand("select * from THE_CVENGERS.AERONAVE where AERONAVE_MATRICULA_AVION ='" + comboBox1.SelectedItem.ToString() + "'", Conexion.getConexion());
+            SqlDataReader sqlReader;
+            sqlReader = sqlCmd.ExecuteReader();
+            sqlReader.Read();
+            String idAero = sqlReader["AERONAVE_ID"].ToString();
+            sqlReader.Close();
         }
 
         

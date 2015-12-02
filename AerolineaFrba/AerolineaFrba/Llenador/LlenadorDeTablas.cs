@@ -28,6 +28,22 @@ namespace AerolineaFrba.Llenador
         
         }
 
+        public void llenarComboBoxPremios(ref ComboBox miCombo)
+        {
+
+            SqlCommand sqlCmd = new SqlCommand("SELECT * FROM THE_CVENGERS.PRODUCTO order by PRODUCTO_MILLAS_NECESARIAS", Conexion.getConexion());
+
+            SqlDataReader sqlReader = sqlCmd.ExecuteReader();
+
+            while (sqlReader.Read())
+            {
+                miCombo.Items.Add(sqlReader["PRODUCTO_NOMBRE"].ToString() +" - " +sqlReader["PRODUCTO_MILLAS_NECESARIAS"] +" Puntos");
+            }
+
+            sqlReader.Close();
+
+        }
+
         public void llenarListBox(ref ListBox miCombo, String nombreTabla, String nombreColumna)
         {
 

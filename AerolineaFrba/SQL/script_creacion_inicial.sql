@@ -899,6 +899,16 @@ end
 return @viajeBuscado
 end
 
+go
+create procedure THE_CVENGERS.registrarLLegada @viaje as numeric(18,0), @fecha as datetime
+as
+begin
+
+update THE_CVENGERS.VIAJE set VIAJE_FECHA_LLEGADA = @fecha
+where VIAJE_ID = @viaje
+
+end
+
 --EXECUTE [THE_CVENGERS].getAll @RECV = '[THE_CVENGERS].CIUDAD'
 
 
@@ -957,6 +967,7 @@ DROP PROCEDURE [THE_CVENGERS].ingresoAeronave
 DROP PROCEDURE [THE_CVENGERS].setearFecha
 DROP FUNCTION [THE_CVENGERS].fechaReal
 DROP FUNCTION [THE_CVENGERS].viajeARegistrar
+DROP PROCEDURE [THE_CVENGERS].registrarLLegada
 DROP PROCEDURE [THE_CVENGERS].getAll 
 DROP SCHEMA [THE_CVENGERS]*/
 
