@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AerolineaFrba.Login;
 
 namespace AerolineaFrba
 {
@@ -13,8 +14,7 @@ namespace AerolineaFrba
         /// </summary>
         [STAThread]
         static void Main()
-        {;
-
+        {
             Conexion.getConexion();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

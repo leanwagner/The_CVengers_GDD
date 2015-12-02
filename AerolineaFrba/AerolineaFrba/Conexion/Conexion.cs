@@ -7,10 +7,11 @@ using System.Data;
 using System.Data.Sql;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using System.Configuration;
 
 namespace AerolineaFrba
 {
-    class Conexion
+    public class Conexion
     {
         private static SqlConnection conexionDB = null;
 
@@ -20,7 +21,8 @@ namespace AerolineaFrba
             {
                 try
                 {
-                    conexionDB = new SqlConnection("Server=localhost\\SQLSERVER2012;Initial Catalog=GD2C2015;Integrated Security=True");
+                    inicializarFechaSistema();
+                    conexionDB = new SqlConnection(ConfigurationManager.AppSettings["confSQL"].ToString());
                     conexionDB.Open();
                     return conexionDB;
                 }
@@ -32,6 +34,11 @@ namespace AerolineaFrba
 
             }
             return conexionDB;
-        }      
+        }
+
+        public static void inicializarFechaSistema()
+        {
+            DateTime fechaSistema = Convert.ToDateTime(ConfigurationManager.AppSettings["fecha"]);
+        }
     }
 }
