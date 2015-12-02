@@ -19,7 +19,7 @@ namespace AerolineaFrba.Abm_Ruta
         
 
 
-        public RutaModificar(int cod_ruta, string ciudad_origen, string ciudad_destino,decimal precio_KG, decimal precio_pasaje)
+        public RutaModificar(int ruta_id, int cod_ruta, string ciudad_origen, string ciudad_destino,decimal precio_KG, decimal precio_pasaje)
         {
             InitializeComponent();
             this.mostrarCiudad(ref comboBox_ciudadOrigen);
