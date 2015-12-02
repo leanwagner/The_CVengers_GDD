@@ -207,7 +207,6 @@
     <EmbeddedResource Include="Registro Llegada Destino\Registro_LlegadaDestino.resx">
       <DependentUpon>Registro_LlegadaDestino.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Registro_LlegadaDestino));
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox_Matricula = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.comboBox_AeropuertoSalida = new System.Windows.Forms.ComboBox();
@@ -53,6 +52,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.dateTimePicker_HoraLlegada = new System.Windows.Forms.DateTimePicker();
+            this.comboBox_matricula = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -65,13 +65,6 @@
             this.label1.Size = new System.Drawing.Size(104, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Ingrese la Matrícula:";
-            // 
-            // textBox_Matricula
-            // 
-            this.textBox_Matricula.Location = new System.Drawing.Point(144, 22);
-            this.textBox_Matricula.Name = "textBox_Matricula";
-            this.textBox_Matricula.Size = new System.Drawing.Size(100, 20);
-            this.textBox_Matricula.TabIndex = 1;
             // 
             // label2
             // 
@@ -93,19 +86,25 @@
             // 
             // comboBox_AeropuertoSalida
             // 
+            this.comboBox_AeropuertoSalida.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_AeropuertoSalida.FormattingEnabled = true;
             this.comboBox_AeropuertoSalida.Location = new System.Drawing.Point(144, 58);
             this.comboBox_AeropuertoSalida.Name = "comboBox_AeropuertoSalida";
             this.comboBox_AeropuertoSalida.Size = new System.Drawing.Size(100, 21);
-            this.comboBox_AeropuertoSalida.TabIndex = 4;
+            this.comboBox_AeropuertoSalida.Sorted = true;
+            this.comboBox_AeropuertoSalida.TabIndex = 1;
+            this.comboBox_AeropuertoSalida.SelectedIndexChanged += new System.EventHandler(this.comboBox_AeropuertoSalida_SelectedIndexChanged);
             // 
             // comboBox_AeropuertoLlegada
             // 
+            this.comboBox_AeropuertoLlegada.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_AeropuertoLlegada.FormattingEnabled = true;
             this.comboBox_AeropuertoLlegada.Location = new System.Drawing.Point(411, 58);
             this.comboBox_AeropuertoLlegada.Name = "comboBox_AeropuertoLlegada";
             this.comboBox_AeropuertoLlegada.Size = new System.Drawing.Size(100, 21);
-            this.comboBox_AeropuertoLlegada.TabIndex = 5;
+            this.comboBox_AeropuertoLlegada.Sorted = true;
+            this.comboBox_AeropuertoLlegada.TabIndex = 2;
+            this.comboBox_AeropuertoLlegada.SelectedIndexChanged += new System.EventHandler(this.comboBox_AeropuertoLlegada_SelectedIndexChanged);
             // 
             // groupBox1
             // 
@@ -218,18 +217,19 @@
             // 
             // button_BuscarAeronave
             // 
+            this.button_BuscarAeronave.Enabled = false;
             this.button_BuscarAeronave.Location = new System.Drawing.Point(411, 86);
             this.button_BuscarAeronave.Name = "button_BuscarAeronave";
             this.button_BuscarAeronave.Size = new System.Drawing.Size(100, 23);
-            this.button_BuscarAeronave.TabIndex = 7;
+            this.button_BuscarAeronave.TabIndex = 3;
             this.button_BuscarAeronave.Text = "Buscar Aeronave";
             this.button_BuscarAeronave.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.comboBox_matricula);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.button_BuscarAeronave);
-            this.groupBox2.Controls.Add(this.textBox_Matricula);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.comboBox_AeropuertoLlegada);
             this.groupBox2.Controls.Add(this.label3);
@@ -284,6 +284,16 @@
             this.dateTimePicker_HoraLlegada.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker_HoraLlegada.TabIndex = 13;
             // 
+            // comboBox_matricula
+            // 
+            this.comboBox_matricula.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_matricula.FormattingEnabled = true;
+            this.comboBox_matricula.Location = new System.Drawing.Point(144, 22);
+            this.comboBox_matricula.Name = "comboBox_matricula";
+            this.comboBox_matricula.Size = new System.Drawing.Size(100, 21);
+            this.comboBox_matricula.Sorted = true;
+            this.comboBox_matricula.TabIndex = 0;
+            // 
             // Registro_LlegadaDestino
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -312,7 +322,6 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox_Matricula;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comboBox_AeropuertoSalida;
@@ -335,5 +344,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.DateTimePicker dateTimePicker_HoraLlegada;
+        private System.Windows.Forms.ComboBox comboBox_matricula;
     }
 }
