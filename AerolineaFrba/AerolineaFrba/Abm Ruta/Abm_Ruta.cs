@@ -18,6 +18,8 @@ namespace AerolineaFrba.Abm_Ruta
         LlenadorDeTablas llenador = new LlenadorDeTablas();
         object elementoQuitadoTablaDestino;
         object elementoQuitadoTablaOrigen;
+        object quitadoFiltroOrigen;
+        object quitadoFiltroDestino;
 
         public Abm_Ruta()
         {
@@ -25,6 +27,8 @@ namespace AerolineaFrba.Abm_Ruta
             this.mostrarServicios();
             this.mostrarCiudad(ref comboBox_ciudadOrigen);
             this.mostrarCiudad(ref comboBox_ciudadDestino);
+            this.mostrarCiudad(ref comboBox_filtroOrigen);
+            this.mostrarCiudad(ref comboBox_filtroDestino);
             comboBox_ciudadOrigen.Focus();
             this.mostrarRutas();
         }
@@ -62,7 +66,7 @@ namespace AerolineaFrba.Abm_Ruta
             DataGridViewRow seleccionado = dataGridView_listadoRutas.SelectedRows[0];
 
             RutaModificar rutaAModificar = new RutaModificar(Int32.Parse(seleccionado.Cells[0].Value.ToString()), Int32.Parse(seleccionado.Cells[1].Value.ToString()), seleccionado.Cells[2].Value.ToString(), seleccionado.Cells[3].Value.ToString(), System.Convert.ToDecimal(seleccionado.Cells[4].Value.ToString()), System.Convert.ToDecimal(seleccionado.Cells[5].Value.ToString()), seleccionado.Cells[6].Value.ToString(), seleccionado.Cells[7].Value.ToString(),seleccionado.Cells[8].Value.ToString());
-           rutaAModificar.Show();
+            rutaAModificar.Show();
         }
 
         private void Abm_Ruta_Load(object sender, EventArgs e)
@@ -184,12 +188,12 @@ namespace AerolineaFrba.Abm_Ruta
                 else errorProvider_Servicios.Clear();
 
                 if (numericUpDown1.Value <= 0)
-                    errorProvider_precioKg.SetError(numericUpDown1, "Seleccione un número mayor que cero");
+                    errorProvider_precioKg.SetError(numericUpDown1, "Por favor seleccione un número mayor que cero");
                 else
                     errorProvider_precioKg.Clear();
 
                 if (numericUpDown2.Value <= 0)
-                    errorProvider_precioPasaje.SetError(numericUpDown2, "Seleccione un número mayor que cero");
+                    errorProvider_precioPasaje.SetError(numericUpDown2, "Por favor seleccione un número mayor que cero");
                 else
                     errorProvider_precioPasaje.Clear();
             }
@@ -201,6 +205,56 @@ namespace AerolineaFrba.Abm_Ruta
             button_modificarRuta.Enabled = true;
             
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            numericUpDown_kgDesde.Value = 0;
+            numericUpDown_kgHasta.Value = 0;
+            numericUpDown_pasajeDesde.Value = 0;
+            numericUpDown_pasajeHasta.Value = 0;
+            myNumericUpDown_codRuta.Value = 0;
+
+            comboBox_filtroDestino.Items.Clear();
+            mostrarCiudad(ref comboBox_filtroDestino);
+            comboBox_filtroOrigen.Items.Clear();
+            mostrarCiudad(ref comboBox_filtroOrigen);
+
+            quitadoFiltroDestino = null;
+            quitadoFiltroOrigen = null;
+        }
+
+        private void comboBox_filtroOrigen_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (quitadoFiltroDestino != null)
+                comboBox_filtroDestino.Items.Add(quitadoFiltroDestino);
+
+            int indiceElegido = comboBox_filtroDestino.Items.IndexOf(comboBox_filtroOrigen.SelectedItem);
+            quitadoFiltroDestino = comboBox_filtroOrigen.SelectedItem;
+
+            comboBox_filtroDestino.Items.RemoveAt(indiceElegido);
+
+            comboBox_filtroDestino.Refresh();
+        }
+
+        private void comboBox_filtroDestino_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if (quitadoFiltroOrigen != null)
+                comboBox_filtroOrigen.Items.Add(quitadoFiltroOrigen);
+
+            int indiceElegido = comboBox_filtroOrigen.Items.IndexOf(comboBox_filtroDestino.SelectedItem);
+            quitadoFiltroOrigen = comboBox_filtroDestino.SelectedItem;
+
+            comboBox_filtroOrigen.Items.RemoveAt(indiceElegido);
+
+            comboBox_filtroOrigen.Refresh();
+        }
+
     }
 
 }
