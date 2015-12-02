@@ -479,8 +479,11 @@ go
 create procedure THE_CVENGERS.setearFecha @P1 as datetime
 as
 begin
+if(not exists(select * from THE_CVENGERS.FECHA))
+begin
 INSERT INTO THE_CVENGERS.FECHA (FECHA_RECIBIDA, FECHA_REFERENCIA)
 VALUES (@P1,getdate())
+end
 end
 
 go
