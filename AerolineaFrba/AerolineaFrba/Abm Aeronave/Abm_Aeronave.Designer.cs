@@ -394,6 +394,11 @@
             // 
             // textBox6
             // 
+            this.textBox6.Increment = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
             this.textBox6.Location = new System.Drawing.Point(156, 212);
             this.textBox6.Maximum = new decimal(new int[] {
             10000,
