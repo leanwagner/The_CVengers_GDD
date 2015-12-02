@@ -874,7 +874,40 @@ set @numbut = @numbut +1
 end
 end
 
+go
+create function THE_CVENGERS.viajeARegistrar (@matricula as nvarchar(100), @origen as nvarchar(100), @destino as nvarchar(100))
+returns numeric
+as
+begin
 
+declare @viajeBuscado numeric(18,0)
+set @viajeBuscado = (select V.VIAJE_ID 
+				from THE_CVENGERS.VIAJE V 
+				WHERE V.VIAJE_RUTA = (SELECT R.RUTA_ID
+										FROM THE_CVENGERS.RUTA R
+										WHERE R.RUTA_ORIGEN = (SELECT C.CIUDAD_ID 
+																from THE_CVENGERS.CIUDAD C
+																where c.CIUDAD_NOMBRE like ('_'+ @origen))
+										and r.RUTA_DESTINO = (SELECT C.CIUDAD_ID 
+																from THE_CVENGERS.CIUDAD C
+																where c.CIUDAD_NOMBRE like ('_'+ @destino))) and V.VIAJE_AERONAVE = (select AERONAVE_ID from AERONAVE where AERONAVE_MATRICULA_AVION = @matricula) and V.VIAJE_FECHA_SALIDA < THE_CVENGERS.fechaReal() and v.VIAJE_FECHA_LLEGADA = NULL)
+
+if(@viajeBuscado is NULL)
+begin
+return cast('No hay ningún viaje en proceso de esa Aeronave sobre esa ruta.' as int);
+end
+return @viajeBuscado
+end
+
+go
+create procedure THE_CVENGERS.registrarLLegada @viaje as numeric(18,0), @fecha as datetime
+as
+begin
+
+update THE_CVENGERS.VIAJE set VIAJE_FECHA_LLEGADA = @fecha
+where VIAJE_ID = @viaje
+
+end
 
 --EXECUTE [THE_CVENGERS].getAll @RECV = '[THE_CVENGERS].CIUDAD'
 
@@ -933,6 +966,8 @@ DROP VIEW [THE_CVENGERS].listadoAeronaves
 DROP PROCEDURE [THE_CVENGERS].ingresoAeronave
 DROP PROCEDURE [THE_CVENGERS].setearFecha
 DROP FUNCTION [THE_CVENGERS].fechaReal
+DROP FUNCTION [THE_CVENGERS].viajeARegistrar
+DROP PROCEDURE [THE_CVENGERS].registrarLLegada
 DROP PROCEDURE [THE_CVENGERS].getAll 
 DROP SCHEMA [THE_CVENGERS]*/
 

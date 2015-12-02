@@ -5,6 +5,7 @@ using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace AerolineaFrba.HoraDB
 {
@@ -12,14 +13,22 @@ namespace AerolineaFrba.HoraDB
     {
         public static DateTime devolverFechaDB()
         {
-            SqlCommand sqlCmd = new SqlCommand("SELECT THE_CVENGERS.fechaReal() AS f", Conexion.getConexion());
+            try
+            {
+                SqlCommand sqlCmd = new SqlCommand("SELECT THE_CVENGERS.fechaReal() AS f", Conexion.getConexion());
 
-            SqlDataReader reader = sqlCmd.ExecuteReader();
+                SqlDataReader reader = sqlCmd.ExecuteReader();
 
-            reader.Read();
-            DateTime retu = SqlDateTime.Parse(reader["f"].ToString()).Value;
-            reader.Close();
-            return retu;
+                reader.Read();
+                DateTime retu = SqlDateTime.Parse(reader["f"].ToString()).Value;
+                reader.Close();
+                return retu;
+            }
+            catch
+            {
+                MessageBox.Show("No se puede traer hora de la base de datos");
+                return new DateTime();
+            }
         }
     }
 }
