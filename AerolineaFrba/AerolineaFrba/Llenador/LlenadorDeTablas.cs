@@ -93,6 +93,23 @@ namespace AerolineaFrba.Llenador
 
         }
 
+        public void llenarComboBoxConCondicion(ref ComboBox miCombo, String nombreTabla, String nombreColumna, String condicion)
+        {
+
+            SqlCommand sqlCmd = new SqlCommand("SELECT * FROM THE_CVENGERS." + nombreTabla + " where " + condicion, Conexion.getConexion());
+
+            SqlDataReader sqlReader = sqlCmd.ExecuteReader();
+
+         //   MessageBox.Show(sqlCmd.CommandText);
+            while (sqlReader.Read())
+            {
+                miCombo.Items.Add(sqlReader[nombreColumna].ToString());
+            }
+
+            sqlReader.Close();
+
+        }
+
         public void llenarCheckedListBox(ref CheckedListBox miCombo, String nombreTabla, String nombreColumna)
         {
 

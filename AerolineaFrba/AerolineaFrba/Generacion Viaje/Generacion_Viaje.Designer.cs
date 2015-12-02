@@ -28,166 +28,190 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Generacion_Viaje));
-            this.dateTimePicker_Salida = new System.Windows.Forms.DateTimePicker();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
+            this.datePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboCiudadPartida = new System.Windows.Forms.ComboBox();
-            this.comboCiudadDestino = new System.Windows.Forms.ComboBox();
-            this.dateTimePicker_Llegada = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.datePicker2 = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.timePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.timePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider3 = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).BeginInit();
             this.SuspendLayout();
             // 
-            // dateTimePicker_Salida
+            // dataGridView1
             // 
-            this.dateTimePicker_Salida.Location = new System.Drawing.Point(258, 17);
-            this.dateTimePicker_Salida.MinDate = new System.DateTime(2015, 10, 30, 20, 22, 14, 0);
-            this.dateTimePicker_Salida.Name = "dateTimePicker_Salida";
-            this.dateTimePicker_Salida.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker_Salida.TabIndex = 0;
-            this.dateTimePicker_Salida.Value = new System.DateTime(2015, 10, 30, 20, 22, 14, 0);
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(12, 26);
+            this.dataGridView1.MultiSelect = false;
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(621, 157);
+            this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(19, 19);
+            this.label1.Location = new System.Drawing.Point(12, 10);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(79, 13);
+            this.label1.Size = new System.Drawing.Size(53, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Ciudad Partida:";
+            this.label1.Text = "Elejir ruta:";
+            // 
+            // datePicker1
+            // 
+            this.datePicker1.Location = new System.Drawing.Point(103, 200);
+            this.datePicker1.Name = "datePicker1";
+            this.datePicker1.Size = new System.Drawing.Size(117, 20);
+            this.datePicker1.TabIndex = 2;
+            this.datePicker1.ValueChanged += new System.EventHandler(this.datePicker1_ValueChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(19, 54);
+            this.label2.Location = new System.Drawing.Point(12, 206);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(85, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Ciudad Destino: ";
-            // 
-            // comboCiudadPartida
-            // 
-            this.comboCiudadPartida.FormattingEnabled = true;
-            this.comboCiudadPartida.Location = new System.Drawing.Point(108, 16);
-            this.comboCiudadPartida.Name = "comboCiudadPartida";
-            this.comboCiudadPartida.Size = new System.Drawing.Size(121, 21);
-            this.comboCiudadPartida.TabIndex = 3;
-            // 
-            // comboCiudadDestino
-            // 
-            this.comboCiudadDestino.FormattingEnabled = true;
-            this.comboCiudadDestino.Location = new System.Drawing.Point(110, 51);
-            this.comboCiudadDestino.Name = "comboCiudadDestino";
-            this.comboCiudadDestino.Size = new System.Drawing.Size(121, 21);
-            this.comboCiudadDestino.TabIndex = 4;
-            // 
-            // dateTimePicker_Llegada
-            // 
-            this.dateTimePicker_Llegada.Location = new System.Drawing.Point(258, 54);
-            this.dateTimePicker_Llegada.Name = "dateTimePicker_Llegada";
-            this.dateTimePicker_Llegada.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker_Llegada.TabIndex = 5;
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Fecha de salida:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(22, 111);
+            this.label3.Location = new System.Drawing.Point(316, 205);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(104, 13);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Matrícula Aeronave:";
+            this.label3.Size = new System.Drawing.Size(92, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Fecha de llegada:";
             // 
-            // textBox1
+            // datePicker2
             // 
-            this.textBox1.Location = new System.Drawing.Point(129, 108);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 7;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.dateTimePicker_Llegada);
-            this.groupBox1.Controls.Add(this.comboCiudadDestino);
-            this.groupBox1.Controls.Add(this.comboCiudadPartida);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.dateTimePicker_Salida);
-            this.groupBox1.Location = new System.Drawing.Point(22, 30);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(482, 279);
-            this.groupBox1.TabIndex = 8;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Generar Viaje";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(303, 170);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Generar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.datePicker2.Location = new System.Drawing.Point(414, 200);
+            this.datePicker2.Name = "datePicker2";
+            this.datePicker2.Size = new System.Drawing.Size(117, 20);
+            this.datePicker2.TabIndex = 5;
+            this.datePicker2.ValueChanged += new System.EventHandler(this.datePicker1_ValueChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(258, 111);
+            this.label4.Location = new System.Drawing.Point(41, 242);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(48, 13);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Servicio:";
+            this.label4.Size = new System.Drawing.Size(56, 13);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Aeronave:";
             // 
-            // label5
+            // comboBox1
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(312, 111);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(160, 13);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "¿Autocompletado x la matricula?";
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(103, 239);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(117, 21);
+            this.comboBox1.TabIndex = 7;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(484, 258);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(149, 23);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "Generar viaje";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // timePicker1
+            // 
+            this.timePicker1.Location = new System.Drawing.Point(226, 200);
+            this.timePicker1.Name = "timePicker1";
+            this.timePicker1.Size = new System.Drawing.Size(84, 20);
+            this.timePicker1.TabIndex = 9;
+            this.timePicker1.ValueChanged += new System.EventHandler(this.datePicker1_ValueChanged);
+            // 
+            // timePicker2
+            // 
+            this.timePicker2.Location = new System.Drawing.Point(537, 200);
+            this.timePicker2.Name = "timePicker2";
+            this.timePicker2.Size = new System.Drawing.Size(84, 20);
+            this.timePicker2.TabIndex = 10;
+            this.timePicker2.ValueChanged += new System.EventHandler(this.datePicker1_ValueChanged);
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // errorProvider2
+            // 
+            this.errorProvider2.ContainerControl = this;
+            this.errorProvider2.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider2.Icon")));
+            // 
+            // errorProvider3
+            // 
+            this.errorProvider3.ContainerControl = this;
             // 
             // Generacion_Viaje
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(528, 340);
-            this.Controls.Add(this.groupBox1);
+            this.ClientSize = new System.Drawing.Size(645, 293);
+            this.Controls.Add(this.timePicker2);
+            this.Controls.Add(this.timePicker1);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.datePicker2);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.datePicker1);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.dataGridView1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Generacion_Viaje";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Generar Viaje";
             this.Load += new System.EventHandler(this.Generacion_Viaje_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DateTimePicker dateTimePicker_Salida;
+        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DateTimePicker datePicker1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboCiudadPartida;
-        private System.Windows.Forms.ComboBox comboCiudadDestino;
-        private System.Windows.Forms.DateTimePicker dateTimePicker_Llegada;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DateTimePicker datePicker2;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DateTimePicker timePicker1;
+        private System.Windows.Forms.DateTimePicker timePicker2;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.ErrorProvider errorProvider2;
+        private System.Windows.Forms.ErrorProvider errorProvider3;
+
 
     }
 }
