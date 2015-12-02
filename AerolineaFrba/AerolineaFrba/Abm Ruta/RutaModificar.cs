@@ -112,17 +112,6 @@ namespace AerolineaFrba.Abm_Ruta
                
              try
                 {
-
-
-                    MessageBox.Show("EXEC THE_CVENGERS.modificacionRuta @P0=" + ID_Ruta + " ,@P1 = " + numericUpDown_codRuta.Value +
-                           ", @P2 = '" + comboBox_ciudadOrigen.SelectedItem.ToString() +
-                           "', @P3 = '" + comboBox_ciudadDestino.SelectedItem.ToString() +
-                           "', @P4 = " + numericUpDown_precioKG.Value +
-                           ", @P5 = " + numericUpDown_precioPasaje.Value +
-                           ", @P6 = '" + servicio1 +
-                           "', @P7 = '" + servicio2 +
-                           "', @P8 = '" + servicio3 + "';");
-
                        SqlCommand sqlCmd = new SqlCommand("EXEC THE_CVENGERS.modificacionRuta @P0=" + ID_Ruta +" ,@P1 = " + numericUpDown_codRuta.Value +
                         ", @P2 = '" + comboBox_ciudadOrigen.SelectedItem.ToString().Substring(1) +
                         "', @P3 = '" + comboBox_ciudadDestino.SelectedItem.ToString().Substring(1) +

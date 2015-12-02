@@ -295,6 +295,12 @@ namespace AerolineaFrba.Abm_Ruta
             comboBox_filtroOrigen.Refresh();
         }
 
+        private void Abm_Ruta_Activated(object sender, EventArgs e)
+        {
+
+            llenador.llenarDGV_ABMRutas(dataGridView_listadoRutas);
+        }
+
     }
 
 }

@@ -50,14 +50,12 @@ namespace AerolineaFrba.Abm_Ruta
             this.label10 = new System.Windows.Forms.Label();
             this.comboBox_filtroOrigen = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.myNumericUpDown_codRuta = new NumericUpDownModified();
             this.label8 = new System.Windows.Forms.Label();
             this.button_filtrar = new System.Windows.Forms.Button();
             this.button_limpiar = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.button_eliminarRuta = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.numericUpDown3 = new NumericUpDownModified();
             this.label6 = new System.Windows.Forms.Label();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
@@ -83,9 +81,7 @@ namespace AerolineaFrba.Abm_Ruta
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_pasajeDesde)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_kgHasta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_kgDesde)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.myNumericUpDown_codRuta)).BeginInit();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_ciudadOrigen)).BeginInit();
@@ -141,7 +137,6 @@ namespace AerolineaFrba.Abm_Ruta
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.comboBox_filtroOrigen);
             this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.myNumericUpDown_codRuta);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.button_filtrar);
             this.groupBox1.Controls.Add(this.button_limpiar);
@@ -322,28 +317,6 @@ namespace AerolineaFrba.Abm_Ruta
             this.label9.TabIndex = 21;
             this.label9.Text = "Ciudad Origen:";
             // 
-            // myNumericUpDown_codRuta
-            // 
-            this.myNumericUpDown_codRuta.Location = new System.Drawing.Point(139, 41);
-            this.myNumericUpDown_codRuta.Maximum = new decimal(new int[] {
-            99999999,
-            0,
-            0,
-            0});
-            this.myNumericUpDown_codRuta.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            -2147483648});
-            this.myNumericUpDown_codRuta.Name = "myNumericUpDown_codRuta";
-            this.myNumericUpDown_codRuta.Size = new System.Drawing.Size(153, 20);
-            this.myNumericUpDown_codRuta.TabIndex = 20;
-            this.myNumericUpDown_codRuta.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            -2147483648});
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -394,7 +367,6 @@ namespace AerolineaFrba.Abm_Ruta
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.numericUpDown3);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.numericUpDown2);
             this.groupBox2.Controls.Add(this.numericUpDown1);
@@ -413,18 +385,6 @@ namespace AerolineaFrba.Abm_Ruta
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Crear Ruta";
-            // 
-            // numericUpDown3
-            // 
-            this.numericUpDown3.Location = new System.Drawing.Point(139, 27);
-            this.numericUpDown3.Maximum = new decimal(new int[] {
-            99999999,
-            0,
-            0,
-            0});
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(153, 20);
-            this.numericUpDown3.TabIndex = 0;
             // 
             // label6
             // 
@@ -599,6 +559,7 @@ namespace AerolineaFrba.Abm_Ruta
             this.Name = "Abm_Ruta";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Rutas";
+            this.Activated += new System.EventHandler(this.Abm_Ruta_Activated);
             this.Load += new System.EventHandler(this.Abm_Ruta_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_listadoRutas)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -607,10 +568,8 @@ namespace AerolineaFrba.Abm_Ruta
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_pasajeDesde)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_kgHasta)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_kgDesde)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.myNumericUpDown_codRuta)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_ciudadOrigen)).EndInit();
