@@ -61,7 +61,7 @@
             // button_modificarRuta
             // 
             this.button_modificarRuta.Enabled = false;
-            this.button_modificarRuta.Location = new System.Drawing.Point(208, 226);
+            this.button_modificarRuta.Location = new System.Drawing.Point(404, 280);
             this.button_modificarRuta.Name = "button_modificarRuta";
             this.button_modificarRuta.Size = new System.Drawing.Size(75, 23);
             this.button_modificarRuta.TabIndex = 7;
@@ -76,13 +76,13 @@
             this.dataGridView_listadoRutas.AllowUserToResizeColumns = false;
             this.dataGridView_listadoRutas.AllowUserToResizeRows = false;
             this.dataGridView_listadoRutas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_listadoRutas.Location = new System.Drawing.Point(16, 43);
+            this.dataGridView_listadoRutas.Location = new System.Drawing.Point(39, 81);
             this.dataGridView_listadoRutas.Name = "dataGridView_listadoRutas";
             this.dataGridView_listadoRutas.ReadOnly = true;
             this.dataGridView_listadoRutas.RowHeadersVisible = false;
             this.dataGridView_listadoRutas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView_listadoRutas.ShowEditingIcon = false;
-            this.dataGridView_listadoRutas.Size = new System.Drawing.Size(343, 177);
+            this.dataGridView_listadoRutas.Size = new System.Drawing.Size(521, 177);
             this.dataGridView_listadoRutas.TabIndex = 0;
             this.dataGridView_listadoRutas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_listadoRutas_CellContentClick);
             // 
@@ -91,16 +91,16 @@
             this.groupBox1.Controls.Add(this.button_eliminarRuta);
             this.groupBox1.Controls.Add(this.button_modificarRuta);
             this.groupBox1.Controls.Add(this.dataGridView_listadoRutas);
-            this.groupBox1.Location = new System.Drawing.Point(85, 259);
+            this.groupBox1.Location = new System.Drawing.Point(35, 231);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(377, 255);
+            this.groupBox1.Size = new System.Drawing.Size(606, 309);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Listado de Rutas";
             // 
             // button_eliminarRuta
             // 
-            this.button_eliminarRuta.Location = new System.Drawing.Point(296, 226);
+            this.button_eliminarRuta.Location = new System.Drawing.Point(494, 280);
             this.button_eliminarRuta.Name = "button_eliminarRuta";
             this.button_eliminarRuta.Size = new System.Drawing.Size(75, 23);
             this.button_eliminarRuta.TabIndex = 8;
@@ -123,9 +123,9 @@
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.button_agregarRuta);
-            this.groupBox2.Location = new System.Drawing.Point(85, 12);
+            this.groupBox2.Location = new System.Drawing.Point(35, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(377, 241);
+            this.groupBox2.Size = new System.Drawing.Size(606, 183);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Crear Ruta";
@@ -159,7 +159,7 @@
             0,
             0,
             131072});
-            this.numericUpDown2.Location = new System.Drawing.Point(139, 186);
+            this.numericUpDown2.Location = new System.Drawing.Point(416, 105);
             this.numericUpDown2.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -177,7 +177,7 @@
             0,
             0,
             131072});
-            this.numericUpDown1.Location = new System.Drawing.Point(139, 160);
+            this.numericUpDown1.Location = new System.Drawing.Point(416, 79);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -212,7 +212,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(26, 188);
+            this.label5.Location = new System.Drawing.Point(303, 107);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(102, 13);
             this.label5.TabIndex = 14;
@@ -221,7 +221,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(45, 162);
+            this.label4.Location = new System.Drawing.Point(322, 81);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(83, 13);
             this.label4.TabIndex = 12;
@@ -230,7 +230,7 @@
             // checkedListBox_servicios
             // 
             this.checkedListBox_servicios.FormattingEnabled = true;
-            this.checkedListBox_servicios.Location = new System.Drawing.Point(139, 105);
+            this.checkedListBox_servicios.Location = new System.Drawing.Point(416, 24);
             this.checkedListBox_servicios.Name = "checkedListBox_servicios";
             this.checkedListBox_servicios.Size = new System.Drawing.Size(153, 49);
             this.checkedListBox_servicios.TabIndex = 3;
@@ -239,7 +239,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(75, 108);
+            this.label3.Location = new System.Drawing.Point(352, 27);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 13);
             this.label3.TabIndex = 9;
@@ -265,7 +265,7 @@
             // 
             // button_agregarRuta
             // 
-            this.button_agregarRuta.Location = new System.Drawing.Point(296, 212);
+            this.button_agregarRuta.Location = new System.Drawing.Point(494, 140);
             this.button_agregarRuta.Name = "button_agregarRuta";
             this.button_agregarRuta.Size = new System.Drawing.Size(75, 23);
             this.button_agregarRuta.TabIndex = 6;
@@ -284,7 +284,7 @@
             this.AutoScroll = true;
             this.AutoSize = true;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this.ClientSize = new System.Drawing.Size(545, 514);
+            this.ClientSize = new System.Drawing.Size(680, 552);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

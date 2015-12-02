@@ -128,6 +128,29 @@ namespace AerolineaFrba.Llenador
                 MessageBox.Show("Rompe mostrando tabla " + nombreTabla + ex);
             
             }
+        }
+        public void llenarDGV_ABMRutas(DataGridView dgv)
+        {
+            SqlDataAdapter adapter;
+            DataTable tabla;
+
+            try
+            {
+                adapter = new SqlDataAdapter("SELECT * FROM THE_CVENGERS.RutasDisponibles", Conexion.getConexion());
+                tabla = new DataTable();
+
+                adapter.Fill(tabla);
+                dgv.DataSource = tabla;
+                dgv.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+                adapter.Dispose();
+            }
+            catch (Exception e)
+            {
+
+                MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK);
+             
+
+            }
         } 
 
     }

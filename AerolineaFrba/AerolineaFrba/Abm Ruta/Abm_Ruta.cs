@@ -36,8 +36,12 @@ namespace AerolineaFrba.Abm_Ruta
 
         private void boton_Modificar_Click(object sender, EventArgs e)
         {
-           // RutaModificar rutaAModificar = new RutaModificar();
-            //rutaAModificar.Show();
+           
+            
+            DataGridViewRow seleccionado = dataGridView_listadoRutas.SelectedRows[0];
+          
+           RutaModificar rutaAModificar = new RutaModificar(Int32.Parse(seleccionado.Cells[0].Value.ToString()),seleccionado.Cells[1].Value.ToString(),seleccionado.Cells[2].Value.ToString(), System.Convert.ToDecimal(seleccionado.Cells[3].Value.ToString()), System.Convert.ToDecimal(seleccionado.Cells[4].Value.ToString()));
+           rutaAModificar.Show();
         }
 
         private void Abm_Ruta_Load(object sender, EventArgs e)
@@ -60,7 +64,7 @@ namespace AerolineaFrba.Abm_Ruta
 
         public void mostrarRutas()
         {
-            llenador.llenarDataGridView(dataGridView_listadoRutas,"RUTA");
+            llenador.llenarDGV_ABMRutas(dataGridView_listadoRutas);
         }
       
         private void comboBox_ciudadOrigen_SelectedIndexChanged(object sender, EventArgs e)
@@ -147,9 +151,7 @@ namespace AerolineaFrba.Abm_Ruta
         {
          
             button_modificarRuta.Enabled=true;
-
-
-
+            
         }
     }
 

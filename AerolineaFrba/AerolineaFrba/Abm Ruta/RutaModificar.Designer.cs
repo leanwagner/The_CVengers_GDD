@@ -194,7 +194,6 @@
             // 
             // boton_Agregar_Ciudad
             // 
-            this.boton_Agregar_Ciudad.Enabled = false;
             this.boton_Agregar_Ciudad.Location = new System.Drawing.Point(294, 230);
             this.boton_Agregar_Ciudad.Name = "boton_Agregar_Ciudad";
             this.boton_Agregar_Ciudad.Size = new System.Drawing.Size(75, 23);
@@ -235,7 +234,7 @@
         private System.Windows.Forms.NumericUpDown numericUpDown_precioPasaje;
         private System.Windows.Forms.NumericUpDown numericUpDown_precioKG;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.NumericUpDown numericUpDown_codRuta;
+        private MyNumericUpDown.MyNumericUpDown numericUpDown_codRuta;
 
     }
 }

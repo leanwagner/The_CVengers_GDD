@@ -25,7 +25,8 @@ namespace AerolineaFrba.Abm_Ruta
             this.mostrarCiudad(ref comboBox_ciudadOrigen);
             this.mostrarCiudad(ref comboBox_ciudadDestino);
             this.mostrarServicios(); 
-            //comboBox_ciudadDestino.SelectedItem="Chicago"; --- SETEOS PARA LEVANTAR
+            comboBox_ciudadDestino.SelectedItem= ciudad_destino; // SETEOS PARA LEVANTAR la vista
+            comboBox_ciudadOrigen.SelectedItem = ciudad_origen;
             numericUpDown_codRuta.Value = cod_ruta;
             numericUpDown_precioKG.Value = precio_KG;
             numericUpDown_precioPasaje.Value = precio_pasaje;
