@@ -25,7 +25,6 @@ namespace AerolineaFrba.Registro_Llegada_Destino
             llenarCombosCiudad(ref comboBox_AeropuertoSalida);
             llenarComboMatricula(ref comboBox_matricula);
             errorProvider_buscarAeronave.SetError(button_BuscarAeronave, "Para desbloquear el boton deben haberse llenado todos los campos");
-            dateTimePicker1.Value = DateTimeHandler.devolverFechaDB();
 
 
         }
@@ -34,6 +33,7 @@ namespace AerolineaFrba.Registro_Llegada_Destino
         {
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
             dateTimePicker1.CustomFormat = "dd-MM-yyyy HH:mm:ss";
+            dateTimePicker1.Value = DateTimeHandler.devolverFechaDB();
         }
 
         public void llenarCombosCiudad(ref ComboBox miCombo)
@@ -98,6 +98,11 @@ namespace AerolineaFrba.Registro_Llegada_Destino
             fechaFormateada = fechaFormateada + ".000";
             
 
+
+        }
+
+        private void button_BuscarAeronave_Click(object sender, EventArgs e)
+        {
 
         }
 
