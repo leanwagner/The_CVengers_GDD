@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AerolineaFrba.HoraDB;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -44,6 +45,7 @@ namespace AerolineaFrba.Generacion_Viaje
             errorProvider1.SetError(comboBox1, "Debe seleccionar una ruta");
             button1.Enabled = false;
 
+            MessageBox.Show(DateTimeHandler.devolverFechaDB().ToString());
            
 
         }

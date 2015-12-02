@@ -109,6 +109,7 @@
     <Compile Include="Consulta Millas\Consulta_Millas.Designer.cs">
       <DependentUpon>Consulta_Millas.cs</DependentUpon>
     </Compile>
+    <Compile Include="HoraDB\DateTimeHandler.cs" />
     <Compile Include="Devolucion\Devolucion.cs">
       <SubType>Form</SubType>
     </Compile>

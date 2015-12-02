@@ -39,7 +39,7 @@ namespace AerolineaFrba
 
         public static void inicializarFechaSistema()
         {
-            String fechaSistema = ConfigurationManager.AppSettings["fecha"];
+            String fechaSistema = ConfigurationManager.AppSettings["Fecha"];
             SqlCommand sqlCmd = new SqlCommand("EXEC THE_CVENGERS.setearFecha @P1= '" + fechaSistema + ".000'",Conexion.getConexion());
             sqlCmd.ExecuteNonQuery();
         }

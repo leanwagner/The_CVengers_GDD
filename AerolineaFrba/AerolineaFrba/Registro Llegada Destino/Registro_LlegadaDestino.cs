@@ -1,4 +1,5 @@
-﻿using AerolineaFrba.Llenador;
+﻿using AerolineaFrba.HoraDB;
+using AerolineaFrba.Llenador;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,6 +33,7 @@ namespace AerolineaFrba.Registro_Llegada_Destino
         {
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
             dateTimePicker1.CustomFormat = "dd-MM-yyyy HH:mm:ss";
+            dateTimePicker1.Value = DateTimeHandler.devolverFechaDB();
         }
 
         public void llenarCombosCiudad(ref ComboBox miCombo)
@@ -96,6 +98,11 @@ namespace AerolineaFrba.Registro_Llegada_Destino
             fechaFormateada = fechaFormateada + ".000";
             
 
+
+        }
+
+        private void button_BuscarAeronave_Click(object sender, EventArgs e)
+        {
 
         }
 

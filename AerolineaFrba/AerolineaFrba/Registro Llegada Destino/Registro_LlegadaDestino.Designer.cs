@@ -225,6 +225,7 @@
             this.button_BuscarAeronave.TabIndex = 3;
             this.button_BuscarAeronave.Text = "Buscar Aeronave";
             this.button_BuscarAeronave.UseVisualStyleBackColor = true;
+            this.button_BuscarAeronave.Click += new System.EventHandler(this.button_BuscarAeronave_Click);
             // 
             // groupBox2
             // 
@@ -260,6 +261,7 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(253, 20);
             this.dateTimePicker1.TabIndex = 9;
+            this.dateTimePicker1.Value = new System.DateTime(2015, 12, 26, 0, 0, 0, 0);
             // 
             // label9
             // 
@@ -298,6 +300,7 @@
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Registro_LlegadaDestino";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registro Llegada a Destino";
             this.Load += new System.EventHandler(this.Registro_LlegadaDestino_Load);
             this.groupBox1.ResumeLayout(false);
