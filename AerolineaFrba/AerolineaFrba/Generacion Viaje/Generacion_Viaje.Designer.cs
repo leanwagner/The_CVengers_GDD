@@ -68,7 +68,7 @@
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.ShowEditingIcon = false;
-            this.dataGridView1.Size = new System.Drawing.Size(621, 157);
+            this.dataGridView1.Size = new System.Drawing.Size(665, 157);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -103,13 +103,13 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(316, 205);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(92, 13);
+            this.label3.Size = new System.Drawing.Size(137, 13);
             this.label3.TabIndex = 4;
-            this.label3.Text = "Fecha de llegada:";
+            this.label3.Text = "Fecha de llegada estimada:";
             // 
             // datePicker2
             // 
-            this.datePicker2.Location = new System.Drawing.Point(414, 200);
+            this.datePicker2.Location = new System.Drawing.Point(459, 198);
             this.datePicker2.Name = "datePicker2";
             this.datePicker2.Size = new System.Drawing.Size(117, 20);
             this.datePicker2.TabIndex = 5;
@@ -136,12 +136,13 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(484, 258);
+            this.button1.Location = new System.Drawing.Point(528, 258);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(149, 23);
             this.button1.TabIndex = 8;
             this.button1.Text = "Generar viaje";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // timePicker1
             // 
@@ -153,7 +154,7 @@
             // 
             // timePicker2
             // 
-            this.timePicker2.Location = new System.Drawing.Point(537, 200);
+            this.timePicker2.Location = new System.Drawing.Point(582, 198);
             this.timePicker2.Name = "timePicker2";
             this.timePicker2.Size = new System.Drawing.Size(84, 20);
             this.timePicker2.TabIndex = 10;
@@ -176,7 +177,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(645, 293);
+            this.ClientSize = new System.Drawing.Size(689, 293);
             this.Controls.Add(this.timePicker2);
             this.Controls.Add(this.timePicker1);
             this.Controls.Add(this.button1);
