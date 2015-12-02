@@ -29,6 +29,27 @@ namespace AerolineaFrba.Abm_Ruta
             this.mostrarRutas();
         }
 
+        public void inicializarTodoAFabrica()
+        {
+
+
+            numericUpDown1.Value = 0;
+            numericUpDown2.Value = 0;
+            numericUpDown3.Value = 0;
+            comboBox_ciudadDestino.Items.Clear();
+            mostrarCiudad(ref comboBox_ciudadDestino);
+            comboBox_ciudadOrigen.Items.Clear();
+            mostrarCiudad(ref comboBox_ciudadOrigen);
+           
+            elementoQuitadoTablaDestino = null;
+            elementoQuitadoTablaOrigen = null;
+
+            foreach (int checkedIndex in checkedListBox_servicios.CheckedIndices)
+                checkedListBox_servicios.SetItemChecked(checkedIndex, false);
+            
+        }
+        
+
         private void button1_Click(object sender, EventArgs e)
         {
 
@@ -134,6 +155,8 @@ namespace AerolineaFrba.Abm_Ruta
                     
                     MessageBox.Show("La Ruta ha sido creada con éxito.");
 
+                    inicializarTodoAFabrica();
+
                     llenador.llenarDGV_ABMRutas(dataGridView_listadoRutas);
                 }
 
@@ -173,7 +196,7 @@ namespace AerolineaFrba.Abm_Ruta
         private void dataGridView_listadoRutas_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
          
-            button_modificarRuta.Enabled=true;
+            button_modificarRuta.Enabled = true;
             
         }
     }
