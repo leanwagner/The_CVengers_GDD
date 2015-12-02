@@ -43,9 +43,11 @@
             this.timePicker2 = new System.Windows.Forms.DateTimePicker();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider3 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -60,7 +62,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(609, 157);
+            this.dataGridView1.Size = new System.Drawing.Size(621, 157);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -79,6 +81,7 @@
             this.datePicker1.Name = "datePicker1";
             this.datePicker1.Size = new System.Drawing.Size(117, 20);
             this.datePicker1.TabIndex = 2;
+            this.datePicker1.ValueChanged += new System.EventHandler(this.datePicker1_ValueChanged);
             // 
             // label2
             // 
@@ -104,6 +107,7 @@
             this.datePicker2.Name = "datePicker2";
             this.datePicker2.Size = new System.Drawing.Size(117, 20);
             this.datePicker2.TabIndex = 5;
+            this.datePicker2.ValueChanged += new System.EventHandler(this.datePicker1_ValueChanged);
             // 
             // label4
             // 
@@ -125,7 +129,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(463, 258);
+            this.button1.Location = new System.Drawing.Point(484, 258);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(149, 23);
             this.button1.TabIndex = 8;
@@ -138,6 +142,7 @@
             this.timePicker1.Name = "timePicker1";
             this.timePicker1.Size = new System.Drawing.Size(84, 20);
             this.timePicker1.TabIndex = 9;
+            this.timePicker1.ValueChanged += new System.EventHandler(this.datePicker1_ValueChanged);
             // 
             // timePicker2
             // 
@@ -145,6 +150,7 @@
             this.timePicker2.Name = "timePicker2";
             this.timePicker2.Size = new System.Drawing.Size(84, 20);
             this.timePicker2.TabIndex = 10;
+            this.timePicker2.ValueChanged += new System.EventHandler(this.datePicker1_ValueChanged);
             // 
             // errorProvider1
             // 
@@ -153,12 +159,17 @@
             // errorProvider2
             // 
             this.errorProvider2.ContainerControl = this;
+            this.errorProvider2.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider2.Icon")));
+            // 
+            // errorProvider3
+            // 
+            this.errorProvider3.ContainerControl = this;
             // 
             // Generacion_Viaje
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(627, 293);
+            this.ClientSize = new System.Drawing.Size(645, 293);
             this.Controls.Add(this.timePicker2);
             this.Controls.Add(this.timePicker1);
             this.Controls.Add(this.button1);
@@ -178,6 +189,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -198,6 +210,7 @@
         private System.Windows.Forms.DateTimePicker timePicker2;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.ErrorProvider errorProvider2;
+        private System.Windows.Forms.ErrorProvider errorProvider3;
 
 
     }
