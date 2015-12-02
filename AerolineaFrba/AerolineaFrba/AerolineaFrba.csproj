@@ -145,7 +145,7 @@
     <Compile Include="Login\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="MiNumericUpDown\MyNumericUpDown.cs">
+    <Compile Include="MyNumericUpDown\MyNumericUpDown.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Program.cs" />

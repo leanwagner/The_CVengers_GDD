@@ -112,6 +112,12 @@ namespace AerolineaFrba.Abm_Ruta
 
             if (comboBox_ciudadOrigen.SelectedItem != null && comboBox_ciudadDestino.SelectedItem != null && numericUpDown1.Value > 0 && numericUpDown2.Value > 0)
             {
+                errorProvider_ciudadDestino.Clear();
+                errorProvider_ciudadOrigen.Clear();
+                errorProvider_precioKg.Clear();
+                errorProvider_precioPasaje.Clear();
+                errorProvider_Servicios.Clear();
+
                 try
                 {
                        SqlCommand sqlCmd = new SqlCommand("EXEC THE_CVENGERS.creacionRuta @P1 = " + numericUpDown3.Value +
@@ -127,6 +133,9 @@ namespace AerolineaFrba.Abm_Ruta
 
                     
                     MessageBox.Show("La Ruta ha sido creada con éxito.");
+
+                    InitializeComponent();
+
                     dataGridView_listadoRutas.Update();
                     dataGridView_listadoRutas.Refresh();
                 }
@@ -137,14 +146,31 @@ namespace AerolineaFrba.Abm_Ruta
                 }
             }
 
-            /*else
+            else
             {
-                if(comboBox_ciudadOrigen.SelectedItem == null)
-                    MessageBox.Show("Por favor seleccione una Ciudad de Origen", "Error: No Hay una Ciudad de Origen Seleccionada", MessageBoxButtons.OK);
+                if (comboBox_ciudadOrigen.SelectedItem == null)
+                    errorProvider_ciudadOrigen.SetError(comboBox_ciudadOrigen, "Por favor seleccione una ciudad de Origen");
+                else errorProvider_ciudadOrigen.Clear();
+
 
                 if (comboBox_ciudadDestino.SelectedItem == null)
-                    MessageBox.Show("Por favor seleccione una Ciudad de Origen", "Error: No Hay una Ciudad de Origen Seleccionada", MessageBoxButtons.OK);
-            }*/
+                    errorProvider_ciudadDestino.SetError(comboBox_ciudadDestino, "Por favor seleccione una ciudad de Destino");
+                else errorProvider_ciudadDestino.Clear();
+
+                if (checkedListBox_servicios.CheckedItems.Count == 0)
+                    errorProvider_Servicios.SetError(checkedListBox_servicios, "Por favor seleccione al menos un servicio");
+                else errorProvider_Servicios.Clear();
+
+                if (numericUpDown1.Value <= 0)
+                    errorProvider_precioKg.SetError(numericUpDown1, "Seleccione un número mayor que cero");
+                else
+                    errorProvider_precioKg.Clear();
+
+                if (numericUpDown2.Value <= 0)
+                    errorProvider_precioPasaje.SetError(numericUpDown2, "Seleccione un número mayor que cero");
+                else
+                    errorProvider_precioPasaje.Clear();
+            }
         }
 
         private void dataGridView_listadoRutas_CellContentClick(object sender, DataGridViewCellEventArgs e)

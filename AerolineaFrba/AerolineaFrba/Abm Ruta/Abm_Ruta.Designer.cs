@@ -48,14 +48,22 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.button_agregarRuta = new System.Windows.Forms.Button();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider_ciudadOrigen = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider_ciudadDestino = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider_Servicios = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider_precioKg = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider_precioPasaje = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_listadoRutas)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_ciudadOrigen)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_ciudadDestino)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_Servicios)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_precioKg)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_precioPasaje)).BeginInit();
             this.SuspendLayout();
             // 
             // button_modificarRuta
@@ -273,9 +281,25 @@
             this.button_agregarRuta.UseVisualStyleBackColor = true;
             this.button_agregarRuta.Click += new System.EventHandler(this.button_agregarRuta_Click);
             // 
-            // errorProvider1
+            // errorProvider_ciudadOrigen
             // 
-            this.errorProvider1.ContainerControl = this;
+            this.errorProvider_ciudadOrigen.ContainerControl = this;
+            // 
+            // errorProvider_ciudadDestino
+            // 
+            this.errorProvider_ciudadDestino.ContainerControl = this;
+            // 
+            // errorProvider_Servicios
+            // 
+            this.errorProvider_Servicios.ContainerControl = this;
+            // 
+            // errorProvider_precioKg
+            // 
+            this.errorProvider_precioKg.ContainerControl = this;
+            // 
+            // errorProvider_precioPasaje
+            // 
+            this.errorProvider_precioPasaje.ContainerControl = this;
             // 
             // Abm_Ruta
             // 
@@ -299,7 +323,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_ciudadOrigen)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_ciudadDestino)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_Servicios)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_precioKg)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_precioPasaje)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -324,6 +352,10 @@
         private System.Windows.Forms.NumericUpDown numericUpDown2;
         private System.Windows.Forms.Label label6;
         private MyNumericUpDown.MyNumericUpDown numericUpDown3;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.ErrorProvider errorProvider_ciudadOrigen;
+        private System.Windows.Forms.ErrorProvider errorProvider_ciudadDestino;
+        private System.Windows.Forms.ErrorProvider errorProvider_Servicios;
+        private System.Windows.Forms.ErrorProvider errorProvider_precioKg;
+        private System.Windows.Forms.ErrorProvider errorProvider_precioPasaje;
     }
 }
