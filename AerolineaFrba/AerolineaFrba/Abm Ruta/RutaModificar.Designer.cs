@@ -200,6 +200,7 @@
             this.boton_Agregar_Ciudad.TabIndex = 0;
             this.boton_Agregar_Ciudad.Text = "Modificar";
             this.boton_Agregar_Ciudad.UseVisualStyleBackColor = true;
+            this.boton_Agregar_Ciudad.Click += new System.EventHandler(this.boton_Agregar_Ciudad_Click);
             // 
             // RutaModificar
             // 
