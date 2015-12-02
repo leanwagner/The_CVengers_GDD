@@ -38,7 +38,8 @@ namespace AerolineaFrba
 
         public static void inicializarFechaSistema()
         {
-            DateTime fechaSistema = Convert.ToDateTime(ConfigurationManager.AppSettings["fecha"]);
+            String fechaSistema = ConfigurationManager.AppSettings["fecha"];
+            SqlCommand sqlCmd = new SqlCommand("EXEC THE_CVENGERS.setearFecha @P1= '" + fechaSistema + "'");
         }
     }
 }

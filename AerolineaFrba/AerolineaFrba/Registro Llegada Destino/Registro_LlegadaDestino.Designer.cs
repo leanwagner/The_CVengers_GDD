@@ -272,7 +272,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(417, 318);
+            this.button1.Location = new System.Drawing.Point(441, 314);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(113, 23);
             this.button1.TabIndex = 11;
@@ -283,6 +283,8 @@
             // errorProvider_buscarAeronave
             // 
             this.errorProvider_buscarAeronave.ContainerControl = this;
+            this.errorProvider_buscarAeronave.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider_buscarAeronave.Icon")));
+            this.errorProvider_buscarAeronave.RightToLeft = true;
             // 
             // Registro_LlegadaDestino
             // 

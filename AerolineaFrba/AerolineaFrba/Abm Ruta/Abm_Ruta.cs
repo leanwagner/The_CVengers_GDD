@@ -32,6 +32,7 @@ namespace AerolineaFrba.Abm_Ruta
             this.mostrarCiudad(ref comboBox_filtroDestino);
             comboBox_ciudadOrigen.Focus();
             this.mostrarRutas();
+            
         }
 
         public void inicializarTodoAFabrica()
@@ -74,7 +75,7 @@ namespace AerolineaFrba.Abm_Ruta
 
         private void Abm_Ruta_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         public void mostrarServicios()
@@ -93,6 +94,7 @@ namespace AerolineaFrba.Abm_Ruta
         public void mostrarRutas()
         {
             llenador.llenarDGV_ABMRutas(dataGridView_listadoRutas);
+            dataGridView_listadoRutas.Rows[0].Selected = false;
         }
       
         private void comboBox_ciudadOrigen_SelectedIndexChanged(object sender, EventArgs e)
@@ -202,14 +204,6 @@ namespace AerolineaFrba.Abm_Ruta
             }
         }
 
-        private void dataGridView_listadoRutas_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-         
-            button_modificarRuta.Enabled = true;
-            
-        }
-
-
         private void button1_Click_1(object sender, EventArgs e)
         {
             String sqlQuery = "SELECT * FROM THE_CVENGERS.RutasDisponibles WHERE 1=1";
@@ -299,6 +293,11 @@ namespace AerolineaFrba.Abm_Ruta
         {
 
             llenador.llenarDGV_ABMRutas(dataGridView_listadoRutas);
+        }
+
+        private void dataGridView_listadoRutas_SelectionChanged(object sender, EventArgs e)
+        {
+            button_modificarRuta.Enabled = true;
         }
 
     }

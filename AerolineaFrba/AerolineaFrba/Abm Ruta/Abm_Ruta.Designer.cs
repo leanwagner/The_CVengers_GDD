@@ -116,6 +116,7 @@ namespace AerolineaFrba.Abm_Ruta
             this.dataGridView_listadoRutas.AllowUserToResizeRows = false;
             this.dataGridView_listadoRutas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_listadoRutas.Location = new System.Drawing.Point(19, 185);
+            this.dataGridView_listadoRutas.MultiSelect = false;
             this.dataGridView_listadoRutas.Name = "dataGridView_listadoRutas";
             this.dataGridView_listadoRutas.ReadOnly = true;
             this.dataGridView_listadoRutas.RowHeadersVisible = false;
@@ -123,7 +124,7 @@ namespace AerolineaFrba.Abm_Ruta
             this.dataGridView_listadoRutas.ShowEditingIcon = false;
             this.dataGridView_listadoRutas.Size = new System.Drawing.Size(572, 177);
             this.dataGridView_listadoRutas.TabIndex = 0;
-            this.dataGridView_listadoRutas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_listadoRutas_CellContentClick);
+            this.dataGridView_listadoRutas.SelectionChanged += new System.EventHandler(this.dataGridView_listadoRutas_SelectionChanged);
             // 
             // groupBox1
             // 
