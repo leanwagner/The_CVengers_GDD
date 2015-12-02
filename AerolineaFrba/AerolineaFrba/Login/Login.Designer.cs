@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.textBox_usuario = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -36,6 +37,12 @@
             this.textBox_contraseña = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.errorProvider_usuario = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider_contraseña = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider_roles = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_usuario)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_contraseña)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_roles)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox_usuario
@@ -106,6 +113,18 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // errorProvider_usuario
+            // 
+            this.errorProvider_usuario.ContainerControl = this;
+            // 
+            // errorProvider_contraseña
+            // 
+            this.errorProvider_contraseña.ContainerControl = this;
+            // 
+            // errorProvider_roles
+            // 
+            this.errorProvider_roles.ContainerControl = this;
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -127,6 +146,9 @@
             this.Text = "AerolineaFrba";
             this.Load += new System.EventHandler(this.Login_Load);
             this.Enter += new System.EventHandler(this.textBox_contraseña_Enter);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_usuario)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_contraseña)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_roles)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -141,5 +163,8 @@
         private System.Windows.Forms.TextBox textBox_contraseña;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ErrorProvider errorProvider_usuario;
+        private System.Windows.Forms.ErrorProvider errorProvider_contraseña;
+        private System.Windows.Forms.ErrorProvider errorProvider_roles;
     }
 }
