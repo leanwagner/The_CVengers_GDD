@@ -194,6 +194,11 @@ namespace AerolineaFrba.Abm_Aeronave
             }
         }
 
+        private void label13_Click(object sender, EventArgs e)
+        {
+
+        }
+
         
     }
 }
