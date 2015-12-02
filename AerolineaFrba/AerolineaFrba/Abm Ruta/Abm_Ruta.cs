@@ -121,8 +121,10 @@ namespace AerolineaFrba.Abm_Ruta
                 try
                 {
                        SqlCommand sqlCmd = new SqlCommand("EXEC THE_CVENGERS.creacionRuta @P1 = " + numericUpDown3.Value +
-                        ", @P2 = '" + comboBox_ciudadOrigen.SelectedItem.ToString() +
-                        "', @P3 = '" + comboBox_ciudadDestino.SelectedItem.ToString() +
+
+                        ", @P2 = '" + comboBox_ciudadOrigen.SelectedItem.ToString().Substring(1) +
+                        "', @P3 = '" + comboBox_ciudadDestino.SelectedItem.ToString().Substring(1) +
+
                         "', @P4 = " + numericUpDown1.Value +
                         ", @P5 = " + numericUpDown2.Value +
                         ", @P6 = '" + servicio1 +
@@ -134,10 +136,7 @@ namespace AerolineaFrba.Abm_Ruta
                     
                     MessageBox.Show("La Ruta ha sido creada con éxito.");
 
-                    InitializeComponent();
-
-                    dataGridView_listadoRutas.Update();
-                    dataGridView_listadoRutas.Refresh();
+                    llenador.llenarDGV_ABMRutas(dataGridView_listadoRutas);
                 }
 
                 catch (Exception ex)

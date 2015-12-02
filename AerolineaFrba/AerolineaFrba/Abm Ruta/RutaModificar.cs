@@ -69,13 +69,15 @@ namespace AerolineaFrba.Abm_Ruta
             List<int> list = new List<int>();
           
 
-            SqlCommand sqlCmd = new SqlCommand("SELECT SERVICIOXRUTA_RUTA FROM [GD2C2015].[THE_CVENGERS].[SERVICIOXRUTA] WHERE SERVICIOXRUTA_RUTA =" + ruta_id, Conexion.getConexion());
+            SqlCommand sqlCmd = new SqlCommand("SELECT * FROM [GD2C2015].[THE_CVENGERS].[SERVICIOXRUTA] WHERE SERVICIOXRUTA_RUTA =" + ruta_id, Conexion.getConexion());
 
             SqlDataReader sqlReader = sqlCmd.ExecuteReader();
 
             while (sqlReader.Read())
             {
-                list.Add(Int32.Parse(sqlReader["SERVICIOXRUTA_RUTA"].ToString()));
+                list.Add(Int32.Parse(sqlReader["SERVICIOXRUTA_SERVICIO"].ToString()));
+
+                MessageBox.Show(sqlReader["SERVICIOXRUTA_SERVICIO"].ToString());
             }
 
             sqlReader.Close();
