@@ -33,7 +33,7 @@ namespace AerolineaFrba.Generacion_Viaje
 
             Llenador.LlenadorDeTablas lleni = new Llenador.LlenadorDeTablas();
             lleni.llenarDGV_ABMRutas(dataGridView1);
-            //dataGridView1.Rows[0].Selected = true;
+            dataGridView1.Rows[0].Selected = false;
 
             //6 7 y 8 son primera clase, ejecutivo y turista
             comboBox1.Enabled = false;
@@ -77,26 +77,38 @@ namespace AerolineaFrba.Generacion_Viaje
                 errorProvider1.Clear();
                 errorProvider2.SetError(comboBox1, "Este campo solo muestra los aviones que proveen el servicio de la ruta seleccionada");
                 comboBox1.Enabled = true;
+                errorProvider3.SetError(timePicker2, "La fecha de llegada debe ser despues de la de salida");
             
 
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (DateTime.Compare(datePicker1.Value.Date + timePicker1.Value.TimeOfDay, datePicker2.Value.Date + timePicker2.Value.TimeOfDay) < 0)
+                errorProvider3.Clear();
+            else errorProvider3.SetError(timePicker2, "La fecha de llegada debe ser despues de la de salida");
+
             if (comboBox1.SelectedIndex != -1 && (DateTime.Compare(datePicker1.Value.Date + timePicker1.Value.TimeOfDay, datePicker2.Value.Date + timePicker2.Value.TimeOfDay) < 0))
+            {
                 button1.Enabled = true;
+               
+            }
             else
                 button1.Enabled = false;
         }
 
         private void datePicker1_ValueChanged(object sender, EventArgs e)
         {
+            if (DateTime.Compare(datePicker1.Value.Date + timePicker1.Value.TimeOfDay, datePicker2.Value.Date + timePicker2.Value.TimeOfDay) < 0)
+                errorProvider3.Clear();
+            else errorProvider3.SetError(timePicker2, "La fecha de llegada debe ser despues de la de salida");
+
             if (DateTime.Compare(datePicker1.Value.Date + timePicker1.Value.TimeOfDay, datePicker2.Value.Date + timePicker2.Value.TimeOfDay) < 0 && comboBox1.SelectedIndex != -1)
             { button1.Enabled = true;
-            errorProvider3.Clear();
+           
             }
             else { button1.Enabled = false;
-            errorProvider3.SetError(timePicker2, "La fecha de llegada debe ser despues de la de salida");
+            
             }
         }
 
