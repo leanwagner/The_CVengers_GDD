@@ -148,9 +148,6 @@
     <Compile Include="MyNumericUpDown\NumericUpDownModified.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="MyNumericUpDown\NumericUpDownTextEmpty.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registro de Usuario\Registro_Usuario.cs">

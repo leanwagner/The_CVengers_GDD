@@ -16,9 +16,12 @@ namespace AerolineaFrba.MyNumericUpDown
             }
             set
             {
-                while (value.Length < 8)
+                if (value == "-1")
+                    value = "";
 
-                    value = "0" + value;
+                else
+                    while (value.Length < 8)
+                        value = "0" + value;
 
                 base.Text = value;
             }
