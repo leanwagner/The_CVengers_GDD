@@ -263,6 +263,9 @@ namespace AerolineaFrba.Abm_Ruta
             quitadoFiltroOrigen = null;
 
             llenador.llenarDGV_ABMRutas(dataGridView_listadoRutas);
+            errorProvider_precioKgHasta.Clear();
+            errorProvider_precioPasajeHasta.Clear();
+
         }
 
         private void comboBox_filtroOrigen_SelectedIndexChanged(object sender, EventArgs e)
