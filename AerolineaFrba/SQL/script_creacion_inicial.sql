@@ -786,6 +786,52 @@ select A.AERONAVE_MATRICULA_AVION 'Matrícula', (SELECT FABRICANTE_NOMBRE
 from THE_CVENGERS.AERONAVE A
 where a.AERONAVE_ESTADO = 1
 
+go
+create procedure THE_CVENGERS.ingresoAeronave @matri as nvarchar(100), @model as nvarchar(100), @fabricante as numeric(18,0),
+												@serv as numeric(18,0), @butacas as numeric(18,0), @espacio as numeric(18,2),
+												@pisos as numeric(3,0) 
+as
+begin
+
+if(exists(select AERONAVE_ID FROM THE_CVENGERS.AERONAVE WHERE AERONAVE_MATRICULA_AVION = @matri))
+begin
+raiserror('Ya existe un avión con ese número de matrícula.',16,1)
+return
+end
+
+insert into THE_CVENGERS.AERONAVE (AERONAVE_MATRICULA_AVION,AERONAVE_MODELO_AVION,AERONAVE_FABRICANTE_AVION,
+									AERONAVE_SERVICIO, AERONAVE_CANTIDAD_BUTACAS, AERONAVE_ESPACIO_ENCOMIENDAS) values
+									(@matri, @model, @fabricante, @serv, @butacas, @espacio)
+
+declare @aeronave numeric(18,0)
+set @aeronave = (select AERONAVE_ID  from THE_CVENGERS.AERONAVE where AERONAVE_MATRICULA_AVION = @matri)
+
+declare @numbut numeric(10,0)
+set @numbut = 0
+
+declare @numpiso numeric(10,0)
+set @numpiso = 1
+
+declare @butacasXpiso numeric(10,0)
+set @butacasXpiso = @butacas/@pisos
+
+declare @tipobut numeric(10,0)
+set @tipobut = 0
+
+while @numbut < @butacas
+begin
+
+if(@numbut = @butacasXpiso) set @numpiso = @numpiso + 1
+
+insert into THE_CVENGERS.BUTACA (BUTACA_AERONAVE,BUTACA_NRO, BUTACA_PISO, BUTACA_TIPO)
+values (@aeronave, @numbut, @numpiso, (case when @tipobut = 0 then 'Ventanilla' else 'Pasillo' end))
+
+if(@tipobut = 1) set @tipobut = 0 else set @tipobut = 1
+ 
+set @numbut = @numbut +1
+end
+end
+
 --EXECUTE [THE_CVENGERS].getAll @RECV = '[THE_CVENGERS].CIUDAD'
 
 
@@ -839,6 +885,7 @@ DROP PROCEDURE [THE_CVENGERS].creacionRuta
 DROP PROCEDURE [THE_CVENGERS].modificacionRuta
 DROP VIEW [THE_CVENGERS].rutasDisponibles
 DROP VIEW [THE_CVENGERS].listadoAeronaves
+DROP PROCEDURE [THE_CVENGERS].ingresoAeronave
 DROP PROCEDURE [THE_CVENGERS].getAll 
 DROP SCHEMA [THE_CVENGERS]*/
 
