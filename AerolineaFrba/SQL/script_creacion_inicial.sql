@@ -887,10 +887,10 @@ set @viajeBuscado = (select V.VIAJE_ID
 										FROM THE_CVENGERS.RUTA R
 										WHERE R.RUTA_ORIGEN = (SELECT C.CIUDAD_ID 
 																from THE_CVENGERS.CIUDAD C
-																where c.CIUDAD_NOMBRE like ('_'+ @origen))
+																where c.CIUDAD_NOMBRE like ('_'+ 'Estocolmo'))
 										and r.RUTA_DESTINO = (SELECT C.CIUDAD_ID 
 																from THE_CVENGERS.CIUDAD C
-																where c.CIUDAD_NOMBRE like ('_'+ @destino))) and V.VIAJE_AERONAVE = (select AERONAVE_ID from AERONAVE where AERONAVE_MATRICULA_AVION = @matricula) and V.VIAJE_FECHA_SALIDA < THE_CVENGERS.fechaReal() and v.VIAJE_FECHA_LLEGADA = NULL)
+																where c.CIUDAD_NOMBRE like ('_'+ 'Nueva York'))) and V.VIAJE_AERONAVE = (select AERONAVE_ID from THE_CVENGERS.AERONAVE where AERONAVE_MATRICULA_AVION = 'QHV-325') and V.VIAJE_FECHA_SALIDA < THE_CVENGERS.fechaReal() and v.VIAJE_FECHA_LLEGADA is NULL)
 
 if(@viajeBuscado is NULL)
 begin
@@ -960,4 +960,5 @@ DROP FUNCTION [THE_CVENGERS].viajeARegistrar
 DROP PROCEDURE [THE_CVENGERS].getAll 
 DROP SCHEMA [THE_CVENGERS]*/
 
-
+/*INSERT INTO THE_CVENGERS.VIAJE (VIAJE_FECHA_SALIDA,VIAJE_FECHA_LLEGADA,VIAJE_FECHA_LLEGADA_ESTIMADA,VIAJE_AERONAVE,VIAJE_RUTA)
+ VALUES('2016-01-20 03:00:00.000', NULL, '2017-01-20 15:00:00.000', 10, 25 )*/
