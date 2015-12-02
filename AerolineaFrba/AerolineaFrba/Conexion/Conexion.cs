@@ -21,15 +21,16 @@ namespace AerolineaFrba
             {
                 try
                 {
-                    inicializarFechaSistema();
                     conexionDB = new SqlConnection(ConfigurationManager.AppSettings["confSQL"].ToString());
                     conexionDB.Open();
+                    inicializarFechaSistema();
                     return conexionDB;
                 }
 
                 catch (Exception ex)
                 {
                     MessageBox.Show("No se pudo establecer conexion con la base de datos: " + ex);
+                    Environment.Exit(1);
                 }
 
             }
@@ -39,7 +40,8 @@ namespace AerolineaFrba
         public static void inicializarFechaSistema()
         {
             String fechaSistema = ConfigurationManager.AppSettings["fecha"];
-            SqlCommand sqlCmd = new SqlCommand("EXEC THE_CVENGERS.setearFecha @P1= '" + fechaSistema + "'");
+            SqlCommand sqlCmd = new SqlCommand("EXEC THE_CVENGERS.setearFecha @P1= '" + fechaSistema + ".000'",Conexion.getConexion());
+            sqlCmd.ExecuteNonQuery();
         }
     }
 }

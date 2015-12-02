@@ -64,14 +64,21 @@ namespace AerolineaFrba.Abm_Aeronave
             String idServ = sqlReader["SERVICIO_ID"].ToString();
             sqlReader.Close();
 
-            sqlCmd.CommandText = "insert into THE_CVENGERS.AERONAVE(AERONAVE_CANTIDAD_BUTACAS,AERONAVE_FABRICANTE_AVION,AERONAVE_ESPACIO_ENCOMIENDAS,AERONAVE_MATRICULA_AVION,AERONAVE_MODELO_AVION,AERONAVE_SERVICIO) VALUES ('" + textBox3.Value.ToString() + "'," + idFab + "," + textBox4.Value.ToString(CultureInfo.InvariantCulture) + ",'" + textBox1.Text + "','" + textBox2.Text + "'," + idServ + ")";
+            sqlCmd.CommandText = "EXEC THE_CVENGERS.ingresoAeronave @matri ='"+textBox1.Text+
+                "', @model = '"+textBox2.Text+
+                "', @fabricante = "+idFab+
+                ", @serv = "+idServ+ 
+                ", @butacas = " +textBox3.Value.ToString()+
+                ", @espacio = " +textBox4.Value.ToString(CultureInfo.InvariantCulture)+
+                ", @pisos = "+numericUpDown2.Value.ToString();
             try
             {
                 sqlCmd.ExecuteNonQuery();
+               // MessageBox.Show(sqlCmd.CommandText);
             }
-            catch
+            catch(Exception ex)
             {
-                MessageBox.Show("Ya existe un avion con esa matricula","Error",MessageBoxButtons.OK);
+                MessageBox.Show(ex.Message,"Error",MessageBoxButtons.OK);
             }
             listBox1.Items.Add(textBox1.Text);
             listBox1.Refresh();

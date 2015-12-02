@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,7 +15,7 @@ namespace AerolineaFrba.Generacion_Viaje
     public partial class Generacion_Viaje : Form
     {
 
-        bool fechaOk;
+        
         public Generacion_Viaje()
         {
             InitializeComponent();
@@ -21,6 +23,7 @@ namespace AerolineaFrba.Generacion_Viaje
 
         private void Generacion_Viaje_Load(object sender, EventArgs e)
         {
+            SqlDateTime fechaActual;
             timePicker1.Format = DateTimePickerFormat.Time;
             timePicker2.Format = DateTimePickerFormat.Time;
             timePicker1.ShowUpDown = true;
@@ -40,6 +43,8 @@ namespace AerolineaFrba.Generacion_Viaje
             errorProvider2.Clear();
             errorProvider1.SetError(comboBox1, "Debe seleccionar una ruta");
             button1.Enabled = false;
+
+           
 
         }
 
