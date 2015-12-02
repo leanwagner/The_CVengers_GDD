@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RutaModificar));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.numericUpDown_codRuta = new MyNumericUpDown.MyNumericUpDown();
+            this.numericUpDown_codRuta = new MyNumericUpDown.NumericUpDownModified();
             this.label6 = new System.Windows.Forms.Label();
             this.numericUpDown_precioPasaje = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown_precioKG = new System.Windows.Forms.NumericUpDown();
@@ -43,10 +44,20 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.boton_Agregar_Ciudad = new System.Windows.Forms.Button();
+            this.errorProvider_ciudadOrigen = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider_ciudadDestino = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider_Servicios = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider_precioKg = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider_precioPasaje = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_codRuta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_precioPasaje)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_precioKG)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_ciudadOrigen)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_ciudadDestino)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_Servicios)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_precioKg)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_precioPasaje)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -202,6 +213,26 @@
             this.boton_Agregar_Ciudad.UseVisualStyleBackColor = true;
             this.boton_Agregar_Ciudad.Click += new System.EventHandler(this.boton_Agregar_Ciudad_Click);
             // 
+            // errorProvider_ciudadOrigen
+            // 
+            this.errorProvider_ciudadOrigen.ContainerControl = this;
+            // 
+            // errorProvider_ciudadDestino
+            // 
+            this.errorProvider_ciudadDestino.ContainerControl = this;
+            // 
+            // errorProvider_Servicios
+            // 
+            this.errorProvider_Servicios.ContainerControl = this;
+            // 
+            // errorProvider_precioKg
+            // 
+            this.errorProvider_precioKg.ContainerControl = this;
+            // 
+            // errorProvider_precioPasaje
+            // 
+            this.errorProvider_precioPasaje.ContainerControl = this;
+            // 
             // RutaModificar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -216,6 +247,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_codRuta)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_precioPasaje)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_precioKG)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_ciudadOrigen)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_ciudadDestino)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_Servicios)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_precioKg)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_precioPasaje)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -235,7 +271,13 @@
         private System.Windows.Forms.NumericUpDown numericUpDown_precioPasaje;
         private System.Windows.Forms.NumericUpDown numericUpDown_precioKG;
         private System.Windows.Forms.Label label6;
-        private MyNumericUpDown.MyNumericUpDown numericUpDown_codRuta;
+        private MyNumericUpDown.NumericUpDownModified numericUpDown_codRuta;
+        private System.Windows.Forms.ErrorProvider errorProvider_ciudadOrigen;
+        private System.Windows.Forms.ErrorProvider errorProvider_ciudadDestino;
+        private System.Windows.Forms.ErrorProvider errorProvider_Servicios;
+        private System.Windows.Forms.ErrorProvider errorProvider_precioKg;
+        private System.Windows.Forms.ErrorProvider errorProvider_precioPasaje;
+
 
     }
 }

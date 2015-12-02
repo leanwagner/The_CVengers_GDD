@@ -254,7 +254,7 @@ namespace AerolineaFrba.Abm_Ruta
             {
                 sqlCmd.ExecuteNonQuery();
             }
-            catch (Exception ex)
+            catch
             {
                 MessageBox.Show("Ya existe un rol con ese nombre", "Error", MessageBoxButtons.OK);
             }

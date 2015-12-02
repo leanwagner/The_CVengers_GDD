@@ -96,6 +96,10 @@ namespace AerolineaFrba.Login
 
                 SqlCommand sqlCmd = new SqlCommand("EXEC THE_CVENGERS.chequeoLogin @P1 = " + textBox_usuario.Text + ",@P2 = " + textBox_contraseña.Text, Conexion.getConexion());
 
+                errorProvider_contraseña.Clear();
+                errorProvider_roles.Clear();
+                errorProvider_usuario.Clear();
+
                 try
                 {
                     sqlCmd.ExecuteScalar();
@@ -113,16 +117,19 @@ namespace AerolineaFrba.Login
             else
             {
                 if (string.IsNullOrWhiteSpace(textBox_usuario.Text))
-
-                {
-                    MessageBox.Show("Ingrese un Nombre de Usuario", "Error: Nombre de Usuario", MessageBoxButtons.OK);
-                }
+                    errorProvider_usuario.SetError(textBox_usuario, "Ingrese un Nombre de Usuario");
+                else
+                    errorProvider_usuario.Clear();
 
                 if (string.IsNullOrWhiteSpace(textBox_contraseña.Text))
-                {
-                    MessageBox.Show("Ingrese una contraseña ", "Error: Contraseña", MessageBoxButtons.OK);
-                }
+                    errorProvider_contraseña.SetError(textBox_contraseña, "Ingrese una contraseña");
+                else
+                    errorProvider_contraseña.Clear();
 
+                if (comboBox_roles.SelectedIndex == null)
+                    errorProvider_roles.SetError(comboBox_roles, "Seleccione un Rol");
+                else
+                    errorProvider_roles.Clear();
             }
         }
 

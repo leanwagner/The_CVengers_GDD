@@ -108,33 +108,7 @@ namespace AerolineaFrba.Llenador
             sqlReader.Close();
 
         }
-        public void llenarCheckedListBoxMRuta(ref CheckedListBox miCombo,List<int> lista)
-        {
-
-            SqlCommand sqlCmd = new SqlCommand("SELECT * FROM THE_CVENGERS.SERVICIO", Conexion.getConexion());
-
-            SqlDataReader sqlReader = sqlCmd.ExecuteReader();
-            int i=0;
-            while (sqlReader.Read())
-            {
-                while(i <= (miCombo.Items.Count - 1))
-                {
-                    if (lista[i].ToString() == sqlReader["SERVICIO_NOMBRE"].ToString())
-                    {
-                        miCombo.Items.Add(sqlReader["SERVICIO_ID"].ToString());
-                        miCombo.SetItemCheckState(i, CheckState.Checked);
-                        i++;
-                    }
-                    else { break; }
-                    
-                }
-                miCombo.Items.Add(sqlReader["SERVICIO_NOMBRE"].ToString());
-            }
-
-            sqlReader.Close();
-
-        }
-
+        
         public void llenarDataGridView(DataGridView dgv, String nombreTabla) 
         {
             SqlDataAdapter adapter;
@@ -177,7 +151,31 @@ namespace AerolineaFrba.Llenador
              
 
             }
-        } 
+        }
+
+        public void filtrarDataGridView(DataGridView miDataGridView, String sqlQuery)
+        {
+
+            SqlDataAdapter adapter;
+            DataTable tabla;
+
+            try
+            {
+                adapter = new SqlDataAdapter(sqlQuery, Conexion.getConexion());
+                tabla = new DataTable();
+
+                adapter.Fill(tabla);
+                miDataGridView.DataSource = tabla;
+                miDataGridView.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+                adapter.Dispose();
+            }
+            catch (Exception e)
+            {
+
+                MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK);
+
+            }
+        }
 
     }
 }

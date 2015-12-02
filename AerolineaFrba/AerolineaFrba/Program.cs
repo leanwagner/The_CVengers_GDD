@@ -13,8 +13,7 @@ namespace AerolineaFrba
         /// </summary>
         [STAThread]
         static void Main()
-        {;
-
+        {
             Conexion.getConexion();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.Sql;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using System.Configuration;
 
 namespace AerolineaFrba
 {
@@ -20,7 +21,7 @@ namespace AerolineaFrba
             {
                 try
                 {
-                    conexionDB = new SqlConnection("Server=localhost\\SQLSERVER2012;Initial Catalog=GD2C2015;Integrated Security=True");
+                    conexionDB = new SqlConnection(ConfigurationManager.AppSettings["confSQL"].ToString());
                     conexionDB.Open();
                     return conexionDB;
                 }

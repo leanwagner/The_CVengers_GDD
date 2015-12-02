@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AerolineaFrba.MyNumericUpDown
 {
-    class MyNumericUpDown : System.Windows.Forms.NumericUpDown
+    public class NumericUpDownModified : System.Windows.Forms.NumericUpDown
     {
         public override string Text
         {
@@ -16,9 +16,12 @@ namespace AerolineaFrba.MyNumericUpDown
             }
             set
             {
-                while (value.Length < 8)
-                    
-                    value = "0" + value;
+                if (value == "-1")
+                    value = "";
+
+                else
+                    while (value.Length < 8)
+                        value = "0" + value;
 
                 base.Text = value;
             }

@@ -69,7 +69,7 @@ namespace AerolineaFrba.Abm_Aeronave
             {
                 sqlCmd.ExecuteNonQuery();
             }
-            catch (Exception exc)
+            catch
             {
                 MessageBox.Show("Ya existe un avion con esa matricula","Error",MessageBoxButtons.OK);
             }
@@ -173,7 +173,7 @@ namespace AerolineaFrba.Abm_Aeronave
             {
                 sqlCmd.ExecuteNonQuery();
             }
-            catch (Exception exc)
+            catch 
             {
                 MessageBox.Show("Ya existe un avion con esa matricula", "Error", MessageBoxButtons.OK);
             }
@@ -192,6 +192,11 @@ namespace AerolineaFrba.Abm_Aeronave
                 
                 button2.Enabled = false;
             }
+        }
+
+        private void label13_Click(object sender, EventArgs e)
+        {
+
         }
 
         
