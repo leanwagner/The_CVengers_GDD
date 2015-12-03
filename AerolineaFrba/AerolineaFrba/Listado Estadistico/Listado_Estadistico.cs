@@ -86,6 +86,9 @@ namespace AerolineaFrba.Listado_Estadistico
                     achicarYCentrarDGV();
                     break;
                 case 3: 
+                     llenu.llenarDataGridView(dataGridView1, "destinosConMasPasajesCancelados(" + comboAnio.SelectedItem.ToString() + "," + comboSem.SelectedItem.ToString() + ")");
+                    achicarYCentrarDGV();
+                    break;
                 case 4:
                 default:
                     break;
