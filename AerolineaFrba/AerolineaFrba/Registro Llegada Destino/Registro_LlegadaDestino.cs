@@ -171,7 +171,7 @@ namespace AerolineaFrba.Registro_Llegada_Destino
             label_ModeloAeronave.Text = "**Modelo**";
             label_SalidaAeronave.Text = "**hh:mm dd/mm/yyyy**";
             label_TipoServicio.Text = "**Servicio**";
-
+            dateTimePicker1.CustomFormat = " ";
         }
 
         private void button1_Click_1(object sender, EventArgs e)
