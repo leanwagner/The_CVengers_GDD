@@ -16,6 +16,7 @@ namespace AerolineaFrba.Devolucion
 
         Llenador.LlenadorDeTablas lleni = new Llenador.LlenadorDeTablas();
         String idClie;
+        String idComp;
         public Devolucion()
         {
             InitializeComponent();
@@ -49,11 +50,14 @@ namespace AerolineaFrba.Devolucion
                 reader.Close();
                 lleni.llenarDataGridViewDevolucion(dataGridView1, idClie);
                 dataGridView1.ClearSelection();
+               
                // this.Size = new Size(226, 332);
             }
             else
             {
-              //  this.Size = new Size(226, 113);
+                dataGridView1.ClearSelection();
+                dataGridView1.DataSource = null;//  this.Size = new Size(226, 113);
+                razonText.ResetText();
             }
 
         }
@@ -68,6 +72,7 @@ namespace AerolineaFrba.Devolucion
             reader.Close();
             lleni.llenarDataGridViewDevolucion(dataGridView1, idClie);
             dataGridView1.ClearSelection();
+          
           //  this.Size = new Size(226, 332);
             
           
@@ -76,7 +81,109 @@ namespace AerolineaFrba.Devolucion
 
         private void Devolucion_Load(object sender, EventArgs e)
         {
-           // this.Size = new Size(226, 113);
+            
+        }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            checkedListBox1.Items.Clear();
+            if (dataGridView1.SelectedRows.Count == 0)
+            {
+                errorRazon.Clear();
+                errorList.Clear();
+                return;
+                
+                
+            }
+            DataGridViewRow select = dataGridView1.SelectedRows[0];
+            idComp= select.Cells[1].Value.ToString();
+            SqlCommand cmd = new SqlCommand("select * from THE_CVENGERS.itemsDeCompra( "+idComp+")",Conexion.getConexion());
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                checkedListBox1.Items.Add(new ItemsDevolucion(reader["Número de item"].ToString(), reader["Tipo"].ToString(), reader["Precio"].ToString()));
+            }
+            reader.Close();
+
+            if (dataGridView1.SelectedRows.Count != 0)
+            {
+                errorRazon.SetError(razonText, "Debe ingresar un motivo");
+
+                errorList.SetError(checkedListBox1, "Debe seleccionar al menos un item");
+            }
+        }
+
+        private void checkedListBox1_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            if(razonText.TextLength == 0)
+                errorRazon.SetError(razonText,"Debe ingresar un motivo");
+            else errorRazon.Clear();
+
+                if(checkedListBox1.CheckedIndices.Count <= 1 && e.NewValue == CheckState.Unchecked)
+                    errorList.SetError(checkedListBox1,"Debe seleccionar al menos un item");
+                else if(e.NewValue == CheckState.Checked)
+                    errorList.Clear();
+
+
+
+            if (e.NewValue == CheckState.Checked && razonText.TextLength != 0)
+                buttonDev.Enabled = true;
+            else if ((e.NewValue == CheckState.Unchecked && checkedListBox1.CheckedIndices.Count <= 1) || razonText.TextLength == 0)
+                buttonDev.Enabled = false;
+        }
+
+        private void razonText_TextChanged(object sender, EventArgs e)
+        {
+
+             if(razonText.TextLength == 0)
+                errorRazon.SetError(razonText,"Debe ingresar un motivo");
+            else errorRazon.Clear();
+
+                if(checkedListBox1.CheckedIndices.Count == 0)
+                    errorList.SetError(checkedListBox1,"Debe seleccionar al menos un item");
+                else errorList.Clear();
+            if (razonText.TextLength != 0 && checkedListBox1.CheckedIndices.Count != 0)
+                buttonDev.Enabled = true;
+            else if (checkedListBox1.CheckedIndices.Count == 0 || razonText.TextLength == 0)
+                buttonDev.Enabled = false;
+        }
+
+        private void buttonDev_Click(object sender, EventArgs e)
+        {
+           // MessageBox.Show("Todavia no esta el procedure");
+
+            SqlTransaction transaction = Conexion.getConexion().BeginTransaction();
+            try
+            {
+                SqlCommand cmd = new SqlCommand("exec THE_CVENGERS.crearDevolucion @compra = " + idComp + ", @descripcion= '" + razonText.Text + "'", Conexion.getConexion());
+                cmd.Transaction = transaction;
+                cmd.ExecuteNonQuery();
+                //   MessageBox.Show(cmd.CommandText);
+                foreach (object dev in checkedListBox1.CheckedItems)
+                {
+                    cmd.CommandText = "exec THE_CVENGERS.devolverItem @item = " + ((ItemsDevolucion)dev).getNumero() + ", @tipoItem = '" + ((ItemsDevolucion)dev).getTipo() + "'";
+                    cmd.ExecuteNonQuery();
+                    //  MessageBox.Show(cmd.CommandText);
+                }
+                transaction.Commit();
+                razonText.ResetText();
+                for (int i = 0; i < checkedListBox1.Items.Count; i++)
+                    checkedListBox1.SetItemCheckState(i, (CheckState.Unchecked));
+                checkedListBox1.Refresh();
+                foreach (int it in checkedListBox1.CheckedIndices) { checkedListBox1.Items.RemoveAt(it); }
+
+            }
+            catch (Exception exc)
+            {
+                if(exc is SqlException)
+                transaction.Rollback();
+                MessageBox.Show(exc.Message, "Error", MessageBoxButtons.OK);
+
+            }
+            
+
+
+            
         }
     }
 }
