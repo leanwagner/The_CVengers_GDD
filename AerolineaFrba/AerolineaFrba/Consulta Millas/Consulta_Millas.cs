@@ -29,7 +29,7 @@ namespace AerolineaFrba.Consulta_Millas
             else errorDni.Clear();
             if (nameBox.Text.Length == 0)
             {
-                errorName.SetError(nameBox, "Debe ingresar su nombre");
+                errorName.SetError(nameBox, "Debe ingresar su apellido");
                 notFound.Clear();
             }
             else errorName.Clear();
@@ -37,8 +37,8 @@ namespace AerolineaFrba.Consulta_Millas
            
             if (dniBox.Text.Length == 0 || nameBox.Text.Length == 0)
                 return;
-          
-            SqlCommand cmd = new SqlCommand("select * from THE_CVENGERS.CLIENTE where CLIENTE_DNI = " + dniBox.Text + "and CLIENTE_NOMBRE =UPPER('" + nameBox.Text + "')", Conexion.getConexion());
+
+            SqlCommand cmd = new SqlCommand("select * from THE_CVENGERS.CLIENTE where CLIENTE_DNI = " + dniBox.Text + "and CLIENTE_APELLIDO COLLATE Latin1_General_CI_AI like '" + nameBox.Text + "' COLLATE Latin1_General_CI_AI", Conexion.getConexion());
             SqlDataReader reader = cmd.ExecuteReader();
             reader.Read();
             if (nameBox.Text.Length != 0 && dniBox.Text.Length != 0 && !reader.HasRows)
@@ -93,7 +93,7 @@ namespace AerolineaFrba.Consulta_Millas
         {
               errorDni.SetError(dniBox, "Debe ingresar el numero de DNI");
        
-                errorName.SetError(nameBox, "Debe ingresar su nombre");
+                errorName.SetError(nameBox, "Debe ingresar su apellido");
                 groupBox1.Enabled = false;
                 dataGridView1.Enabled = false;
                 this.Size = new Size(300, 106);

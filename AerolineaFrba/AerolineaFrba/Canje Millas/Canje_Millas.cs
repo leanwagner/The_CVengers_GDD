@@ -26,7 +26,7 @@ namespace AerolineaFrba.Canje_Millas
             if (dniBox.Text.Length == 0)
                 return;
             nombreCombo.Items.Clear();
-            lleni.llenarComboBoxConCondicion(ref nombreCombo,"CLIENTE","CLIENTE_NOMBRE","CLIENTE_DNI = " + dniBox.Text);
+            lleni.llenarComboBoxConCondicion(ref nombreCombo,"CLIENTE","CLIENTE_APELLIDO","CLIENTE_DNI = " + dniBox.Text);
             if (nombreCombo.Items.Count > 1)
             {
                 label4.Visible = true;
@@ -78,7 +78,7 @@ namespace AerolineaFrba.Canje_Millas
         private void nombreCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
             errorDniDup.Clear();
-            SqlCommand cmd = new SqlCommand("select * from THE_CVENGERS.CLIENTE where CLIENTE_DNI = " + dniBox.Text+ "and CLIENTE_NOMBRE ='"+nombreCombo.SelectedItem.ToString()+"'", Conexion.getConexion());
+            SqlCommand cmd = new SqlCommand("select * from THE_CVENGERS.CLIENTE where CLIENTE_DNI = " + dniBox.Text+ "and CLIENTE_APELLIDO ='"+nombreCombo.SelectedItem.ToString()+"'", Conexion.getConexion());
             SqlDataReader reader = cmd.ExecuteReader();
             reader.Read();
             label8.Visible = true;
