@@ -18,6 +18,7 @@ namespace AerolineaFrba.Registro_Llegada_Destino
         LlenadorDeTablas llenador = new LlenadorDeTablas();
         object elementoQuitadoTablaDestino;
         object elementoQuitadoTablaOrigen;
+        String viajeId;
 
         public Registro_LlegadaDestino()
         {
@@ -116,7 +117,7 @@ namespace AerolineaFrba.Registro_Llegada_Destino
 
                 reader.Read();
 
-                String viajeId = reader["resultado"].ToString();
+                viajeId = reader["resultado"].ToString();
 
                 reader.Close();
 
@@ -163,6 +164,34 @@ namespace AerolineaFrba.Registro_Llegada_Destino
             llenarCombosCiudad(ref comboBox_AeropuertoSalida);
             comboBox_matricula.Items.Clear();
             llenarComboMatricula(ref comboBox_matricula);
+            groupBox3.Enabled = false;
+            label_LlegadaEstimadaAeronave.Text = "**hh:mm dd/mm/yyyy**";
+            label_MatriculaAeronave.Text = "**NRO**";
+            label_ModeloAeronave.Text = "**Modelo**";
+            label_SalidaAeronave.Text = "**hh:mm dd/mm/yyyy**";
+            label_TipoServicio.Text = "**Servicio**";
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlCommand sqlCmd = new SqlCommand("EXEC THE_CVENGERS.registrarLlegada @viaje ='" + viajeId +
+                    "', @fecha ='" + dateTimePicker1.Value.ToString() + "'" , Conexion.getConexion());
+
+
+                sqlCmd.ExecuteNonQuery();
+
+                MessageBox.Show("El viaje fue registrado correctamente");
+
+                limpiarCampos();
+
+            }
+            catch
+            {
+                MessageBox.Show("No se pudo registrar el viaje seleccionado.", "Error", MessageBoxButtons.OK);
+            }
         }
 
     }
