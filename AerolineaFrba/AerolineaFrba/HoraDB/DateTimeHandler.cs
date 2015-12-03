@@ -26,7 +26,7 @@ namespace AerolineaFrba.HoraDB
             }
             catch
             {
-                MessageBox.Show("No se puede traer hora de la base de datos");
+                MessageBox.Show("No se puede traer hora de la base de datos","Error",MessageBoxButtons.OK);
                 return new DateTime();
             }
         }
