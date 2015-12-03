@@ -113,6 +113,7 @@
             this.checkedListBox_servicios.Name = "checkedListBox_servicios";
             this.checkedListBox_servicios.Size = new System.Drawing.Size(159, 49);
             this.checkedListBox_servicios.TabIndex = 3;
+            this.checkedListBox_servicios.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBox_servicios_ItemCheck);
             this.checkedListBox_servicios.SelectedIndexChanged += new System.EventHandler(this.checkedListBox_servicios_SelectedIndexChanged);
             // 
             // label4
