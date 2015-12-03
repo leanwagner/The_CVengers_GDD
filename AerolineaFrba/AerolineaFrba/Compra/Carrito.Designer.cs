@@ -39,7 +39,20 @@ namespace AerolineaFrba.Compra
             this.label7 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button_eliminarItem = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox_tarjeta = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.radioButton_tarjeta = new System.Windows.Forms.RadioButton();
+            this.radioButton_efectivo = new System.Windows.Forms.RadioButton();
+            this.comboBox_tipoTarjeta = new System.Windows.Forms.ComboBox();
+            this.numericUpDown_codigoTarjeta = new System.Windows.Forms.NumericUpDown();
+            this.dateTimePicker_vencimiento = new System.Windows.Forms.DateTimePicker();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.numericUpDown_numeroTarjeta = new System.Windows.Forms.NumericUpDown();
+            this.label8 = new System.Windows.Forms.Label();
             this.numericUpDown_telefono = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown_dni = new System.Windows.Forms.NumericUpDown();
             this.button_terminarCompra = new System.Windows.Forms.Button();
@@ -55,9 +68,15 @@ namespace AerolineaFrba.Compra
             this.label3 = new System.Windows.Forms.Label();
             this.Nombre = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.lineShape1 = new Microsoft.VisualBasic.PowerPacks.LineShape();
+            this.shapeContainer2 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.groupBox2.SuspendLayout();
+            this.groupBox_tarjeta.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_codigoTarjeta)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_numeroTarjeta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_telefono)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_dni)).BeginInit();
             this.SuspendLayout();
@@ -160,33 +179,179 @@ namespace AerolineaFrba.Compra
             this.button_eliminarItem.UseVisualStyleBackColor = true;
             this.button_eliminarItem.Click += new System.EventHandler(this.button_eliminarItem_Click);
             // 
-            // groupBox2
+            // groupBox_tarjeta
             // 
-            this.groupBox2.Controls.Add(this.numericUpDown_telefono);
-            this.groupBox2.Controls.Add(this.numericUpDown_dni);
-            this.groupBox2.Controls.Add(this.button_terminarCompra);
-            this.groupBox2.Controls.Add(this.dateTimePicker_nacimiento);
-            this.groupBox2.Controls.Add(this.textBox2);
-            this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.textBox1);
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.textBox_apellido);
-            this.groupBox2.Controls.Add(this.textBox_nombre);
-            this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.Nombre);
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Location = new System.Drawing.Point(35, 307);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(755, 216);
-            this.groupBox2.TabIndex = 5;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Ingreso datos Comprador";
+            this.groupBox_tarjeta.Controls.Add(this.button1);
+            this.groupBox_tarjeta.Controls.Add(this.groupBox3);
+            this.groupBox_tarjeta.Controls.Add(this.numericUpDown_telefono);
+            this.groupBox_tarjeta.Controls.Add(this.numericUpDown_dni);
+            this.groupBox_tarjeta.Controls.Add(this.button_terminarCompra);
+            this.groupBox_tarjeta.Controls.Add(this.dateTimePicker_nacimiento);
+            this.groupBox_tarjeta.Controls.Add(this.textBox2);
+            this.groupBox_tarjeta.Controls.Add(this.label6);
+            this.groupBox_tarjeta.Controls.Add(this.label5);
+            this.groupBox_tarjeta.Controls.Add(this.textBox1);
+            this.groupBox_tarjeta.Controls.Add(this.label4);
+            this.groupBox_tarjeta.Controls.Add(this.label2);
+            this.groupBox_tarjeta.Controls.Add(this.textBox_apellido);
+            this.groupBox_tarjeta.Controls.Add(this.textBox_nombre);
+            this.groupBox_tarjeta.Controls.Add(this.label3);
+            this.groupBox_tarjeta.Controls.Add(this.Nombre);
+            this.groupBox_tarjeta.Controls.Add(this.label1);
+            this.groupBox_tarjeta.Location = new System.Drawing.Point(12, 307);
+            this.groupBox_tarjeta.Name = "groupBox_tarjeta";
+            this.groupBox_tarjeta.Size = new System.Drawing.Size(778, 349);
+            this.groupBox_tarjeta.TabIndex = 5;
+            this.groupBox_tarjeta.TabStop = false;
+            this.groupBox_tarjeta.Text = "Ingreso datos Comprador";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.comboBox1);
+            this.groupBox3.Controls.Add(this.label12);
+            this.groupBox3.Controls.Add(this.radioButton_tarjeta);
+            this.groupBox3.Controls.Add(this.radioButton_efectivo);
+            this.groupBox3.Controls.Add(this.comboBox_tipoTarjeta);
+            this.groupBox3.Controls.Add(this.numericUpDown_codigoTarjeta);
+            this.groupBox3.Controls.Add(this.dateTimePicker_vencimiento);
+            this.groupBox3.Controls.Add(this.label9);
+            this.groupBox3.Controls.Add(this.label10);
+            this.groupBox3.Controls.Add(this.label11);
+            this.groupBox3.Controls.Add(this.numericUpDown_numeroTarjeta);
+            this.groupBox3.Controls.Add(this.label8);
+            this.groupBox3.Controls.Add(this.shapeContainer2);
+            this.groupBox3.Location = new System.Drawing.Point(26, 183);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(492, 138);
+            this.groupBox3.TabIndex = 17;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Tipo de Pago";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(344, 30);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(134, 21);
+            this.comboBox1.TabIndex = 11;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(295, 33);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(43, 13);
+            this.label12.TabIndex = 10;
+            this.label12.Text = "Cuotas:";
+            // 
+            // radioButton_tarjeta
+            // 
+            this.radioButton_tarjeta.AutoSize = true;
+            this.radioButton_tarjeta.Location = new System.Drawing.Point(24, 31);
+            this.radioButton_tarjeta.Name = "radioButton_tarjeta";
+            this.radioButton_tarjeta.Size = new System.Drawing.Size(58, 17);
+            this.radioButton_tarjeta.TabIndex = 1;
+            this.radioButton_tarjeta.TabStop = true;
+            this.radioButton_tarjeta.Text = "Tarjeta";
+            this.radioButton_tarjeta.UseVisualStyleBackColor = true;
+            this.radioButton_tarjeta.CheckedChanged += new System.EventHandler(this.radioButton_tarjeta_CheckedChanged);
+            // 
+            // radioButton_efectivo
+            // 
+            this.radioButton_efectivo.AutoSize = true;
+            this.radioButton_efectivo.Location = new System.Drawing.Point(24, 96);
+            this.radioButton_efectivo.Name = "radioButton_efectivo";
+            this.radioButton_efectivo.Size = new System.Drawing.Size(64, 17);
+            this.radioButton_efectivo.TabIndex = 0;
+            this.radioButton_efectivo.TabStop = true;
+            this.radioButton_efectivo.Text = "Efectivo";
+            this.radioButton_efectivo.UseVisualStyleBackColor = true;
+            this.radioButton_efectivo.CheckedChanged += new System.EventHandler(this.radioButton_tarjeta_CheckedChanged);
+            // 
+            // comboBox_tipoTarjeta
+            // 
+            this.comboBox_tipoTarjeta.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_tipoTarjeta.Enabled = false;
+            this.comboBox_tipoTarjeta.FormattingEnabled = true;
+            this.comboBox_tipoTarjeta.Location = new System.Drawing.Point(151, 30);
+            this.comboBox_tipoTarjeta.Name = "comboBox_tipoTarjeta";
+            this.comboBox_tipoTarjeta.Size = new System.Drawing.Size(131, 21);
+            this.comboBox_tipoTarjeta.TabIndex = 7;
+            // 
+            // numericUpDown_codigoTarjeta
+            // 
+            this.numericUpDown_codigoTarjeta.Enabled = false;
+            this.numericUpDown_codigoTarjeta.Location = new System.Drawing.Point(415, 62);
+            this.numericUpDown_codigoTarjeta.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.numericUpDown_codigoTarjeta.Name = "numericUpDown_codigoTarjeta";
+            this.numericUpDown_codigoTarjeta.Size = new System.Drawing.Size(63, 20);
+            this.numericUpDown_codigoTarjeta.TabIndex = 5;
+            // 
+            // dateTimePicker_vencimiento
+            // 
+            this.dateTimePicker_vencimiento.Enabled = false;
+            this.dateTimePicker_vencimiento.Location = new System.Drawing.Point(288, 98);
+            this.dateTimePicker_vencimiento.Name = "dateTimePicker_vencimiento";
+            this.dateTimePicker_vencimiento.Size = new System.Drawing.Size(107, 20);
+            this.dateTimePicker_vencimiento.TabIndex = 9;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(295, 65);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(107, 13);
+            this.label9.TabIndex = 4;
+            this.label9.Text = "Código de seguridad:";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(114, 35);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(31, 13);
+            this.label10.TabIndex = 6;
+            this.label10.Text = "Tipo:";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(214, 100);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(68, 13);
+            this.label11.TabIndex = 8;
+            this.label11.Text = "Vencimiento:";
+            // 
+            // numericUpDown_numeroTarjeta
+            // 
+            this.numericUpDown_numeroTarjeta.Enabled = false;
+            this.numericUpDown_numeroTarjeta.Location = new System.Drawing.Point(167, 62);
+            this.numericUpDown_numeroTarjeta.Maximum = new decimal(new int[] {
+            99999999,
+            0,
+            0,
+            0});
+            this.numericUpDown_numeroTarjeta.Name = "numericUpDown_numeroTarjeta";
+            this.numericUpDown_numeroTarjeta.Size = new System.Drawing.Size(115, 20);
+            this.numericUpDown_numeroTarjeta.TabIndex = 3;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(114, 66);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(47, 13);
+            this.label8.TabIndex = 2;
+            this.label8.Text = "Número:";
             // 
             // numericUpDown_telefono
             // 
-            this.numericUpDown_telefono.Location = new System.Drawing.Point(504, 78);
+            this.numericUpDown_telefono.Location = new System.Drawing.Point(524, 77);
             this.numericUpDown_telefono.Maximum = new decimal(new int[] {
             1410065407,
             2,
@@ -211,23 +376,23 @@ namespace AerolineaFrba.Compra
             // 
             // button_terminarCompra
             // 
-            this.button_terminarCompra.Location = new System.Drawing.Point(583, 173);
+            this.button_terminarCompra.Location = new System.Drawing.Point(586, 226);
             this.button_terminarCompra.Name = "button_terminarCompra";
-            this.button_terminarCompra.Size = new System.Drawing.Size(141, 37);
+            this.button_terminarCompra.Size = new System.Drawing.Size(141, 46);
             this.button_terminarCompra.TabIndex = 14;
             this.button_terminarCompra.Text = "Terminar Compra";
             this.button_terminarCompra.UseVisualStyleBackColor = true;
             // 
             // dateTimePicker_nacimiento
             // 
-            this.dateTimePicker_nacimiento.Location = new System.Drawing.Point(464, 119);
+            this.dateTimePicker_nacimiento.Location = new System.Drawing.Point(487, 118);
             this.dateTimePicker_nacimiento.Name = "dateTimePicker_nacimiento";
             this.dateTimePicker_nacimiento.Size = new System.Drawing.Size(240, 20);
             this.dateTimePicker_nacimiento.TabIndex = 13;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(58, 123);
+            this.textBox2.Location = new System.Drawing.Point(68, 118);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(219, 20);
             this.textBox2.TabIndex = 12;
@@ -235,7 +400,7 @@ namespace AerolineaFrba.Compra
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(348, 125);
+            this.label6.Location = new System.Drawing.Point(366, 123);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(109, 13);
             this.label6.TabIndex = 11;
@@ -244,7 +409,7 @@ namespace AerolineaFrba.Compra
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(23, 126);
+            this.label5.Location = new System.Drawing.Point(33, 124);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(29, 13);
             this.label5.TabIndex = 10;
@@ -260,7 +425,7 @@ namespace AerolineaFrba.Compra
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(446, 80);
+            this.label4.Location = new System.Drawing.Point(460, 80);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(52, 13);
             this.label4.TabIndex = 7;
@@ -277,7 +442,7 @@ namespace AerolineaFrba.Compra
             // 
             // textBox_apellido
             // 
-            this.textBox_apellido.Location = new System.Drawing.Point(554, 34);
+            this.textBox_apellido.Location = new System.Drawing.Point(557, 34);
             this.textBox_apellido.Name = "textBox_apellido";
             this.textBox_apellido.Size = new System.Drawing.Size(170, 20);
             this.textBox_apellido.TabIndex = 5;
@@ -292,7 +457,7 @@ namespace AerolineaFrba.Compra
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(501, 37);
+            this.label3.Location = new System.Drawing.Point(504, 37);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(47, 13);
             this.label3.TabIndex = 3;
@@ -316,23 +481,58 @@ namespace AerolineaFrba.Compra
             this.label1.TabIndex = 0;
             this.label1.Text = "DNI";
             // 
+            // lineShape1
+            // 
+            this.lineShape1.BorderColor = System.Drawing.SystemColors.ButtonShadow;
+            this.lineShape1.Name = "lineShape1";
+            this.lineShape1.X1 = 100;
+            this.lineShape1.X2 = 100;
+            this.lineShape1.Y1 = 5;
+            this.lineShape1.Y2 = 102;
+            // 
+            // shapeContainer2
+            // 
+            this.shapeContainer2.Location = new System.Drawing.Point(3, 16);
+            this.shapeContainer2.Margin = new System.Windows.Forms.Padding(0);
+            this.shapeContainer2.Name = "shapeContainer2";
+            this.shapeContainer2.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
+            this.lineShape1});
+            this.shapeContainer2.Size = new System.Drawing.Size(486, 119);
+            this.shapeContainer2.TabIndex = 12;
+            this.shapeContainer2.TabStop = false;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(602, 281);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(107, 23);
+            this.button1.TabIndex = 18;
+            this.button1.Text = "Volver a Ítems";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Carrito
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(802, 535);
-            this.Controls.Add(this.groupBox2);
+            this.ClientSize = new System.Drawing.Size(809, 670);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupBox_tarjeta);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Carrito";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Carrito de Compras";
             this.Activated += new System.EventHandler(this.Carrito_Activated);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Carrito_FormClosing);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.groupBox_tarjeta.ResumeLayout(false);
+            this.groupBox_tarjeta.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_codigoTarjeta)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_numeroTarjeta)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_telefono)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_dni)).EndInit();
             this.ResumeLayout(false);
@@ -346,7 +546,7 @@ namespace AerolineaFrba.Compra
         private System.Windows.Forms.Button button_aEncomienda;
         private System.Windows.Forms.Button button_confirmarItems;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox_tarjeta;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox_apellido;
@@ -368,6 +568,22 @@ namespace AerolineaFrba.Compra
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.NumericUpDown numericUpDown_telefono;
         private System.Windows.Forms.NumericUpDown numericUpDown_dni;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.RadioButton radioButton_tarjeta;
+        private System.Windows.Forms.RadioButton radioButton_efectivo;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.ComboBox comboBox_tipoTarjeta;
+        private System.Windows.Forms.NumericUpDown numericUpDown_codigoTarjeta;
+        private System.Windows.Forms.DateTimePicker dateTimePicker_vencimiento;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.NumericUpDown numericUpDown_numeroTarjeta;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button button1;
+        private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer2;
+        private Microsoft.VisualBasic.PowerPacks.LineShape lineShape1;
 
     }
 }
