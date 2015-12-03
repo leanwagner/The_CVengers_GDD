@@ -15,6 +15,7 @@ namespace AerolineaFrba.Devolucion
         public Devolucion()
         {
             InitializeComponent();
+            
         }
     }
 }

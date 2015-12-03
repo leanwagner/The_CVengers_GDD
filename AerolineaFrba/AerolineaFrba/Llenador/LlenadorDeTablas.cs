@@ -28,6 +28,23 @@ namespace AerolineaFrba.Llenador
         
         }
 
+        public void llenarComboBoxAnios(ref ComboBox miCombo)
+        {
+
+            SqlCommand sqlCmd = new SqlCommand("select distinct year(COMPRA_FECHA) 'a' from THE_CVENGERS.COMPRA where COMPRA_ID in (select PASAJE_COMPRA from THE_CVENGERS.PASAJE where COMPRA_ID = PASAJE_COMPRA)", Conexion.getConexion());
+
+            SqlDataReader sqlReader = sqlCmd.ExecuteReader();
+
+            while (sqlReader.Read())
+            {
+                miCombo.Items.Add(sqlReader["a"].ToString());
+            }
+
+            sqlReader.Close();
+
+        }
+
+
         public void llenarComboBoxPremios(ref ComboBox miCombo)
         {
 
