@@ -86,6 +86,7 @@ namespace AerolineaFrba.Compra
         private void button_limpiar_Click(object sender, EventArgs e)
         {
             limpiarForms();
+            llenador.llenarDGV_Compra(dataGridView1);
         }
 
         public void activarBotonLimpiar()
@@ -117,14 +118,14 @@ namespace AerolineaFrba.Compra
         {
             if (DateTime.Compare(dateTimePicker_fechaViaje.Value, dateTimePicker_fechaViaje.MinDate) > 0)
                 button_limpiar.Enabled = true;
-            else if(comboBox_destino.SelectedItem == null && comboBox_origen.SelectedItem == null && checkedListBox_servicios.CheckedItems.Count > 1 )
+            else if(comboBox_destino.SelectedItem == null && comboBox_origen.SelectedItem == null && checkedListBox_servicios.CheckedItems.Count < 1 )
                 button_limpiar.Enabled = false;
         }
 
         public void mostrarViajes()
         {
             llenador.llenarDGV_Compra(dataGridView1);
-            dataGridView1.Rows[0].Selected = false;
+            //dataGridView1.Rows[0].Selected = false;
         }
 
         private void checkedListBox_servicios_SelectedIndexChanged(object sender, EventArgs e)
@@ -151,6 +152,32 @@ namespace AerolineaFrba.Compra
             dateTimePicker_fechaViaje.MinDate = dateTimePicker_fechaViaje.MinDate.AddSeconds(1);
         }
 
+
+        private void button_buscar_Click(object sender, EventArgs e)
+        {
+            String sqlQuery = "SELECT * FROM THE_CVENGERS.viajesCompra WHERE 1=1";
+
+
+            if (comboBox_origen.SelectedItem != null)
+                sqlQuery = sqlQuery + " AND Origen LIKE '_" + comboBox_origen.SelectedItem.ToString().Substring(1) + "'";
+
+            if (comboBox_destino.SelectedItem != null)
+                sqlQuery = sqlQuery + " AND Destino LIKE '_" + comboBox_destino.SelectedItem.ToString().Substring(1) + "'";
+
+            if (DateTime.Compare(dateTimePicker_fechaViaje.Value, dateTimePicker_fechaViaje.MinDate) > 0)
+                sqlQuery = sqlQuery + " AND [Fecha de Salida] >= '" + dateTimePicker_fechaViaje.Value.ToString() + "'";
+
+            if (checkedListBox_servicios.CheckedIndices.Count > 0)
+            {
+                sqlQuery = sqlQuery + "AND (1=0";
+
+                foreach (int index in checkedListBox_servicios.CheckedIndices)
+                    sqlQuery = sqlQuery + " OR [Tipo de Servicio] = '" + checkedListBox_servicios.Items[index].ToString() + "'";
+                sqlQuery = sqlQuery + ")";
+            }
+
+            llenador.filtrarDataGridView(dataGridView1, sqlQuery);
+        }
 
     }
 }

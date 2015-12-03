@@ -34,6 +34,9 @@ namespace AerolineaFrba.Abm_Rol
             llenu.llenarListBoxConCondicion(ref listBox1, "FUNCIONALIDAD f, THE_CVENGERS.FUNCIONXROL fxr, THE_CVENGERS.ROL r", "FUNC_NOMBRE", "fxr.FXR_FUNC_ID = f.FUNC_ID and fxr.FXR_ROL_ID = r.ROL_ID and r.ROL_NOMBRE = '" + rol + "'");
             llenu.llenarListBoxSacandoLosDelOtro(ref listBox2,ref listBox1, "FUNCIONALIDAD", "FUNC_NOMBRE");
             textBox1.Text = rol;
+           
+            button1.Enabled = false;
+            button2.Enabled = false;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -56,6 +59,8 @@ namespace AerolineaFrba.Abm_Rol
                 listBox1.Items.Add(listBox2.SelectedItem.ToString());
                 int x = listBox2.SelectedIndex;
                 listBox2.Items.RemoveAt(x);
+                
+                button2.Enabled = false;
                 listBox2.Refresh();
                 listBox1.Refresh();
             }
@@ -83,6 +88,8 @@ namespace AerolineaFrba.Abm_Rol
                 listBox2.Items.Add(listBox1.SelectedItem.ToString());
                 int x = listBox1.SelectedIndex;
                 listBox1.Items.RemoveAt(x);
+              
+                button1.Enabled = false;
                 listBox1.Refresh();
                 listBox2.Refresh();
         
@@ -109,5 +116,18 @@ namespace AerolineaFrba.Abm_Rol
             }
             catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK); }
                }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBox1.SelectedIndex == -1) button1.Enabled = false;
+            else button1.Enabled = true;
+        }
+
+        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBox2.SelectedIndex == -1) button2.Enabled = false;
+            else button2.Enabled = true;
+            
+        }
     }
 }
