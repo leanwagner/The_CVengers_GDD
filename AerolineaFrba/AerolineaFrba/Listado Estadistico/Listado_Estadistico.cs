@@ -14,6 +14,7 @@ namespace AerolineaFrba.Listado_Estadistico
 {
     public partial class Listado_Estadistico : Form
     {
+        Llenador.LlenadorDeTablas llenu = new Llenador.LlenadorDeTablas();
         public Listado_Estadistico()
         {
             InitializeComponent();
@@ -21,7 +22,7 @@ namespace AerolineaFrba.Listado_Estadistico
 
         private void Listado_Estadistico_Load(object sender, EventArgs e)
         {
-            Llenador.LlenadorDeTablas llenu = new Llenador.LlenadorDeTablas();
+           
             llenu.llenarComboBoxAnios(ref comboAnio);
             comboSem.Items.Add(1);
             comboSem.Items.Add(2);
@@ -49,6 +50,8 @@ namespace AerolineaFrba.Listado_Estadistico
             switch (comboLista.SelectedIndex) 
             { 
                 case 0:
+                    llenu.llenarDataGridView(dataGridView1,"THE_CVENGERS.destinosConMasPasajesComprados("+comboAnio.SelectedItem.ToString() +","+comboSem.SelectedItem.ToString() +")");
+                    break;
                 case 1:
                 case 2:
                 case 3: 
