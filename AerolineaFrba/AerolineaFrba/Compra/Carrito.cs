@@ -47,13 +47,23 @@ namespace AerolineaFrba.Compra
 
         private void button_aEncomienda_Click(object sender, EventArgs e)
         {
+            if (kgs_disponibles == 0)
+            {
+                MessageBox.Show("El viaje no tiene más KG disponibles", "Error: KG insuficientes", MessageBoxButtons.OK);
+                return;
+            }
             AgregarPasajeEncomienda ventana = new AgregarPasajeEncomienda(id,TipoCompra.Encomienda);
             ventana.Show();
         }
 
         private void button_aPasaje_Click(object sender, EventArgs e)
         {
-            AgregarPasajeEncomienda ventana = new AgregarPasajeEncomienda(id,TipoCompra.Pasaje);
+            if (ListaButacas.Count == 0)
+            {
+                MessageBox.Show("El viaje no tiene más butacas disponibles", "Error: butacas insuficientes", MessageBoxButtons.OK);
+                return;
+            } 
+            AgregarPasajeEncomienda ventana = new AgregarPasajeEncomienda(id, TipoCompra.Pasaje);
             ventana.Show();
         }
 
