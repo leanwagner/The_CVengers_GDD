@@ -65,6 +65,9 @@ namespace AerolineaFrba.Listado_Estadistico
                     achicarYCentrarDGV();
                     break;
                 case 1:
+                    llenu.llenarDataGridView(dataGridView1, "destinosConAeronavesMasVacias(" + comboAnio.SelectedItem.ToString() + "," + comboSem.SelectedItem.ToString() + ")");
+                    achicarYCentrarDGV();
+                    break;
                 case 2:
                 case 3: 
                 case 4:
