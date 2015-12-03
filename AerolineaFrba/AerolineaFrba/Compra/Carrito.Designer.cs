@@ -77,6 +77,7 @@ namespace AerolineaFrba.Compra
             this.errorProvider_apellido = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProvider_dni = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProvider_direccion = new System.Windows.Forms.ErrorProvider(this.components);
+            this.button_limpiarComprador = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox_tarjeta.SuspendLayout();
@@ -192,6 +193,7 @@ namespace AerolineaFrba.Compra
             // 
             // groupBox_tarjeta
             // 
+            this.groupBox_tarjeta.Controls.Add(this.button_limpiarComprador);
             this.groupBox_tarjeta.Controls.Add(this.button1);
             this.groupBox_tarjeta.Controls.Add(this.groupBox3);
             this.groupBox_tarjeta.Controls.Add(this.numericUpDown_telefono);
@@ -543,6 +545,15 @@ namespace AerolineaFrba.Compra
             // errorProvider_direccion
             // 
             this.errorProvider_direccion.ContainerControl = this;
+            // button_limpiarComprador
+            // 
+            this.button_limpiarComprador.Location = new System.Drawing.Point(611, 154);
+            this.button_limpiarComprador.Name = "button_limpiarComprador";
+            this.button_limpiarComprador.Size = new System.Drawing.Size(98, 31);
+            this.button_limpiarComprador.TabIndex = 19;
+            this.button_limpiarComprador.Text = "Limpiar Campos";
+            this.button_limpiarComprador.UseVisualStyleBackColor = true;
+            this.button_limpiarComprador.Click += new System.EventHandler(this.button_limpiarComprador_Click);
             // 
             // Carrito
             // 
@@ -623,10 +634,14 @@ namespace AerolineaFrba.Compra
         private Microsoft.VisualBasic.PowerPacks.LineShape lineShape1;
         private System.Windows.Forms.DateTimePicker dateTimePicker_vencimiento;
         private System.Windows.Forms.ErrorProvider errorProvider_dniDup;
+<<<<<<< HEAD
         private System.Windows.Forms.ErrorProvider errorProvider_nombre;
         private System.Windows.Forms.ErrorProvider errorProvider_apellido;
         private System.Windows.Forms.ErrorProvider errorProvider_dni;
         private System.Windows.Forms.ErrorProvider errorProvider_direccion;
+=======
+        private System.Windows.Forms.Button button_limpiarComprador;
+>>>>>>> f784bc920586648ae4c71a6edb489d6498279de9
 
     }
 }
