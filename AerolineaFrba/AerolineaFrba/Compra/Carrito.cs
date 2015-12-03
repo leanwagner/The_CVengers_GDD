@@ -365,7 +365,7 @@ namespace AerolineaFrba.Compra
            else
                persistirCompraEfectivo();
 
-            MessageBox.Show("La compra fue realizada Exitosamente","Información",MessageBoxButtons.OK)
+           MessageBox.Show("La compra fue realizada Exitosamente", "Información", MessageBoxButtons.OK);
 
         }
 
