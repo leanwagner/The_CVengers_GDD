@@ -24,7 +24,6 @@ namespace AerolineaFrba.Generacion_Viaje
 
         private void Generacion_Viaje_Load(object sender, EventArgs e)
         {
-            SqlDateTime fechaActual;
             timePicker1.Format = DateTimePickerFormat.Time;
             timePicker2.Format = DateTimePickerFormat.Time;
             timePicker1.ShowUpDown = true;
