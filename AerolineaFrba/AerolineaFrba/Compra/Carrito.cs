@@ -365,10 +365,10 @@ namespace AerolineaFrba.Compra
         public void persistirTarjetaCredito()
         {
             string query = "EXEC THE_CVENGERS.ingresarTarjeta @cli = '" + id_cliente.ToString() + 
-                "' @tipoTar = '" + comboBox_tipoTarjeta.SelectedItem.ToString() +
-                "' @nro = '" + numericUpDown_numeroTarjeta.Value.ToString() +
-                "' @cod = '" + numericUpDown_codigoTarjeta.Value.ToString() +
-                "' @fechaVen = '" + dateTimePicker_vencimiento.Text + "'";
+                "' ,@tipoTar = '" + comboBox_tipoTarjeta.SelectedItem.ToString() +
+                "' ,@nro = '" + numericUpDown_numeroTarjeta.Value.ToString() +
+                "' ,@cod = '" + numericUpDown_codigoTarjeta.Value.ToString() +
+                "' ,@fechaVen = '" + dateTimePicker_vencimiento.Value.Date.ToString() + "'";
 
             SqlCommand sqlCmd = new SqlCommand(query,Conexion.getConexion());
 
