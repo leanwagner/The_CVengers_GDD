@@ -365,6 +365,8 @@ namespace AerolineaFrba.Compra
            else
                persistirCompraEfectivo();
 
+            MessageBox.Show("La compra fue realizada Exitosamente","Información",MessageBoxButtons.OK)
+
         }
 
         public void persistirCompraTarjeta()
@@ -380,7 +382,6 @@ namespace AerolineaFrba.Compra
                 "',@cuotas = '" + comboBox1.SelectedItem.ToString() + "'";
 
             SqlCommand sqlCmd = new SqlCommand(query, Conexion.getConexion());
-            MessageBox.Show(sqlCmd.CommandText);
             
             sqlCmd.ExecuteNonQuery();
 
@@ -393,9 +394,9 @@ namespace AerolineaFrba.Compra
                 "',@monto = '" + labelMonto.Text + "'";
              
             SqlCommand sqlCmd = new SqlCommand(query, Conexion.getConexion());
-            MessageBox.Show(sqlCmd.CommandText);
-
+            
             sqlCmd.ExecuteNonQuery();
+
         }
 
         private void comboBox_tipoTarjeta_SelectedIndexChanged(object sender, EventArgs e)
@@ -430,8 +431,6 @@ namespace AerolineaFrba.Compra
             string resultado = "";
 
             SqlCommand sqlCmd = new SqlCommand(command,Conexion.getConexion());
-
-            MessageBox.Show(sqlCmd.CommandText);
 
             SqlDataReader reader = sqlCmd.ExecuteReader();
 
