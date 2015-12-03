@@ -135,7 +135,7 @@
             this.label_LlegadaEstimadaAeronave.Name = "label_LlegadaEstimadaAeronave";
             this.label_LlegadaEstimadaAeronave.Size = new System.Drawing.Size(115, 13);
             this.label_LlegadaEstimadaAeronave.TabIndex = 9;
-            this.label_LlegadaEstimadaAeronave.Text = "**hh:mm dd/mm/yyyy**";
+            this.label_LlegadaEstimadaAeronave.Text = "**dd/mm/yyyy hh:mm**";
             // 
             // label8
             // 
@@ -153,7 +153,7 @@
             this.label_SalidaAeronave.Name = "label_SalidaAeronave";
             this.label_SalidaAeronave.Size = new System.Drawing.Size(115, 13);
             this.label_SalidaAeronave.TabIndex = 7;
-            this.label_SalidaAeronave.Text = "**hh:mm dd/mm/yyyy**";
+            this.label_SalidaAeronave.Text = "**dd/mm/yyyy hh:mm**";
             // 
             // label7
             // 

@@ -903,6 +903,30 @@ end
 
 end
 
+go
+create view THE_CVENGERS.viajesCompra
+as
+select V.VIAJE_ID 'Id', (select CIUDAD_NOMBRE
+							from THE_CVENGERS.CIUDAD
+							where CIUDAD_ID = (select RUTA_ORIGEN
+												from THE_CVENGERS.RUTA
+												where RUTA_ID = V.VIAJE_RUTA)) 'Origen', (select CIUDAD_NOMBRE
+																							from THE_CVENGERS.CIUDAD
+																							where CIUDAD_ID = (select RUTA_DESTINO
+																												from THE_CVENGERS.RUTA
+																												where RUTA_ID = V.VIAJE_RUTA)) 'Destino', V.VIAJE_FECHA_SALIDA 'Fecha de salida', (select SERVICIO_NOMBRE
+																																																	from THE_CVENGERS.SERVICIO
+																																																	WHERE SERVICIO_ID = (select AERONAVE_SERVICIO
+																																																							from THE_CVENGERS.AERONAVE
+																																																							where AERONAVE_ID = VIAJE_AERONAVE)) 'Tipo de servicio', (select count(*)
+																																																																						from THE_CVENGERS.BUTACAXVIAJE
+																																																																						where BUTACAXVIAJE_VIAJE_ID = VIAJE_ID
+																																																																						and BUTACAXVIAJE_PASAJE_ID is null) 'Butacas disponibles', ((select AERONAVE_ESPACIO_ENCOMIENDAS
+																																																																																							FROM THE_CVENGERS.AERONAVE
+																																																																																							WHERE AERONAVE_ID = VIAJE_AERONAVE)-(select sum(ENCOMIENDA_KG)	
+																																																																																																	from THE_CVENGERS.ENCOMIENDA
+																																																																																																	where ENCOMIENDA_VIAJE_ID = VIAJE_ID)) 'Kg disponibles'
+from THE_CVENGERS.VIAJE V
 
 
 /*DROP TABLE [THE_CVENGERS].MILLA
@@ -958,6 +982,7 @@ DROP FUNCTION [THE_CVENGERS].fechaReal
 DROP FUNCTION [THE_CVENGERS].viajeARegistrar
 DROP PROCEDURE [THE_CVENGERS].registrarLLegada
 DROP PROCEDURE [THE_CVENGERS].generarViaje
+DROP VIEW [THE_CVENGERS].viajesCompra
 DROP PROCEDURE [THE_CVENGERS].getAll 
 DROP SCHEMA [THE_CVENGERS]*/
 

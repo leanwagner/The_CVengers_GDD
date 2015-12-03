@@ -134,11 +134,13 @@ namespace AerolineaFrba.Registro_Llegada_Destino
 
                 label_TipoServicio.Text = reader["SERVICIO_NOMBRE"].ToString();
 
-                label_SalidaAeronave.Text = reader["VIAJE_FECHA_SALIDA"].ToString();
+                label_SalidaAeronave.Text = Convert.ToDateTime(reader["VIAJE_FECHA_SALIDA"].ToString()).ToString("dd/MM/yyyy hh:mm:ss");
 
-                label_LlegadaEstimadaAeronave.Text = reader["VIAJE_FECHA_LLEGADA_ESTIMADA"].ToString();
+                label_LlegadaEstimadaAeronave.Text = Convert.ToDateTime(reader["VIAJE_FECHA_LLEGADA_ESTIMADA"].ToString()).ToString("dd/MM/yyyy hh:mm:ss");
 
                 dateTimePicker1.MinDate = Convert.ToDateTime(reader["VIAJE_FECHA_SALIDA"].ToString());
+
+                dateTimePicker1.MinDate = dateTimePicker1.MinDate.AddHours(1);
 
                 dateTimePicker1.MaxDate = dateTimePicker1.MinDate.AddDays(1);
 
@@ -166,10 +168,10 @@ namespace AerolineaFrba.Registro_Llegada_Destino
             comboBox_matricula.Items.Clear();
             llenarComboMatricula(ref comboBox_matricula);
             groupBox3.Enabled = false;
-            label_LlegadaEstimadaAeronave.Text = "**hh:mm dd/mm/yyyy**";
+            label_LlegadaEstimadaAeronave.Text = "** dd/mm/yyyy hh:mm**";
             label_MatriculaAeronave.Text = "**NRO**";
             label_ModeloAeronave.Text = "**Modelo**";
-            label_SalidaAeronave.Text = "**hh:mm dd/mm/yyyy**";
+            label_SalidaAeronave.Text = "**dd/mm/yyyy hh:mm**";
             label_TipoServicio.Text = "**Servicio**";
             dateTimePicker1.CustomFormat = " ";
         }

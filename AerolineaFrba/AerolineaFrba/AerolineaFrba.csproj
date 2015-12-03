@@ -96,6 +96,12 @@
     <Compile Include="Canje Millas\Canje_Millas.Designer.cs">
       <DependentUpon>Canje_Millas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Compra\Carrito.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Compra\Carrito.Designer.cs">
+      <DependentUpon>Carrito.cs</DependentUpon>
+    </Compile>
     <Compile Include="Compra\Compra.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -185,6 +191,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Canje Millas\Canje_Millas.resx">
       <DependentUpon>Canje_Millas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Compra\Carrito.resx">
+      <DependentUpon>Carrito.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Compra\Compra.resx">
       <DependentUpon>Compra.cs</DependentUpon>

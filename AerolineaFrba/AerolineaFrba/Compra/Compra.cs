@@ -21,6 +21,7 @@ namespace AerolineaFrba.Compra
         public Compra()
         {
             InitializeComponent();
+            this.mostrarViajes();
             llenarCombosCiudad(ref comboBox_destino);
             llenarCombosCiudad(ref comboBox_origen);
             mostrarServicios();
@@ -79,6 +80,7 @@ namespace AerolineaFrba.Compra
 
         }
 
+
         private void button_limpiar_Click(object sender, EventArgs e)
         {
             limpiarForms();
@@ -115,6 +117,12 @@ namespace AerolineaFrba.Compra
                 button_limpiar.Enabled = true;
             else if(comboBox_destino.SelectedItem == null && comboBox_origen.SelectedItem == null && checkedListBox_servicios.CheckedItems.Count > 1 )
                 button_limpiar.Enabled = false;
+        }
+
+        public void mostrarViajes()
+        {
+            llenador.llenarDGV_Compra(dataGridView1);
+            dataGridView1.Rows[0].Selected = false;
         }
 
         private void checkedListBox_servicios_SelectedIndexChanged(object sender, EventArgs e)
