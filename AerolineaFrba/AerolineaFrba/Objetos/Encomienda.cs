@@ -25,13 +25,23 @@ namespace AerolineaFrba.Objetos
                 return this.Encomienda_kg;
             }
 
-        public void persistirItem()
+        public void persistirItem(int cliente_id)
         {
+            string query = "EXEC THE_CVENGERS.crearEncomienda @cli= '" + cliente_id.ToString() +
+                "', @viaje = '" + viajeId.ToString() +
+                "', @kg = '" + Encomienda_kg.ToString() + "'";
+
+            SqlCommand sqlCmd = new SqlCommand(query, Conexion.getConexion());
+            sqlCmd.Transaction = Carrito.tran;
+            sqlCmd.ExecuteNonQuery();
+
+
         }
 
         public float calcularPrecio()
         {
             SqlCommand cmd = new SqlCommand("select THE_CVENGERS.calcularPrecioEncomienda(" + viajeId + ","+Encomienda_kg+") as p", Conexion.getConexion());
+            cmd.Transaction = Carrito.tran;
             SqlDataReader reader = cmd.ExecuteReader();
             reader.Read();
             float retu = float.Parse(reader["p"].ToString());

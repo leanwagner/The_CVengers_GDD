@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AerolineaFrba.Compra;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -106,6 +107,7 @@ namespace AerolineaFrba.Objetos
                 "', @mail = '" + Mail +
                 "', @fechanac = '" + Fecha_nacimiento.ToString() + "'";
             SqlCommand sqlCmd = new SqlCommand(command,Conexion.getConexion());
+            sqlCmd.Transaction = Carrito.tran;
             sqlCmd.ExecuteNonQuery();
         }
     }

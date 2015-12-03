@@ -25,6 +25,7 @@ namespace AerolineaFrba.Compra
         public static Collection<int> ListaButacas = new Collection<int>();
         LlenadorDeTablas lloni = new LlenadorDeTablas();
         bool estaTodoAutocompletado = false;
+        public static SqlTransaction tran; 
 
         public Carrito(int id_viaje, int kgs)
         {
@@ -172,6 +173,7 @@ namespace AerolineaFrba.Compra
             if (numericUpDown_dni.Text.Length > 5 && !estaTodoAutocompletado)
             {
                 SqlCommand cmd = new SqlCommand("select * from THE_CVENGERS.CLIENTE where CLIENTE_DNI = " + numericUpDown_dni.Text, Conexion.getConexion());
+                cmd.Transaction = tran;
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
@@ -211,6 +213,7 @@ namespace AerolineaFrba.Compra
                         if (textBox_apellido.Text.Length > 0)
                         {
                             SqlCommand sqlCmd = new SqlCommand("select * from THE_CVENGERS.CLIENTE where CLIENTE_DNI = " + numericUpDown_dni.Text + " AND CLIENTE_APELLIDO COLLATE Latin1_General_CI_AI like '" + textBox_apellido.Text + "' COLLATE Latin1_General_CI_AI", Conexion.getConexion());
+                            sqlCmd.Transaction = tran;
                             SqlDataReader leedor = sqlCmd.ExecuteReader();
 
 
@@ -354,19 +357,33 @@ namespace AerolineaFrba.Compra
         {
             if (aplicarValidaciones() > 0)
                 return;
-
+            
            new Cliente(id_cliente,(int)numericUpDown_dni.Value, textBox_nombre.Text, textBox_apellido.Text, textBox1.Text, (int)numericUpDown_telefono.Value, textBox2.Text, dateTimePicker_nacimiento.Value.Date.ToString()).persistirme();
-
-           if (radioButton_tarjeta.Checked)
+           
+            tran = Conexion.getConexion().BeginTransaction();   
+           try
            {
-               persistirTarjetaCredito();
-               persistirCompraTarjeta();
+               if (radioButton_tarjeta.Checked)
+               {
+                   persistirTarjetaCredito();
+                   persistirCompraTarjeta();
+               }
+               else
+                   persistirCompraEfectivo();
+
+               foreach (Cliente cli in ListaClientes)
+                   cli.getItem().persistirItem(id_cliente);
+
+               tran.Commit();
+
+               MessageBox.Show("La compra fue realizada Exitosamente", "Información", MessageBoxButtons.OK);
            }
-           else
-               persistirCompraEfectivo();
 
-           MessageBox.Show("La compra fue realizada Exitosamente", "Información", MessageBoxButtons.OK);
-
+           catch(Exception ex)
+           {
+               MessageBox.Show("La compra no pudo finalizar correctamente" + ex.Message, "Error", MessageBoxButtons.OK);
+               tran.Rollback();
+           }
         }
 
         public void persistirCompraTarjeta()
@@ -382,7 +399,7 @@ namespace AerolineaFrba.Compra
                 "',@cuotas = '" + comboBox1.SelectedItem.ToString() + "'";
 
             SqlCommand sqlCmd = new SqlCommand(query, Conexion.getConexion());
-            
+            sqlCmd.Transaction = tran;
             sqlCmd.ExecuteNonQuery();
 
         }
@@ -394,7 +411,7 @@ namespace AerolineaFrba.Compra
                 "',@monto = '" + labelMonto.Text + "'";
              
             SqlCommand sqlCmd = new SqlCommand(query, Conexion.getConexion());
-            
+            sqlCmd.Transaction = tran;
             sqlCmd.ExecuteNonQuery();
 
         }
@@ -415,7 +432,7 @@ namespace AerolineaFrba.Compra
                 "' ,@fechaVen = '" + dateTimePicker_vencimiento.Value.Date.ToString() + "'";
 
             SqlCommand sqlCmd = new SqlCommand(query,Conexion.getConexion());
-
+            sqlCmd.Transaction = tran;
             try
             {
                 sqlCmd.ExecuteNonQuery();
@@ -431,6 +448,8 @@ namespace AerolineaFrba.Compra
             string resultado = "";
 
             SqlCommand sqlCmd = new SqlCommand(command,Conexion.getConexion());
+
+            sqlCmd.Transaction = tran;
 
             SqlDataReader reader = sqlCmd.ExecuteReader();
 
