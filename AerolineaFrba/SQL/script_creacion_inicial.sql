@@ -1093,6 +1093,31 @@ from THE_CVENGERS.CIUDAD
 where CIUDAD_ID IN (SELECT RUTA_DESTINO FROM THE_CVENGERS.RUTA WHERE RUTA_ID IN (SELECT VIAJE_RUTA FROM THE_CVENGERS.VIAJE))
 ORDER BY "Porcentaje de desocupación" DESC, "Total pasajes disponibles" DESC, "Total pasajes comprados" DESC)
 
+go
+create function THE_CVENGERS.clientesConMasPuntosAcumulados(@anio as int, @semestre as int)
+returns table
+as
+
+return(select top 5 CLIENTE_APELLIDO + ' ' + CLIENTE_NOMBRE 'Cliente', (select sum(MILLA_GANADA)
+																		FROM THE_CVENGERS.MILLA
+																		WHERE MILLA_CLIENTE = CLIENTE_ID
+																		AND YEAR(MILLA_FECHA_ACREDITACION) <= @anio
+																		AND month(MILLA_FECHA_ACREDITACION) IN ((case when YEAR(MILLA_FECHA_ACREDITACION) = @anio and @semestre = 1 then 1  else 1 end), (case when YEAR(MILLA_FECHA_ACREDITACION) = @anio and @semestre = 1 then 2  else 2 end),(case when YEAR(MILLA_FECHA_ACREDITACION) = @anio and @semestre = 1 then 3 else 3 end),(case when YEAR(MILLA_FECHA_ACREDITACION) = @anio and @semestre = 1 then 4 else 4 end),(case when YEAR(MILLA_FECHA_ACREDITACION) = @anio and @semestre = 1 then 5  else 5 end),(case when YEAR(MILLA_FECHA_ACREDITACION) = @anio and @semestre = 1 then 6 else 6 end),(case when YEAR(MILLA_FECHA_ACREDITACION) = @anio and @semestre = 1 then 0 ELSE 7 end),(case when YEAR(MILLA_FECHA_ACREDITACION) = @anio and @semestre = 1 then 0  else 8 end),(case when YEAR(MILLA_FECHA_ACREDITACION) = @anio and @semestre = 1 then 0  else 9 end),(case when YEAR(MILLA_FECHA_ACREDITACION) = @anio and @semestre = 1 then 0 else 10 end),(case when YEAR(MILLA_FECHA_ACREDITACION) = @anio and @semestre = 1 then 0 else 11 end),(case when YEAR(MILLA_FECHA_ACREDITACION) = @anio and @semestre = 1 then 0 else 12 end))) 'Millas totales acumuladas'
+		from THE_CVENGERS.CLIENTE
+		order by "Millas totales acumuladas" DESC)
+
+go
+create function THE_CVENGERS.consultarMillas(@cli as numeric(18,0))
+returns int
+as
+begin
+return (select sum(MILLA_GANADA - MILLA_GASTADA)
+		FROM THE_CVENGERS.MILLA
+		WHERE MILLA_CLIENTE = @cli
+		AND DATEDIFF(second,MILLA_FECHA_ACREDITACION, THE_CVENGERS.fechaReal()) <= 31536000)
+end
+
+		
 
 /*DROP TABLE [THE_CVENGERS].MILLA
 DROP TABLE [THE_CVENGERS].FECHA
@@ -1152,6 +1177,8 @@ DROP VIEW [THE_CVENGERS].viajesCompra
 DROP PROCEDURE [THE_CVENGERS].asignarMillasViaje
 DROP FUNCTION [THE_CVENGERS].destinosConMasPasajesComprados
 DROP FUNCTION [THE_CVENGERS].destinosConAeronavesMasVacias
+DROP FUNCTION [THE_CVENGERS].clientesConMasPuntosAcumulados
+DROP FUNCTION [THE_CVENGERS].consultarMillas
 DROP PROCEDURE [THE_CVENGERS].getAll 
 DROP SCHEMA [THE_CVENGERS]*/
 
