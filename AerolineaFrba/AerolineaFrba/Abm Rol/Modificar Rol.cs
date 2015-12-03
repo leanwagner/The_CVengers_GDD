@@ -127,6 +127,7 @@ namespace AerolineaFrba.Abm_Rol
         {
             if (listBox2.SelectedIndex == -1) button2.Enabled = false;
             else button2.Enabled = true;
+            
         }
     }
 }
