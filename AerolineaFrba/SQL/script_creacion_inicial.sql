@@ -493,13 +493,9 @@ as
 begin
 
 declare @fechaRecibida datetime
-set @fechaRecibida = (select F.FECHA_RECIBIDA from THE_CVENGERS.FECHA F where F.FECHA_ID > (select max(F1.FECHA_ID)
-																							FROM THE_CVENGERS.FECHA F1
-																							WHERE F1.FECHA_ID <> F.FECHA_ID))
+set @fechaRecibida = (select F.FECHA_RECIBIDA from THE_CVENGERS.FECHA F )
 declare @fechaReferencia datetime
-set @fechaReferencia = (select F.FECHA_REFERENCIA from THE_CVENGERS.FECHA F where F.FECHA_ID > (select max(F1.FECHA_ID)
-																							FROM THE_CVENGERS.FECHA F1
-																							WHERE F1.FECHA_ID <> F.FECHA_ID))
+set @fechaReferencia = (select F.FECHA_REFERENCIA from THE_CVENGERS.FECHA F )
 
 declare @diffsegundo numeric(20,0)
 set @diffsegundo = DATEDIFF(second, @fechaReferencia, getdate())
@@ -887,10 +883,10 @@ set @viajeBuscado = (select V.VIAJE_ID
 										FROM THE_CVENGERS.RUTA R
 										WHERE R.RUTA_ORIGEN = (SELECT C.CIUDAD_ID 
 																from THE_CVENGERS.CIUDAD C
-																where c.CIUDAD_NOMBRE like ('_'+ 'Estocolmo'))
+																where c.CIUDAD_NOMBRE like ('_'+ @origen))
 										and r.RUTA_DESTINO = (SELECT C.CIUDAD_ID 
 																from THE_CVENGERS.CIUDAD C
-																where c.CIUDAD_NOMBRE like ('_'+ 'Nueva York'))) and V.VIAJE_AERONAVE = (select AERONAVE_ID from THE_CVENGERS.AERONAVE where AERONAVE_MATRICULA_AVION = 'QHV-325') and V.VIAJE_FECHA_SALIDA < THE_CVENGERS.fechaReal() and v.VIAJE_FECHA_LLEGADA is NULL)
+																where c.CIUDAD_NOMBRE like ('_'+ @destino))) and V.VIAJE_AERONAVE = (select AERONAVE_ID from THE_CVENGERS.AERONAVE where AERONAVE_MATRICULA_AVION = @matricula) and V.VIAJE_FECHA_SALIDA < THE_CVENGERS.fechaReal() and v.VIAJE_FECHA_LLEGADA is NULL)
 
 if(@viajeBuscado is NULL)
 begin
