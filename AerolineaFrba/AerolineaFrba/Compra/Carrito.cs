@@ -16,5 +16,7 @@ namespace AerolineaFrba.Compra
         {
             InitializeComponent();
         }
+
+
     }
 }

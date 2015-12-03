@@ -21,6 +21,7 @@ namespace AerolineaFrba.Compra
         public Compra()
         {
             InitializeComponent();
+            this.mostrarViajes();
             llenarCombosCiudad(ref comboBox_destino);
             llenarCombosCiudad(ref comboBox_origen);
             mostrarServicios();
@@ -79,6 +80,7 @@ namespace AerolineaFrba.Compra
 
         }
 
+
         private void button_limpiar_Click(object sender, EventArgs e)
         {
             limpiarForms();
@@ -112,6 +114,12 @@ namespace AerolineaFrba.Compra
         private void dateTimePicker_fechaViaje_ValueChanged(object sender, EventArgs e)
         {
             activarBotonLimpiar();
+        }
+
+        public void mostrarViajes()
+        {
+            llenador.llenarDGV_Compra(dataGridView1);
+            dataGridView1.Rows[0].Selected = false;
         }
 
         private void checkedListBox_servicios_SelectedIndexChanged(object sender, EventArgs e)
