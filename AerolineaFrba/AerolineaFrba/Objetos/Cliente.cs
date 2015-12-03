@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -101,11 +102,11 @@ namespace AerolineaFrba.Objetos
             string command = "EXEC THE_CVENGERS.ingresarOModificarCliente @id =" + clienteId.ToString() +
                 ", @nombre = '" + Nombre +
                 "', @apellido = '" + Apellido +
-                "', @dni = '" + Dni.ToString() +
-                "', @dir = '" + Direccion +
-                "', @telefono = '" + Telefono.ToString() +
-                "', @mail = '" + Mail +
-                "', @fechanac = '" + Fecha_nacimiento.ToString() + "'";
+                "', @dni = " + Dni.ToString() +
+                ", @dir = '" + Direccion +
+                "', @telefono = " + Telefono.ToString() +
+                ", @mail = '" + Mail +
+                "', @fechanac = '" + Fecha_nacimiento.ToString(CultureInfo.InvariantCulture) + "'";
             SqlCommand sqlCmd = new SqlCommand(command,Conexion.getConexion());
             sqlCmd.Transaction = Carrito.tran;
             sqlCmd.ExecuteNonQuery();
