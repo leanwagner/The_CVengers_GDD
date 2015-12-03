@@ -1524,6 +1524,36 @@ DEALLOCATE viajesACancelar
 
 end
 
+go
+create procedure THE_CVENGERS.ingresarTarjeta @cli as numeric(18,0), @tipoTar as nvarchar(18), @nro as numeric(16,0),
+								@cod as numeric(18,0), @fechaven as datetime
+as
+begin
+
+declare @tipo numeric(18,0)
+set @tipo = (select TIPO_TARJETA_ID FROM THE_CVENGERS.TIPO_TARJETA WHERE TIPO_TARJETA_DETALLE = @tipoTar)
+
+declare @tarId numeric(18,0)
+set @tarId = (select TARJETA_ID FROM THE_CVENGERS.TARJETACREDITO WHERE TARJETA_NRO = @nro
+			and TARJETA_COD_SEGURIDAD = @cod AND TARJETA_FECHA_VENCIMIENTO = @fechaven 
+			AND TARJETA_TIPO = @tipo)
+
+if (@tarId is not null)
+BEGIN
+IF ((SELECT TARJETA_CLIENTE FROM THE_CVENGERS.TARJETACREDITO WHERE TARJETA_ID = @tarId) <> @cli)
+begin
+RAISERROR('La tarjeta de crédito ingresada no pertenece al cliente que está realizando la compra', 16, 1)
+return
+end
+end
+else
+begin
+
+insert into THE_CVENGERS.TARJETACREDITO (TARJETA_CLIENTE, TARJETA_TIPO, TARJETA_NRO, TARJETA_COD_SEGURIDAD, TARJETA_FECHA_VENCIMIENTO)
+VALUES (@cli, @tipo, @nro, @cod, @fechaven)
+
+END
+end
 /*DROP TABLE [THE_CVENGERS].CUOTASXTARJETA
 DROP TABLE [THE_CVENGERS].MILLA
 DROP TABLE [THE_CVENGERS].FECHA
@@ -1600,5 +1630,6 @@ DROP FUNCTION [THE_CVENGERS].destinosConMasPasajesCancelados
 DROP FUNCTION [THE_CVENGERS].tipoTarjetaCompra
 DROP FUNCTION [THE_CVENGERS].numeroTarjetaCompra
 DROP PROCEDURE [THE_CVENGERS].bajarRuta
+DROP PROCEDURE [THE_CVENGERS].ingresarTarjeta
 DROP PROCEDURE [THE_CVENGERS].getAll 
 DROP SCHEMA [THE_CVENGERS]*/
