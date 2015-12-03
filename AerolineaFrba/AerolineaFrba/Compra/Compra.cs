@@ -126,5 +126,19 @@ namespace AerolineaFrba.Compra
         {
             activarBotonLimpiar();
         }
+
+        private void checkedListBox_servicios_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            if (e.NewValue == CheckState.Checked)
+            {
+                button_limpiar.Enabled = true;
+
+            }
+            else if (e.NewValue == CheckState.Unchecked && checkedListBox_servicios.CheckedItems.Count <= 1)
+            {
+                button_limpiar.Enabled = false;
+
+            }
+        }
     }
 }
