@@ -80,6 +80,7 @@ namespace AerolineaFrba.Abm_Aeronave
             {
                 MessageBox.Show(ex.Message,"Error",MessageBoxButtons.OK);
             }
+            MessageBox.Show("Aeronave creada exitosamente");
             listBox1.Items.Add(textBox1.Text);
             listBox1.Refresh();
 

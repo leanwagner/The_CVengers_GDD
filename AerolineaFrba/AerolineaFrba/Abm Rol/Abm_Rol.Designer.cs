@@ -161,6 +161,7 @@ namespace AerolineaFrba.Abm_Ruta
             this.listBox1.Name = "listBox1";
             this.listBox1.ScrollAlwaysVisible = true;
             this.listBox1.Size = new System.Drawing.Size(199, 134);
+            this.listBox1.Sorted = true;
             this.listBox1.TabIndex = 2;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
@@ -194,6 +195,7 @@ namespace AerolineaFrba.Abm_Ruta
             this.listBox2.Name = "listBox2";
             this.listBox2.ScrollAlwaysVisible = true;
             this.listBox2.Size = new System.Drawing.Size(199, 134);
+            this.listBox2.Sorted = true;
             this.listBox2.TabIndex = 3;
             this.listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
             // 
@@ -259,6 +261,7 @@ namespace AerolineaFrba.Abm_Ruta
                 MessageBox.Show("Ya existe un rol con ese nombre", "Error", MessageBoxButtons.OK);
             }
 
+            MessageBox.Show("Rol creado exitosamente");
             sqlCmd.CommandText = "select * from THE_CVENGERS.ROL where ROL_NOMBRE ='" + textBox1.Text + "'";
             sqlReader = sqlCmd.ExecuteReader();
             sqlReader.Read();
@@ -284,7 +287,7 @@ namespace AerolineaFrba.Abm_Ruta
             for (int i = 0; i < checkedListBox1.Items.Count; i++)
                 checkedListBox1.SetItemCheckState(i, (CheckState.Unchecked));
             checkedListBox1.Refresh();
-            listBox1.Items.Add(textBox1.Text);
+          //  listBox1.Items.Add(textBox1.Text);
             listBox1.Refresh();
              textBox1.Clear();
              button1.Enabled = false;
