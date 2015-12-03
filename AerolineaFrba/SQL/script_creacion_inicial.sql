@@ -910,7 +910,7 @@ create procedure THE_CVENGERS.generarViaje @aeronave as numeric(18,0), @ruta as 
 as
 begin
 
-if(exists(select viaje_id from THE_CVENGERS.VIAJE where VIAJE_AERONAVE = @aeronave and VIAJE_RUTA = @ruta and datediff(day,VIAJE_FECHA_SALIDA, @salida) <= 1 and VIAJE_FECHA_LLEGADA is not null))
+if(exists(select viaje_id from THE_CVENGERS.VIAJE where VIAJE_AERONAVE = @aeronave and datediff(day,VIAJE_FECHA_SALIDA, @salida) <= 1 and VIAJE_FECHA_LLEGADA is null))
 begin
 raiserror('Esa aeronave ya tiene un viaje asignado en ese lapso de tiempo', 1 , 16)
 return
@@ -939,6 +939,7 @@ set @numButaca = @numButaca + 1
 end
 
 end
+
 
 --EXECUTE [THE_CVENGERS].getAll @RECV = '[THE_CVENGERS].CIUDAD'
 
