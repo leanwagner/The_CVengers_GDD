@@ -162,6 +162,9 @@
     <Compile Include="MyNumericUpDown\NumericUpDownModified.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Objetos\Cliente.cs" />
+    <Compile Include="Objetos\Encomienda.cs" />
+    <Compile Include="Objetos\Pasaje.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registro de Usuario\Registro_Usuario.cs">

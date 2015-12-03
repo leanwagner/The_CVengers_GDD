@@ -34,7 +34,13 @@
             this.button_aEncomienda = new System.Windows.Forms.Button();
             this.button_confirmarItems = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button_eliminarItem = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button_terminarCompra = new System.Windows.Forms.Button();
+            this.dateTimePicker_nacimiento = new System.Windows.Forms.DateTimePicker();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.numericUpDown_telefono = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
@@ -45,29 +51,25 @@
             this.Nombre = new System.Windows.Forms.Label();
             this.numericUpDown_dni = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.dateTimePicker_nacimiento = new System.Windows.Forms.DateTimePicker();
-            this.button_terminarCompra = new System.Windows.Forms.Button();
-            this.button_eliminarItem = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_telefono)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_dni)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(58, 25);
+            this.listBox1.Location = new System.Drawing.Point(41, 25);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(236, 199);
             this.listBox1.TabIndex = 0;
             // 
             // button_aPasaje
             // 
-            this.button_aPasaje.Location = new System.Drawing.Point(336, 99);
+            this.button_aPasaje.Location = new System.Drawing.Point(314, 99);
             this.button_aPasaje.Name = "button_aPasaje";
             this.button_aPasaje.Size = new System.Drawing.Size(143, 23);
             this.button_aPasaje.TabIndex = 1;
@@ -77,7 +79,7 @@
             // 
             // button_aEncomienda
             // 
-            this.button_aEncomienda.Location = new System.Drawing.Point(336, 45);
+            this.button_aEncomienda.Location = new System.Drawing.Point(314, 45);
             this.button_aEncomienda.Name = "button_aEncomienda";
             this.button_aEncomienda.Size = new System.Drawing.Size(143, 23);
             this.button_aEncomienda.TabIndex = 2;
@@ -87,7 +89,7 @@
             // 
             // button_confirmarItems
             // 
-            this.button_confirmarItems.Location = new System.Drawing.Point(336, 201);
+            this.button_confirmarItems.Location = new System.Drawing.Point(314, 201);
             this.button_confirmarItems.Name = "button_confirmarItems";
             this.button_confirmarItems.Size = new System.Drawing.Size(143, 23);
             this.button_confirmarItems.TabIndex = 3;
@@ -96,6 +98,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Controls.Add(this.button_eliminarItem);
             this.groupBox1.Controls.Add(this.listBox1);
             this.groupBox1.Controls.Add(this.button_confirmarItems);
@@ -103,10 +106,19 @@
             this.groupBox1.Controls.Add(this.button_aEncomienda);
             this.groupBox1.Location = new System.Drawing.Point(35, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(682, 272);
+            this.groupBox1.Size = new System.Drawing.Size(704, 272);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Agregar Ítems al carrito";
+            // 
+            // button_eliminarItem
+            // 
+            this.button_eliminarItem.Location = new System.Drawing.Point(314, 146);
+            this.button_eliminarItem.Name = "button_eliminarItem";
+            this.button_eliminarItem.Size = new System.Drawing.Size(143, 23);
+            this.button_eliminarItem.TabIndex = 4;
+            this.button_eliminarItem.Text = "Eliminar Ítem";
+            this.button_eliminarItem.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
@@ -127,10 +139,51 @@
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Location = new System.Drawing.Point(35, 307);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(682, 216);
+            this.groupBox2.Size = new System.Drawing.Size(704, 216);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Ingreso datos Comprador";
+            // 
+            // button_terminarCompra
+            // 
+            this.button_terminarCompra.Location = new System.Drawing.Point(525, 164);
+            this.button_terminarCompra.Name = "button_terminarCompra";
+            this.button_terminarCompra.Size = new System.Drawing.Size(141, 37);
+            this.button_terminarCompra.TabIndex = 14;
+            this.button_terminarCompra.Text = "Terminar Compra";
+            this.button_terminarCompra.UseVisualStyleBackColor = true;
+            // 
+            // dateTimePicker_nacimiento
+            // 
+            this.dateTimePicker_nacimiento.Location = new System.Drawing.Point(415, 120);
+            this.dateTimePicker_nacimiento.Name = "dateTimePicker_nacimiento";
+            this.dateTimePicker_nacimiento.Size = new System.Drawing.Size(240, 20);
+            this.dateTimePicker_nacimiento.TabIndex = 13;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(58, 123);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(219, 20);
+            this.textBox2.TabIndex = 12;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(299, 126);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(109, 13);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "Fecha de nacimiento:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(23, 126);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(29, 13);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Mail:";
             // 
             // textBox1
             // 
@@ -213,55 +266,14 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "DNI";
             // 
-            // label5
+            // pictureBox1
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(23, 126);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(29, 13);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "Mail:";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(299, 126);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(109, 13);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "Fecha de nacimiento:";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(58, 123);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(219, 20);
-            this.textBox2.TabIndex = 12;
-            // 
-            // dateTimePicker_nacimiento
-            // 
-            this.dateTimePicker_nacimiento.Location = new System.Drawing.Point(415, 120);
-            this.dateTimePicker_nacimiento.Name = "dateTimePicker_nacimiento";
-            this.dateTimePicker_nacimiento.Size = new System.Drawing.Size(240, 20);
-            this.dateTimePicker_nacimiento.TabIndex = 13;
-            // 
-            // button_terminarCompra
-            // 
-            this.button_terminarCompra.Location = new System.Drawing.Point(525, 164);
-            this.button_terminarCompra.Name = "button_terminarCompra";
-            this.button_terminarCompra.Size = new System.Drawing.Size(141, 37);
-            this.button_terminarCompra.TabIndex = 14;
-            this.button_terminarCompra.Text = "Terminar Compra";
-            this.button_terminarCompra.UseVisualStyleBackColor = true;
-            // 
-            // button_eliminarItem
-            // 
-            this.button_eliminarItem.Location = new System.Drawing.Point(336, 146);
-            this.button_eliminarItem.Name = "button_eliminarItem";
-            this.button_eliminarItem.Size = new System.Drawing.Size(143, 23);
-            this.button_eliminarItem.TabIndex = 4;
-            this.button_eliminarItem.Text = "Eliminar Ítem";
-            this.button_eliminarItem.UseVisualStyleBackColor = true;
+            this.pictureBox1.Image = global::AerolineaFrba.Properties.Resources.carrito;
+            this.pictureBox1.Location = new System.Drawing.Point(483, 36);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(199, 188);
+            this.pictureBox1.TabIndex = 5;
+            this.pictureBox1.TabStop = false;
             // 
             // Carrito
             // 
@@ -279,6 +291,7 @@
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_telefono)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_dni)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -307,6 +320,7 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.PictureBox pictureBox1;
 
     }
 }
