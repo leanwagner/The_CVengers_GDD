@@ -912,7 +912,7 @@ begin
 
 if(exists(select viaje_id from THE_CVENGERS.VIAJE where VIAJE_AERONAVE = @aeronave and datediff(day,VIAJE_FECHA_SALIDA, @salida) <= 1 and VIAJE_FECHA_LLEGADA is null))
 begin
-raiserror('Esa aeronave ya tiene un viaje asignado en ese lapso de tiempo', 1 , 16)
+raiserror('Esa aeronave ya tiene un viaje asignado en ese lapso de tiempo', 16, 1)
 return
 end
 
