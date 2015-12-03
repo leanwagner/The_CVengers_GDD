@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AerolineaFrba.Login;
+using System.Globalization;
+using System.Threading;
 
 namespace AerolineaFrba
 {
@@ -15,6 +17,13 @@ namespace AerolineaFrba
         [STAThread]
         static void Main()
         {
+            CultureInfo culture = (CultureInfo)CultureInfo.CurrentCulture.Clone();
+            culture.DateTimeFormat.ShortDatePattern = "dd/MM/yyyy";
+            culture.DateTimeFormat.LongDatePattern = "dddd,dd' de 'MMMM' de 'yyyy";
+            culture.DateTimeFormat.LongTimePattern = "HH:mm:ss";
+            culture.DateTimeFormat.ShortTimePattern = "HH:mm";
+            culture.DateTimeFormat.FirstDayOfWeek = DayOfWeek.Sunday;
+            Thread.CurrentThread.CurrentCulture = culture;
             Conexion.getConexion();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
