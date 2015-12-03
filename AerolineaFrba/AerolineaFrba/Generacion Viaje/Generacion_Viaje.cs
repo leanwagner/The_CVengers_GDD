@@ -142,21 +142,22 @@ namespace AerolineaFrba.Generacion_Viaje
             try
             {
                 sqlCmd.ExecuteNonQuery();
+                MessageBox.Show("Viaje generado exitosamente");
+                comboBox1.SelectedIndex = -1;
+                datePicker1.Value = datePicker1.MinDate;
+                timePicker1.Value = timePicker1.MinDate;
+                datePicker2.Value = datePicker2.MinDate;
+                timePicker2.Value = timePicker2.MinDate;
+                dataGridView1.Rows[Int32.Parse(select.Cells[0].Value.ToString())].Selected = false;
+                comboBox1.Items.Clear();
+                errorProvider1.SetError(comboBox1, "Debe seleccionar una ruta");
+                errorProvider2.Clear();
+                comboBox1.Enabled = false;
             }
             catch (Exception exc) {
                 MessageBox.Show(exc.Message, "Error", MessageBoxButtons.OK);
             }
-            MessageBox.Show("Viaje generado exitosamente");
-            comboBox1.SelectedIndex = -1;
-            datePicker1.Value = datePicker1.MinDate;
-            timePicker1.Value = timePicker1.MinDate;
-            datePicker2.Value = datePicker2.MinDate;
-            timePicker2.Value = timePicker2.MinDate;
-            dataGridView1.Rows[Int32.Parse(select.Cells[0].Value.ToString())].Selected = false;
-            comboBox1.Items.Clear();
-            errorProvider1.SetError(comboBox1, "Debe seleccionar una ruta");
-            errorProvider2.Clear();
-            comboBox1.Enabled = false;
+            
         }
 
         private void timer1_Tick(object sender, EventArgs e)

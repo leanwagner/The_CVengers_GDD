@@ -50,14 +50,17 @@ namespace AerolineaFrba.Abm_Rol
             sqlReader.Close();
             //hacer el insert
             sqlCmd.CommandText = "insert into THE_CVENGERS.FUNCIONXROL(FXR_ROL_ID,FXR_FUNC_ID) values (" + idRol + "," + idFuncion + ")";
-            sqlCmd.ExecuteNonQuery();
-
-            listBox1.Items.Add(listBox2.SelectedItem.ToString());
-            int x = listBox2.SelectedIndex;
-            listBox2.Items.RemoveAt(x);
-            listBox2.Refresh();
-            listBox1.Refresh();
-
+            try
+            {
+                sqlCmd.ExecuteNonQuery();
+                listBox1.Items.Add(listBox2.SelectedItem.ToString());
+                int x = listBox2.SelectedIndex;
+                listBox2.Items.RemoveAt(x);
+                listBox2.Refresh();
+                listBox1.Refresh();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK); }
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -74,15 +77,19 @@ namespace AerolineaFrba.Abm_Rol
             sqlReader.Close();
             //hacer el delete
             sqlCmd.CommandText = "delete from THE_CVENGERS.FUNCIONXROL where FXR_ROL_ID = " + idRol + "and FXR_FUNC_ID = " + idFuncion;
-            sqlCmd.ExecuteNonQuery();
+            try
+            {
+                sqlCmd.ExecuteNonQuery();
+                listBox2.Items.Add(listBox1.SelectedItem.ToString());
+                int x = listBox1.SelectedIndex;
+                listBox1.Items.RemoveAt(x);
+                listBox1.Refresh();
+                listBox2.Refresh();
+        
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK); }
 
-
-            listBox2.Items.Add(listBox1.SelectedItem.ToString());
-            int x = listBox1.SelectedIndex;
-            listBox1.Items.RemoveAt(x);
-            listBox1.Refresh();
-            listBox2.Refresh();
-        }
+           }
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -92,10 +99,15 @@ namespace AerolineaFrba.Abm_Rol
         private void button3_Click_1(object sender, EventArgs e)
         {
             SqlCommand sqlCmd = new SqlCommand("update THE_CVENGERS.ROL set ROL_NOMBRE = '"+textBox1.Text+"' where ROL_NOMBRE = '"+rol+"'", Conexion.getConexion());
-            sqlCmd.ExecuteNonQuery();
-            this.Text = textBox1.Text;
-            this.rol = textBox1.Text;
-            this.Refresh();
-        }
+            try
+            {
+                sqlCmd.ExecuteNonQuery();
+                this.Text = textBox1.Text;
+                this.rol = textBox1.Text;
+                this.Refresh();
+        
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK); }
+               }
     }
 }
