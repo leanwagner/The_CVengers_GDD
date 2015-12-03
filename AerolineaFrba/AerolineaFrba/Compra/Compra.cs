@@ -22,6 +22,8 @@ namespace AerolineaFrba.Compra
         {
             InitializeComponent();
             this.mostrarViajes();
+            numericUpDown_encomiendas.Minimum = 0;
+            numericUpDown_pasajes.Minimum = 0;
             llenarCombosCiudad(ref comboBox_destino);
             llenarCombosCiudad(ref comboBox_origen);
             mostrarServicios();
@@ -148,5 +150,7 @@ namespace AerolineaFrba.Compra
         {
             dateTimePicker_fechaViaje.MinDate = dateTimePicker_fechaViaje.MinDate.AddSeconds(1);
         }
+
+
     }
 }

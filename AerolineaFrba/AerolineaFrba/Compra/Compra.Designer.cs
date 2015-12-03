@@ -45,9 +45,15 @@
             this.button2 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.numericUpDown_pasajes = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown_encomiendas = new System.Windows.Forms.NumericUpDown();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_pasajes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_encomiendas)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -62,7 +68,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(324, 22);
+            this.label2.Location = new System.Drawing.Point(349, 22);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(82, 13);
             this.label2.TabIndex = 1;
@@ -82,7 +88,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(41, 32);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(621, 163);
+            this.groupBox1.Size = new System.Drawing.Size(664, 163);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Buscar Viajes";
@@ -90,7 +96,7 @@
             // button_limpiar
             // 
             this.button_limpiar.Enabled = false;
-            this.button_limpiar.Location = new System.Drawing.Point(375, 125);
+            this.button_limpiar.Location = new System.Drawing.Point(402, 125);
             this.button_limpiar.Name = "button_limpiar";
             this.button_limpiar.Size = new System.Drawing.Size(95, 23);
             this.button_limpiar.TabIndex = 5;
@@ -102,7 +108,7 @@
             // 
             this.comboBox_destino.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_destino.FormattingEnabled = true;
-            this.comboBox_destino.Location = new System.Drawing.Point(412, 19);
+            this.comboBox_destino.Location = new System.Drawing.Point(454, 19);
             this.comboBox_destino.Name = "comboBox_destino";
             this.comboBox_destino.Size = new System.Drawing.Size(159, 21);
             this.comboBox_destino.TabIndex = 1;
@@ -130,7 +136,7 @@
             // 
             // button_buscar
             // 
-            this.button_buscar.Location = new System.Drawing.Point(476, 125);
+            this.button_buscar.Location = new System.Drawing.Point(518, 125);
             this.button_buscar.Name = "button_buscar";
             this.button_buscar.Size = new System.Drawing.Size(95, 23);
             this.button_buscar.TabIndex = 4;
@@ -166,24 +172,28 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.numericUpDown_encomiendas);
+            this.groupBox2.Controls.Add(this.numericUpDown_pasajes);
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.button2);
             this.groupBox2.Controls.Add(this.dataGridView1);
             this.groupBox2.Location = new System.Drawing.Point(41, 201);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(621, 228);
+            this.groupBox2.Size = new System.Drawing.Size(664, 228);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Viajes Encontrados";
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(449, 185);
+            this.button2.Location = new System.Drawing.Point(487, 188);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(153, 23);
             this.button2.TabIndex = 1;
             this.button2.Text = "Continuar Compra";
             this.button2.UseVisualStyleBackColor = true;
-            // 
+             // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
@@ -193,9 +203,11 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(22, 19);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.ShowEditingIcon = false;
-            this.dataGridView1.Size = new System.Drawing.Size(580, 150);
+            this.dataGridView1.Size = new System.Drawing.Size(618, 150);
             this.dataGridView1.TabIndex = 0;
             // 
             // timer1
@@ -204,11 +216,43 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(12, 190);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(158, 13);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "Cantidad de Pasajes a Comprar:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(235, 190);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(185, 13);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "Cantidad de Encomiendas a Comprar:";
+            // 
+            // numericUpDown_pasajes
+            // 
+            this.numericUpDown_pasajes.Location = new System.Drawing.Point(176, 188);
+            this.numericUpDown_pasajes.Name = "numericUpDown_pasajes";
+            this.numericUpDown_pasajes.Size = new System.Drawing.Size(43, 20);
+            this.numericUpDown_pasajes.TabIndex = 4;
+            // 
+            // numericUpDown_encomiendas
+            // 
+            this.numericUpDown_encomiendas.Location = new System.Drawing.Point(426, 188);
+            this.numericUpDown_encomiendas.Name = "numericUpDown_encomiendas";
+            this.numericUpDown_encomiendas.Size = new System.Drawing.Size(38, 20);
+            this.numericUpDown_encomiendas.TabIndex = 5;
+            // 
             // Compra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(709, 458);
+            this.ClientSize = new System.Drawing.Size(738, 482);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -219,7 +263,10 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_pasajes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_encomiendas)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -241,5 +288,9 @@
         private System.Windows.Forms.CheckedListBox checkedListBox_servicios;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.NumericUpDown numericUpDown_encomiendas;
+        private System.Windows.Forms.NumericUpDown numericUpDown_pasajes;
     }
 }
