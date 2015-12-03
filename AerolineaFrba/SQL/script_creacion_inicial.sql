@@ -1026,6 +1026,26 @@ select V.VIAJE_ID 'Id', (select CIUDAD_NOMBRE
 from THE_CVENGERS.VIAJE V
 WHERE V.VIAJE_FECHA_LLEGADA IS NULL AND V.VIAJE_FECHA_SALIDA > THE_CVENGERS.fechaReal()
 
+go
+create function THE_CVENGERS.destinosConMasPasajesComprados(@anio as int, @semestre as int)
+returns table
+as
+
+return (select top 5 CIUDAD_NOMBRE 'Destino', (SELECT COUNT(*) 
+									FROM THE_CVENGERS.PASAJE
+									WHERE PASAJE_VIAJE_ID IN (SELECT VIAJE_ID
+																FROM THE_CVENGERS.VIAJE
+																WHERE VIAJE_RUTA IN (SELECT RUTA_ID
+																					FROM THE_CVENGERS.RUTA
+																					WHERE RUTA_DESTINO = CIUDAD_ID)) AND PASAJE_COMPRA IN (select COMPRA_ID
+																																			FROM THE_CVENGERS.COMPRA
+																																			WHERE YEAR(COMPRA_FECHA) = @anio AND month(COMPRA_FECHA) between (case when @semestre = 1 then 1 else 7 end) and (case when @semestre = 1 then 6 else 12 end))) 'Pasajes vendidos'
+										
+from THE_CVENGERS.CIUDAD
+where CIUDAD_ID IN (SELECT RUTA_DESTINO FROM THE_CVENGERS.RUTA WHERE RUTA_ID IN (SELECT VIAJE_RUTA FROM THE_CVENGERS.VIAJE))
+ORDER BY "Pasajes vendidos" desc)
+
+
 
 /*DROP TABLE [THE_CVENGERS].MILLA
 DROP TABLE [THE_CVENGERS].FECHA
@@ -1083,6 +1103,7 @@ DROP PROCEDURE [THE_CVENGERS].registrarLLegada
 DROP PROCEDURE [THE_CVENGERS].generarViaje
 DROP VIEW [THE_CVENGERS].viajesCompra
 DROP PROCEDURE [THE_CVENGERS].asignarMillasViaje
+DROP FUNCTION [THE_CVENGERS].destinosConMasPasajesComprados
 DROP PROCEDURE [THE_CVENGERS].getAll 
 DROP SCHEMA [THE_CVENGERS]*/
 
