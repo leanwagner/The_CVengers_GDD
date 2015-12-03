@@ -57,14 +57,18 @@ namespace AerolineaFrba.Abm_Ruta
             sqlReader.Close();
 
             sqlCmd.CommandText = "update THE_CVENGERS.ROL set ROL_ESTADO = 0 where ROL_ID = " + idRol;
-            sqlCmd.ExecuteNonQuery();
-
-            int x = listBox1.SelectedIndex;
-            listBox2.Items.Add(listBox1.SelectedItem.ToString());
-            listBox2.Refresh();
-            listBox1.Items.RemoveAt(x);
-            listBox1.Refresh();
-        }
+            try
+            {
+                sqlCmd.ExecuteNonQuery();
+                int x = listBox1.SelectedIndex;
+                listBox2.Items.Add(listBox1.SelectedItem.ToString());
+                listBox2.Refresh();
+                listBox1.Items.RemoveAt(x);
+                listBox1.Refresh();
+        
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK); }
+            }
 
         private void button5_Click(object sender, EventArgs e)
         {
@@ -76,14 +80,20 @@ namespace AerolineaFrba.Abm_Ruta
             sqlReader.Close();
 
             sqlCmd.CommandText = "update THE_CVENGERS.ROL set ROL_ESTADO = 1 where ROL_ID = " + idRol;
-            sqlCmd.ExecuteNonQuery();
-            int x = listBox2.SelectedIndex;
-            listBox1.Items.Add(listBox2.SelectedItem.ToString());
-            listBox1.Refresh();
+            try
+            {
             
-            listBox2.Items.RemoveAt(x);
-            listBox2.Refresh();
-        }
+                sqlCmd.ExecuteNonQuery();
+                int x = listBox2.SelectedIndex;
+                listBox1.Items.Add(listBox2.SelectedItem.ToString());
+                listBox1.Refresh();
+
+                listBox2.Items.RemoveAt(x);
+                listBox2.Refresh();
+        
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK); }
+            }
 
         private void button4_Click(object sender, EventArgs e)
         {
