@@ -28,26 +28,39 @@ namespace AerolineaFrba.Listado_Estadistico
         {
            
             llenu.llenarComboBoxAnios(ref comboAnio);
-            comboSem.Items.Add(1);
-            comboSem.Items.Add(2);
+            label3.Visible = false;
+            comboSem.Visible = false;
             comboLista.Items.Add("Destinos con mas pasajes comprados");
             comboLista.Items.Add("Destinos con aeronaves mas vacias");
             comboLista.Items.Add("Clientes con mas puntos acumulados");
             comboLista.Items.Add("Destinos con pasajes mas cancelados");
             comboLista.Items.Add("Aeronaves con mas cantidad de dias fuera de servicio");
             dataGridView1.Visible = false;
-           this.Size = new Size(373, 137);
+            this.Size = new Size(498,137);
             button1.Enabled = false;
             errorProvider1.SetError(button1, "Debe seleccionar todos los campos");
            }
 
         private void comboLista_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if ((sender == comboAnio && comboLista.SelectedIndex != -1) || (sender == comboLista && comboAnio.SelectedIndex != -1))
+            {
+
+                comboSem.SelectedIndex = -1;
+                comboSem.Items.Clear();
+                label3.Visible = true;
+                comboSem.Visible = true;
+                llenu.llenarComboBoxSemestre(ref comboSem, Int32.Parse(comboAnio.SelectedItem.ToString()),comboLista.SelectedIndex);
+                if (comboSem.Items.Count == 1) errorProvider2.SetError(comboSem, "Solo se encuentran datos de un semestre");
+                else errorProvider2.Clear();
+            }
+
             if (comboLista.SelectedIndex == -1 || comboSem.SelectedIndex == -1 || comboAnio.SelectedIndex == -1)
             {
                 dataGridView1.Visible = false;
                 button1.Enabled = false;
                 errorProvider1.SetError(button1, "Debe seleccionar todos los campos");
+                this.Size = new Size(498, 137);
                 
             }
             else { dataGridView1.Visible = true;
@@ -88,7 +101,7 @@ namespace AerolineaFrba.Listado_Estadistico
         private void button1_Click(object sender, EventArgs e)
         {
             estadisticaElejida();
-            this.Size = new Size(373, 292);
+            this.Size = new Size(498, 316);
            
         }
 
