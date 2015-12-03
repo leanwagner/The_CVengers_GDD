@@ -34,8 +34,59 @@ namespace AerolineaFrba
             {
                 funcionalidades.Add(reader["FUNC_NOMBRE"].ToString()); 
             }
-
+            reader.Close();
             int proximoBoton = 0;
+
+
+
+            if (funcionalidades.Contains("Comprar pasaje - encomienda"))
+            {
+                boton_Compra.Visible = true;
+                boton_Compra.Location = new Point(12, posisionesBoton[proximoBoton]);
+                proximoBoton++;
+            }
+
+            if (funcionalidades.Contains("Cancelación pasaje o encomienda"))
+            {
+                boton_Devolucion.Visible = true;
+                boton_Devolucion.Location = new Point(12, posisionesBoton[proximoBoton]);
+                proximoBoton++;
+            }
+
+            if (funcionalidades.Contains("Consultar Millas"))
+            {
+                boton_Consulta_Millas.Visible = true;
+                boton_Consulta_Millas.Location = new Point(12, posisionesBoton[proximoBoton]);
+                proximoBoton++;
+            }
+
+            if (funcionalidades.Contains("Canje Millas"))
+            {
+                boton_Canje_Millas.Visible = true;
+                boton_Canje_Millas.Location = new Point(12, posisionesBoton[proximoBoton]);
+                proximoBoton++;
+            }
+
+            if (funcionalidades.Contains("Generar viaje"))
+            {
+                boton_Generar_Viaje.Visible = true;
+                boton_Generar_Viaje.Location = new Point(12, posisionesBoton[proximoBoton]);
+                proximoBoton++;
+            }
+
+            if (funcionalidades.Contains("Registrar llegada a destino"))
+            {
+                boton_Registro_Llegada.Visible = true;
+                boton_Registro_Llegada.Location = new Point(12, posisionesBoton[proximoBoton]);
+                proximoBoton++;
+            }
+
+            if (funcionalidades.Contains("Listado Estadístico"))
+            {
+                boton_Listado_Estadistico.Visible = true;
+                boton_Listado_Estadistico.Location = new Point(12, posisionesBoton[proximoBoton]);
+                proximoBoton++;
+            }
 
             if (funcionalidades.Contains("ABM Ruta"))
             {
@@ -47,11 +98,23 @@ namespace AerolineaFrba
             if (funcionalidades.Contains("ABM Aeronave"))
             {
                 boton_ABM_Aeronave.Visible = true;
-                boton_ABM_Aeronave.Location new Point(12,posisionesBoton[proximoBoton]);
+                boton_ABM_Aeronave.Location = new Point(12, posisionesBoton[proximoBoton]);
                 proximoBoton++;
             }
 
+            if (funcionalidades.Contains("ABM Rol"))
+            {
+                boton_Rol.Visible = true;
+                boton_Rol.Location = new Point(12, posisionesBoton[proximoBoton]);
+                proximoBoton++;
+            }
 
+            if (funcionalidades.Contains("ABM Ciudad"))
+            {
+                boton_ABM_Ciudad.Visible = true;
+                boton_ABM_Ciudad.Location = new Point(12, posisionesBoton[proximoBoton]);
+                proximoBoton++;
+            }
             
 
         }

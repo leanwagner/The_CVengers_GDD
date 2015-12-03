@@ -545,7 +545,8 @@ insert into [THE_CVENGERS].FUNCIONALIDAD (FUNC_NOMBRE, FUNC_DESCRIPCION) values 
 																				 ('ABM Rol', 'Crear, modificar y eliminar Roles'),
 																				 ('Consultar Millas', 'Autorizacion para consultar millas'),
 																				 ('Canje Millas', 'Autorizacion para canjear millas'),
-																				 ('Listado Estadístico', 'Autorizacion para ver el listado estadístico')
+																				 ('Listado Estadístico', 'Autorizacion para ver el listado estadístico'),
+																				 ('ABM Ciudad', 'Crear, modificar y eliminar Ciudadades (próxima a implementarse)')
 go
 insert into [THE_CVENGERS].FUNCIONXROL (FXR_ROL_ID, FXR_FUNC_ID) values (1,1),
 																		(1,2),
@@ -557,6 +558,7 @@ insert into [THE_CVENGERS].FUNCIONXROL (FXR_ROL_ID, FXR_FUNC_ID) values (1,1),
 																		(1,8),
 																		(1,9),
 																		(1,10),
+																		(1,11),
 																		(2,5),
 																		(2,8)
 
@@ -1578,8 +1580,51 @@ insert into THE_CVENGERS.COMPRA (COMPRA_USUARIO_ID, COMPRA_CLIENTE, COMPRA_CANTI
 								(@user, @cli, 1, 0, @monto, THE_CVENGERS.fechaReal())
 END
 
+go
+create procedure THE_CVENGERS.crearPasaje @cli as numeric(18,0), @viaje as numeric(18,0), @butaca as numeric(18,0)
+as
+begin
+
+declare @codP numeric(18,0)
+set @codP = isnull((SELECT TOP 1 PASAJE_CODIGO_PASAJE FROM THE_CVENGERS.PASAJE ORDER BY PASAJE_CODIGO_PASAJE DESC),0) + 1
+
+declare @idButa numeric(18,0)
+set @idButa = (select BUTACA_ID FROM THE_CVENGERS.BUTACA
+				WHERE BUTACA_AERONAVE = (SELECT AERONAVE_ID FROM THE_CVENGERS.AERONAVE
+											WHERE AERONAVE_ID = (SELECT VIAJE_AERONAVE FROM THE_CVENGERS.VIAJE
+																	WHERE VIAJE_ID = @viaje))
+				and BUTACA_NRO = @butaca)
+
+declare @compra numeric(18,0)
+set @compra = (SELECT TOP 1 COMPRA_ID FROM THE_CVENGERS.COMPRA ORDER BY COMPRA_ID DESC)
+
+insert into THE_CVENGERS.PASAJE (PASAJE_CLI_ID,PASAJE_CODIGO_PASAJE, PASAJE_COMPRA, PASAJE_VIAJE_ID)
+values (@cli, @codP, @compra, @viaje)
+ 
+declare @pasaje numeric(18,0)
+set @pasaje = (SELECT TOP 1 PASAJE_ID FROM THE_CVENGERS.PASAJE ORDER BY PASAJE_ID DESC)
+
+UPDATE THE_CVENGERS.BUTACAXVIAJE SET BUTACAXVIAJE_PASAJE_ID = @pasaje
+WHERE BUTACAXVIAJE_BUTACA_ID = @idButa AND BUTACAXVIAJE_VIAJE_ID = @viaje 
+
+end
+
+go
+create procedure THE_CVENGERS.crearEncomienda @cli as numeric(18,0), @viaje as numeric(18,0), @kg as int
+as
+begin
+
+declare @codE numeric(18,0)
+set @codE = isnull((SELECT TOP 1 ENCOMIENDA_CODIGO FROM THE_CVENGERS.ENCOMIENDA ORDER BY ENCOMIENDA_CODIGO DESC),0) + 1
 
 
+declare @compra numeric(18,0)
+set @compra = (SELECT TOP 1 COMPRA_ID FROM THE_CVENGERS.COMPRA ORDER BY COMPRA_ID DESC)
+
+insert into THE_CVENGERS.ENCOMIENDA (ENCOMIENDA_CLI_ID,ENCOMIENDA_CODIGO, ENCOMIENDA_COMPRA, ENCOMIENDA_VIAJE_ID, ENCOMIENDA_KG)
+values (@cli, @codE, @compra, @viaje, @kg)
+ 
+end
 /*DROP TABLE [THE_CVENGERS].CUOTASXTARJETA
 DROP TABLE [THE_CVENGERS].MILLA
 DROP TABLE [THE_CVENGERS].FECHA
@@ -1659,5 +1704,7 @@ DROP PROCEDURE [THE_CVENGERS].bajarRuta
 DROP PROCEDURE [THE_CVENGERS].ingresarTarjeta
 DROP PROCEDURE [THE_CVENGERS].crearCompraConTarjeta
 DROP PROCEDURE [THE_CVENGERS].crearCompraConEfectivo
+DROP PROCEDURE [THE_CVENGERS].crearPasaje
+DROP PROCEDURE [THE_CVENGERS].crearEncomienda
 DROP PROCEDURE [THE_CVENGERS].getAll 
 DROP SCHEMA [THE_CVENGERS]*/
