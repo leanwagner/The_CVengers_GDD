@@ -156,10 +156,6 @@
 
         }
 
-        private void textBox1_TextChanged(object sender, System.EventArgs e)
-        {
-            throw new System.NotImplementedException();
-        }
 
         #endregion
 

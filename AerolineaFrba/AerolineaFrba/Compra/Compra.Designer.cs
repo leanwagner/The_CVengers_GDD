@@ -42,17 +42,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.comboBox_origen = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.numericUpDown_encomiendas = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown_pasajes = new System.Windows.Forms.NumericUpDown();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.button_continuarCompra = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_encomiendas)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_pasajes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -173,11 +167,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.numericUpDown_encomiendas);
-            this.groupBox2.Controls.Add(this.numericUpDown_pasajes);
-            this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.button2);
+            this.groupBox2.Controls.Add(this.button_continuarCompra);
             this.groupBox2.Controls.Add(this.dataGridView1);
             this.groupBox2.Location = new System.Drawing.Point(41, 201);
             this.groupBox2.Name = "groupBox2";
@@ -186,46 +176,15 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Viajes Existentes";
             // 
-            // numericUpDown_encomiendas
+            // button_continuarCompra
             // 
-            this.numericUpDown_encomiendas.Location = new System.Drawing.Point(426, 188);
-            this.numericUpDown_encomiendas.Name = "numericUpDown_encomiendas";
-            this.numericUpDown_encomiendas.Size = new System.Drawing.Size(38, 20);
-            this.numericUpDown_encomiendas.TabIndex = 5;
-            // 
-            // numericUpDown_pasajes
-            // 
-            this.numericUpDown_pasajes.Location = new System.Drawing.Point(176, 188);
-            this.numericUpDown_pasajes.Name = "numericUpDown_pasajes";
-            this.numericUpDown_pasajes.Size = new System.Drawing.Size(43, 20);
-            this.numericUpDown_pasajes.TabIndex = 4;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(235, 190);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(185, 13);
-            this.label6.TabIndex = 3;
-            this.label6.Text = "Cantidad de Encomiendas a Comprar:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 190);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(158, 13);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "Cantidad de Pasajes a Comprar:";
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(487, 188);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(153, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Continuar Compra";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button_continuarCompra.Location = new System.Drawing.Point(487, 188);
+            this.button_continuarCompra.Name = "button_continuarCompra";
+            this.button_continuarCompra.Size = new System.Drawing.Size(153, 23);
+            this.button_continuarCompra.TabIndex = 1;
+            this.button_continuarCompra.Text = "Continuar Compra";
+            this.button_continuarCompra.UseVisualStyleBackColor = true;
+            this.button_continuarCompra.Click += new System.EventHandler(this.button_continuarCompra_Click);
             // 
             // dataGridView1
             // 
@@ -265,9 +224,6 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_encomiendas)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_pasajes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
@@ -283,16 +239,12 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker_fechaViaje;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button_continuarCompra;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button_limpiar;
         private System.Windows.Forms.ComboBox comboBox_destino;
         private System.Windows.Forms.CheckedListBox checkedListBox_servicios;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.NumericUpDown numericUpDown_encomiendas;
-        private System.Windows.Forms.NumericUpDown numericUpDown_pasajes;
     }
 }
