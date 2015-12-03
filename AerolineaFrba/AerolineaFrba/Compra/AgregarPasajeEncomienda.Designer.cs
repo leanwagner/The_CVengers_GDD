@@ -58,6 +58,10 @@ namespace AerolineaFrba.Compra
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.numericUpDown_kilos = new System.Windows.Forms.NumericUpDown();
             this.label10 = new System.Windows.Forms.Label();
+            this.errorProvider_nombre = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider_apellido = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider_direccion = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider_dni = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_telefono)).BeginInit();
@@ -65,6 +69,10 @@ namespace AerolineaFrba.Compra
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_disponibles)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_kilos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_nombre)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_apellido)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_direccion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_dni)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -76,9 +84,9 @@ namespace AerolineaFrba.Compra
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.comboBox1);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Location = new System.Drawing.Point(33, 24);
+            this.groupBox1.Location = new System.Drawing.Point(22, 24);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(682, 119);
+            this.groupBox1.Size = new System.Drawing.Size(726, 119);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos Pasaje";
@@ -162,16 +170,16 @@ namespace AerolineaFrba.Compra
             this.groupBox2.Controls.Add(this.Nombre);
             this.groupBox2.Controls.Add(this.numericUpDown_dni);
             this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Location = new System.Drawing.Point(33, 155);
+            this.groupBox2.Location = new System.Drawing.Point(22, 155);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(682, 230);
+            this.groupBox2.Size = new System.Drawing.Size(726, 231);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Ingreso datos Cliente";
             // 
             // button_agregarItem
             // 
-            this.button_agregarItem.Location = new System.Drawing.Point(525, 164);
+            this.button_agregarItem.Location = new System.Drawing.Point(568, 175);
             this.button_agregarItem.Name = "button_agregarItem";
             this.button_agregarItem.Size = new System.Drawing.Size(141, 37);
             this.button_agregarItem.TabIndex = 14;
@@ -181,7 +189,7 @@ namespace AerolineaFrba.Compra
             // 
             // dateTimePicker_nacimiento
             // 
-            this.dateTimePicker_nacimiento.Location = new System.Drawing.Point(415, 120);
+            this.dateTimePicker_nacimiento.Location = new System.Drawing.Point(469, 121);
             this.dateTimePicker_nacimiento.Name = "dateTimePicker_nacimiento";
             this.dateTimePicker_nacimiento.Size = new System.Drawing.Size(240, 20);
             this.dateTimePicker_nacimiento.TabIndex = 13;
@@ -196,7 +204,7 @@ namespace AerolineaFrba.Compra
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(300, 126);
+            this.label6.Location = new System.Drawing.Point(354, 127);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(111, 13);
             this.label6.TabIndex = 11;
@@ -220,7 +228,7 @@ namespace AerolineaFrba.Compra
             // 
             // numericUpDown_telefono
             // 
-            this.numericUpDown_telefono.Location = new System.Drawing.Point(415, 78);
+            this.numericUpDown_telefono.Location = new System.Drawing.Point(469, 79);
             this.numericUpDown_telefono.Maximum = new decimal(new int[] {
             1410065407,
             2,
@@ -233,7 +241,7 @@ namespace AerolineaFrba.Compra
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(356, 81);
+            this.label4.Location = new System.Drawing.Point(410, 82);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(52, 13);
             this.label4.TabIndex = 7;
@@ -250,14 +258,14 @@ namespace AerolineaFrba.Compra
             // 
             // textBox_apellido
             // 
-            this.textBox_apellido.Location = new System.Drawing.Point(485, 34);
+            this.textBox_apellido.Location = new System.Drawing.Point(530, 35);
             this.textBox_apellido.Name = "textBox_apellido";
             this.textBox_apellido.Size = new System.Drawing.Size(170, 20);
             this.textBox_apellido.TabIndex = 5;
             // 
             // textBox_nombre
             // 
-            this.textBox_nombre.Location = new System.Drawing.Point(265, 34);
+            this.textBox_nombre.Location = new System.Drawing.Point(283, 35);
             this.textBox_nombre.Name = "textBox_nombre";
             this.textBox_nombre.Size = new System.Drawing.Size(161, 20);
             this.textBox_nombre.TabIndex = 4;
@@ -265,7 +273,7 @@ namespace AerolineaFrba.Compra
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(432, 37);
+            this.label3.Location = new System.Drawing.Point(477, 38);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(47, 13);
             this.label3.TabIndex = 3;
@@ -274,7 +282,7 @@ namespace AerolineaFrba.Compra
             // Nombre
             // 
             this.Nombre.AutoSize = true;
-            this.Nombre.Location = new System.Drawing.Point(212, 37);
+            this.Nombre.Location = new System.Drawing.Point(230, 38);
             this.Nombre.Name = "Nombre";
             this.Nombre.Size = new System.Drawing.Size(47, 13);
             this.Nombre.TabIndex = 2;
@@ -311,9 +319,9 @@ namespace AerolineaFrba.Compra
             this.groupBox3.AutoSize = true;
             this.groupBox3.Controls.Add(this.numericUpDown_kilos);
             this.groupBox3.Controls.Add(this.label10);
-            this.groupBox3.Location = new System.Drawing.Point(33, 24);
+            this.groupBox3.Location = new System.Drawing.Point(22, 24);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(682, 119);
+            this.groupBox3.Size = new System.Drawing.Size(726, 119);
             this.groupBox3.TabIndex = 9;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Datos Encomienda";
@@ -335,15 +343,31 @@ namespace AerolineaFrba.Compra
             this.label10.TabIndex = 0;
             this.label10.Text = "Cantidad de kilos a mandar:";
             // 
+            // errorProvider_nombre
+            // 
+            this.errorProvider_nombre.ContainerControl = this;
+            // 
+            // errorProvider_apellido
+            // 
+            this.errorProvider_apellido.ContainerControl = this;
+            // 
+            // errorProvider_direccion
+            // 
+            this.errorProvider_direccion.ContainerControl = this;
+            // 
+            // errorProvider_dni
+            // 
+            this.errorProvider_dni.ContainerControl = this;
+            // 
             // AgregarPasajeEncomienda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(749, 406);
+            this.ClientSize = new System.Drawing.Size(776, 406);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupBox3);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AgregarPasajeEncomienda";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -358,6 +382,10 @@ namespace AerolineaFrba.Compra
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_kilos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_nombre)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_apellido)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_direccion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_dni)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -392,5 +420,9 @@ namespace AerolineaFrba.Compra
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.NumericUpDown numericUpDown_kilos;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ErrorProvider errorProvider_nombre;
+        private System.Windows.Forms.ErrorProvider errorProvider_apellido;
+        private System.Windows.Forms.ErrorProvider errorProvider_direccion;
+        private System.Windows.Forms.ErrorProvider errorProvider_dni;
     }
 }
