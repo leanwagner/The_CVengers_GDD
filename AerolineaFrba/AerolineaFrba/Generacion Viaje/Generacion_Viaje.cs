@@ -29,7 +29,8 @@ namespace AerolineaFrba.Generacion_Viaje
             timePicker2.Format = DateTimePickerFormat.Time;
             timePicker1.ShowUpDown = true;
             timePicker2.ShowUpDown = true;
-
+            
+            
             datePicker1.Format = DateTimePickerFormat.Custom;
             datePicker2.Format = DateTimePickerFormat.Custom;
             datePicker1.CustomFormat = "dd/MMM/yyyy";
@@ -45,8 +46,12 @@ namespace AerolineaFrba.Generacion_Viaje
             errorProvider1.SetError(comboBox1, "Debe seleccionar una ruta");
             button1.Enabled = false;
 
-            MessageBox.Show(DateTimeHandler.devolverFechaDB().ToString());
-           
+            datePicker1.MinDate = DateTimeHandler.devolverFechaDB();
+            timePicker1.MinDate = DateTimeHandler.devolverFechaDB();
+
+            datePicker1.Value = DateTimeHandler.devolverFechaDB();
+            timePicker1.Value = DateTimeHandler.devolverFechaDB();
+
 
         }
 
@@ -61,7 +66,7 @@ namespace AerolineaFrba.Generacion_Viaje
                 comboBox1.Items.Clear();
                 comboBox1.Refresh();
                 Llenador.LlenadorDeTablas lleni = new Llenador.LlenadorDeTablas();
-                String cond = "1=0";
+                String cond = "(1=0";
 
                 if (select.Cells[6].Value.ToString().CompareTo("Si")>0)
                 {
@@ -80,22 +85,21 @@ namespace AerolineaFrba.Generacion_Viaje
                     cond = cond + "or AERONAVE_SERVICIO = 3";
                 }
 
+                cond = cond + ") and AERONAVE_ESTADO = 1 and AERONAVE_EN_TALLER = 0";
+
                 lleni.llenarComboBoxConCondicion(ref comboBox1, "AERONAVE", "AERONAVE_MATRICULA_AVION", cond);
                 errorProvider1.Clear();
                 errorProvider2.SetError(comboBox1, "Este campo solo muestra los aviones que proveen el servicio de la ruta seleccionada");
                 comboBox1.Enabled = true;
-                errorProvider3.SetError(timePicker2, "La fecha de llegada debe ser despues de la de salida");
+               
             
 
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (DateTime.Compare(datePicker1.Value.Date + timePicker1.Value.TimeOfDay, datePicker2.Value.Date + timePicker2.Value.TimeOfDay) < 0)
-                errorProvider3.Clear();
-            else errorProvider3.SetError(timePicker2, "La fecha de llegada debe ser despues de la de salida");
-
-            if (comboBox1.SelectedIndex != -1 && (DateTime.Compare(datePicker1.Value.Date + timePicker1.Value.TimeOfDay, datePicker2.Value.Date + timePicker2.Value.TimeOfDay) < 0))
+           
+            if (comboBox1.SelectedIndex != -1)
             {
                 button1.Enabled = true;
                
@@ -106,17 +110,33 @@ namespace AerolineaFrba.Generacion_Viaje
 
         private void datePicker1_ValueChanged(object sender, EventArgs e)
         {
-            if (DateTime.Compare(datePicker1.Value.Date + timePicker1.Value.TimeOfDay, datePicker2.Value.Date + timePicker2.Value.TimeOfDay) < 0)
-                errorProvider3.Clear();
-            else errorProvider3.SetError(timePicker2, "La fecha de llegada debe ser despues de la de salida");
+            datePicker2.MinDate = datePicker1.Value.AddMinutes(5);
+            timePicker2.MinDate = datePicker1.Value.AddMinutes(5);
 
-            if (DateTime.Compare(datePicker1.Value.Date + timePicker1.Value.TimeOfDay, datePicker2.Value.Date + timePicker2.Value.TimeOfDay) < 0 && comboBox1.SelectedIndex != -1)
+          
+            if (comboBox1.SelectedIndex != -1)
             { button1.Enabled = true;
            
             }
             else { button1.Enabled = false;
             
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SqlCommand sqlCmd = new SqlCommand("select * from THE_CVENGERS.AERONAVE where AERONAVE_MATRICULA_AVION ='" + comboBox1.SelectedItem.ToString() + "'", Conexion.getConexion());
+            SqlDataReader sqlReader;
+            sqlReader = sqlCmd.ExecuteReader();
+            sqlReader.Read();
+            String idAero = sqlReader["AERONAVE_ID"].ToString();
+            sqlReader.Close();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            datePicker1.MinDate = datePicker1.MinDate.AddSeconds(1);
+            timePicker1.MinDate = timePicker1.MinDate.AddSeconds(1);
         }
 
         

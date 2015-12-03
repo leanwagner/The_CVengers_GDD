@@ -28,15 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Canje_Millas));
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.premioCombo = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.dniBox = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.button1 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.canUpDown = new System.Windows.Forms.NumericUpDown();
+            this.canjBoton = new System.Windows.Forms.Button();
+            this.nombreCombo = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.errorDniDup = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorNoStock = new System.Windows.Forms.ErrorProvider(this.components);
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.canUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorDniDup)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorNoStock)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -48,80 +65,201 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "DNI:";
             // 
-            // comboBox1
+            // premioCombo
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(60, 144);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 1;
+            this.premioCombo.FormattingEnabled = true;
+            this.premioCombo.Location = new System.Drawing.Point(60, 164);
+            this.premioCombo.Name = "premioCombo";
+            this.premioCombo.Size = new System.Drawing.Size(154, 21);
+            this.premioCombo.TabIndex = 1;
+            this.premioCombo.SelectedIndexChanged += new System.EventHandler(this.premioCombo_SelectedIndexChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 147);
+            this.label2.Location = new System.Drawing.Point(12, 172);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(42, 13);
             this.label2.TabIndex = 2;
             this.label2.Text = "Premio:";
             // 
-            // textBox1
+            // dniBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(47, 6);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 3;
+            this.dniBox.Location = new System.Drawing.Point(47, 6);
+            this.dniBox.Name = "dniBox";
+            this.dniBox.Size = new System.Drawing.Size(100, 20);
+            this.dniBox.TabIndex = 3;
+            this.dniBox.TextChanged += new System.EventHandler(this.dniBox_TextChanged);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label12);
+            this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Location = new System.Drawing.Point(15, 32);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(326, 100);
+            this.groupBox1.Size = new System.Drawing.Size(341, 126);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos cliente";
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(48, 110);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(147, 13);
+            this.label12.TabIndex = 7;
+            this.label12.Text = "*aca iria la cantidad de millas*";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(6, 110);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(36, 13);
+            this.label11.TabIndex = 6;
+            this.label11.Text = "Millas:";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(108, 78);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(41, 13);
+            this.label10.TabIndex = 5;
+            this.label10.Text = "label10";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(41, 49);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(35, 13);
+            this.label9.TabIndex = 4;
+            this.label9.Text = "label9";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(59, 20);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(35, 13);
+            this.label8.TabIndex = 3;
+            this.label8.Text = "label8";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 78);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(96, 13);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "Fecha Nacimiento:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 49);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(29, 13);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "Mail:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 20);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(47, 13);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Nombre:";
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(205, 147);
+            this.label3.Location = new System.Drawing.Point(235, 167);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(52, 13);
             this.label3.TabIndex = 5;
             this.label3.Text = "Cantidad:";
             // 
-            // numericUpDown1
+            // canUpDown
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(263, 144);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(78, 20);
-            this.numericUpDown1.TabIndex = 6;
+            this.canUpDown.Location = new System.Drawing.Point(293, 164);
+            this.canUpDown.Name = "canUpDown";
+            this.canUpDown.Size = new System.Drawing.Size(48, 20);
+            this.canUpDown.TabIndex = 6;
+            this.canUpDown.ValueChanged += new System.EventHandler(this.canUpDown_ValueChanged);
             // 
-            // button1
+            // canjBoton
             // 
-            this.button1.Location = new System.Drawing.Point(142, 186);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Canjear";
-            this.button1.UseVisualStyleBackColor = true;
+            this.canjBoton.Enabled = false;
+            this.canjBoton.Location = new System.Drawing.Point(139, 203);
+            this.canjBoton.Name = "canjBoton";
+            this.canjBoton.Size = new System.Drawing.Size(75, 23);
+            this.canjBoton.TabIndex = 7;
+            this.canjBoton.Text = "Canjear";
+            this.canjBoton.UseVisualStyleBackColor = true;
+            // 
+            // nombreCombo
+            // 
+            this.nombreCombo.FormattingEnabled = true;
+            this.nombreCombo.Location = new System.Drawing.Point(220, 5);
+            this.nombreCombo.Name = "nombreCombo";
+            this.nombreCombo.Size = new System.Drawing.Size(121, 21);
+            this.nombreCombo.TabIndex = 9;
+            this.nombreCombo.Visible = false;
+            this.nombreCombo.SelectedIndexChanged += new System.EventHandler(this.nombreCombo_SelectedIndexChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(167, 9);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(47, 13);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Nombre:";
+            this.label4.Visible = false;
+            // 
+            // errorDniDup
+            // 
+            this.errorDniDup.ContainerControl = this;
+            this.errorDniDup.Icon = ((System.Drawing.Icon)(resources.GetObject("errorDniDup.Icon")));
+            // 
+            // errorNoStock
+            // 
+            this.errorNoStock.ContainerControl = this;
             // 
             // Canje_Millas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(353, 221);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.numericUpDown1);
+            this.ClientSize = new System.Drawing.Size(368, 238);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.nombreCombo);
+            this.Controls.Add(this.canjBoton);
+            this.Controls.Add(this.canUpDown);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.dniBox);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.premioCombo);
             this.Controls.Add(this.label1);
             this.Name = "Canje_Millas";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Canje Millas";
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            this.Load += new System.EventHandler(this.Canje_Millas_Load);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.canUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorDniDup)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorNoStock)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -130,12 +268,24 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox premioCombo;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox dniBox;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.NumericUpDown canUpDown;
+        private System.Windows.Forms.Button canjBoton;
+        private System.Windows.Forms.ComboBox nombreCombo;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ErrorProvider errorDniDup;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ErrorProvider errorNoStock;
     }
 }

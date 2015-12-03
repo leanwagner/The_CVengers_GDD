@@ -105,18 +105,52 @@ namespace AerolineaFrba.Registro_Llegada_Destino
 
         private void button_BuscarAeronave_Click(object sender, EventArgs e)
         {
-            SqlCommand sqlCmd = new SqlCommand("SELECT THE_CVENGERS.viajeARegistrar (@P1 ='" + comboBox_matricula.SelectedItem.ToString()  + 
-                "', @P2 ='" + comboBox_AeropuertoSalida.SelectedItem.ToString().Substring(1) + 
-            "', @P3 ='" + comboBox_AeropuertoLlegada.SelectedItem.ToString().Substring(1) + "') AS resultado ", Conexion.getConexion());
+            try
+            {
+                SqlCommand sqlCmd = new SqlCommand("SELECT THE_CVENGERS.viajeARegistrar ('" + comboBox_matricula.SelectedItem.ToString() +
+                    "', '" + comboBox_AeropuertoSalida.SelectedItem.ToString().Substring(1) +
+                "', '" + comboBox_AeropuertoLlegada.SelectedItem.ToString().Substring(1) + "') AS resultado ", Conexion.getConexion());
 
-            SqlDataReader reader = sqlCmd.ExecuteReader();
-            
-            reader.Read();
+                MessageBox.Show("SELECT THE_CVENGERS.viajeARegistrar ('" + comboBox_matricula.SelectedItem.ToString() +
+                    "', '" + comboBox_AeropuertoSalida.SelectedItem.ToString().Substring(1) +
+                "', '" + comboBox_AeropuertoLlegada.SelectedItem.ToString().Substring(1) + "') AS resultado ");
 
-            String viajeId = reader["resultado"].ToString();
-            
-            groupBox3.Enabled = true;
+                SqlDataReader reader = sqlCmd.ExecuteReader();
 
+                reader.Read();
+
+                String viajeId = reader["resultado"].ToString();
+
+                reader.Close();
+
+                MessageBox.Show(viajeId);
+
+                sqlCmd = new SqlCommand("SELECT A.AERONAVE_MATRICULA_AVION, A.AERONAVE_MODELO_AVION, S.SERVICIO_NOMBRE, V.VIAJE_FECHA_SALIDA, V.VIAJE_FECHA_LLEGADA_ESTIMADA FROM AERONAVE A, VIAJE V, SERVICIO S WHERE A.AERONAVE_MATRICULA_AVION = '" +  
+                comboBox_matricula.SelectedItem.ToString() + "' AND V.VIAJE_ID = " + viajeId + " AND A.AERONAVE_SERVICIO = S.SERVICIO_ID" ,Conexion.getConexion());
+
+                MessageBox.Show("SELECT A.AERONAVE_MATRICULA_AVION, A.AERONAVE_MODELO_AVION, S.SERVICIO_NOMBRE, V.VIAJE_FECHA_SALIDA, V.VIAJE_FECHA_LLEGADA_ESTIMADA FROM AERONAVE A, VIAJE V, SERVICIO S WHERE A.AERONAVE_MATRICULA_AVION = '" +
+                comboBox_matricula.SelectedItem.ToString() + "' AND V.VIAJE_ID = " + viajeId + " AND A.AERONAVE_SERVICIO = S.SERVICIO_ID");
+
+                groupBox3.Enabled = true;
+
+               
+
+            }
+            catch 
+            {
+                MessageBox.Show("No hay ningún viaje en proceso de esa Aeronave sobre esa ruta.", "Error", MessageBoxButtons.OK);
+            }
+
+        }
+
+        public void limpiarCampos()
+        {
+            comboBox_AeropuertoLlegada.Items.Clear();
+            llenarCombosCiudad(ref comboBox_AeropuertoLlegada);
+            comboBox_AeropuertoSalida.Items.Clear();
+            llenarCombosCiudad(ref comboBox_AeropuertoSalida);
+            comboBox_matricula.Items.Clear();
+            llenarComboMatricula(ref comboBox_matricula);
         }
 
     }
