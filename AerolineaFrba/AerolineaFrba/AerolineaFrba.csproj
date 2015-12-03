@@ -219,8 +219,14 @@
     <EmbeddedResource Include="Consulta Millas\Consulta_Millas.resx">
       <DependentUpon>Consulta_Millas.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Devolucion\Devolucion.resx">
+      <DependentUpon>Devolucion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Generacion Viaje\Generacion_Viaje.resx">
       <DependentUpon>Generacion_Viaje.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listado Estadistico\Listado_Estadistico.resx">
+      <DependentUpon>Listado_Estadistico.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

@@ -108,7 +108,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(47, 13);
             this.label3.TabIndex = 1;
-            this.label3.Text = "Nombre:";
+            this.label3.Text = "Apellido:";
             // 
             // nameBox
             // 
@@ -155,7 +155,6 @@
             this.PerformLayout();
 
         }
-
 
         #endregion
 
