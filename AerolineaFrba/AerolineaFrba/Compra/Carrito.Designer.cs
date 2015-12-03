@@ -634,14 +634,11 @@ namespace AerolineaFrba.Compra
         private Microsoft.VisualBasic.PowerPacks.LineShape lineShape1;
         private System.Windows.Forms.DateTimePicker dateTimePicker_vencimiento;
         private System.Windows.Forms.ErrorProvider errorProvider_dniDup;
-<<<<<<< HEAD
         private System.Windows.Forms.ErrorProvider errorProvider_nombre;
         private System.Windows.Forms.ErrorProvider errorProvider_apellido;
         private System.Windows.Forms.ErrorProvider errorProvider_dni;
         private System.Windows.Forms.ErrorProvider errorProvider_direccion;
-=======
         private System.Windows.Forms.Button button_limpiarComprador;
->>>>>>> f784bc920586648ae4c71a6edb489d6498279de9
 
     }
 }
