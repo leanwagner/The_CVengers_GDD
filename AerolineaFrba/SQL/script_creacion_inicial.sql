@@ -1045,6 +1045,53 @@ from THE_CVENGERS.CIUDAD
 where CIUDAD_ID IN (SELECT RUTA_DESTINO FROM THE_CVENGERS.RUTA WHERE RUTA_ID IN (SELECT VIAJE_RUTA FROM THE_CVENGERS.VIAJE))
 ORDER BY "Pasajes vendidos" desc)
 
+go
+create function THE_CVENGERS.destinosConAeronavesMasVacias(@anio as int, @semestre as int)
+returns table
+as
+
+return (select top 5 CIUDAD_NOMBRE 'Destino', (SELECT COUNT(*) 
+												from THE_CVENGERS.BUTACAXVIAJE
+												WHERE BUTACAXVIAJE_VIAJE_ID IN (SELECT VIAJE_ID	
+																				FROM VIAJE
+																				WHERE VIAJE_RUTA IN (SELECT RUTA_ID
+																										FROM THE_CVENGERS.RUTA
+																										WHERE RUTA_DESTINO = CIUDAD_ID)
+																				AND VIAJE_FECHA_LLEGADA IS NOT NULL
+																				AND YEAR(VIAJE_FECHA_LLEGADA) = @anio
+																				AND month(VIAJE_FECHA_LLEGADA) between (case when @semestre = 1 then 1 else 7 end) and (case when @semestre = 1 then 6 else 12 end))) 'Total pasajes disponibles',  (SELECT COUNT(*) 
+																																																														from THE_CVENGERS.BUTACAXVIAJE
+																																																														WHERE BUTACAXVIAJE_VIAJE_ID IN (SELECT VIAJE_ID	
+																																																																						FROM VIAJE
+																																																																						WHERE VIAJE_RUTA IN (SELECT RUTA_ID
+																																																																												FROM THE_CVENGERS.RUTA
+																																																																												WHERE RUTA_DESTINO = CIUDAD_ID)
+																																																																						AND VIAJE_FECHA_LLEGADA IS NOT NULL
+																																																																						AND YEAR(VIAJE_FECHA_LLEGADA) = @anio
+																																																																						AND month(VIAJE_FECHA_LLEGADA) between (case when @semestre = 1 then 1 else 7 end) and (case when @semestre = 1 then 6 else 12 end))
+																																																																						and BUTACAXVIAJE_PASAJE_ID IS NOT NULL) 'Total pasajes comprados', 100 - (((SELECT COUNT(*) 
+																																																																																								from THE_CVENGERS.BUTACAXVIAJE
+																																																																																								WHERE BUTACAXVIAJE_VIAJE_ID IN (SELECT VIAJE_ID	
+																																																																																																FROM VIAJE
+																																																																																																WHERE VIAJE_RUTA IN (SELECT RUTA_ID
+																																																																																																						FROM THE_CVENGERS.RUTA
+																																																																																																						WHERE RUTA_DESTINO = CIUDAD_ID)
+																																																																																																AND VIAJE_FECHA_LLEGADA IS NOT NULL
+																																																																																																AND YEAR(VIAJE_FECHA_LLEGADA) = @anio
+																																																																																																AND month(VIAJE_FECHA_LLEGADA) between (case when @semestre = 1 then 1 else 7 end) and (case when @semestre = 1 then 6 else 12 end))
+																																																																																																and BUTACAXVIAJE_PASAJE_ID IS NOT NULL) / (SELECT COUNT(*) 
+																																																																																																																	from THE_CVENGERS.BUTACAXVIAJE
+																																																																																																																	WHERE BUTACAXVIAJE_VIAJE_ID IN (SELECT VIAJE_ID	
+																																																																																																																									FROM VIAJE
+																																																																																																																									WHERE VIAJE_RUTA IN (SELECT RUTA_ID
+																																																																																																																															FROM THE_CVENGERS.RUTA
+																																																																																																																															WHERE RUTA_DESTINO = CIUDAD_ID)
+																																																																																																																									AND VIAJE_FECHA_LLEGADA IS NOT NULL
+																																																																																																																									AND YEAR(VIAJE_FECHA_LLEGADA) = @anio
+																																																																																																																									AND month(VIAJE_FECHA_LLEGADA) between (case when @semestre = 1 then 1 else 7 end) and (case when @semestre = 1 then 6 else 12 end))))*100) 'Porcentaje de desocupación'
+from THE_CVENGERS.CIUDAD
+where CIUDAD_ID IN (SELECT RUTA_DESTINO FROM THE_CVENGERS.RUTA WHERE RUTA_ID IN (SELECT VIAJE_RUTA FROM THE_CVENGERS.VIAJE))
+ORDER BY "Porcentaje de desocupación" DESC, "Total pasajes disponibles" DESC, "Total pasajes comprados" DESC)
 
 
 /*DROP TABLE [THE_CVENGERS].MILLA
@@ -1104,6 +1151,7 @@ DROP PROCEDURE [THE_CVENGERS].generarViaje
 DROP VIEW [THE_CVENGERS].viajesCompra
 DROP PROCEDURE [THE_CVENGERS].asignarMillasViaje
 DROP FUNCTION [THE_CVENGERS].destinosConMasPasajesComprados
+DROP FUNCTION [THE_CVENGERS].destinosConAeronavesMasVacias
 DROP PROCEDURE [THE_CVENGERS].getAll 
 DROP SCHEMA [THE_CVENGERS]*/
 
