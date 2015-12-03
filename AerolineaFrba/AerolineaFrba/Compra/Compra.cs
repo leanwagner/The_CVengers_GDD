@@ -116,7 +116,7 @@ namespace AerolineaFrba.Compra
         {
             if (DateTime.Compare(dateTimePicker_fechaViaje.Value, dateTimePicker_fechaViaje.MinDate) > 0)
                 button_limpiar.Enabled = true;
-            else if(comboBox_destino.SelectedItem == null && comboBox_origen.SelectedItem == null && checkedListBox_servicios.CheckedItems.Count > 1 )
+            else if(comboBox_destino.SelectedItem == null && comboBox_origen.SelectedItem == null && checkedListBox_servicios.CheckedItems.Count < 1 )
                 button_limpiar.Enabled = false;
         }
 
