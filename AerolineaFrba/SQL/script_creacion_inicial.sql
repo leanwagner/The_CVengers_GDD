@@ -900,6 +900,60 @@ return @viajeBuscado
 end
 
 go
+create procedure THE_CVENGERS.asignarMillasViaje @viaje as numeric(18,0)
+as
+begin
+
+
+INSERT INTO THE_CVENGERS.MILLA (MILLA_CLIENTE, MILLA_GANADA, MILLA_FECHA_ACREDITACION)
+SELECT PASAJE_CLI_ID, cast((((SELECT RUTA_PRECIO_BASE_POR_PASAJE
+						FROM THE_CVENGERS.RUTA
+						WHERE RUTA_ID = (SELECT VIAJE_RUTA
+										FROM THE_CVENGERS.VIAJE
+										WHERE VIAJE_ID = @viaje)) + ((SELECT SERVICIO_PORCENTAJE/100
+																				FROM THE_CVENGERS.SERVICIO
+																				WHERE SERVICIO_ID = (SELECT AERONAVE_SERVICIO
+																										FROM THE_CVENGERS.AERONAVE
+																										WHERE AERONAVE_ID = (SELECT	VIAJE_AERONAVE
+																																FROM THE_CVENGERS.VIAJE
+																																WHERE VIAJE_ID = @viaje))) * (SELECT RUTA_PRECIO_BASE_POR_PASAJE
+																																										FROM THE_CVENGERS.RUTA
+																																										WHERE RUTA_ID = (SELECT VIAJE_RUTA 
+																																															FROM THE_CVENGERS.VIAJE
+																																															WHERE VIAJE_ID = @viaje)))) /10) as int), (select VIAJE_FECHA_LLEGADA 
+																																																										from THE_CVENGERS.VIAJE
+																																																										where VIAJE_ID = @viaje)
+FROM THE_CVENGERS.PASAJE
+WHERE PASAJE_VIAJE_ID = @viaje
+
+
+INSERT INTO THE_CVENGERS.MILLA (MILLA_CLIENTE, MILLA_GANADA, MILLA_FECHA_ACREDITACION)
+SELECT ENCOMIENDA_CLI_ID, cast((((SELECT RUTA_PRECIO_BASE_POR_KILO* ENCOMIENDA_KG
+									FROM THE_CVENGERS.RUTA
+									WHERE RUTA_ID = (SELECT VIAJE_RUTA
+													FROM THE_CVENGERS.VIAJE
+													WHERE VIAJE_ID = @viaje)) + ((SELECT SERVICIO_PORCENTAJE/100
+																							FROM THE_CVENGERS.SERVICIO
+																							WHERE SERVICIO_ID = (SELECT AERONAVE_SERVICIO
+																													FROM THE_CVENGERS.AERONAVE
+																													WHERE AERONAVE_ID = (SELECT	VIAJE_AERONAVE
+																																			FROM THE_CVENGERS.VIAJE
+																																			WHERE VIAJE_ID = @viaje))) * (SELECT RUTA_PRECIO_BASE_POR_KILO * ENCOMIENDA_KG
+																																													FROM THE_CVENGERS.RUTA
+																																													WHERE RUTA_ID = (SELECT VIAJE_RUTA 
+																																																		FROM THE_CVENGERS.VIAJE
+																																																		WHERE VIAJE_ID = @viaje)))) /10) as int), (select VIAJE_FECHA_LLEGADA 
+																																																													from THE_CVENGERS.VIAJE
+																																																													where VIAJE_ID = @viaje)
+FROM THE_CVENGERS.ENCOMIENDA
+WHERE ENCOMIENDA_VIAJE_ID = @viaje
+
+
+end
+
+
+
+go
 create procedure THE_CVENGERS.registrarLLegada @viaje as numeric(18,0), @fecha as datetime
 as
 begin
@@ -907,7 +961,7 @@ begin
 update THE_CVENGERS.VIAJE set VIAJE_FECHA_LLEGADA = @fecha
 where VIAJE_ID = @viaje
 
---EXEC THE_CVENGERS.asignarMillasViaje @viaje = @viaje
+EXEC THE_CVENGERS.asignarMillasViaje @viaje = @viaje
 
 end
 
@@ -1028,6 +1082,7 @@ DROP FUNCTION [THE_CVENGERS].viajeARegistrar
 DROP PROCEDURE [THE_CVENGERS].registrarLLegada
 DROP PROCEDURE [THE_CVENGERS].generarViaje
 DROP VIEW [THE_CVENGERS].viajesCompra
+DROP PROCEDURE [THE_CVENGERS].asignarMillasViaje
 DROP PROCEDURE [THE_CVENGERS].getAll 
 DROP SCHEMA [THE_CVENGERS]*/
 
