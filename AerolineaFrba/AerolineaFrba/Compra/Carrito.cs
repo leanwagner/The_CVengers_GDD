@@ -39,11 +39,11 @@ namespace AerolineaFrba.Compra
             groupBox_tarjeta.Enabled = false;
             checkeoUsuario();
             seteoDateTime(ref dateTimePicker_vencimiento);
-            
+
 
         }
 
-        public void llenarCollectionAux() 
+        public void llenarCollectionAux()
         {
             ListBox aux = new ListBox();
             String tablas = "AERONAVE A, THE_CVENGERS.VIAJE V, THE_CVENGERS.BUTACA B";
@@ -54,12 +54,12 @@ namespace AerolineaFrba.Compra
         }
 
 
-        public void seteoDateTime(ref DateTimePicker date) 
+        public void seteoDateTime(ref DateTimePicker date)
         {
 
-            dateTimePicker_vencimiento.MinDate= DateTimeHandler.devolverFechaDB();
-        
-        
+            dateTimePicker_vencimiento.MinDate = DateTimeHandler.devolverFechaDB();
+
+
         }
 
 
@@ -68,7 +68,7 @@ namespace AerolineaFrba.Compra
 
             radioButton_tarjeta.Checked = true;
             radioButton_efectivo.Enabled = false;
-        
+
         }
         private void button_aEncomienda_Click(object sender, EventArgs e)
         {
@@ -77,7 +77,7 @@ namespace AerolineaFrba.Compra
                 MessageBox.Show("El viaje no tiene más KG disponibles", "Error: KG insuficientes", MessageBoxButtons.OK);
                 return;
             }
-            AgregarPasajeEncomienda ventana = new AgregarPasajeEncomienda(idViaje,TipoCompra.Encomienda);
+            AgregarPasajeEncomienda ventana = new AgregarPasajeEncomienda(idViaje, TipoCompra.Encomienda);
             ventana.Show();
         }
 
@@ -87,12 +87,12 @@ namespace AerolineaFrba.Compra
             {
                 MessageBox.Show("El viaje no tiene más butacas disponibles", "Error: butacas insuficientes", MessageBoxButtons.OK);
                 return;
-            } 
+            }
             AgregarPasajeEncomienda ventana = new AgregarPasajeEncomienda(idViaje, TipoCompra.Pasaje);
             ventana.Show();
         }
 
-        public static void agregarCliente(Cliente cliente) 
+        public static void agregarCliente(Cliente cliente)
         {
             ListaClientes.Add(cliente);
         }
@@ -102,7 +102,7 @@ namespace AerolineaFrba.Compra
             float retu = 0f;
             foreach (Cliente cli in ListaClientes)
             {
-               retu += cli.getItem().calcularPrecio();
+                retu += cli.getItem().calcularPrecio();
             }
             return retu;
         }
@@ -115,9 +115,9 @@ namespace AerolineaFrba.Compra
                 listBox1.Items.Add(cli);
             }
 
-            labelMonto.Text = calcularPrecioTotal().ToString("0.00");
+            labelMonto.Text = calcularPrecioTotal().ToString("00.00");
             if (calcularPrecioTotal() != 0) button_confirmarItems.Enabled = true;
-            else button_confirmarItems.Enabled=false;
+            else button_confirmarItems.Enabled = false;
         }
 
         private void button_eliminarItem_Click(object sender, EventArgs e)
@@ -126,7 +126,7 @@ namespace AerolineaFrba.Compra
             ListaClientes.Remove(aux);
             aux.getItem().actualizarValoresCancelados();
             listBox1.Items.Remove(aux);
-            labelMonto.Text = calcularPrecioTotal().ToString("0.00");
+            labelMonto.Text = calcularPrecioTotal().ToString("00.00");
         }
 
 
@@ -143,9 +143,9 @@ namespace AerolineaFrba.Compra
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(listBox1.SelectedItem != null )
-            button_eliminarItem.Enabled = true;
-            
+            if (listBox1.SelectedItem != null)
+                button_eliminarItem.Enabled = true;
+
             else
                 button_eliminarItem.Enabled = false;
         }
@@ -162,7 +162,7 @@ namespace AerolineaFrba.Compra
                     if (reader.HasRows)
                         apellidos.Add(reader["CLIENTE_APELLIDO"].ToString());
                 }
-               
+
                 switch (apellidos.Count)
                 {
                     case 0:
@@ -248,9 +248,45 @@ namespace AerolineaFrba.Compra
         {
             ListaClientes.Clear();
             ListaButacas.Clear();
-            
+
 
         }
-        
+
+        public int aplicarValidaciones()
+        {
+            int flag = 0;
+
+            if (textBox_nombre.Text == "")
+            {
+                errorProvider_nombre.SetError(textBox_nombre, "Por favor ingrese un Nombre");
+                flag += 1;
+            }
+            else
+                errorProvider_nombre.Clear();
+            if (textBox_apellido.Text == "")
+            {
+                errorProvider_apellido.SetError(textBox_apellido, "Por favor ingrese un Apellido");
+                flag += 1;
+            }
+            else
+                errorProvider_apellido.Clear();
+            if (textBox1.Text == "")
+            {
+                errorProvider_direccion.SetError(textBox1, "Por favor ingrese una Dirección");
+                flag += 1;
+            }
+            else
+                errorProvider_direccion.Clear();
+            if (numericUpDown_dni.Value.ToString().Count() < 5)
+            {
+                errorProvider_dni.SetError(numericUpDown_dni, "Por favor ingrese un DNI válido ");
+                flag += 1;
+            }
+            else
+                errorProvider_dni.Clear();
+
+            return flag;
+
+        }
     }
 }

@@ -73,6 +73,10 @@ namespace AerolineaFrba.Compra
             this.Nombre = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.errorProvider_dniDup = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider_nombre = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider_apellido = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider_dni = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider_direccion = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox_tarjeta.SuspendLayout();
@@ -82,6 +86,10 @@ namespace AerolineaFrba.Compra
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_telefono)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_dni)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_dniDup)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_nombre)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_apellido)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_dni)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_direccion)).BeginInit();
             this.SuspendLayout();
             // 
             // listBox1
@@ -520,6 +528,22 @@ namespace AerolineaFrba.Compra
             this.errorProvider_dniDup.ContainerControl = this;
             this.errorProvider_dniDup.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider_dniDup.Icon")));
             // 
+            // errorProvider_nombre
+            // 
+            this.errorProvider_nombre.ContainerControl = this;
+            // 
+            // errorProvider_apellido
+            // 
+            this.errorProvider_apellido.ContainerControl = this;
+            // 
+            // errorProvider_dni
+            // 
+            this.errorProvider_dni.ContainerControl = this;
+            // 
+            // errorProvider_direccion
+            // 
+            this.errorProvider_direccion.ContainerControl = this;
+            // 
             // Carrito
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -545,6 +569,10 @@ namespace AerolineaFrba.Compra
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_telefono)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_dni)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_dniDup)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_nombre)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_apellido)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_dni)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_direccion)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -595,6 +623,10 @@ namespace AerolineaFrba.Compra
         private Microsoft.VisualBasic.PowerPacks.LineShape lineShape1;
         private System.Windows.Forms.DateTimePicker dateTimePicker_vencimiento;
         private System.Windows.Forms.ErrorProvider errorProvider_dniDup;
+        private System.Windows.Forms.ErrorProvider errorProvider_nombre;
+        private System.Windows.Forms.ErrorProvider errorProvider_apellido;
+        private System.Windows.Forms.ErrorProvider errorProvider_dni;
+        private System.Windows.Forms.ErrorProvider errorProvider_direccion;
 
     }
 }
