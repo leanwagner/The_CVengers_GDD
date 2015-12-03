@@ -907,6 +907,8 @@ begin
 update THE_CVENGERS.VIAJE set VIAJE_FECHA_LLEGADA = @fecha
 where VIAJE_ID = @viaje
 
+--EXEC THE_CVENGERS.asignarMillasViaje @viaje = @viaje
+
 end
 
 go
@@ -964,7 +966,7 @@ select V.VIAJE_ID 'Id', (select CIUDAD_NOMBRE
 																																																																						where BUTACAXVIAJE_VIAJE_ID = VIAJE_ID
 																																																																						and BUTACAXVIAJE_PASAJE_ID is null) 'Butacas disponibles', ((select AERONAVE_ESPACIO_ENCOMIENDAS
 																																																																																							FROM THE_CVENGERS.AERONAVE
-																																																																																							WHERE AERONAVE_ID = VIAJE_AERONAVE)-(select sum(ENCOMIENDA_KG)	
+																																																																																							WHERE AERONAVE_ID = VIAJE_AERONAVE)-(select isnull(sum(ENCOMIENDA_KG),0)	
 																																																																																																	from THE_CVENGERS.ENCOMIENDA
 																																																																																																	where ENCOMIENDA_VIAJE_ID = VIAJE_ID)) 'Kg disponibles'
 from THE_CVENGERS.VIAJE V
