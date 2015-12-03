@@ -62,6 +62,8 @@ namespace AerolineaFrba.Compra
             this.errorProvider_apellido = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProvider_direccion = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProvider_dni = new System.Windows.Forms.ErrorProvider(this.components);
+            this.button_limpiar = new System.Windows.Forms.Button();
+            this.errorProvider_dniDup = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_telefono)).BeginInit();
@@ -73,6 +75,7 @@ namespace AerolineaFrba.Compra
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_apellido)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_direccion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_dni)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_dniDup)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -155,6 +158,7 @@ namespace AerolineaFrba.Compra
             // groupBox2
             // 
             this.groupBox2.AutoSize = true;
+            this.groupBox2.Controls.Add(this.button_limpiar);
             this.groupBox2.Controls.Add(this.button_agregarItem);
             this.groupBox2.Controls.Add(this.dateTimePicker_nacimiento);
             this.groupBox2.Controls.Add(this.textBox_mail);
@@ -360,6 +364,21 @@ namespace AerolineaFrba.Compra
             // 
             this.errorProvider_dni.ContainerControl = this;
             // 
+            // button_limpiar
+            // 
+            this.button_limpiar.Location = new System.Drawing.Point(421, 175);
+            this.button_limpiar.Name = "button_limpiar";
+            this.button_limpiar.Size = new System.Drawing.Size(141, 37);
+            this.button_limpiar.TabIndex = 15;
+            this.button_limpiar.Text = "Limpiar Campos";
+            this.button_limpiar.UseVisualStyleBackColor = true;
+            this.button_limpiar.Click += new System.EventHandler(this.button_limpiar_Click);
+            // 
+            // errorProvider_dniDup
+            // 
+            this.errorProvider_dniDup.ContainerControl = this;
+            this.errorProvider_dniDup.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider_dniDup.Icon")));
+            // 
             // AgregarPasajeEncomienda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -387,6 +406,7 @@ namespace AerolineaFrba.Compra
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_apellido)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_direccion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_dni)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_dniDup)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -425,5 +445,7 @@ namespace AerolineaFrba.Compra
         private System.Windows.Forms.ErrorProvider errorProvider_apellido;
         private System.Windows.Forms.ErrorProvider errorProvider_direccion;
         private System.Windows.Forms.ErrorProvider errorProvider_dni;
+        private System.Windows.Forms.Button button_limpiar;
+        private System.Windows.Forms.ErrorProvider errorProvider_dniDup;
     }
 }

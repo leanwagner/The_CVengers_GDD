@@ -20,6 +20,7 @@ namespace AerolineaFrba.Compra
         LlenadorDeTablas llenador = new LlenadorDeTablas();
         int viajeId;
         TipoCompra tipoActual;
+        bool estaTodoAutocompletado = false;
 
         public AgregarPasajeEncomienda(int id_viaje, TipoCompra tipo)
         {
@@ -143,7 +144,7 @@ namespace AerolineaFrba.Compra
         private void numericUpDown_dni_KeyUp(object sender, KeyEventArgs e)
         {
             List<String> apellidos = new List<string>();
-            if (numericUpDown_dni.Text.Length > 56)
+            if (numericUpDown_dni.Text.Length > 5 && !estaTodoAutocompletado)
             {
                 SqlCommand cmd = new SqlCommand("select * from THE_CVENGERS.CLIENTE where CLIENTE_DNI = " + numericUpDown_dni.Text, Conexion.getConexion());
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -151,45 +152,52 @@ namespace AerolineaFrba.Compra
                 {
                     if (reader.HasRows)
                         apellidos.Add(reader["CLIENTE_APELLIDO"].ToString());
-                 }
-                switch(apellidos.Count){
+                }
+                switch (apellidos.Count)
+                {
                     case 0:
                         reader.Close();
                         return;
 
-                case 1: 
-                    reader.Close();
+                    case 1:
+                        reader.Close();
                         SqlDataReader readerAux = cmd.ExecuteReader();
                         readerAux.Read();
                         if (readerAux.HasRows)
                         {
+                            estaTodoAutocompletado = true;
                             textBox_apellido.Text = readerAux["CLIENTE_APELLIDO"].ToString();
                             textBox_nombre.Text = readerAux["CLIENTE_NOMBRE"].ToString();
                             textBox_mail.Text = readerAux["CLIENTE_MAIL"].ToString();
                             dateTimePicker_nacimiento.Text = DateTime.Parse(readerAux["CLIENTE_FECHA_NAC"].ToString()).Date.ToString("dd-MMM-yyyy");
                             textBox_direccion.Text = readerAux["CLIENTE_DIR"].ToString();
                             numericUpDown_telefono.Text = readerAux["CLIENTE_TELEFONO"].ToString();
-                      
+
                         }
                         readerAux.Close();
-                            return;
-                    case 2: 
+                        return;
+                    case 2:
                         reader.Close();
+
+                        errorProvider_dniDup.SetError(numericUpDown_dni,"No se puede identificar univocamente a un cliente con ese DNI. Ingrese un Apellido");
+
                         if (textBox_apellido.Text.Length > 0)
                         {
                             SqlCommand sqlCmd = new SqlCommand("select * from THE_CVENGERS.CLIENTE where CLIENTE_DNI = " + numericUpDown_dni.Text + " AND CLIENTE_APELLIDO = '" + textBox_apellido.Text + "'", Conexion.getConexion());
                             SqlDataReader leedor = sqlCmd.ExecuteReader();
-                            MessageBox.Show(sqlCmd.CommandText);
+                            
 
                             leedor.Read();
                             if (leedor.HasRows)
                             {
+                                estaTodoAutocompletado = true;
+                                errorProvider_dniDup.Clear();
                                 textBox_nombre.Text = leedor["CLIENTE_NOMBRE"].ToString();
                                 textBox_mail.Text = leedor["CLIENTE_MAIL"].ToString();
                                 dateTimePicker_nacimiento.Text = DateTime.Parse(leedor["CLIENTE_FECHA_NAC"].ToString()).Date.ToString("dd-MMM-yyyy");
                                 textBox_direccion.Text = leedor["CLIENTE_DIR"].ToString();
                                 numericUpDown_telefono.Text = leedor["CLIENTE_TELEFONO"].ToString();
-                                MessageBox.Show("Campeon este dni esta duplicado");
+                                
 
                             }
                             leedor.Close();
@@ -247,6 +255,19 @@ namespace AerolineaFrba.Compra
                 errorProvider_dni.Clear();
 
             return flag;
+        }
+
+        private void button_limpiar_Click(object sender, EventArgs e)
+        {
+            estaTodoAutocompletado = false;
+            numericUpDown_dni.Value = 0;
+            textBox_nombre.Text = "";
+            textBox_apellido.Text = "";
+            textBox_direccion.Text = "";
+            textBox_mail.Text = "";
+            numericUpDown_telefono.Value = 0;
+            dateTimePicker_nacimiento.Value = dateTimePicker_nacimiento.MaxDate;
+            errorProvider_dniDup.Clear();
         }
 
 
