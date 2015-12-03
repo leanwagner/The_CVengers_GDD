@@ -35,7 +35,7 @@ namespace AerolineaFrba.Registro_Llegada_Destino
         private void Registro_LlegadaDestino_Load(object sender, EventArgs e)
         {
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
-            dateTimePicker1.CustomFormat = "dd-MM-yyyy HH:mm:ss";
+            dateTimePicker1.CustomFormat = " ";
             dateTimePicker1.Value = DateTimeHandler.devolverFechaDB();
         }
 
@@ -145,6 +145,7 @@ namespace AerolineaFrba.Registro_Llegada_Destino
                 reader.Close();
 
                 groupBox3.Enabled = true;
+                dateTimePicker1.CustomFormat = "dd-MM-yyyy HH:mm:ss";
 
                
 
