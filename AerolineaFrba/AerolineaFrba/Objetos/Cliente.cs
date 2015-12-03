@@ -9,6 +9,7 @@ namespace AerolineaFrba.Objetos
 
     public class Cliente
     {
+       private int clienteId;
        private Int32 Dni;
        private string Nombre;
        private string Apellido;
@@ -19,9 +20,10 @@ namespace AerolineaFrba.Objetos
        private TipoItem item;
        
 
-       public Cliente(Int32 dni, string nombre, string apellido, string direccion, Int32 telefono, string mail, string fecha_nacimiento, TipoItem item) 
+       public Cliente(int id,Int32 dni, string nombre, string apellido, string direccion, Int32 telefono, string mail, string fecha_nacimiento, TipoItem item) 
        {
 
+            this.clienteId = id;
             this.Dni = dni;
             this.Nombre = nombre;
             this.Apellido = apellido;
@@ -76,6 +78,10 @@ namespace AerolineaFrba.Objetos
         public TipoItem getItem()
         {
             return item;
+        }
+
+        public void persistirme() 
+        { 
         }
     }
 }

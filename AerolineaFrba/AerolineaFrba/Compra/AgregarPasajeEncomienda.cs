@@ -183,7 +183,7 @@ namespace AerolineaFrba.Compra
 
                         if (textBox_apellido.Text.Length > 0)
                         {
-                            SqlCommand sqlCmd = new SqlCommand("select * from THE_CVENGERS.CLIENTE where CLIENTE_DNI = " + numericUpDown_dni.Text + " AND CLIENTE_APELLIDO = '" + textBox_apellido.Text + "'", Conexion.getConexion());
+                            SqlCommand sqlCmd = new SqlCommand("select * from THE_CVENGERS.CLIENTE where CLIENTE_DNI = " + numericUpDown_dni.Text + " AND CLIENTE_APELLIDO COLLATE Latin1_General_CI_AI like '" + textBox_apellido.Text + "' COLLATE Latin1_General_CI_AI", Conexion.getConexion());
                             SqlDataReader leedor = sqlCmd.ExecuteReader();
                             
 
