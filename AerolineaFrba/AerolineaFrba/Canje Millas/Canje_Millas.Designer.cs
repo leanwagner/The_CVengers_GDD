@@ -51,13 +51,12 @@
             this.errorDniDup = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorNoStock = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorPuntos = new System.Windows.Forms.ErrorProvider(this.components);
-            
+            ((System.ComponentModel.ISupportInitialize)(this.dniBox)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.canUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorDniDup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorNoStock)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorPuntos)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dniBox)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -90,11 +89,15 @@
             // dniBox
             // 
             this.dniBox.Location = new System.Drawing.Point(47, 6);
+            this.dniBox.Maximum = new decimal(new int[] {
+            99999999,
+            0,
+            0,
+            0});
             this.dniBox.Name = "dniBox";
             this.dniBox.Size = new System.Drawing.Size(100, 20);
             this.dniBox.TabIndex = 3;
             this.dniBox.TextChanged += new System.EventHandler(this.dniBox_TextChanged);
-            this.dniBox.Maximum = 99999999;
             // 
             // groupBox1
             // 
@@ -248,9 +251,6 @@
             // 
             this.errorPuntos.ContainerControl = this;
             // 
-            // numericUpDown1
-            // 
-            // 
             // Canje_Millas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -266,17 +266,18 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.premioCombo);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Canje_Millas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Canje Millas";
             this.Load += new System.EventHandler(this.Canje_Millas_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dniBox)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.canUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorDniDup)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorNoStock)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorPuntos)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dniBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
