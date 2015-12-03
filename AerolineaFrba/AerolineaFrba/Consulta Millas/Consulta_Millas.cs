@@ -51,6 +51,7 @@ namespace AerolineaFrba.Consulta_Millas
                 millasLabel.Visible = false;
                 groupBox1.Enabled = false;
                 dataGridView1.Enabled = false;
+
             }
             else
             {
