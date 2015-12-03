@@ -255,42 +255,43 @@ namespace AerolineaFrba.Abm_Ruta
             try
             {
                 sqlCmd.ExecuteNonQuery();
+                MessageBox.Show("Rol creado exitosamente");
+                sqlCmd.CommandText = "select * from THE_CVENGERS.ROL where ROL_NOMBRE ='" + textBox1.Text + "'";
+                sqlReader = sqlCmd.ExecuteReader();
+                sqlReader.Read();
+                String idRol = sqlReader["ROL_ID"].ToString();
+                sqlReader.Close();
+
+                foreach (String funcion in checkedListBox1.CheckedItems)
+                {
+                    sqlCmd.CommandText = "select * from THE_CVENGERS.FUNCIONALIDAD where FUNC_NOMBRE ='" + funcion + "'";
+                    sqlReader = sqlCmd.ExecuteReader();
+                    sqlReader.Read();
+                    String idFuncion = sqlReader["FUNC_ID"].ToString();
+                    sqlReader.Close();
+                    //hacer el insert
+                    sqlCmd.CommandText = "insert into THE_CVENGERS.FUNCIONXROL(FXR_ROL_ID,FXR_FUNC_ID) values (" + idRol + "," + idFuncion + ")";
+                    try
+                    {
+                        sqlCmd.ExecuteNonQuery();
+                    }
+                    catch (Exception exc) { MessageBox.Show(exc.Message, "Error", MessageBoxButtons.OK); }
+                }
+                sqlCmd.Dispose();
+                for (int i = 0; i < checkedListBox1.Items.Count; i++)
+                    checkedListBox1.SetItemCheckState(i, (CheckState.Unchecked));
+                checkedListBox1.Refresh();
+                //  listBox1.Items.Add(textBox1.Text);
+                listBox1.Refresh();
+                textBox1.Clear();
+                button1.Enabled = false;
+           
             }
             catch
             {
                 MessageBox.Show("Ya existe un rol con ese nombre", "Error", MessageBoxButtons.OK);
             }
 
-            MessageBox.Show("Rol creado exitosamente");
-            sqlCmd.CommandText = "select * from THE_CVENGERS.ROL where ROL_NOMBRE ='" + textBox1.Text + "'";
-            sqlReader = sqlCmd.ExecuteReader();
-            sqlReader.Read();
-            String idRol = sqlReader["ROL_ID"].ToString();
-            sqlReader.Close();
-
-            foreach (String funcion in checkedListBox1.CheckedItems)
-            {
-                sqlCmd.CommandText = "select * from THE_CVENGERS.FUNCIONALIDAD where FUNC_NOMBRE ='"+funcion+"'";
-                sqlReader = sqlCmd.ExecuteReader();
-                sqlReader.Read();
-                String idFuncion = sqlReader["FUNC_ID"].ToString();
-                sqlReader.Close();
-                //hacer el insert
-                sqlCmd.CommandText = "insert into THE_CVENGERS.FUNCIONXROL(FXR_ROL_ID,FXR_FUNC_ID) values (" + idRol + "," + idFuncion + ")";
-                try
-                {
-                    sqlCmd.ExecuteNonQuery();
-                }
-                catch (Exception exc) { MessageBox.Show(exc.Message, "Error", MessageBoxButtons.OK); }
-                }
-            sqlCmd.Dispose();
-            for (int i = 0; i < checkedListBox1.Items.Count; i++)
-                checkedListBox1.SetItemCheckState(i, (CheckState.Unchecked));
-            checkedListBox1.Refresh();
-          //  listBox1.Items.Add(textBox1.Text);
-            listBox1.Refresh();
-             textBox1.Clear();
-             button1.Enabled = false;
             
         }
 
