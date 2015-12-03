@@ -909,6 +909,41 @@ where VIAJE_ID = @viaje
 
 end
 
+go
+create procedure THE_CVENGERS.generarViaje @aeronave as numeric(18,0), @ruta as numeric(18,0), @salida as datetime, @llegadaest as datetime
+as
+begin
+
+if(exists(select viaje_id from THE_CVENGERS.VIAJE where VIAJE_AERONAVE = @aeronave and VIAJE_RUTA = @ruta and datediff(day,VIAJE_FECHA_SALIDA, @salida) <= 1 and VIAJE_FECHA_LLEGADA is not null))
+begin
+raiserror('Esa aeronave ya tiene un viaje asignado en ese lapso de tiempo', 1 , 16)
+return
+end
+
+insert into THE_CVENGERS.VIAJE (VIAJE_AERONAVE,VIAJE_RUTA,VIAJE_FECHA_SALIDA, VIAJE_FECHA_LLEGADA_ESTIMADA)
+VALUES (@aeronave, @ruta, @salida, @llegadaest)
+
+declare @viaje numeric(18,0)
+set @viaje = (select VIAJE_ID from THE_CVENGERS.VIAJE where VIAJE_AERONAVE = @aeronave and VIAJE_RUTA = @ruta and VIAJE_FECHA_SALIDA = @salida and VIAJE_FECHA_LLEGADA_ESTIMADA = @llegadaest) 
+
+declare @cantButacas numeric(18,0)
+set @cantButacas = (select AERONAVE_CANTIDAD_BUTACAS from THE_CVENGERS.AERONAVE WHERE AERONAVE_ID = @aeronave)
+
+declare @numButaca numeric(3,0)
+set @numButaca = 0
+
+while(@numButaca < @cantButacas)
+begin
+
+insert into THE_CVENGERS.BUTACAXVIAJE (BUTACAXVIAJE_VIAJE_ID, BUTACAXVIAJE_BUTACA_ID)
+VALUES (@viaje, (SELECT BUTACA_ID FROM THE_CVENGERS.BUTACA WHERE BUTACA_AERONAVE = @aeronave AND BUTACA_NRO = @numButaca))
+
+set @numButaca = @numButaca + 1
+
+end
+
+end
+
 --EXECUTE [THE_CVENGERS].getAll @RECV = '[THE_CVENGERS].CIUDAD'
 
 
@@ -968,6 +1003,7 @@ DROP PROCEDURE [THE_CVENGERS].setearFecha
 DROP FUNCTION [THE_CVENGERS].fechaReal
 DROP FUNCTION [THE_CVENGERS].viajeARegistrar
 DROP PROCEDURE [THE_CVENGERS].registrarLLegada
+DROP PROCEDRE [THE_CVENGERS].generarViaje
 DROP PROCEDURE [THE_CVENGERS].getAll 
 DROP SCHEMA [THE_CVENGERS]*/
 
