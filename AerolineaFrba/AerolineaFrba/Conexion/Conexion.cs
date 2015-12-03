@@ -27,9 +27,9 @@ namespace AerolineaFrba
                     return conexionDB;
                 }
 
-                catch (Exception ex)
+                catch 
                 {
-                    MessageBox.Show("No se pudo establecer conexion con la base de datos: " + ex);
+                    MessageBox.Show("No se pudo establecer conexion con la base de datos","Error",MessageBoxButtons.Ok);
                     Environment.Exit(1);
                 }
 
