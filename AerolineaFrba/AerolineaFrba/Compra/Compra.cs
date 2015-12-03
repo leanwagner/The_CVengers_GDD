@@ -54,8 +54,8 @@ namespace AerolineaFrba.Compra
         {
             dateTimePicker_fechaViaje.Format = DateTimePickerFormat.Custom;
             dateTimePicker_fechaViaje.CustomFormat = "yyyy-MM-dd HH:mm:ss";
-            dateTimePicker_fechaViaje.Value = DateTimeHandler.devolverFechaDB();
             dateTimePicker_fechaViaje.MinDate = DateTimeHandler.devolverFechaDB();
+            dateTimePicker_fechaViaje.Value = DateTimeHandler.devolverFechaDB();
         }
 
         private void comboBox_destino_SelectedIndexChanged_1(object sender, EventArgs e)
@@ -88,7 +88,7 @@ namespace AerolineaFrba.Compra
 
         public void activarBotonLimpiar()
         {
-            if (comboBox_destino.SelectedItem != null || comboBox_origen.SelectedItem != null || checkedListBox_servicios.CheckedItems.Count > 0)
+            if (comboBox_destino.SelectedItem != null || comboBox_origen.SelectedItem != null)
                 button_limpiar.Enabled = true;
  
         }
@@ -106,14 +106,17 @@ namespace AerolineaFrba.Compra
             foreach (int checkedIndex in checkedListBox_servicios.CheckedIndices)
                 checkedListBox_servicios.SetItemChecked(checkedIndex, false);
 
-            dateTimePicker_fechaViaje.Value = DateTimeHandler.devolverFechaDB();
+            dateTimePicker_fechaViaje.Value = dateTimePicker_fechaViaje.MinDate;
 
             button_limpiar.Enabled = false;
         }
 
         private void dateTimePicker_fechaViaje_ValueChanged(object sender, EventArgs e)
         {
-            activarBotonLimpiar();
+            if (DateTime.Compare(dateTimePicker_fechaViaje.Value, dateTimePicker_fechaViaje.MinDate) > 0)
+                button_limpiar.Enabled = true;
+            else if(comboBox_destino.SelectedItem == null && comboBox_origen.SelectedItem == null && checkedListBox_servicios.CheckedItems.Count > 1 )
+                button_limpiar.Enabled = false;
         }
 
         public void mostrarViajes()
@@ -134,11 +137,16 @@ namespace AerolineaFrba.Compra
                 button_limpiar.Enabled = true;
 
             }
-            else if (e.NewValue == CheckState.Unchecked && checkedListBox_servicios.CheckedItems.Count <= 1)
+            else if (e.NewValue == CheckState.Unchecked && checkedListBox_servicios.CheckedItems.Count <= 1 && comboBox_destino.SelectedItem == null && comboBox_origen.SelectedItem == null && DateTime.Compare(dateTimePicker_fechaViaje.Value, dateTimePicker_fechaViaje.MinDate) <= 0)
             {
                 button_limpiar.Enabled = false;
 
             }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            dateTimePicker_fechaViaje.MinDate = dateTimePicker_fechaViaje.MinDate.AddSeconds(1);
         }
     }
 }
