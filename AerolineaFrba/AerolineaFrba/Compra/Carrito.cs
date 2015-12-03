@@ -353,6 +353,38 @@ namespace AerolineaFrba.Compra
 
            persistirTarjetaCredito();
 
+           if (radioButton_tarjeta.Checked)
+               persistirCompraTarjeta();
+           else
+               persistirCompraEfectivo();
+
+        }
+
+        public void persistirCompraTarjeta()
+        {
+            string query = "EXEC THE_CVENGERS.crearCompraConTarjeta @user = '" + +
+                "',@cli = '" + id_cliente.ToString() +
+                "',@tipoTar = '" + comboBox_tipoTarjeta.SelectedItem.ToString() +
+                "',@nro = '" + numericUpDown_numeroTarjeta.Value.ToString() +
+                "',@cod = '" + numericUpDown_codigoTarjeta.Value.ToString() +
+                "',@fechaVen = '" + dateTimePicker_vencimiento.Value.Date.ToString() +
+                "',@monto = '" + labelMonto.Text + 
+                "',@cuotas = '" + comboBox1.SelectedItem.ToString() + "'";
+
+            SqlCommand sqlCmd = new SqlCommand(query, Conexion.getConexion());
+            MessageBox.Show(sqlCmd.CommandText);
+            
+            sqlCmd.ExecuteNonQuery();
+
+        }
+
+        public void persistirCompraEfectivo()
+        {
+            string query = "";
+            SqlCommand sqlCmd = new SqlCommand(query, Conexion.getConexion());
+            MessageBox.Show(sqlCmd.CommandText);
+
+            sqlCmd.ExecuteNonQuery();
         }
 
         private void comboBox_tipoTarjeta_SelectedIndexChanged(object sender, EventArgs e)
