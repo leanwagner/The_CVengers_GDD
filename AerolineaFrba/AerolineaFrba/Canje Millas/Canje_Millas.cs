@@ -114,5 +114,10 @@ namespace AerolineaFrba.Canje_Millas
             else
                 canjBoton.Enabled = false;
         }
+
+        private void canjBoton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("todavia no lo hice porque no tenemos millas");
+        }
     }
 }

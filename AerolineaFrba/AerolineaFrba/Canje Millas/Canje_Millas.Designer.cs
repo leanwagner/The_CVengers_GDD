@@ -206,6 +206,7 @@
             this.canjBoton.TabIndex = 7;
             this.canjBoton.Text = "Canjear";
             this.canjBoton.UseVisualStyleBackColor = true;
+            this.canjBoton.Click += new System.EventHandler(this.canjBoton_Click);
             // 
             // nombreCombo
             // 
