@@ -85,8 +85,10 @@ namespace AerolineaFrba.Compra
 
         private void button_eliminarItem_Click(object sender, EventArgs e)
         {
-            ListaClientes.Remove((Cliente)listBox1.SelectedItem);
-            listBox1.Items.Remove(listBox1.SelectedItem);
+            Cliente aux = (Cliente)listBox1.SelectedItem;
+            ListaClientes.Remove(aux);
+            aux.getItem().actualizarValoresCancelados();
+            listBox1.Items.Remove(aux);
             labelMonto.Text = calcularPrecioTotal().ToString("0.00");
         }
 
