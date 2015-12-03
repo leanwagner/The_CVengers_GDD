@@ -350,7 +350,9 @@ namespace AerolineaFrba.Compra
                 return;
 
            new Cliente(id_cliente,(int)numericUpDown_dni.Value, textBox_nombre.Text, textBox_apellido.Text, textBox1.Text, (int)numericUpDown_telefono.Value, textBox2.Text, dateTimePicker_nacimiento.Value.Date.ToString()).persistirme();
- 
+
+           persistirTarjetaCredito();
+
         }
 
         private void comboBox_tipoTarjeta_SelectedIndexChanged(object sender, EventArgs e)
@@ -358,6 +360,28 @@ namespace AerolineaFrba.Compra
             comboBox1.Items.Clear();
             llenarComboBoxCuotas(ref comboBox1, comboBox_tipoTarjeta.SelectedItem.ToString());
             comboBox1.Enabled = true;
+        }
+
+        public void persistirTarjetaCredito()
+        {
+            string query = "EXEC THE_CVENGERS.ingresarTarjeta @cli = '" + id_cliente.ToString() + 
+                "' @tipoTar = '" + comboBox_tipoTarjeta.SelectedItem.ToString() +
+                "' @nro = '" + numericUpDown_numeroTarjeta.Value.ToString() +
+                "' @cod = '" + numericUpDown_codigoTarjeta.Value.ToString() +
+                "' @fechaVen = '" + dateTimePicker_vencimiento.Text + "'";
+
+            SqlCommand sqlCmd = new SqlCommand(query,Conexion.getConexion());
+
+            MessageBox.Show(sqlCmd.CommandText);
+
+            try
+            {
+                sqlCmd.ExecuteNonQuery();
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);    
+            }
         }
         
     }
