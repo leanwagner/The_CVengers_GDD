@@ -620,6 +620,7 @@ DECLARE @USER numeric(18,0)
 DECLARE @PASS VARCHAR(100)
 SET @USER = (SELECT U.USR_ID FROM THE_CVENGERS.USUARIO U WHERE U.USR_USERNAME = @P1)
 SET @PASS = (SELECT U.USR_PASS FROM THE_CVENGERS.USUARIO U WHERE U.USR_USERNAME = @P1)
+
 IF (@USER IS NULL) 
 BEGIN
 RAISERROR('El usuario ingresado no existe',16,1)
@@ -749,11 +750,9 @@ return
 end
 
 go
-CREATE PROCEDURE THE_CVENGERS.modificacionRuta @P0 as numeric(18,0), @P1 as numeric(18,0), @P2 as nvarchar(100), @P3 as nvarchar(100), @P4 as numeric(18,2), @P5 as numeric(18,2), @P6 as nvarchar(100), @P7 as nvarchar(100), @P8 as nvarchar(100)
+CREATE PROCEDURE THE_CVENGERS.modificacionRuta @P0 as numeric(18,0), @P1 as numeric(18,0), @P4 as numeric(18,2), @P5 as numeric(18,2), @P6 as nvarchar(100), @P7 as nvarchar(100), @P8 as nvarchar(100)
 as 
 begin
-DECLARE @ORIGEN NUMERIC(18,0)
-DECLARE @DESTINO NUMERIC(18,0)
 DECLARE @SERV1 NUMERIC(18,0)
 DECLARE @SERV2 NUMERIC(18,0)
 DECLARE @SERV3 NUMERIC(18,0)
@@ -774,8 +773,6 @@ RAISERROR('La ruta debe tener por lo menos un tipo de servicio asignado.',16,1)
 return
 END 
 
-SET @ORIGEN = (SELECT C.CIUDAD_ID FROM THE_CVENGERS.CIUDAD C WHERE C.CIUDAD_NOMBRE like ('_' + @P2))
-SET @DESTINO = (SELECT C.CIUDAD_ID FROM THE_CVENGERS.CIUDAD C WHERE C.CIUDAD_NOMBRE like ('_' + @P3))
 SET @SERV1 = (SELECT S.SERVICIO_ID FROM THE_CVENGERS.SERVICIO S WHERE S.SERVICIO_NOMBRE = @P6)
 SET @SERV2 = (SELECT S.SERVICIO_ID FROM THE_CVENGERS.SERVICIO S WHERE S.SERVICIO_NOMBRE = @P7)
 SET @SERV3 = (SELECT S.SERVICIO_ID FROM THE_CVENGERS.SERVICIO S WHERE S.SERVICIO_NOMBRE = @P8)
@@ -786,13 +783,8 @@ RAISERROR('No se puede modificar esta ruta debido a que existen viajes en curso 
 return
 END
 
-if(exists(select R.RUTA_ID FROM THE_CVENGERS.RUTA R WHERE R.RUTA_ORIGEN = @ORIGEN AND R.RUTA_DESTINO = @DESTINO AND R.RUTA_ESTADO = 1 and r.RUTA_ID <> @P0))
-BEGIN
-RAISERROR('Ya existe una ruta con ese mismo origen y destino.',16,1)
-return
-end
 
-update THE_CVENGERS.RUTA SET RUTA_CODIGO = @P1, RUTA_ORIGEN = @ORIGEN, RUTA_DESTINO = @DESTINO, RUTA_PRECIO_BASE_POR_KILO = @P4, RUTA_PRECIO_BASE_POR_PASAJE = @P5
+update THE_CVENGERS.RUTA SET RUTA_CODIGO = @P1, RUTA_PRECIO_BASE_POR_KILO = @P4, RUTA_PRECIO_BASE_POR_PASAJE = @P5
 WHERE RUTA_ID = @P0
 
 if(@SERV1 is not null)
@@ -1554,6 +1546,40 @@ VALUES (@cli, @tipo, @nro, @cod, @fechaven)
 
 END
 end
+
+go
+create procedure THE_CVENGERS.crearCompraConTarjeta @user as NUMERIC(18,0), @cli as numeric(18,0), @tipoTar as nvarchar(18), @nro as numeric(16,0),
+								@cod as numeric(18,0), @fechaven as datetime, @monto as numeric(18,2), @cuotas as numeric(18,0)
+as
+begin
+
+declare @tipo numeric(18,0)
+set @tipo = (select TIPO_TARJETA_ID FROM THE_CVENGERS.TIPO_TARJETA WHERE TIPO_TARJETA_DETALLE = @tipoTar)
+
+DECLARE @TARJ NUMERIC(18,0)
+SET @TARJ = (select TARJETA_ID FROM THE_CVENGERS.TARJETACREDITO WHERE TARJETA_NRO = @nro
+			and TARJETA_COD_SEGURIDAD = @cod AND TARJETA_FECHA_VENCIMIENTO = @fechaven 
+			AND TARJETA_TIPO = @tipo AND TARJETA_CLIENTE = @cli)
+
+insert into THE_CVENGERS.COMPRA (COMPRA_USUARIO_ID, COMPRA_CLIENTE, COMPRA_TARJETA, COMPRA_CANTIDAD_DE_CUOTAS,
+								COMPRA_FORMA_DE_PAGO, COMPRA_MONTO, COMPRA_FECHA)
+								VALUES
+								(@user, @cli, @TARJ, @cuotas, 1, @monto, THE_CVENGERS.fechaReal())
+END
+
+go
+create procedure THE_CVENGERS.crearCompraConEfectivo @user as NUMERIC(18,0), @cli as numeric(18,0), @monto as numeric(18,2)
+as
+begin
+
+insert into THE_CVENGERS.COMPRA (COMPRA_USUARIO_ID, COMPRA_CLIENTE, COMPRA_CANTIDAD_DE_CUOTAS,
+								COMPRA_FORMA_DE_PAGO, COMPRA_MONTO, COMPRA_FECHA)
+								VALUES
+								(@user, @cli, 1, 0, @monto, THE_CVENGERS.fechaReal())
+END
+
+
+
 /*DROP TABLE [THE_CVENGERS].CUOTASXTARJETA
 DROP TABLE [THE_CVENGERS].MILLA
 DROP TABLE [THE_CVENGERS].FECHA
@@ -1631,5 +1657,7 @@ DROP FUNCTION [THE_CVENGERS].tipoTarjetaCompra
 DROP FUNCTION [THE_CVENGERS].numeroTarjetaCompra
 DROP PROCEDURE [THE_CVENGERS].bajarRuta
 DROP PROCEDURE [THE_CVENGERS].ingresarTarjeta
+DROP PROCEDURE [THE_CVENGERS].crearCompraConTarjeta
+DROP PROCEDURE [THE_CVENGERS].crearCompraConEfectivo
 DROP PROCEDURE [THE_CVENGERS].getAll 
 DROP SCHEMA [THE_CVENGERS]*/
