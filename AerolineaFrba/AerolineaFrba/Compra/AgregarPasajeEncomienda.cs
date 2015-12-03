@@ -21,6 +21,7 @@ namespace AerolineaFrba.Compra
         int viajeId;
         TipoCompra tipoActual;
         bool estaTodoAutocompletado = false;
+        int cli_id;
 
         public AgregarPasajeEncomienda(int id_viaje, TipoCompra tipo)
         {
@@ -117,7 +118,7 @@ namespace AerolineaFrba.Compra
                 case TipoCompra.Pasaje:
 
                     Pasaje pasaje = new Pasaje(Int32.Parse(comboBox_butacasDisponibles.SelectedItem.ToString()), this.viajeId);
-                    cliente = new Cliente((Int32)numericUpDown_dni.Value, textBox_nombre.Text, textBox_apellido.Text, textBox_direccion.Text, (Int32)numericUpDown_telefono.Value
+                    cliente = new Cliente(cli_id,(Int32)numericUpDown_dni.Value, textBox_nombre.Text, textBox_apellido.Text, textBox_direccion.Text, (Int32)numericUpDown_telefono.Value
                     , textBox_mail.Text, dateTimePicker_nacimiento.Value.ToString(), pasaje);
                     Carrito.agregarCliente(cliente);
                     Carrito.ListaButacas.Remove(Int32.Parse(comboBox_butacasDisponibles.SelectedItem.ToString()));
@@ -126,7 +127,7 @@ namespace AerolineaFrba.Compra
                 case TipoCompra.Encomienda:
                     Encomienda encomienda = new Encomienda((Int32)numericUpDown_kilos.Value, this.viajeId);
 
-                    cliente = new Cliente((Int32)numericUpDown_dni.Value, textBox_nombre.Text, textBox_apellido.Text, textBox_direccion.Text, (Int32)numericUpDown_telefono.Value
+                    cliente = new Cliente(cli_id,(Int32)numericUpDown_dni.Value, textBox_nombre.Text, textBox_apellido.Text, textBox_direccion.Text, (Int32)numericUpDown_telefono.Value
                     , textBox_mail.Text, dateTimePicker_nacimiento.Value.ToString(), encomienda);
                     Carrito.agregarCliente(cliente);
                     Carrito.kgs_disponibles = Carrito.kgs_disponibles - (Int32)numericUpDown_kilos.Value;
@@ -165,6 +166,7 @@ namespace AerolineaFrba.Compra
                         readerAux.Read();
                         if (readerAux.HasRows)
                         {
+                            cli_id = Int32.Parse(readerAux["CLIENTE_ID"].ToString());
                             estaTodoAutocompletado = true;
                             textBox_apellido.Text = readerAux["CLIENTE_APELLIDO"].ToString();
                             textBox_nombre.Text = readerAux["CLIENTE_NOMBRE"].ToString();
@@ -190,6 +192,7 @@ namespace AerolineaFrba.Compra
                             leedor.Read();
                             if (leedor.HasRows)
                             {
+                                cli_id = Int32.Parse(leedor["CLIENTE_ID"].ToString());
                                 estaTodoAutocompletado = true;
                                 errorProvider_dniDup.Clear();
                                 textBox_nombre.Text = leedor["CLIENTE_NOMBRE"].ToString();
