@@ -42,18 +42,18 @@
             this.label3 = new System.Windows.Forms.Label();
             this.comboBox_origen = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.numericUpDown_encomiendas = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown_pasajes = new System.Windows.Forms.NumericUpDown();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.numericUpDown_pasajes = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown_encomiendas = new System.Windows.Forms.NumericUpDown();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_pasajes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_encomiendas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_pasajes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -184,7 +184,39 @@
             this.groupBox2.Size = new System.Drawing.Size(664, 228);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Viajes Encontrados";
+            this.groupBox2.Text = "Viajes Existentes";
+            // 
+            // numericUpDown_encomiendas
+            // 
+            this.numericUpDown_encomiendas.Location = new System.Drawing.Point(426, 188);
+            this.numericUpDown_encomiendas.Name = "numericUpDown_encomiendas";
+            this.numericUpDown_encomiendas.Size = new System.Drawing.Size(38, 20);
+            this.numericUpDown_encomiendas.TabIndex = 5;
+            // 
+            // numericUpDown_pasajes
+            // 
+            this.numericUpDown_pasajes.Location = new System.Drawing.Point(176, 188);
+            this.numericUpDown_pasajes.Name = "numericUpDown_pasajes";
+            this.numericUpDown_pasajes.Size = new System.Drawing.Size(43, 20);
+            this.numericUpDown_pasajes.TabIndex = 4;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(235, 190);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(185, 13);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "Cantidad de Encomiendas a Comprar:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(12, 190);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(158, 13);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "Cantidad de Pasajes a Comprar:";
             // 
             // button2
             // 
@@ -194,7 +226,7 @@
             this.button2.TabIndex = 1;
             this.button2.Text = "Continuar Compra";
             this.button2.UseVisualStyleBackColor = true;
-             // 
+            // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
@@ -210,44 +242,13 @@
             this.dataGridView1.ShowEditingIcon = false;
             this.dataGridView1.Size = new System.Drawing.Size(618, 150);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseClick);
             // 
             // timer1
             // 
             this.timer1.Enabled = true;
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 190);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(158, 13);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "Cantidad de Pasajes a Comprar:";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(235, 190);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(185, 13);
-            this.label6.TabIndex = 3;
-            this.label6.Text = "Cantidad de Encomiendas a Comprar:";
-            // 
-            // numericUpDown_pasajes
-            // 
-            this.numericUpDown_pasajes.Location = new System.Drawing.Point(176, 188);
-            this.numericUpDown_pasajes.Name = "numericUpDown_pasajes";
-            this.numericUpDown_pasajes.Size = new System.Drawing.Size(43, 20);
-            this.numericUpDown_pasajes.TabIndex = 4;
-            // 
-            // numericUpDown_encomiendas
-            // 
-            this.numericUpDown_encomiendas.Location = new System.Drawing.Point(426, 188);
-            this.numericUpDown_encomiendas.Name = "numericUpDown_encomiendas";
-            this.numericUpDown_encomiendas.Size = new System.Drawing.Size(38, 20);
-            this.numericUpDown_encomiendas.TabIndex = 5;
             // 
             // Compra
             // 
@@ -265,9 +266,9 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_pasajes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_encomiendas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_pasajes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }

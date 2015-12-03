@@ -26,6 +26,8 @@ namespace AerolineaFrba.Compra
             numericUpDown_pasajes.Minimum = 0;
             llenarCombosCiudad(ref comboBox_destino);
             llenarCombosCiudad(ref comboBox_origen);
+            numericUpDown_pasajes.Enabled = false;
+            numericUpDown_encomiendas.Enabled = false;
             mostrarServicios();
             
         }
@@ -125,7 +127,7 @@ namespace AerolineaFrba.Compra
         public void mostrarViajes()
         {
             llenador.llenarDGV_Compra(dataGridView1);
-            //dataGridView1.Rows[0].Selected = false;
+            dataGridView1.Rows[0].Selected = false; // esto rompe al carajo si no tengo lleno el DGV
         }
 
         private void checkedListBox_servicios_SelectedIndexChanged(object sender, EventArgs e)
@@ -177,6 +179,18 @@ namespace AerolineaFrba.Compra
             }
 
             llenador.filtrarDataGridView(dataGridView1, sqlQuery);
+        }
+
+
+        private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            numericUpDown_encomiendas.Enabled = true;
+            numericUpDown_pasajes.Enabled = true;
+            DataGridViewRow seleccionado = dataGridView1.SelectedRows[0];
+
+            numericUpDown_pasajes.Maximum = Int32.Parse(seleccionado.Cells[5].Value.ToString());
+            numericUpDown_encomiendas.Maximum = Int32.Parse(seleccionado.Cells[6].Value.ToString());
+
         }
 
     }
