@@ -136,6 +136,7 @@
             this.button_buscar.TabIndex = 4;
             this.button_buscar.Text = "Buscar Viajes";
             this.button_buscar.UseVisualStyleBackColor = true;
+            this.button_buscar.Click += new System.EventHandler(this.button_buscar_Click);
             // 
             // dateTimePicker_fechaViaje
             // 
@@ -194,6 +195,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(22, 19);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.ShowEditingIcon = false;
             this.dataGridView1.Size = new System.Drawing.Size(580, 150);
             this.dataGridView1.TabIndex = 0;
