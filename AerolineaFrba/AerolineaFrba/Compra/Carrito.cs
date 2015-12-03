@@ -362,7 +362,7 @@ namespace AerolineaFrba.Compra
 
         public void persistirCompraTarjeta()
         {
-            string query = "EXEC THE_CVENGERS.crearCompraConTarjeta @user = '" + +
+            string query = "EXEC THE_CVENGERS.crearCompraConTarjeta @user = '" + buscarUsuarioId() +
                 "',@cli = '" + id_cliente.ToString() +
                 "',@tipoTar = '" + comboBox_tipoTarjeta.SelectedItem.ToString() +
                 "',@nro = '" + numericUpDown_numeroTarjeta.Value.ToString() +
@@ -380,7 +380,10 @@ namespace AerolineaFrba.Compra
 
         public void persistirCompraEfectivo()
         {
-            string query = "";
+            string query = "EXEC THE_CVENGERS.crearCompraConTarjeta @user = '" + buscarUsuarioId() +
+                "',@cli = '" + id_cliente.ToString() +
+                "',@monto = '" + labelMonto.Text + "'";
+             
             SqlCommand sqlCmd = new SqlCommand(query, Conexion.getConexion());
             MessageBox.Show(sqlCmd.CommandText);
 
@@ -404,8 +407,6 @@ namespace AerolineaFrba.Compra
 
             SqlCommand sqlCmd = new SqlCommand(query,Conexion.getConexion());
 
-            MessageBox.Show(sqlCmd.CommandText);
-
             try
             {
                 sqlCmd.ExecuteNonQuery();
@@ -414,6 +415,27 @@ namespace AerolineaFrba.Compra
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);    
             }
+        }
+        public string buscarUsuarioId()
+        {
+            string command = "SELECT * FROM THE_CVENGERS.USUARIO WHERE USR_USERNAME = '" + Program.usuarioLogeado + "'";
+            string resultado = "";
+
+            SqlCommand sqlCmd = new SqlCommand(command,Conexion.getConexion());
+
+            MessageBox.Show(sqlCmd.CommandText);
+
+            SqlDataReader reader = sqlCmd.ExecuteReader();
+
+            reader.Read();
+
+            if (reader.HasRows)
+               resultado = reader["USR_ID"].ToString();
+            
+            reader.Close();
+
+            return resultado;
+
         }
         
     }
