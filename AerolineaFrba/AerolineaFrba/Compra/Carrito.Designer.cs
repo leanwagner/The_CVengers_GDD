@@ -41,6 +41,7 @@ namespace AerolineaFrba.Compra
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button_eliminarItem = new System.Windows.Forms.Button();
             this.groupBox_tarjeta = new System.Windows.Forms.GroupBox();
+            this.button_limpiarComprador = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -77,7 +78,10 @@ namespace AerolineaFrba.Compra
             this.errorProvider_apellido = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProvider_dni = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProvider_direccion = new System.Windows.Forms.ErrorProvider(this.components);
-            this.button_limpiarComprador = new System.Windows.Forms.Button();
+            this.errorProvider_tipoTarjeta = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider_cuotas = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider_codigoSeg = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider_numero = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox_tarjeta.SuspendLayout();
@@ -91,6 +95,10 @@ namespace AerolineaFrba.Compra
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_apellido)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_dni)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_direccion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_tipoTarjeta)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_cuotas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_codigoSeg)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_numero)).BeginInit();
             this.SuspendLayout();
             // 
             // listBox1
@@ -195,7 +203,6 @@ namespace AerolineaFrba.Compra
             // 
             this.groupBox_tarjeta.Controls.Add(this.button_limpiarComprador);
             this.groupBox_tarjeta.Controls.Add(this.button1);
-            this.groupBox_tarjeta.Controls.Add(this.groupBox3);
             this.groupBox_tarjeta.Controls.Add(this.numericUpDown_telefono);
             this.groupBox_tarjeta.Controls.Add(this.numericUpDown_dni);
             this.groupBox_tarjeta.Controls.Add(this.button_terminarCompra);
@@ -211,12 +218,23 @@ namespace AerolineaFrba.Compra
             this.groupBox_tarjeta.Controls.Add(this.label3);
             this.groupBox_tarjeta.Controls.Add(this.Nombre);
             this.groupBox_tarjeta.Controls.Add(this.label1);
+            this.groupBox_tarjeta.Controls.Add(this.groupBox3);
             this.groupBox_tarjeta.Location = new System.Drawing.Point(12, 307);
             this.groupBox_tarjeta.Name = "groupBox_tarjeta";
             this.groupBox_tarjeta.Size = new System.Drawing.Size(778, 349);
             this.groupBox_tarjeta.TabIndex = 5;
             this.groupBox_tarjeta.TabStop = false;
             this.groupBox_tarjeta.Text = "Ingreso datos Comprador";
+            // 
+            // button_limpiarComprador
+            // 
+            this.button_limpiarComprador.Location = new System.Drawing.Point(611, 154);
+            this.button_limpiarComprador.Name = "button_limpiarComprador";
+            this.button_limpiarComprador.Size = new System.Drawing.Size(98, 31);
+            this.button_limpiarComprador.TabIndex = 19;
+            this.button_limpiarComprador.Text = "Limpiar Campos";
+            this.button_limpiarComprador.UseVisualStyleBackColor = true;
+            this.button_limpiarComprador.Click += new System.EventHandler(this.button_limpiarComprador_Click);
             // 
             // button1
             // 
@@ -245,7 +263,7 @@ namespace AerolineaFrba.Compra
             this.groupBox3.Controls.Add(this.shapeContainer2);
             this.groupBox3.Location = new System.Drawing.Point(26, 183);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(492, 138);
+            this.groupBox3.Size = new System.Drawing.Size(524, 138);
             this.groupBox3.TabIndex = 17;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Tipo de Pago";
@@ -253,8 +271,9 @@ namespace AerolineaFrba.Compra
             // comboBox1
             // 
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.Enabled = false;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(344, 30);
+            this.comboBox1.Location = new System.Drawing.Point(362, 30);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(134, 21);
             this.comboBox1.TabIndex = 11;
@@ -262,7 +281,7 @@ namespace AerolineaFrba.Compra
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(295, 33);
+            this.label12.Location = new System.Drawing.Point(313, 33);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(43, 13);
             this.label12.TabIndex = 10;
@@ -300,12 +319,14 @@ namespace AerolineaFrba.Compra
             this.comboBox_tipoTarjeta.Location = new System.Drawing.Point(151, 30);
             this.comboBox_tipoTarjeta.Name = "comboBox_tipoTarjeta";
             this.comboBox_tipoTarjeta.Size = new System.Drawing.Size(131, 21);
+            this.comboBox_tipoTarjeta.Sorted = true;
             this.comboBox_tipoTarjeta.TabIndex = 7;
+            this.comboBox_tipoTarjeta.SelectedIndexChanged += new System.EventHandler(this.comboBox_tipoTarjeta_SelectedIndexChanged);
             // 
             // numericUpDown_codigoTarjeta
             // 
             this.numericUpDown_codigoTarjeta.Enabled = false;
-            this.numericUpDown_codigoTarjeta.Location = new System.Drawing.Point(415, 62);
+            this.numericUpDown_codigoTarjeta.Location = new System.Drawing.Point(433, 62);
             this.numericUpDown_codigoTarjeta.Maximum = new decimal(new int[] {
             999,
             0,
@@ -326,7 +347,7 @@ namespace AerolineaFrba.Compra
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(295, 65);
+            this.label9.Location = new System.Drawing.Point(313, 65);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(107, 13);
             this.label9.TabIndex = 4;
@@ -355,8 +376,8 @@ namespace AerolineaFrba.Compra
             this.numericUpDown_numeroTarjeta.Enabled = false;
             this.numericUpDown_numeroTarjeta.Location = new System.Drawing.Point(167, 62);
             this.numericUpDown_numeroTarjeta.Maximum = new decimal(new int[] {
-            99999999,
-            0,
+            1874919423,
+            2328306,
             0,
             0});
             this.numericUpDown_numeroTarjeta.Name = "numericUpDown_numeroTarjeta";
@@ -379,7 +400,7 @@ namespace AerolineaFrba.Compra
             this.shapeContainer2.Name = "shapeContainer2";
             this.shapeContainer2.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
             this.lineShape1});
-            this.shapeContainer2.Size = new System.Drawing.Size(486, 119);
+            this.shapeContainer2.Size = new System.Drawing.Size(518, 119);
             this.shapeContainer2.TabIndex = 12;
             this.shapeContainer2.TabStop = false;
             // 
@@ -425,6 +446,7 @@ namespace AerolineaFrba.Compra
             this.button_terminarCompra.TabIndex = 14;
             this.button_terminarCompra.Text = "Terminar Compra";
             this.button_terminarCompra.UseVisualStyleBackColor = true;
+            this.button_terminarCompra.Click += new System.EventHandler(this.button_terminarCompra_Click);
             // 
             // dateTimePicker_nacimiento
             // 
@@ -545,15 +567,22 @@ namespace AerolineaFrba.Compra
             // errorProvider_direccion
             // 
             this.errorProvider_direccion.ContainerControl = this;
-            // button_limpiarComprador
             // 
-            this.button_limpiarComprador.Location = new System.Drawing.Point(611, 154);
-            this.button_limpiarComprador.Name = "button_limpiarComprador";
-            this.button_limpiarComprador.Size = new System.Drawing.Size(98, 31);
-            this.button_limpiarComprador.TabIndex = 19;
-            this.button_limpiarComprador.Text = "Limpiar Campos";
-            this.button_limpiarComprador.UseVisualStyleBackColor = true;
-            this.button_limpiarComprador.Click += new System.EventHandler(this.button_limpiarComprador_Click);
+            // errorProvider_tipoTarjeta
+            // 
+            this.errorProvider_tipoTarjeta.ContainerControl = this;
+            // 
+            // errorProvider_cuotas
+            // 
+            this.errorProvider_cuotas.ContainerControl = this;
+            // 
+            // errorProvider_codigoSeg
+            // 
+            this.errorProvider_codigoSeg.ContainerControl = this;
+            // 
+            // errorProvider_numero
+            // 
+            this.errorProvider_numero.ContainerControl = this;
             // 
             // Carrito
             // 
@@ -584,6 +613,10 @@ namespace AerolineaFrba.Compra
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_apellido)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_dni)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_direccion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_tipoTarjeta)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_cuotas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_codigoSeg)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_numero)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -639,6 +672,10 @@ namespace AerolineaFrba.Compra
         private System.Windows.Forms.ErrorProvider errorProvider_dni;
         private System.Windows.Forms.ErrorProvider errorProvider_direccion;
         private System.Windows.Forms.Button button_limpiarComprador;
+        private System.Windows.Forms.ErrorProvider errorProvider_tipoTarjeta;
+        private System.Windows.Forms.ErrorProvider errorProvider_cuotas;
+        private System.Windows.Forms.ErrorProvider errorProvider_codigoSeg;
+        private System.Windows.Forms.ErrorProvider errorProvider_numero;
 
     }
 }
