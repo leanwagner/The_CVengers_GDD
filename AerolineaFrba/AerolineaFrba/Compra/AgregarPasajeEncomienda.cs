@@ -12,15 +12,17 @@ using System.Windows.Forms;
 
 namespace AerolineaFrba.Compra
 {
-    public partial class AgregarPasaje : Form
+    public partial class AgregarPasajeEncomienda : Form
     {
         LlenadorDeTablas llenador = new LlenadorDeTablas();
         int viajeId;
 
-        public AgregarPasaje(int id_viaje)
+        public AgregarPasajeEncomienda(int id_viaje,int tipo_ventana)
         {
             viajeId = id_viaje;
             InitializeComponent();
+            if (tipo_ventana == 0) { groupBox3.Visible = false; }
+            else { groupBox1.Visible = false; }
             llenarComboBoxPisoAeronave(ref comboBox_piso);
         }
 
