@@ -186,6 +186,9 @@
     <EmbeddedResource Include="Canje Millas\Canje_Millas.resx">
       <DependentUpon>Canje_Millas.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Compra\Compra.resx">
+      <DependentUpon>Compra.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Consulta Millas\Consulta_Millas.resx">
       <DependentUpon>Consulta_Millas.cs</DependentUpon>
     </EmbeddedResource>
