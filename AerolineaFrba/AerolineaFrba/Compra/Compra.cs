@@ -1,4 +1,5 @@
-﻿using AerolineaFrba.Llenador;
+﻿using AerolineaFrba.HoraDB;
+using AerolineaFrba.Llenador;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,6 +23,8 @@ namespace AerolineaFrba.Compra
             InitializeComponent();
             llenarCombosCiudad(ref comboBox_destino);
             llenarCombosCiudad(ref comboBox_origen);
+            mostrarServicios();
+            
         }
 
         private void llenarCombosCiudad(ref ComboBox mi_combo)
@@ -41,10 +44,20 @@ namespace AerolineaFrba.Compra
 
             comboBox_destino.Refresh();
 
+            activarBotonLimpiar();
+
 
         }
 
-        private void comboBox_destino_SelectedIndexChanged(object sender, EventArgs e)
+        private void Compra_Load(object sender, EventArgs e)
+        {
+            dateTimePicker_fechaViaje.Format = DateTimePickerFormat.Custom;
+            dateTimePicker_fechaViaje.CustomFormat = "yyyy-MM-dd HH:mm:ss";
+            dateTimePicker_fechaViaje.Value = DateTimeHandler.devolverFechaDB();
+            dateTimePicker_fechaViaje.MinDate = DateTimeHandler.devolverFechaDB();
+        }
+
+        private void comboBox_destino_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             if (elementoQuitadoTablaOrigen != null)
                 comboBox_origen.Items.Add(elementoQuitadoTablaOrigen);
@@ -56,7 +69,54 @@ namespace AerolineaFrba.Compra
 
             comboBox_origen.Refresh();
 
-            
+            activarBotonLimpiar();
+        }
+
+        public void mostrarServicios()
+        {
+
+            llenador.llenarCheckedListBox(ref checkedListBox_servicios, "SERVICIO", "SERVICIO_NOMBRE");
+
+        }
+
+        private void button_limpiar_Click(object sender, EventArgs e)
+        {
+            limpiarForms();
+        }
+
+        public void activarBotonLimpiar()
+        {
+            if (comboBox_destino.SelectedItem != null || comboBox_origen.SelectedItem != null || checkedListBox_servicios.CheckedItems.Count > 0)
+                button_limpiar.Enabled = true;
+ 
+        }
+
+        public void limpiarForms()
+        {         
+            comboBox_destino.Items.Clear();
+            llenarCombosCiudad(ref comboBox_destino);
+            comboBox_origen.Items.Clear();
+            llenarCombosCiudad(ref comboBox_origen);
+
+            elementoQuitadoTablaDestino = null;
+            elementoQuitadoTablaOrigen = null;
+
+            foreach (int checkedIndex in checkedListBox_servicios.CheckedIndices)
+                checkedListBox_servicios.SetItemChecked(checkedIndex, false);
+
+            dateTimePicker_fechaViaje.Value = DateTimeHandler.devolverFechaDB();
+
+            button_limpiar.Enabled = false;
+        }
+
+        private void dateTimePicker_fechaViaje_ValueChanged(object sender, EventArgs e)
+        {
+            activarBotonLimpiar();
+        }
+
+        private void checkedListBox_servicios_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            activarBotonLimpiar();
         }
     }
 }
