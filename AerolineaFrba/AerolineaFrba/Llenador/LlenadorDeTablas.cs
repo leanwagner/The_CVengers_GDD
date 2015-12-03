@@ -165,7 +165,7 @@ namespace AerolineaFrba.Llenador
             DataTable tabla;
 
             try {
-                adapter = new SqlDataAdapter("EXECUTE [THE_CVENGERS].getAll @RECV = '[THE_CVENGERS]." + nombreTabla+"';", Conexion.getConexion());
+                adapter = new SqlDataAdapter("select * from [THE_CVENGERS]." + nombreTabla, Conexion.getConexion());
                 tabla = new DataTable();
                 
                 adapter.Fill(tabla);
@@ -179,6 +179,7 @@ namespace AerolineaFrba.Llenador
             
             }
         }
+
         public void llenarDGV_ABMRutas(DataGridView dgv)
         {
             SqlDataAdapter adapter;
