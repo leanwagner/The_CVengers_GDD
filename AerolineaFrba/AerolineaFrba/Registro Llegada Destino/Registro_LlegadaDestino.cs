@@ -18,6 +18,7 @@ namespace AerolineaFrba.Registro_Llegada_Destino
         LlenadorDeTablas llenador = new LlenadorDeTablas();
         object elementoQuitadoTablaDestino;
         object elementoQuitadoTablaOrigen;
+        String viajeId;
 
         public Registro_LlegadaDestino()
         {
@@ -111,25 +112,37 @@ namespace AerolineaFrba.Registro_Llegada_Destino
                     "', '" + comboBox_AeropuertoSalida.SelectedItem.ToString().Substring(1) +
                 "', '" + comboBox_AeropuertoLlegada.SelectedItem.ToString().Substring(1) + "') AS resultado ", Conexion.getConexion());
 
-                MessageBox.Show("SELECT THE_CVENGERS.viajeARegistrar ('" + comboBox_matricula.SelectedItem.ToString() +
-                    "', '" + comboBox_AeropuertoSalida.SelectedItem.ToString().Substring(1) +
-                "', '" + comboBox_AeropuertoLlegada.SelectedItem.ToString().Substring(1) + "') AS resultado ");
 
                 SqlDataReader reader = sqlCmd.ExecuteReader();
 
                 reader.Read();
 
-                String viajeId = reader["resultado"].ToString();
+                viajeId = reader["resultado"].ToString();
 
                 reader.Close();
 
-                MessageBox.Show(viajeId);
-
-                sqlCmd = new SqlCommand("SELECT A.AERONAVE_MATRICULA_AVION, A.AERONAVE_MODELO_AVION, S.SERVICIO_NOMBRE, V.VIAJE_FECHA_SALIDA, V.VIAJE_FECHA_LLEGADA_ESTIMADA FROM AERONAVE A, VIAJE V, SERVICIO S WHERE A.AERONAVE_MATRICULA_AVION = '" +  
+                sqlCmd = new SqlCommand("SELECT A.AERONAVE_MATRICULA_AVION, A.AERONAVE_MODELO_AVION, S.SERVICIO_NOMBRE, V.VIAJE_FECHA_SALIDA, V.VIAJE_FECHA_LLEGADA_ESTIMADA FROM THE_CVENGERS.AERONAVE A, THE_CVENGERS.VIAJE V, THE_CVENGERS.SERVICIO S WHERE A.AERONAVE_MATRICULA_AVION = '" +  
                 comboBox_matricula.SelectedItem.ToString() + "' AND V.VIAJE_ID = " + viajeId + " AND A.AERONAVE_SERVICIO = S.SERVICIO_ID" ,Conexion.getConexion());
 
-                MessageBox.Show("SELECT A.AERONAVE_MATRICULA_AVION, A.AERONAVE_MODELO_AVION, S.SERVICIO_NOMBRE, V.VIAJE_FECHA_SALIDA, V.VIAJE_FECHA_LLEGADA_ESTIMADA FROM AERONAVE A, VIAJE V, SERVICIO S WHERE A.AERONAVE_MATRICULA_AVION = '" +
-                comboBox_matricula.SelectedItem.ToString() + "' AND V.VIAJE_ID = " + viajeId + " AND A.AERONAVE_SERVICIO = S.SERVICIO_ID");
+                reader = sqlCmd.ExecuteReader();
+
+                reader.Read();
+
+                label_MatriculaAeronave.Text = reader["AERONAVE_MATRICULA_AVION"].ToString();
+
+                label_ModeloAeronave.Text = reader["AERONAVE_MODELO_AVION"].ToString();
+
+                label_TipoServicio.Text = reader["SERVICIO_NOMBRE"].ToString();
+
+                label_SalidaAeronave.Text = reader["VIAJE_FECHA_SALIDA"].ToString();
+
+                label_LlegadaEstimadaAeronave.Text = reader["VIAJE_FECHA_LLEGADA_ESTIMADA"].ToString();
+
+                dateTimePicker1.MinDate = Convert.ToDateTime(reader["VIAJE_FECHA_SALIDA"].ToString());
+
+                dateTimePicker1.MaxDate = dateTimePicker1.MinDate.AddDays(1);
+
+                reader.Close();
 
                 groupBox3.Enabled = true;
 
@@ -151,6 +164,34 @@ namespace AerolineaFrba.Registro_Llegada_Destino
             llenarCombosCiudad(ref comboBox_AeropuertoSalida);
             comboBox_matricula.Items.Clear();
             llenarComboMatricula(ref comboBox_matricula);
+            groupBox3.Enabled = false;
+            label_LlegadaEstimadaAeronave.Text = "**hh:mm dd/mm/yyyy**";
+            label_MatriculaAeronave.Text = "**NRO**";
+            label_ModeloAeronave.Text = "**Modelo**";
+            label_SalidaAeronave.Text = "**hh:mm dd/mm/yyyy**";
+            label_TipoServicio.Text = "**Servicio**";
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlCommand sqlCmd = new SqlCommand("EXEC THE_CVENGERS.registrarLlegada @viaje ='" + viajeId +
+                    "', @fecha ='" + dateTimePicker1.Value.ToString() + "'" , Conexion.getConexion());
+
+
+                sqlCmd.ExecuteNonQuery();
+
+                MessageBox.Show("El viaje fue registrado correctamente");
+
+                limpiarCampos();
+
+            }
+            catch
+            {
+                MessageBox.Show("No se pudo registrar el viaje seleccionado.", "Error", MessageBoxButtons.OK);
+            }
         }
 
     }

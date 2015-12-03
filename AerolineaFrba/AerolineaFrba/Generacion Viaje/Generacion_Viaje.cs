@@ -15,7 +15,7 @@ namespace AerolineaFrba.Generacion_Viaje
 {
     public partial class Generacion_Viaje : Form
     {
-
+        DataGridViewRow select;
         
         public Generacion_Viaje()
         {
@@ -60,7 +60,7 @@ namespace AerolineaFrba.Generacion_Viaje
 
             if (dataGridView1.SelectedRows.Count == 0)
                 return;
-            DataGridViewRow select = dataGridView1.SelectedRows[0];
+           select = dataGridView1.SelectedRows[0];
 
             comboBox1.SelectedIndex = -1;
                 comboBox1.Items.Clear();
@@ -112,6 +112,8 @@ namespace AerolineaFrba.Generacion_Viaje
         {
             datePicker2.MinDate = datePicker1.Value.AddMinutes(5);
             timePicker2.MinDate = datePicker1.Value.AddMinutes(5);
+           // datePicker2.MaxDate = datePicker1.Value.AddDays(1);
+           // timePicker2.MaxDate = datePicker1.Value.AddDays(1);
 
           
             if (comboBox1.SelectedIndex != -1)
@@ -131,6 +133,30 @@ namespace AerolineaFrba.Generacion_Viaje
             sqlReader.Read();
             String idAero = sqlReader["AERONAVE_ID"].ToString();
             sqlReader.Close();
+
+            sqlCmd.CommandText = "exec THE_CVENGERS.generarViaje @aeronave = " + idAero +
+                ", @ruta =" + select.Cells[0].Value.ToString() +
+                ", @salida = '" + (datePicker1.Value.Date + timePicker1.Value.TimeOfDay).ToString("yyyy-MM-dd hh:mm:ss") +
+                "', @llegadaest = '" + (datePicker2.Value.Date + timePicker2.Value.TimeOfDay).ToString("yyyy-MM-dd hh:mm:ss") + "'";
+            //MessageBox.Show(sqlCmd.CommandText);
+            try
+            {
+                sqlCmd.ExecuteNonQuery();
+            }
+            catch (Exception exc) {
+                MessageBox.Show(exc.Message, "Error", MessageBoxButtons.OK);
+            }
+            MessageBox.Show("Viaje generado exitosamente");
+            comboBox1.SelectedIndex = -1;
+            datePicker1.Value = datePicker1.MinDate;
+            timePicker1.Value = timePicker1.MinDate;
+            datePicker2.Value = datePicker2.MinDate;
+            timePicker2.Value = timePicker2.MinDate;
+            dataGridView1.Rows[Int32.Parse(select.Cells[0].Value.ToString())].Selected = false;
+            comboBox1.Items.Clear();
+            errorProvider1.SetError(comboBox1, "Debe seleccionar una ruta");
+            errorProvider2.Clear();
+            comboBox1.Enabled = false;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
