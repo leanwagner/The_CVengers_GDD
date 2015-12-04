@@ -1286,6 +1286,23 @@ insert into THE_CVENGERS.DEVOLUCION (DEVOLUCION_FECHA, DEVOLUCION_NUM_COMPRA, DE
 values (THE_CVENGERS.fechaReal(), @compra, @descripcion)
 end
 
+
+go
+create procedure THE_CVENGERS.devolverItem(@item as numeric(18,0), @tipoItem as nvarchar(25))
+as
+begin
+if(@tipoItem = 'Encomienda')
+begin
+update THE_CVENGERS.ENCOMIENDA SET ENCOMIENDA_DEVOLUCION = (SELECT TOP 1 DEVOLUCION_ID FROM THE_CVENGERS.DEVOLUCION WHERE DEVOLUCION_NUM_COMPRA = ENCOMIENDA_COMPRA ORDER BY DEVOLUCION_ID DESC) 
+WHERE ENCOMIENDA_ID = @item
+end
+if(@tipoItem = 'Pasaje')
+BEGIN
+update THE_CVENGERS.PASAJE SET PASAJE_DEVOLUCION = (SELECT TOP 1 DEVOLUCION_ID FROM THE_CVENGERS.DEVOLUCION WHERE DEVOLUCION_NUM_COMPRA = PASAJE_COMPRA ORDER BY DEVOLUCION_ID DESC) 
+WHERE PASAJE_ID = @item
+END
+END
+
 go
 create procedure THE_CVENGERS.ingresarOModificarCliente(@id as numeric(18,0),@nombre as nvarchar(100), @apellido as nvarchar(100),
 @dni as numeric(18,0), @dir as nvarchar(100), @telefono as numeric(18,0), @mail as nvarchar(100), @fechanac as datetime)
@@ -1373,6 +1390,7 @@ DROP FUNCTION [THE_CVENGERS].listadoCanjes
 DROP FUNCTION [THE_CVENGERS].comprasCliente
 DROP FUNCTION [THE_CVENGERS].itemsDeCompra
 DROP PROCEDURE [THE_CVENGERS].crearDevolucion
+DROP PROCEDURE [THE_CVENGERS].devolverItem
 DROP PROCEDURE [THE_CVENGERS].ingresarOModificarCliente
 DROP PROCEDURE [THE_CVENGERS].getAll 
 DROP SCHEMA [THE_CVENGERS]*/
