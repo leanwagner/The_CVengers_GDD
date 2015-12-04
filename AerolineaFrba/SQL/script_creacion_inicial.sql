@@ -1117,7 +1117,49 @@ return (select sum(MILLA_GANADA - MILLA_GASTADA)
 		AND DATEDIFF(second,MILLA_FECHA_ACREDITACION, THE_CVENGERS.fechaReal()) <= 31536000)
 end
 
+go
+create function THE_CVENGERS.calcularPrecioPasaje(@viaje as numeric(18,0))
+returns numeric(18,2)
+as
+begin
+return ((SELECT RUTA_PRECIO_BASE_POR_PASAJE 
+						FROM THE_CVENGERS.RUTA
+						WHERE RUTA_ID = (SELECT VIAJE_RUTA
+										FROM THE_CVENGERS.VIAJE
+										WHERE VIAJE_ID = @viaje)) + ((SELECT SERVICIO_PORCENTAJE/100
+																				FROM THE_CVENGERS.SERVICIO
+																				WHERE SERVICIO_ID = (SELECT AERONAVE_SERVICIO
+																										FROM THE_CVENGERS.AERONAVE
+																										WHERE AERONAVE_ID = (SELECT	VIAJE_AERONAVE
+																																FROM THE_CVENGERS.VIAJE
+																																WHERE VIAJE_ID = @viaje))) * (SELECT RUTA_PRECIO_BASE_POR_PASAJE 
+																																										FROM THE_CVENGERS.RUTA
+																																										WHERE RUTA_ID = (SELECT VIAJE_RUTA 
+																																															FROM THE_CVENGERS.VIAJE
+																																															WHERE VIAJE_ID = @viaje))))
+end
 		
+go
+create function THE_CVENGERS.calcularPrecioEncomienda(@viaje as numeric(18,0), @kg as numeric(18,0))
+returns numeric(18,2)
+as
+begin
+return ((SELECT RUTA_PRECIO_BASE_POR_KILO * @kg
+						FROM THE_CVENGERS.RUTA
+						WHERE RUTA_ID = (SELECT VIAJE_RUTA
+										FROM THE_CVENGERS.VIAJE
+										WHERE VIAJE_ID = @viaje)) + ((SELECT SERVICIO_PORCENTAJE/100
+																				FROM THE_CVENGERS.SERVICIO
+																				WHERE SERVICIO_ID = (SELECT AERONAVE_SERVICIO
+																										FROM THE_CVENGERS.AERONAVE
+																										WHERE AERONAVE_ID = (SELECT	VIAJE_AERONAVE
+																																FROM THE_CVENGERS.VIAJE
+																																WHERE VIAJE_ID = @viaje))) * (SELECT RUTA_PRECIO_BASE_POR_KILO *@kg
+																																										FROM THE_CVENGERS.RUTA
+																																										WHERE RUTA_ID = (SELECT VIAJE_RUTA 
+																																															FROM THE_CVENGERS.VIAJE
+																																															WHERE VIAJE_ID = @viaje))))
+end
 
 /*DROP TABLE [THE_CVENGERS].MILLA
 DROP TABLE [THE_CVENGERS].FECHA
@@ -1179,6 +1221,8 @@ DROP FUNCTION [THE_CVENGERS].destinosConMasPasajesComprados
 DROP FUNCTION [THE_CVENGERS].destinosConAeronavesMasVacias
 DROP FUNCTION [THE_CVENGERS].clientesConMasPuntosAcumulados
 DROP FUNCTION [THE_CVENGERS].consultarMillas
+DROP FUNCTION [THE_CVENGERS].calcularPrecioPasaje
+DROP FUNCTION [THE_CVENGERS].calcularPrecioEncomienda
 DROP PROCEDURE [THE_CVENGERS].getAll 
 DROP SCHEMA [THE_CVENGERS]*/
 
