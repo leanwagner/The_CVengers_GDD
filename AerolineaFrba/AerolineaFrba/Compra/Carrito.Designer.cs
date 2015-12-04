@@ -73,6 +73,7 @@ namespace AerolineaFrba.Compra
             this.Nombre = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.errorProvider_dniDup = new System.Windows.Forms.ErrorProvider(this.components);
+            this.button_limpiarComprador = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox_tarjeta.SuspendLayout();
@@ -184,6 +185,7 @@ namespace AerolineaFrba.Compra
             // 
             // groupBox_tarjeta
             // 
+            this.groupBox_tarjeta.Controls.Add(this.button_limpiarComprador);
             this.groupBox_tarjeta.Controls.Add(this.button1);
             this.groupBox_tarjeta.Controls.Add(this.groupBox3);
             this.groupBox_tarjeta.Controls.Add(this.numericUpDown_telefono);
@@ -520,6 +522,16 @@ namespace AerolineaFrba.Compra
             this.errorProvider_dniDup.ContainerControl = this;
             this.errorProvider_dniDup.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider_dniDup.Icon")));
             // 
+            // button_limpiarComprador
+            // 
+            this.button_limpiarComprador.Location = new System.Drawing.Point(611, 154);
+            this.button_limpiarComprador.Name = "button_limpiarComprador";
+            this.button_limpiarComprador.Size = new System.Drawing.Size(98, 31);
+            this.button_limpiarComprador.TabIndex = 19;
+            this.button_limpiarComprador.Text = "Limpiar Campos";
+            this.button_limpiarComprador.UseVisualStyleBackColor = true;
+            this.button_limpiarComprador.Click += new System.EventHandler(this.button_limpiarComprador_Click);
+            // 
             // Carrito
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -595,6 +607,7 @@ namespace AerolineaFrba.Compra
         private Microsoft.VisualBasic.PowerPacks.LineShape lineShape1;
         private System.Windows.Forms.DateTimePicker dateTimePicker_vencimiento;
         private System.Windows.Forms.ErrorProvider errorProvider_dniDup;
+        private System.Windows.Forms.Button button_limpiarComprador;
 
     }
 }

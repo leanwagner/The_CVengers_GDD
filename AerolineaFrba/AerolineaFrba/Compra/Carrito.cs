@@ -251,6 +251,19 @@ namespace AerolineaFrba.Compra
             
 
         }
+
+        private void button_limpiarComprador_Click(object sender, EventArgs e)
+        {
+            estaTodoAutocompletado = false;
+            numericUpDown_dni.Value = 0;
+            textBox_nombre.Text = "";
+            textBox_apellido.Text = "";
+            textBox1.Text = "";
+            textBox2.Text = "";
+            numericUpDown_telefono.Value = 0;
+            dateTimePicker_nacimiento.Value = dateTimePicker_nacimiento.MaxDate;
+            errorProvider_dniDup.Clear();
+        }
         
     }
 }
