@@ -1229,7 +1229,7 @@ end
 
 end
 
-FETCH NEXT FROM restarMillas INTO @IdMilla, @ganada
+FETCH NEXT FROM restarMillas INTO @IdMilla, @ganada, @gastada
 END
 CLOSE restarMillas
 DEALLOCATE restarMillas
