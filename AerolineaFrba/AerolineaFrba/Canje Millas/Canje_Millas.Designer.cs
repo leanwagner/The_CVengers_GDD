@@ -33,7 +33,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.premioCombo = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.dniBox = new System.Windows.Forms.TextBox();
+            this.dniBox = new System.Windows.Forms.NumericUpDown();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -51,11 +51,13 @@
             this.errorDniDup = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorNoStock = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorPuntos = new System.Windows.Forms.ErrorProvider(this.components);
+            
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.canUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorDniDup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorNoStock)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorPuntos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dniBox)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -92,6 +94,7 @@
             this.dniBox.Size = new System.Drawing.Size(100, 20);
             this.dniBox.TabIndex = 3;
             this.dniBox.TextChanged += new System.EventHandler(this.dniBox_TextChanged);
+            this.dniBox.Maximum = 99999999;
             // 
             // groupBox1
             // 
@@ -245,6 +248,9 @@
             // 
             this.errorPuntos.ContainerControl = this;
             // 
+            // numericUpDown1
+            // 
+            // 
             // Canje_Millas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -270,6 +276,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorDniDup)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorNoStock)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorPuntos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dniBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -280,7 +287,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox premioCombo;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox dniBox;
+       
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown canUpDown;
@@ -298,5 +305,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ErrorProvider errorNoStock;
         private System.Windows.Forms.ErrorProvider errorPuntos;
+        private System.Windows.Forms.NumericUpDown dniBox;
     }
 }
