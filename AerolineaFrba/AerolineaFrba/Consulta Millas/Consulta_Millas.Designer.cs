@@ -39,6 +39,7 @@
             this.errorName = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorDni = new System.Windows.Forms.ErrorProvider(this.components);
             this.notFound = new System.Windows.Forms.ErrorProvider(this.components);
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorName)).BeginInit();
@@ -66,11 +67,11 @@
             // millasLabel
             // 
             this.millasLabel.AutoSize = true;
-            this.millasLabel.Location = new System.Drawing.Point(188, 22);
+            this.millasLabel.Location = new System.Drawing.Point(222, 22);
             this.millasLabel.Name = "millasLabel";
-            this.millasLabel.Size = new System.Drawing.Size(99, 13);
+            this.millasLabel.Size = new System.Drawing.Size(32, 13);
             this.millasLabel.TabIndex = 2;
-            this.millasLabel.Text = "*cantidad de millas*";
+            this.millasLabel.Text = "millas";
             // 
             // groupBox1
             // 
@@ -131,11 +132,21 @@
             this.notFound.ContainerControl = this;
             this.notFound.RightToLeft = true;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(184, 22);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(36, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Millas:";
+            // 
             // Consulta_Millas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 282);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.nameBox);
             this.Controls.Add(this.groupBox1);
@@ -168,5 +179,6 @@
         private System.Windows.Forms.ErrorProvider errorName;
         private System.Windows.Forms.ErrorProvider errorDni;
         private System.Windows.Forms.ErrorProvider notFound;
+        private System.Windows.Forms.Label label2;
     }
 }

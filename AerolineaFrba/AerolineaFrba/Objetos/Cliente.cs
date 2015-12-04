@@ -16,8 +16,10 @@ namespace AerolineaFrba.Objetos
        private Int32 Telefono;
        private string Mail;
        private string Fecha_nacimiento;
+       private Encomienda Encomienda;
+       private Pasaje Pasaje;
 
-       public Cliente(Int32 dni, string nombre, string apellido, string direccion, Int32 telefono, string mail, string fecha_nacimiento) 
+       public Cliente(Int32 dni, string nombre, string apellido, string direccion, Int32 telefono, string mail, string fecha_nacimiento, Encomienda encomienda, Pasaje pasaje) 
        {
 
             this.Dni = dni;
@@ -26,7 +28,9 @@ namespace AerolineaFrba.Objetos
             this.Direccion = direccion;
             this.Telefono = telefono;
             this.Mail = mail;
-            this.Fecha_nacimiento = fecha_nacimiento;       
+            this.Fecha_nacimiento = fecha_nacimiento;
+            this.Encomienda = encomienda;
+            this.Pasaje = pasaje;
         
         }
 
@@ -64,8 +68,16 @@ namespace AerolineaFrba.Objetos
         {
             return this.Fecha_nacimiento;
         }
-        
 
+        public Encomienda getEncomienda()
+        {
+            return this.Encomienda;
+        }
+
+        public Pasaje getPasaje()
+        {
+            return this.Pasaje;
+        }
 
     }
 }

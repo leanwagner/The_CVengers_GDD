@@ -96,17 +96,11 @@
     <Compile Include="Canje Millas\Canje_Millas.Designer.cs">
       <DependentUpon>Canje_Millas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Compra\AgregarEncomienda.cs">
+    <Compile Include="Compra\AgregarPasajeEncomienda.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Compra\AgregarEncomienda.Designer.cs">
-      <DependentUpon>AgregarEncomienda.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Compra\AgregarPasaje.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Compra\AgregarPasaje.Designer.cs">
-      <DependentUpon>AgregarPasaje.cs</DependentUpon>
+    <Compile Include="Compra\AgregarPasajeEncomienda.Designer.cs">
+      <DependentUpon>AgregarPasajeEncomienda.cs</DependentUpon>
     </Compile>
     <Compile Include="Compra\Compra.cs">
       <SubType>Form</SubType>
@@ -207,11 +201,8 @@
     <EmbeddedResource Include="Canje Millas\Canje_Millas.resx">
       <DependentUpon>Canje_Millas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Compra\AgregarEncomienda.resx">
-      <DependentUpon>AgregarEncomienda.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Compra\AgregarPasaje.resx">
-      <DependentUpon>AgregarPasaje.cs</DependentUpon>
+    <EmbeddedResource Include="Compra\AgregarPasajeEncomienda.resx">
+      <DependentUpon>AgregarPasajeEncomienda.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Compra\Compra.resx">
       <DependentUpon>Compra.cs</DependentUpon>

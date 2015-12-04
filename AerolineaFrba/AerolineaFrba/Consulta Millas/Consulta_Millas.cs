@@ -46,7 +46,8 @@ namespace AerolineaFrba.Consulta_Millas
                 notFound.SetError(millasLabel, "No se encuentran datos de millas para esos datos");
                 this.Size = new Size(300, 106);
                 this.Refresh();
-
+                label2.Visible = false;
+                millasLabel.Visible = false;
                 groupBox1.Enabled = false;
                 dataGridView1.Enabled = false;
             }
@@ -65,6 +66,13 @@ namespace AerolineaFrba.Consulta_Millas
                 return;
             }
             String idClie = reader["CLIENTE_ID"].ToString();
+            cmd.CommandText = "select THE_CVENGERS.consultarMillas("+idClie+") as m";
+            reader.Close();
+            reader = cmd.ExecuteReader();
+            reader.Read();
+            label2.Visible = true;
+            millasLabel.Visible = true;
+            millasLabel.Text = reader["m"].ToString();
             reader.Close();
             SqlDataAdapter adapter;
             DataTable tabla;
@@ -97,6 +105,8 @@ namespace AerolineaFrba.Consulta_Millas
                 groupBox1.Enabled = false;
                 dataGridView1.Enabled = false;
                 this.Size = new Size(300, 106);
+                label2.Visible = false;
+                millasLabel.Visible = false;
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
