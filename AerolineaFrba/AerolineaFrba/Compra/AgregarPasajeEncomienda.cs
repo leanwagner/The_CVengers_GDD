@@ -1,4 +1,5 @@
 ﻿using AerolineaFrba.Llenador;
+using AerolineaFrba.Objetos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,15 +17,17 @@ namespace AerolineaFrba.Compra
     {
         LlenadorDeTablas llenador = new LlenadorDeTablas();
         int viajeId;
+        TipoCompra tipoActual;
 
         public AgregarPasajeEncomienda(int id_viaje,TipoCompra tipo)
         {
+            tipoActual = tipo;
             viajeId = id_viaje;
             InitializeComponent();
             dateTimePicker_nacimiento.Format = DateTimePickerFormat.Custom;
             dateTimePicker_nacimiento.CustomFormat = "dd/MM/yyyy";
             if (tipo == TipoCompra.Pasaje) { groupBox3.Visible = false;}
-            else { groupBox1.Visible = false; this.Text = "Agregar Encomienda"; }
+            else { groupBox1.Visible = false; this.Text = "Agregar Encomienda"; button_agregarItem.Text = "Agregar Encomienda"; }
             llenarComboBoxPisoAeronave(ref comboBox_piso);
         }
 
@@ -87,6 +90,38 @@ namespace AerolineaFrba.Compra
                 else
                     errorProvider_disponibles.Clear();
             } 
+        }
+
+        private void button_agregarItem_Click(object sender, EventArgs e)
+        {
+            Cliente cliente;
+            switch (tipoActual)
+            {
+                
+                case TipoCompra.Pasaje: 
+                    
+                    Pasaje pasaje = new Pasaje(Int32.Parse(comboBox_butacasDisponibles.SelectedItem.ToString()));
+
+                    cliente = new Cliente((Int32)numericUpDown_dni.Value,textBox_nombre.Text,textBox_apellido.Text,textBox_direccion.Text,(Int32)numericUpDown_telefono.Value
+                    ,textBox_mail.Text,dateTimePicker_nacimiento.Value.ToString(),pasaje);
+                   
+                    break;
+
+                case TipoCompra.Encomienda:
+                    Encomienda encomienda = new Encomienda((Int32)numericUpDown_kilos.Value);
+
+                    cliente = new Cliente((Int32)numericUpDown_dni.Value,textBox_nombre.Text,textBox_apellido.Text,textBox_direccion.Text,(Int32)numericUpDown_telefono.Value
+                    ,textBox_mail.Text,dateTimePicker_nacimiento.Value.ToString(),encomienda);
+
+                   
+                    break;
+
+                default: cliente = null;
+                    break;
+                    
+            }
+            Carrito.ListaClientes.Add(cliente);
+
         }
 
 

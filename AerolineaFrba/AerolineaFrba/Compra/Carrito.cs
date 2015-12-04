@@ -15,7 +15,7 @@ namespace AerolineaFrba.Compra
     public partial class Carrito : Form
     {
         int id;
-        static Collection<Cliente> ListaClientes;
+        public static Collection<Cliente> ListaClientes;
 
 
         public Carrito(int id_viaje)
@@ -39,7 +39,10 @@ namespace AerolineaFrba.Compra
             ventana.Show();
         }
 
-        
+        public static void agregarCliente(Cliente cliente) 
+        {
+            ListaClientes.Add(cliente);
+        }
        
     }
 }

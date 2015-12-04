@@ -53,6 +53,8 @@ namespace AerolineaFrba.Compra
             this.Nombre = new System.Windows.Forms.Label();
             this.numericUpDown_dni = new NumericUpDownModified();
             this.label1 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.labelMonto = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -99,6 +101,8 @@ namespace AerolineaFrba.Compra
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.labelMonto);
+            this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Controls.Add(this.button_eliminarItem);
             this.groupBox1.Controls.Add(this.listBox1);
@@ -107,7 +111,7 @@ namespace AerolineaFrba.Compra
             this.groupBox1.Controls.Add(this.button_aEncomienda);
             this.groupBox1.Location = new System.Drawing.Point(35, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(704, 272);
+            this.groupBox1.Size = new System.Drawing.Size(704, 289);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Agregar Ítems al carrito";
@@ -275,6 +279,26 @@ namespace AerolineaFrba.Compra
             this.label1.TabIndex = 0;
             this.label1.Text = "DNI";
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Lucida Fax", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(430, 241);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(137, 27);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "TOTAL:  $";
+            // 
+            // labelMonto
+            // 
+            this.labelMonto.AutoSize = true;
+            this.labelMonto.Font = new System.Drawing.Font("Lucida Fax", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelMonto.Location = new System.Drawing.Point(567, 241);
+            this.labelMonto.Name = "labelMonto";
+            this.labelMonto.Size = new System.Drawing.Size(83, 27);
+            this.labelMonto.TabIndex = 7;
+            this.labelMonto.Text = "00.00";
+            // 
             // Carrito
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -287,6 +311,7 @@ namespace AerolineaFrba.Compra
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Carrito de Compras";
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -321,6 +346,8 @@ namespace AerolineaFrba.Compra
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label labelMonto;
+        private System.Windows.Forms.Label label7;
 
     }
 }
