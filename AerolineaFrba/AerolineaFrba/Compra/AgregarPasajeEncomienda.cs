@@ -121,6 +121,27 @@ namespace AerolineaFrba.Compra
             this.Close();
         }
 
+        private void numericUpDown_dni_ValueChanged(object sender, EventArgs e)
+        {
+            if (numericUpDown_dni.Text.Length > 1)
+            {
+                SqlCommand cmd = new SqlCommand("select * from THE_CVENGERS.CLIENTE where CLIENTE_DNI = " + numericUpDown_dni.Text, Conexion.getConexion());
+                SqlDataReader reader = cmd.ExecuteReader();
+                reader.Read();
+                if (reader.HasRows)
+                {
+                    textBox_apellido.Text = reader["CLIENTE_APELLIDO"].ToString();
+                    textBox_nombre.Text = reader["CLIENTE_NOMBRE"].ToString();
+                    textBox_mail.Text = reader["CLIENTE_MAIL"].ToString();
+                    dateTimePicker_nacimiento.Text = DateTime.Parse(reader["CLIENTE_FECHA_NAC"].ToString()).Date.ToString("dd-MMM-yyyy");
+                    textBox_direccion.Text = reader["CLIENTE_DIR"].ToString();
+                    numericUpDown_telefono.Text = reader["CLIENTE_TELEFONO"].ToString();
+                }
+                reader.Close();
+                
+            }
+        }
+
 
         
     }

@@ -168,7 +168,7 @@ namespace AerolineaFrba.Compra
                 sqlQuery = sqlQuery + " AND Destino LIKE '_" + comboBox_destino.SelectedItem.ToString().Substring(1) + "'";
 
             if (DateTime.Compare(dateTimePicker_fechaViaje.Value, dateTimePicker_fechaViaje.MinDate) > 0)
-                sqlQuery = sqlQuery + " AND [Fecha de Salida] >= '" + dateTimePicker_fechaViaje.Value.ToString() + "'";
+                sqlQuery = sqlQuery + " AND [Fecha de Salida] >= '" + dateTimePicker_fechaViaje.Value.ToString(CultureInfo.InvariantCulture) + "'";
 
             if (checkedListBox_servicios.CheckedIndices.Count > 0)
             {
