@@ -1257,6 +1257,28 @@ returns table
 as
 return(select CANJE_FECHA 'Fecha canje', PRODUCTO_NOMBRE 'Producto', CANJE_CANTIDAD 'Cantidad', (CANJE_CANTIDAD*PRODUCTO_MILLAS_NECESARIAS) 'Millas gastadas' from THE_CVENGERS.CANJE join THE_CVENGERS.PRODUCTO ON CANJE_PROD = PRODUCTO_ID where CANJE_CLIENTE = @cli)
 
+go
+create function THE_CVENGERS.comprasCliente(@cli as numeric(18,0))
+returns table
+as
+return(SELECT COMPRA_FECHA 'Fecha compra', COMPRA_ID 'Número de compra' FROM THE_CVENGERS.COMPRA WHERE COMPRA_CLIENTE = @cli AND (0 <> (SELECT COUNT(*)
+																										FROM THE_CVENGERS.PASAJE
+																										WHERE PASAJE_COMPRA = COMPRA_ID
+																										AND PASAJE_DEVOLUCION IS NULL) OR 0 <> (SELECT COUNT(*)
+																																				FROM THE_CVENGERS.ENCOMIENDA
+																																				WHERE ENCOMIENDA_COMPRA = COMPRA_ID
+																																				AND ENCOMIENDA_DEVOLUCION IS NULL)))
+
+go
+create function THE_CVENGERS.itemsDeCompra(@compra as numeric(18,0))
+returns table
+as
+return(SELECT PASAJE_ID 'Número de item', 'Pasaje' 'Tipo', THE_CVENGERS.calcularPrecioPasaje(PASAJE_VIAJE_ID) 'Precio' FROM THE_CVENGERS.PASAJE WHERE PASAJE_DEVOLUCION IS NULL AND PASAJE_COMPRA = @compra
+       UNION ALL
+	   SELECT ENCOMIENDA_ID 'Número de item', 'Encomienda' 'Tipo', THE_CVENGERS.calcularPrecioEncomienda(ENCOMIENDA_VIAJE_ID, ENCOMIENDA_KG) 'Precio' FROM THE_CVENGERS.ENCOMIENDA WHERE ENCOMIENDA_DEVOLUCION IS NULL AND ENCOMIENDA_COMPRA = @compra)
+
+
+
 /*DROP TABLE [THE_CVENGERS].MILLA
 DROP TABLE [THE_CVENGERS].FECHA
 DROP TABLE [THE_CVENGERS].CANJE
@@ -1322,5 +1344,7 @@ DROP FUNCTION [THE_CVENGERS].calcularPrecioEncomienda
 DROP PROCEDURE [THE_CVENGERS].realizarCanje
 DROP FUNCTION [THE_CVENGERS].listadoMillas
 DROP FUNCTION [THE_CVENGERS].listadoCanjes
+DROP FUNCTION [THE_CVENGERS].comprasCliente
+DROP FUNCTION [THE_CVENGERS].itemsDeCompra
 DROP PROCEDURE [THE_CVENGERS].getAll 
 DROP SCHEMA [THE_CVENGERS]*/
