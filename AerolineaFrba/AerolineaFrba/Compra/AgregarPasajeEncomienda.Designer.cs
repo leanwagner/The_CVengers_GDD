@@ -1,4 +1,5 @@
-﻿namespace AerolineaFrba.Compra
+﻿using AerolineaFrba.MyNumericUpDown;
+namespace AerolineaFrba.Compra
 {
     partial class AgregarPasajeEncomienda
     {
@@ -38,20 +39,20 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button_agregarPasaje = new System.Windows.Forms.Button();
+            this.button_agregarItem = new System.Windows.Forms.Button();
             this.dateTimePicker_nacimiento = new System.Windows.Forms.DateTimePicker();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox_mail = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.numericUpDown_telefono = new System.Windows.Forms.NumericUpDown();
+            this.textBox_direccion = new System.Windows.Forms.TextBox();
+            this.numericUpDown_telefono = new NumericUpDownModified();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox_apellido = new System.Windows.Forms.TextBox();
             this.textBox_nombre = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.Nombre = new System.Windows.Forms.Label();
-            this.numericUpDown_dni = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown_dni = new NumericUpDownModified();
             this.label1 = new System.Windows.Forms.Label();
             this.errorProvider_disponibles = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -145,12 +146,12 @@
             // groupBox2
             // 
             this.groupBox2.AutoSize = true;
-            this.groupBox2.Controls.Add(this.button_agregarPasaje);
+            this.groupBox2.Controls.Add(this.button_agregarItem);
             this.groupBox2.Controls.Add(this.dateTimePicker_nacimiento);
-            this.groupBox2.Controls.Add(this.textBox2);
+            this.groupBox2.Controls.Add(this.textBox_mail);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.textBox1);
+            this.groupBox2.Controls.Add(this.textBox_direccion);
             this.groupBox2.Controls.Add(this.numericUpDown_telefono);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.label2);
@@ -165,16 +166,17 @@
             this.groupBox2.Size = new System.Drawing.Size(682, 230);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Ingreso datos Pasajero";
+            this.groupBox2.Text = "Ingreso datos Cliente";
             // 
-            // button_agregarPasaje
+            // button_agregarItem
             // 
-            this.button_agregarPasaje.Location = new System.Drawing.Point(525, 164);
-            this.button_agregarPasaje.Name = "button_agregarPasaje";
-            this.button_agregarPasaje.Size = new System.Drawing.Size(141, 37);
-            this.button_agregarPasaje.TabIndex = 14;
-            this.button_agregarPasaje.Text = "Agregar Pasaje";
-            this.button_agregarPasaje.UseVisualStyleBackColor = true;
+            this.button_agregarItem.Location = new System.Drawing.Point(525, 164);
+            this.button_agregarItem.Name = "button_agregarItem";
+            this.button_agregarItem.Size = new System.Drawing.Size(141, 37);
+            this.button_agregarItem.TabIndex = 14;
+            this.button_agregarItem.Text = "Agregar Pasaje";
+            this.button_agregarItem.UseVisualStyleBackColor = true;
+            this.button_agregarItem.Click += new System.EventHandler(this.button_agregarItem_Click);
             // 
             // dateTimePicker_nacimiento
             // 
@@ -183,12 +185,12 @@
             this.dateTimePicker_nacimiento.Size = new System.Drawing.Size(240, 20);
             this.dateTimePicker_nacimiento.TabIndex = 13;
             // 
-            // textBox2
+            // textBox_mail
             // 
-            this.textBox2.Location = new System.Drawing.Point(58, 123);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(219, 20);
-            this.textBox2.TabIndex = 12;
+            this.textBox_mail.Location = new System.Drawing.Point(58, 123);
+            this.textBox_mail.Name = "textBox_mail";
+            this.textBox_mail.Size = new System.Drawing.Size(219, 20);
+            this.textBox_mail.TabIndex = 12;
             // 
             // label6
             // 
@@ -208,12 +210,12 @@
             this.label5.TabIndex = 10;
             this.label5.Text = "Mail:";
             // 
-            // textBox1
+            // textBox_direccion
             // 
-            this.textBox1.Location = new System.Drawing.Point(93, 77);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(236, 20);
-            this.textBox1.TabIndex = 9;
+            this.textBox_direccion.Location = new System.Drawing.Point(93, 77);
+            this.textBox_direccion.Name = "textBox_direccion";
+            this.textBox_direccion.Size = new System.Drawing.Size(236, 20);
+            this.textBox_direccion.TabIndex = 9;
             // 
             // numericUpDown_telefono
             // 
@@ -352,20 +354,20 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button button_agregarPasaje;
+        private System.Windows.Forms.Button button_agregarItem;
         private System.Windows.Forms.DateTimePicker dateTimePicker_nacimiento;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox_mail;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.NumericUpDown numericUpDown_telefono;
+        private System.Windows.Forms.TextBox textBox_direccion;
+        private NumericUpDownModified numericUpDown_telefono;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox_apellido;
         private System.Windows.Forms.TextBox textBox_nombre;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label Nombre;
-        private System.Windows.Forms.NumericUpDown numericUpDown_dni;
+        private NumericUpDownModified numericUpDown_dni;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label7;

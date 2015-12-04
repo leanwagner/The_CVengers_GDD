@@ -250,12 +250,12 @@ GO
 
 CREATE TABLE [THE_CVENGERS].CANJE(
 	CANJE_ID NUMERIC(18,0) IDENTITY PRIMARY KEY,
-	CANJE_USUARIO NUMERIC(18,0) NOT NULL,
+	CANJE_CLIENTE NUMERIC(18,0) NOT NULL,
 	CANJE_PROD NUMERIC(18,0) NOT NULL,
 	CANJE_FECHA DATETIME NOT NULL,
 	CANJE_CANTIDAD NUMERIC(18,0) NOT NULL,
 	CONSTRAINT FK_CANJE_1 FOREIGN KEY (CANJE_PROD) REFERENCES [THE_CVENGERS].PRODUCTO (PRODUCTO_ID),
-	CONSTRAINT FK_CANJE_2 FOREIGN KEY (CANJE_USUARIO) REFERENCES [THE_CVENGERS].USUARIO (USR_ID)
+	CONSTRAINT FK_CANJE_2 FOREIGN KEY (CANJE_CLIENTE) REFERENCES [THE_CVENGERS].CLIENTE (CLIENTE_ID)
 )
 GO
 
@@ -1117,8 +1117,101 @@ return (select sum(MILLA_GANADA - MILLA_GASTADA)
 		AND DATEDIFF(second,MILLA_FECHA_ACREDITACION, THE_CVENGERS.fechaReal()) <= 31536000)
 end
 
+go
+create function THE_CVENGERS.calcularPrecioPasaje(@viaje as numeric(18,0))
+returns numeric(18,2)
+as
+begin
+return ((SELECT RUTA_PRECIO_BASE_POR_PASAJE 
+						FROM THE_CVENGERS.RUTA
+						WHERE RUTA_ID = (SELECT VIAJE_RUTA
+										FROM THE_CVENGERS.VIAJE
+										WHERE VIAJE_ID = @viaje)) + ((SELECT SERVICIO_PORCENTAJE/100
+																				FROM THE_CVENGERS.SERVICIO
+																				WHERE SERVICIO_ID = (SELECT AERONAVE_SERVICIO
+																										FROM THE_CVENGERS.AERONAVE
+																										WHERE AERONAVE_ID = (SELECT	VIAJE_AERONAVE
+																																FROM THE_CVENGERS.VIAJE
+																																WHERE VIAJE_ID = @viaje))) * (SELECT RUTA_PRECIO_BASE_POR_PASAJE 
+																																										FROM THE_CVENGERS.RUTA
+																																										WHERE RUTA_ID = (SELECT VIAJE_RUTA 
+																																															FROM THE_CVENGERS.VIAJE
+																																															WHERE VIAJE_ID = @viaje))))
+end
 		
+go
+create function THE_CVENGERS.calcularPrecioEncomienda(@viaje as numeric(18,0), @kg as numeric(18,0))
+returns numeric(18,2)
+as
+begin
+return ((SELECT RUTA_PRECIO_BASE_POR_KILO * @kg
+						FROM THE_CVENGERS.RUTA
+						WHERE RUTA_ID = (SELECT VIAJE_RUTA
+										FROM THE_CVENGERS.VIAJE
+										WHERE VIAJE_ID = @viaje)) + ((SELECT SERVICIO_PORCENTAJE/100
+																				FROM THE_CVENGERS.SERVICIO
+																				WHERE SERVICIO_ID = (SELECT AERONAVE_SERVICIO
+																										FROM THE_CVENGERS.AERONAVE
+																										WHERE AERONAVE_ID = (SELECT	VIAJE_AERONAVE
+																																FROM THE_CVENGERS.VIAJE
+																																WHERE VIAJE_ID = @viaje))) * (SELECT RUTA_PRECIO_BASE_POR_KILO *@kg
+																																										FROM THE_CVENGERS.RUTA
+																																										WHERE RUTA_ID = (SELECT VIAJE_RUTA 
+																																															FROM THE_CVENGERS.VIAJE
+																																															WHERE VIAJE_ID = @viaje))))
+end
 
+go
+create procedure THE_CVENGERS.realizarCanje @cli as numeric(18,0), @prod as numeric(18,0), @cant as NUMERIC(18,0)
+as
+begin
+
+declare @millasACobrar int
+set @millasACobrar = (SELECT PRODUCTO_MILLAS_NECESARIAS * @cant
+						FROM THE_CVENGERS.PRODUCTO
+						WHERE PRODUCTO_ID = @prod)
+
+declare @IdMilla numeric(18,0)
+declare @ganada numeric(18,0)
+
+declare restarMillas cursor
+for SELECT MILLA_ID, MILLA_GANADA FROM THE_CVENGERS.MILLA WHERE MILLA_CLIENTE = @cli AND DATEDIFF(SECOND, MILLA_FECHA_ACREDITACION, THE_CVENGERS.fechaReal()) <= 31536000 ORDER BY MILLA_FECHA_ACREDITACION
+
+
+OPEN restarMillas
+FETCH FROM restarMillas INTO @IdMilla, @ganada
+WHILE @millasACobrar <> 0
+BEGIN
+
+if (@ganada <= @millasACobrar)
+begin
+
+set @millasACobrar = @millasACobrar - @ganada
+
+update THE_CVENGERS.MILLA SET MILLA_GASTADA = MILLA_GANADA
+WHERE MILLA_ID = @IdMilla
+
+end
+else
+begin
+
+update THE_CVENGERS.MILLA SET MILLA_GASTADA = @millasACobrar
+WHERE MILLA_ID = @IdMilla
+
+set @millasACobrar = 0
+end
+FETCH NEXT FROM restarMillas INTO @IdMilla, @ganada
+END
+CLOSE restarMillas
+DEALLOCATE restarMillas
+
+UPDATE THE_CVENGERS.PRODUCTO SET PRODUCTO_STOCK = PRODUCTO_STOCK - @cant
+WHERE PRODUCTO_ID = @prod
+
+INSERT INTO THE_CVENGERS.CANJE (CANJE_CLIENTE, CANJE_PROD, CANJE_FECHA, CANJE_CANTIDAD)
+VALUES (@cli, @prod, THE_CVENGERS.fechaReal(), @cant)
+
+END
 /*DROP TABLE [THE_CVENGERS].MILLA
 DROP TABLE [THE_CVENGERS].FECHA
 DROP TABLE [THE_CVENGERS].CANJE
@@ -1179,6 +1272,9 @@ DROP FUNCTION [THE_CVENGERS].destinosConMasPasajesComprados
 DROP FUNCTION [THE_CVENGERS].destinosConAeronavesMasVacias
 DROP FUNCTION [THE_CVENGERS].clientesConMasPuntosAcumulados
 DROP FUNCTION [THE_CVENGERS].consultarMillas
+DROP FUNCTION [THE_CVENGERS].calcularPrecioPasaje
+DROP FUNCTION [THE_CVENGERS].calcularPrecioEncomienda
+DROP PROCEDURE [THE_CVENGERS].realizarCanje
 DROP PROCEDURE [THE_CVENGERS].getAll 
 DROP SCHEMA [THE_CVENGERS]*/
 

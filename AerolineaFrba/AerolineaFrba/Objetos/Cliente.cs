@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace AerolineaFrba.Objetos
 {
 
-    class Cliente
+    public class Cliente
     {
        private Int32 Dni;
        private string Nombre;
@@ -16,10 +16,10 @@ namespace AerolineaFrba.Objetos
        private Int32 Telefono;
        private string Mail;
        private string Fecha_nacimiento;
-       private Encomienda Encomienda;
-       private Pasaje Pasaje;
+       private TipoItem item;
+       
 
-       public Cliente(Int32 dni, string nombre, string apellido, string direccion, Int32 telefono, string mail, string fecha_nacimiento, Encomienda encomienda, Pasaje pasaje) 
+       public Cliente(Int32 dni, string nombre, string apellido, string direccion, Int32 telefono, string mail, string fecha_nacimiento, TipoItem item) 
        {
 
             this.Dni = dni;
@@ -29,8 +29,7 @@ namespace AerolineaFrba.Objetos
             this.Telefono = telefono;
             this.Mail = mail;
             this.Fecha_nacimiento = fecha_nacimiento;
-            this.Encomienda = encomienda;
-            this.Pasaje = pasaje;
+            this.item = item;
         
         }
 
@@ -69,15 +68,9 @@ namespace AerolineaFrba.Objetos
             return this.Fecha_nacimiento;
         }
 
-        public Encomienda getEncomienda()
+        public TipoItem getItem()
         {
-            return this.Encomienda;
+            return item;
         }
-
-        public Pasaje getPasaje()
-        {
-            return this.Pasaje;
-        }
-
     }
 }

@@ -58,7 +58,7 @@ namespace AerolineaFrba.Compra
         private void Compra_Load(object sender, EventArgs e)
         {
             dateTimePicker_fechaViaje.Format = DateTimePickerFormat.Custom;
-            dateTimePicker_fechaViaje.CustomFormat = "yyyy-MM-dd HH:mm:ss";
+            dateTimePicker_fechaViaje.CustomFormat = "dd/MM/yyyy HH:mm:ss";
             dateTimePicker_fechaViaje.MinDate = DateTimeHandler.devolverFechaDB();
             dateTimePicker_fechaViaje.Value = DateTimeHandler.devolverFechaDB();
         }
