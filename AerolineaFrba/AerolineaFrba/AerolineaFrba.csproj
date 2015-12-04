@@ -114,6 +114,7 @@
     <Compile Include="Compra\Carrito.Designer.cs">
       <DependentUpon>Carrito.cs</DependentUpon>
     </Compile>
+    <Compile Include="Compra\TipoCompra.cs" />
     <Compile Include="Conexion\Conexion.cs" />
     <Compile Include="Consulta Millas\Consulta_Millas.cs">
       <SubType>Form</SubType>

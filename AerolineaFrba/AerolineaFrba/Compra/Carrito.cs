@@ -26,13 +26,13 @@ namespace AerolineaFrba.Compra
 
         private void button_aEncomienda_Click(object sender, EventArgs e)
         {
-            AgregarPasajeEncomienda ventana = new AgregarPasajeEncomienda(id,1);
+            AgregarPasajeEncomienda ventana = new AgregarPasajeEncomienda(id,TipoCompra.Encomienda);
             ventana.Show();
         }
 
         private void button_aPasaje_Click(object sender, EventArgs e)
         {
-            AgregarPasajeEncomienda ventana = new AgregarPasajeEncomienda(id,0);
+            AgregarPasajeEncomienda ventana = new AgregarPasajeEncomienda(id,TipoCompra.Pasaje);
             ventana.Show();
         }
 

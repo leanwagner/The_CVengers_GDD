@@ -17,12 +17,12 @@ namespace AerolineaFrba.Compra
         LlenadorDeTablas llenador = new LlenadorDeTablas();
         int viajeId;
 
-        public AgregarPasajeEncomienda(int id_viaje,int tipo_ventana)
+        public AgregarPasajeEncomienda(int id_viaje,TipoCompra tipo)
         {
             viajeId = id_viaje;
             InitializeComponent();
-            if (tipo_ventana == 0) { groupBox3.Visible = false; }
-            else { groupBox1.Visible = false; }
+            if (tipo == TipoCompra.Pasaje) { groupBox3.Visible = false;}
+            else { groupBox1.Visible = false; this.Text = "Agregar Encomienda"; }
             llenarComboBoxPisoAeronave(ref comboBox_piso);
         }
 
@@ -86,6 +86,7 @@ namespace AerolineaFrba.Compra
                     errorProvider_disponibles.Clear();
             } 
         }
+
 
         
     }

@@ -1,4 +1,5 @@
-﻿namespace AerolineaFrba.Compra
+﻿using AerolineaFrba.MyNumericUpDown;
+namespace AerolineaFrba.Compra
 {
     partial class AgregarPasajeEncomienda
     {
@@ -44,14 +45,14 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.numericUpDown_telefono = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown_telefono = new NumericUpDownModified();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox_apellido = new System.Windows.Forms.TextBox();
             this.textBox_nombre = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.Nombre = new System.Windows.Forms.Label();
-            this.numericUpDown_dni = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown_dni = new NumericUpDownModified();
             this.label1 = new System.Windows.Forms.Label();
             this.errorProvider_disponibles = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -165,7 +166,7 @@
             this.groupBox2.Size = new System.Drawing.Size(682, 230);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Ingreso datos Pasajero";
+            this.groupBox2.Text = "Ingreso datos Cliente";
             // 
             // button_agregarPasaje
             // 
@@ -358,14 +359,14 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.NumericUpDown numericUpDown_telefono;
+        private NumericUpDownModified numericUpDown_telefono;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox_apellido;
         private System.Windows.Forms.TextBox textBox_nombre;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label Nombre;
-        private System.Windows.Forms.NumericUpDown numericUpDown_dni;
+        private NumericUpDownModified numericUpDown_dni;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label7;
