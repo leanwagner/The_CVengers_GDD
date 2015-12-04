@@ -46,14 +46,14 @@ namespace AerolineaFrba.Devolucion
                 SqlDataReader reader = cmd.ExecuteReader();
                 reader.Read();
                 idClie = reader["CLIENTE_ID"].ToString();
-
-                lleni.llenarDataGridViewDevolucion(dataGridView1, idClie);
-
                 reader.Close();
+                lleni.llenarDataGridViewDevolucion(dataGridView1, idClie);
+                dataGridView1.ClearSelection();
+               // this.Size = new Size(226, 332);
             }
             else
             {
-              /// vaciar dgv   
+              //  this.Size = new Size(226, 113);
             }
 
         }
@@ -65,11 +65,18 @@ namespace AerolineaFrba.Devolucion
             SqlDataReader reader = cmd.ExecuteReader();
             reader.Read();
             idClie = reader["CLIENTE_ID"].ToString();
-
+            reader.Close();
             lleni.llenarDataGridViewDevolucion(dataGridView1, idClie);
+            dataGridView1.ClearSelection();
+          //  this.Size = new Size(226, 332);
             
-           reader.Close();
+          
         
+        }
+
+        private void Devolucion_Load(object sender, EventArgs e)
+        {
+           // this.Size = new Size(226, 113);
         }
     }
 }
