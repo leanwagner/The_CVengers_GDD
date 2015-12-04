@@ -31,7 +31,11 @@ namespace AerolineaFrba.Compra
             kgs_disponibles = kgs;
             dateTimePicker_nacimiento.Format = DateTimePickerFormat.Custom;
             dateTimePicker_nacimiento.CustomFormat = "dd/MM/yyyy";
-            groupBox2.Enabled = false;
+            dateTimePicker_vencimiento.Format = DateTimePickerFormat.Custom;
+            dateTimePicker_vencimiento.CustomFormat = "MMyy";
+            groupBox_tarjeta.Enabled = false;
+            checkeoUsuario();           
+            
 
         }
 
@@ -45,6 +49,13 @@ namespace AerolineaFrba.Compra
                 ListaButacas.Add(Int32.Parse(value.ToString()));
         }
 
+        public void checkeoUsuario()
+        {
+
+            radioButton_tarjeta.Checked = true;
+            radioButton_efectivo.Enabled = false;
+        
+        }
         private void button_aEncomienda_Click(object sender, EventArgs e)
         {
             if (kgs_disponibles == 0)
@@ -91,6 +102,8 @@ namespace AerolineaFrba.Compra
             }
 
             labelMonto.Text = calcularPrecioTotal().ToString();
+            if (calcularPrecioTotal() != 0) button_confirmarItems.Enabled = true;
+            else button_confirmarItems.Enabled=false;
         }
 
         private void button_eliminarItem_Click(object sender, EventArgs e)
@@ -105,7 +118,13 @@ namespace AerolineaFrba.Compra
 
         private void button_confirmarItems_Click(object sender, EventArgs e)
         {
-            groupBox2.Enabled = true;
+            DialogResult result = MessageBox.Show("¿Está seguro de continuar?", "Confirmar Ítems", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                groupBox_tarjeta.Enabled = true;
+                groupBox1.Enabled = false;
+            }
+            else { return; }
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -137,6 +156,39 @@ namespace AerolineaFrba.Compra
 
             }
         }
-       
+
+        private void radioButton_tarjeta_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton_tarjeta.Checked)
+            {
+                dateTimePicker_vencimiento.Enabled = true;
+                comboBox_tipoTarjeta.Enabled = true;
+                numericUpDown_codigoTarjeta.Enabled = true;
+                numericUpDown_numeroTarjeta.Enabled = true;
+            }
+            if (radioButton_efectivo.Checked)
+            {
+                dateTimePicker_vencimiento.Enabled = false;
+                comboBox_tipoTarjeta.Enabled = false;
+                numericUpDown_codigoTarjeta.Enabled = false;
+                numericUpDown_numeroTarjeta.Enabled = false;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            groupBox1.Enabled = true;
+            groupBox_tarjeta.Enabled = false;
+        }
+
+        private void Carrito_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            ListaClientes.Clear();
+            ListaButacas.Clear();
+            
+
+        }
+
+        
     }
 }
