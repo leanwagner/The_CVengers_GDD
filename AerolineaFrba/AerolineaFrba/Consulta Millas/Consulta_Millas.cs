@@ -21,7 +21,7 @@ namespace AerolineaFrba.Consulta_Millas
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             dataGridView1.DataSource = null;
-            if (dniBox.Text.Length == 0)
+            if (dniBox.Value == 0)
             {
                 notFound.Clear();
                 errorDni.SetError(dniBox, "Debe ingresar el numero de DNI");
@@ -35,16 +35,17 @@ namespace AerolineaFrba.Consulta_Millas
             else errorName.Clear();
 
            
-            if (dniBox.Text.Length == 0 || nameBox.Text.Length == 0)
+            if (dniBox.Value == 0 || nameBox.Text.Length == 0)
                 return;
 
-            SqlCommand cmd = new SqlCommand("select * from THE_CVENGERS.CLIENTE where CLIENTE_DNI = " + dniBox.Text + "and CLIENTE_APELLIDO COLLATE Latin1_General_CI_AI like '" + nameBox.Text + "' COLLATE Latin1_General_CI_AI", Conexion.getConexion());
+            SqlCommand cmd = new SqlCommand("select * from THE_CVENGERS.CLIENTE where CLIENTE_DNI = " + dniBox.Value.ToString() + " and CLIENTE_APELLIDO COLLATE Latin1_General_CI_AI like '" + nameBox.Text + "' COLLATE Latin1_General_CI_AI", Conexion.getConexion());
             SqlDataReader reader = cmd.ExecuteReader();
             reader.Read();
-            if (nameBox.Text.Length != 0 && dniBox.Text.Length != 0 && !reader.HasRows)
+            if (nameBox.Text.Length != 0 && dniBox.Value != 0 && !reader.HasRows)
             {
-                notFound.SetError(millasLabel, "No se encuentran datos de millas para esos datos");
-                this.Size = new Size(300, 106);
+                notFound.SetError(label4, "No se encuentran datos de millas para esos datos");
+                this.Size = new Size(207, 106);
+                label4.Visible = true;
                 this.Refresh();
                 label2.Visible = false;
                 millasLabel.Visible = false;
@@ -54,7 +55,8 @@ namespace AerolineaFrba.Consulta_Millas
             else
             {
                 notFound.Clear();
-                this.Size = new Size(300, 321);
+                this.Size = new Size(659, 321);
+                label4.Visible = false;
                 this.Refresh();
 
                 groupBox1.Enabled = true;
@@ -76,15 +78,23 @@ namespace AerolineaFrba.Consulta_Millas
             reader.Close();
             SqlDataAdapter adapter;
             DataTable tabla;
-
+            DataTable tabla2;
             try
             {
-                adapter = new SqlDataAdapter("select MILLA_FECHA_ACREDITACION 'Fecha',(MILLA_GANADA - MILLA_GASTADA) 'Millas disponibles' from THE_CVENGERS.MILLA where MILLA_CLIENTE = " + idClie, Conexion.getConexion());
+                adapter = new SqlDataAdapter("select * from THE_CVENGERS.listadoMillas(" + idClie+") order by 'Fecha transacción'", Conexion.getConexion());
                 tabla = new DataTable();
 
                 adapter.Fill(tabla);
                 dataGridView1.DataSource = tabla;
                 dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+                adapter.Dispose();
+
+                adapter = new SqlDataAdapter("select * from THE_CVENGERS.listadoCanjes(" + idClie + ") order by 'Fecha canje'", Conexion.getConexion());
+                tabla2 = new DataTable();
+
+                adapter.Fill(tabla2);
+                dataGridView2.DataSource = tabla2;
+                dataGridView2.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
                 adapter.Dispose();
             }
             catch (Exception exc)
@@ -104,7 +114,7 @@ namespace AerolineaFrba.Consulta_Millas
                 errorName.SetError(nameBox, "Debe ingresar su apellido");
                 groupBox1.Enabled = false;
                 dataGridView1.Enabled = false;
-                this.Size = new Size(300, 106);
+                this.Size = new Size(207, 106);
                 label2.Visible = false;
                 millasLabel.Visible = false;
         }
@@ -117,6 +127,11 @@ namespace AerolineaFrba.Consulta_Millas
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
             dataGridView1.ClearSelection();
+        }
+
+        private void dataGridView2_SelectionChanged(object sender, EventArgs e)
+        {
+            dataGridView2.ClearSelection();
         }
     }
 }
