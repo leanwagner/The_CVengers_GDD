@@ -1173,16 +1173,18 @@ set @millasACobrar = (SELECT PRODUCTO_MILLAS_NECESARIAS * @cant
 
 declare @IdMilla numeric(18,0)
 declare @ganada numeric(18,0)
+declare @gastada numeric(18,0)
 
 declare restarMillas cursor
-for SELECT MILLA_ID, MILLA_GANADA FROM THE_CVENGERS.MILLA WHERE MILLA_CLIENTE = @cli AND DATEDIFF(SECOND, MILLA_FECHA_ACREDITACION, THE_CVENGERS.fechaReal()) <= 31536000 ORDER BY MILLA_FECHA_ACREDITACION
+for SELECT MILLA_ID, MILLA_GANADA, MILLA_GASTADA FROM THE_CVENGERS.MILLA WHERE MILLA_CLIENTE = @cli AND DATEDIFF(SECOND, MILLA_FECHA_ACREDITACION, THE_CVENGERS.fechaReal()) <= 31536000 ORDER BY MILLA_FECHA_ACREDITACION
 
 
 OPEN restarMillas
-FETCH FROM restarMillas INTO @IdMilla, @ganada
+FETCH FROM restarMillas INTO @IdMilla, @ganada, @gastada
 WHILE @millasACobrar <> 0
 BEGIN
-
+if(@gastada = 0)
+begin
 if (@ganada <= @millasACobrar)
 begin
 
@@ -1200,6 +1202,33 @@ WHERE MILLA_ID = @IdMilla
 
 set @millasACobrar = 0
 end
+end
+
+if(@gastada <> 0 and @gastada < @ganada)
+begin
+
+if((@ganada - @gastada) < @millasACobrar)
+begin
+
+set @millasACobrar = @millasACobrar - (@ganada - @gastada)
+
+update THE_CVENGERS.MILLA SET MILLA_GASTADA = MILLA_GANADA
+WHERE MILLA_ID = @IdMilla
+
+end
+
+if((@ganada - @gastada) > @millasACobrar)
+begin
+
+update THE_CVENGERS.MILLA SET MILLA_GASTADA = MILLA_GASTADA + @millasACobrar
+WHERE MILLA_ID = @IdMilla
+
+ set @millasACobrar = 0
+
+end
+
+end
+
 FETCH NEXT FROM restarMillas INTO @IdMilla, @ganada
 END
 CLOSE restarMillas

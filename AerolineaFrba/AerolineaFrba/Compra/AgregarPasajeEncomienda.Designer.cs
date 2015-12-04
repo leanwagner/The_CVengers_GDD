@@ -45,14 +45,14 @@ namespace AerolineaFrba.Compra
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox_direccion = new System.Windows.Forms.TextBox();
-            this.numericUpDown_telefono = new NumericUpDownModified();
+            this.numericUpDown_telefono = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox_apellido = new System.Windows.Forms.TextBox();
             this.textBox_nombre = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.Nombre = new System.Windows.Forms.Label();
-            this.numericUpDown_dni = new NumericUpDownModified();
+            this.numericUpDown_dni = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.errorProvider_disponibles = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -195,11 +195,11 @@ namespace AerolineaFrba.Compra
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(299, 126);
+            this.label6.Location = new System.Drawing.Point(300, 126);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(109, 13);
+            this.label6.Size = new System.Drawing.Size(111, 13);
             this.label6.TabIndex = 11;
-            this.label6.Text = "Fecha de nacimiento:";
+            this.label6.Text = "Fecha de Nacimiento:";
             // 
             // label5
             // 
@@ -212,22 +212,27 @@ namespace AerolineaFrba.Compra
             // 
             // textBox_direccion
             // 
-            this.textBox_direccion.Location = new System.Drawing.Point(93, 77);
+            this.textBox_direccion.Location = new System.Drawing.Point(84, 78);
             this.textBox_direccion.Name = "textBox_direccion";
             this.textBox_direccion.Size = new System.Drawing.Size(236, 20);
             this.textBox_direccion.TabIndex = 9;
             // 
             // numericUpDown_telefono
             // 
-            this.numericUpDown_telefono.Location = new System.Drawing.Point(435, 78);
+            this.numericUpDown_telefono.Location = new System.Drawing.Point(415, 78);
+            this.numericUpDown_telefono.Maximum = new decimal(new int[] {
+            1410065407,
+            2,
+            0,
+            0});
             this.numericUpDown_telefono.Name = "numericUpDown_telefono";
-            this.numericUpDown_telefono.Size = new System.Drawing.Size(132, 20);
+            this.numericUpDown_telefono.Size = new System.Drawing.Size(151, 20);
             this.numericUpDown_telefono.TabIndex = 8;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(356, 80);
+            this.label4.Location = new System.Drawing.Point(356, 81);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(52, 13);
             this.label4.TabIndex = 7;
@@ -236,7 +241,7 @@ namespace AerolineaFrba.Compra
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(23, 80);
+            this.label2.Location = new System.Drawing.Point(23, 81);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(55, 13);
             this.label2.TabIndex = 6;
@@ -276,15 +281,20 @@ namespace AerolineaFrba.Compra
             // 
             // numericUpDown_dni
             // 
-            this.numericUpDown_dni.Location = new System.Drawing.Point(58, 37);
+            this.numericUpDown_dni.Location = new System.Drawing.Point(55, 34);
+            this.numericUpDown_dni.Maximum = new decimal(new int[] {
+            99999999,
+            0,
+            0,
+            0});
             this.numericUpDown_dni.Name = "numericUpDown_dni";
-            this.numericUpDown_dni.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDown_dni.Size = new System.Drawing.Size(134, 20);
             this.numericUpDown_dni.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(23, 37);
+            this.label1.Location = new System.Drawing.Point(23, 36);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(26, 13);
             this.label1.TabIndex = 0;
@@ -360,14 +370,14 @@ namespace AerolineaFrba.Compra
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox_direccion;
-        private NumericUpDownModified numericUpDown_telefono;
+        private System.Windows.Forms.NumericUpDown numericUpDown_telefono;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox_apellido;
         private System.Windows.Forms.TextBox textBox_nombre;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label Nombre;
-        private NumericUpDownModified numericUpDown_dni;
+        private System.Windows.Forms.NumericUpDown numericUpDown_dni;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label7;

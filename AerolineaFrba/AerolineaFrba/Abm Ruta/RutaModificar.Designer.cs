@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RutaModificar));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.numericUpDown_codRuta = new MyNumericUpDown.NumericUpDownModified();
+            this.numericUpDown_codRuta = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
             this.numericUpDown_precioPasaje = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown_precioKG = new System.Windows.Forms.NumericUpDown();
@@ -271,7 +271,7 @@
         private System.Windows.Forms.NumericUpDown numericUpDown_precioPasaje;
         private System.Windows.Forms.NumericUpDown numericUpDown_precioKG;
         private System.Windows.Forms.Label label6;
-        private MyNumericUpDown.NumericUpDownModified numericUpDown_codRuta;
+        private System.Windows.Forms.NumericUpDown numericUpDown_codRuta;
         private System.Windows.Forms.ErrorProvider errorProvider_ciudadOrigen;
         private System.Windows.Forms.ErrorProvider errorProvider_ciudadDestino;
         private System.Windows.Forms.ErrorProvider errorProvider_Servicios;

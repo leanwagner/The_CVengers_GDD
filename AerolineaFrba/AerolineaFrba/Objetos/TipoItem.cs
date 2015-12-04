@@ -9,5 +9,7 @@ namespace AerolineaFrba.Objetos
     public interface TipoItem
     {
         void persistirItem();
+        float calcularPrecio();
+        String ToString();
     }
 }
