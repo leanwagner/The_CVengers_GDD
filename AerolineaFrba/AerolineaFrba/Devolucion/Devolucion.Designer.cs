@@ -200,6 +200,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "Devolucion";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Devolucion";
             this.Load += new System.EventHandler(this.Devolucion_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
