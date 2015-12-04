@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ namespace AerolineaFrba.Canje_Millas
 {
     public partial class Canje_Millas : Form
     {
-        
+        decimal valorPremioElegido;
            Llenador.LlenadorDeTablas lleni = new Llenador.LlenadorDeTablas();
            SqlDataReader reader;
         public Canje_Millas()
@@ -50,6 +51,13 @@ namespace AerolineaFrba.Canje_Millas
                 label9.Text = reader["CLIENTE_MAIL"].ToString();
                 label10.Visible = true;
                 label10.Text = DateTime.Parse(reader["CLIENTE_FECHA_NAC"].ToString()).Date.ToString("dd-MMM-yyyy");
+                String idClie = reader["CLIENTE_ID"].ToString();
+                cmd.CommandText = "select THE_CVENGERS.consultarMillas(" + idClie + ") as m";
+                reader.Close();
+                reader = cmd.ExecuteReader();
+                reader.Read();
+                label12.Visible = true;
+                label12.Text = reader["m"].ToString();
                 reader.Close();
             }
             else 
@@ -59,6 +67,7 @@ namespace AerolineaFrba.Canje_Millas
                 label9.Visible = false;
 
                 label10.Visible = false;
+                label12.Visible = false;
             }
 
 
@@ -71,6 +80,7 @@ namespace AerolineaFrba.Canje_Millas
             label9.Visible = false;
 
             label10.Visible = false;
+            label12.Visible = false;
             lleni.llenarComboBoxPremios(ref premioCombo);
             canjBoton.Enabled = false;
         }
@@ -87,37 +97,109 @@ namespace AerolineaFrba.Canje_Millas
             label9.Text = reader["CLIENTE_MAIL"].ToString();
             label10.Visible = true;
             label10.Text = DateTime.Parse(reader["CLIENTE_FECHA_NAC"].ToString()).Date.ToString("dd-MMM-yyyy");
+            String idClie = reader["CLIENTE_ID"].ToString();
+            cmd.CommandText = "select THE_CVENGERS.consultarMillas(" + idClie + ") as m";
+            reader.Close();
+            reader = cmd.ExecuteReader();
+            reader.Read();
+            label12.Visible = true;
+            label12.Text = reader["m"].ToString();
             reader.Close();
         }
 
         private void premioCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (premioCombo.SelectedIndex != -1 && canUpDown.Value != 0)
-                canjBoton.Enabled = true;
-            else
+            if (premioCombo.SelectedIndex != -1 && canUpDown.Value != 0 && label12.Visible)
+            {
+                if (valorPremioElegido * canUpDown.Value <= Int32.Parse(label12.Text))
+                {
+                    canjBoton.Enabled = true;
+                    errorPuntos.Clear();
+                }
+                else { errorPuntos.SetError(canjBoton, "No tiene suficientes puntos");
                 canjBoton.Enabled = false;
+                }
+            }
+            else
+            { canjBoton.Enabled = false;
+            errorPuntos.Clear();
+            }
+            if (premioCombo.SelectedIndex == -1)
+                return;
             SqlCommand cmd = new SqlCommand("select * from THE_CVENGERS.PRODUCTO where '" + premioCombo.SelectedItem.ToString() + "' like '%' + PRODUCTO_NOMBRE + '%'", Conexion.getConexion());
             SqlDataReader rd = cmd.ExecuteReader();
             rd.Read();
             canUpDown.Value = 0;
             canUpDown.Maximum = decimal.Parse(rd["PRODUCTO_STOCK"].ToString());
+            valorPremioElegido = decimal.Parse(rd["PRODUCTO_MILLAS_NECESARIAS"].ToString());
             if (canUpDown.Maximum == 0)
                 errorNoStock.SetError(canUpDown, "No hay stock de ese producto");
             else errorNoStock.Clear();
+
             rd.Close();
         }
 
         private void canUpDown_ValueChanged(object sender, EventArgs e)
         {
-            if (premioCombo.SelectedIndex != -1 && canUpDown.Value != 0)
-                canjBoton.Enabled = true;
+            if (premioCombo.SelectedIndex != -1 && canUpDown.Value != 0 && label12.Visible)
+            {
+                if (valorPremioElegido * canUpDown.Value <= Int32.Parse(label12.Text))
+                {
+                    canjBoton.Enabled = true;
+                    errorPuntos.Clear();
+                }
+                else
+                {
+                    errorPuntos.SetError(canjBoton, "No tiene suficientes puntos");
+                    canjBoton.Enabled = false;
+                }
+            }
             else
+            {
                 canjBoton.Enabled = false;
+                errorPuntos.Clear();
+            }
         }
 
         private void canjBoton_Click(object sender, EventArgs e)
         {
             MessageBox.Show("todavia no lo hice porque no tenemos millas");
+        }
+
+        private void label12_VisibleChanged(object sender, EventArgs e)
+        {
+            if (premioCombo.SelectedIndex != -1 && canUpDown.Value != 0 && label12.Visible)
+            {
+                if (valorPremioElegido * canUpDown.Value <= Int32.Parse(label12.Text))
+                {
+                    canjBoton.Enabled = true;
+                    errorPuntos.Clear();
+                }
+                else
+                {
+                    errorPuntos.SetError(canjBoton, "No tiene suficientes puntos");
+                    canjBoton.Enabled = false;
+                }
+            }
+            else
+            {
+                canjBoton.Enabled = false;
+                errorPuntos.Clear();
+            }
+
+            if (!label12.Visible)
+            {
+                premioCombo.SelectedIndex = -1;
+                canUpDown.Value = 0;
+                nombreCombo.SelectedIndex = -1;
+                nombreCombo.Text = "";
+                nombreCombo.Items.Clear();
+            }
+        }
+
+        private void nombreCombo_VisibleChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }
