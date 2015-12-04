@@ -112,6 +112,7 @@ namespace AerolineaFrba.Compra
             this.comboBox_butacasDisponibles.Name = "comboBox_butacasDisponibles";
             this.comboBox_butacasDisponibles.Size = new System.Drawing.Size(121, 21);
             this.comboBox_butacasDisponibles.TabIndex = 3;
+            this.comboBox_butacasDisponibles.SelectedIndexChanged += new System.EventHandler(this.comboBox_butacasDisponibles_SelectedIndexChanged);
             // 
             // label8
             // 
@@ -290,7 +291,7 @@ namespace AerolineaFrba.Compra
             this.numericUpDown_dni.Name = "numericUpDown_dni";
             this.numericUpDown_dni.Size = new System.Drawing.Size(134, 20);
             this.numericUpDown_dni.TabIndex = 1;
-            this.numericUpDown_dni.ValueChanged += new System.EventHandler(this.numericUpDown_dni_ValueChanged);
+            this.numericUpDown_dni.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numericUpDown_dni_KeyUp);
             // 
             // label1
             // 
@@ -323,6 +324,7 @@ namespace AerolineaFrba.Compra
             this.numericUpDown_kilos.Name = "numericUpDown_kilos";
             this.numericUpDown_kilos.Size = new System.Drawing.Size(120, 20);
             this.numericUpDown_kilos.TabIndex = 1;
+            this.numericUpDown_kilos.ValueChanged += new System.EventHandler(this.numericUpDown_kilos_ValueChanged);
             // 
             // label10
             // 
@@ -340,8 +342,8 @@ namespace AerolineaFrba.Compra
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(749, 406);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AgregarPasajeEncomienda";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

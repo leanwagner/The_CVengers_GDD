@@ -11,21 +11,40 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using AerolineaFrba.MyNumericUpDown;
 using System.Data.SqlClient;
+using AerolineaFrba.Llenador;
 
 namespace AerolineaFrba.Compra
 {
     public partial class Carrito : Form
     {
         int id;
+        public static int kgs_disponibles;
         public static Collection<Cliente> ListaClientes = new Collection<Cliente>();
+        public static Collection<int> ListaButacas = new Collection<int>();
+        LlenadorDeTablas lloni = new LlenadorDeTablas();
 
-
-        public Carrito(int id_viaje)
+        public Carrito(int id_viaje, int kgs)
         {
             InitializeComponent();
             id = id_viaje;
+            llenarCollectionAux();
+            kgs_disponibles = kgs;
             dateTimePicker_nacimiento.Format = DateTimePickerFormat.Custom;
             dateTimePicker_nacimiento.CustomFormat = "dd/MM/yyyy";
+            groupBox2.Enabled = false;
+
+        }
+
+        public void llenarCollectionAux() 
+        {
+            ListBox aux = new ListBox();
+            String tablas = "AERONAVE A, THE_CVENGERS.VIAJE V, THE_CVENGERS.BUTACA B";
+            String condicion = "V.VIAJE_ID = " + id.ToString() + " AND A.AERONAVE_ID = V.VIAJE_AERONAVE AND B.BUTACA_AERONAVE = A.AERONAVE_ID";
+            lloni.llenarListBoxConCondicion(ref aux, tablas, "BUTACA_NRO", condicion);
+            foreach (object value in aux.Items)
+                ListaButacas.Add(Int32.Parse(value.ToString()));
+            MessageBox.Show(ListaButacas.Count.ToString());
+            
 
         }
 
@@ -74,7 +93,22 @@ namespace AerolineaFrba.Compra
             labelMonto.Text = calcularPrecioTotal().ToString("0.00");
         }
 
-        private void numericUpDown_dni_ValueChanged(object sender, EventArgs e)
+
+        private void button_confirmarItems_Click(object sender, EventArgs e)
+        {
+            groupBox2.Enabled = true;
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(listBox1.SelectedItem != null )
+            button_eliminarItem.Enabled = true;
+            
+            else
+                button_eliminarItem.Enabled = false;
+        }
+
+        private void numericUpDown_dni_KeyUp(object sender, KeyEventArgs e)
         {
             if (numericUpDown_dni.Text.Length > 1)
             {

@@ -144,7 +144,7 @@ namespace AerolineaFrba.Llenador
         {
 
             SqlCommand sqlCmd = new SqlCommand("SELECT * FROM THE_CVENGERS." + nombreTabla + " where " + condicion, Conexion.getConexion());
-
+          
             SqlDataReader sqlReader = sqlCmd.ExecuteReader();
 
             while (sqlReader.Read())
