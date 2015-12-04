@@ -18,7 +18,7 @@ namespace AerolineaFrba
         static void Main()
         {
             CultureInfo culture = (CultureInfo)CultureInfo.CurrentCulture.Clone();
-            culture.DateTimeFormat.ShortDatePattern = "dd/MM/yyyy";
+            culture.DateTimeFormat.ShortDatePattern = "MM/dd/yyyy";
             culture.DateTimeFormat.LongDatePattern = "dddd,dd' de 'MMMM' de 'yyyy";
             culture.DateTimeFormat.LongTimePattern = "HH:mm:ss";
             culture.DateTimeFormat.ShortTimePattern = "HH:mm";
