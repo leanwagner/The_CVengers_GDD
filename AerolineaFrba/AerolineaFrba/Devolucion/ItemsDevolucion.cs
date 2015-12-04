@@ -21,7 +21,7 @@ namespace AerolineaFrba.Devolucion
 
        override public String ToString() 
        {
-           return tipo + " - Item N° " + numero + " - $" + precio; 
+           return "N° " + numero+" - "+tipo + " - $" + precio; 
        }
     }
 }
