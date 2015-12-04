@@ -290,6 +290,7 @@ namespace AerolineaFrba.Compra
             this.numericUpDown_dni.Name = "numericUpDown_dni";
             this.numericUpDown_dni.Size = new System.Drawing.Size(134, 20);
             this.numericUpDown_dni.TabIndex = 1;
+            this.numericUpDown_dni.ValueChanged += new System.EventHandler(this.numericUpDown_dni_ValueChanged);
             // 
             // label1
             // 
