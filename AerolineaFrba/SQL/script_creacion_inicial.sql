@@ -1106,6 +1106,16 @@ return(select top 5 CLIENTE_APELLIDO + ' ' + CLIENTE_NOMBRE 'Cliente', (select s
 		from THE_CVENGERS.CLIENTE
 		order by "Millas totales acumuladas" DESC)
 
+go
+create function THE_CVENGERS.consultarMillas(@cli as numeric(18,0))
+returns int
+as
+begin
+return (select sum(MILLA_GANADA - MILLA_GASTADA)
+		FROM THE_CVENGERS.MILLA
+		WHERE MILLA_CLIENTE = @cli
+		AND DATEDIFF(second,MILLA_FECHA_ACREDITACION, THE_CVENGERS.fechaReal()) <= 31536000)
+end
 
 		
 
@@ -1168,6 +1178,7 @@ DROP PROCEDURE [THE_CVENGERS].asignarMillasViaje
 DROP FUNCTION [THE_CVENGERS].destinosConMasPasajesComprados
 DROP FUNCTION [THE_CVENGERS].destinosConAeronavesMasVacias
 DROP FUNCTION [THE_CVENGERS].clientesConMasPuntosAcumulados
+DROP FUNCTION [THE_CVENGERS].consultarMillas
 DROP PROCEDURE [THE_CVENGERS].getAll 
 DROP SCHEMA [THE_CVENGERS]*/
 
