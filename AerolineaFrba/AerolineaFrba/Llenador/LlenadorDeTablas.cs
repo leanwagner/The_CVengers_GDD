@@ -210,6 +210,29 @@ namespace AerolineaFrba.Llenador
             }
         }
 
+        public void llenarDataGridViewDevolucion(DataGridView dgv,String idCl)
+        {
+            SqlDataAdapter adapter;
+            DataTable tabla;
+
+            try
+            {
+                adapter = new SqlDataAdapter("select * from [THE_CVENGERS].comprasCliente("+idCl+") order by 'Fecha compra'", Conexion.getConexion());
+                tabla = new DataTable();
+
+                adapter.Fill(tabla);
+                dgv.DataSource = tabla;
+                dgv.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+                adapter.Dispose();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Rompe mostrando tabla " + ex);
+
+            }
+        }
+
         public void llenarDGV_ABMRutas(DataGridView dgv)
         {
             SqlDataAdapter adapter;
