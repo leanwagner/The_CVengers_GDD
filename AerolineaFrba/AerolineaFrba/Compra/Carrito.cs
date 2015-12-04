@@ -1,6 +1,7 @@
 ﻿using AerolineaFrba.Objetos;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -14,13 +15,15 @@ namespace AerolineaFrba.Compra
     public partial class Carrito : Form
     {
         int id;
-        static List<Cliente> ListaClientes;
+        static Collection<Cliente> ListaClientes;
 
 
         public Carrito(int id_viaje)
         {
             InitializeComponent();
             id = id_viaje;
+            dateTimePicker_nacimiento.Format = DateTimePickerFormat.Custom;
+            dateTimePicker_nacimiento.CustomFormat = "dd/MM/yyyy";
 
         }
 

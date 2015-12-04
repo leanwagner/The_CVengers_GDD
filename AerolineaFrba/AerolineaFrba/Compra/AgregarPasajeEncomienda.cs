@@ -21,6 +21,8 @@ namespace AerolineaFrba.Compra
         {
             viajeId = id_viaje;
             InitializeComponent();
+            dateTimePicker_nacimiento.Format = DateTimePickerFormat.Custom;
+            dateTimePicker_nacimiento.CustomFormat = "dd/MM/yyyy";
             if (tipo == TipoCompra.Pasaje) { groupBox3.Visible = false;}
             else { groupBox1.Visible = false; this.Text = "Agregar Encomienda"; }
             llenarComboBoxPisoAeronave(ref comboBox_piso);
