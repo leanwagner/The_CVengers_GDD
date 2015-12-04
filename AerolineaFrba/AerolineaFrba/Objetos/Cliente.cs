@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace AerolineaFrba.Objetos
 {
 
     public class Cliente
     {
+       private int clienteId;
        private Int32 Dni;
        private string Nombre;
        private string Apellido;
@@ -19,9 +22,10 @@ namespace AerolineaFrba.Objetos
        private TipoItem item;
        
 
-       public Cliente(Int32 dni, string nombre, string apellido, string direccion, Int32 telefono, string mail, string fecha_nacimiento, TipoItem item) 
+       public Cliente(int id,Int32 dni, string nombre, string apellido, string direccion, Int32 telefono, string mail, string fecha_nacimiento, TipoItem item) 
        {
 
+            this.clienteId = id;
             this.Dni = dni;
             this.Nombre = nombre;
             this.Apellido = apellido;
@@ -76,6 +80,20 @@ namespace AerolineaFrba.Objetos
         public TipoItem getItem()
         {
             return item;
+        }
+
+        public void persistirme() 
+        {
+            string command = "EXEC THE_CVENGERS.ingresarOModificarCliente @id =" + clienteId.ToString() +
+                ", @nombre = '" + Nombre +
+                "', @apellido = '" + Apellido +
+                "', @dni = '" + Dni.ToString() +
+                "', @dir = '" + Direccion +
+                "', @telefono = '" + Telefono.ToString() +
+                "', @mail = '" + Mail +
+                "', @fechanac = '" + Fecha_nacimiento.ToString() + "'";
+            SqlCommand sqlCmd = new SqlCommand(command,Conexion.getConexion());
+            sqlCmd.ExecuteNonQuery();
         }
     }
 }

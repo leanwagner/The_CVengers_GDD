@@ -39,6 +39,7 @@ namespace AerolineaFrba.Compra
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button_limpiar = new System.Windows.Forms.Button();
             this.button_agregarItem = new System.Windows.Forms.Button();
             this.dateTimePicker_nacimiento = new System.Windows.Forms.DateTimePicker();
             this.textBox_mail = new System.Windows.Forms.TextBox();
@@ -62,7 +63,6 @@ namespace AerolineaFrba.Compra
             this.errorProvider_apellido = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProvider_direccion = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProvider_dni = new System.Windows.Forms.ErrorProvider(this.components);
-            this.button_limpiar = new System.Windows.Forms.Button();
             this.errorProvider_dniDup = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -89,7 +89,7 @@ namespace AerolineaFrba.Compra
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Location = new System.Drawing.Point(22, 24);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(726, 119);
+            this.groupBox1.Size = new System.Drawing.Size(735, 119);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos Pasaje";
@@ -176,10 +176,20 @@ namespace AerolineaFrba.Compra
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Location = new System.Drawing.Point(22, 155);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(726, 231);
+            this.groupBox2.Size = new System.Drawing.Size(735, 231);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Ingreso datos Cliente";
+            // 
+            // button_limpiar
+            // 
+            this.button_limpiar.Location = new System.Drawing.Point(421, 175);
+            this.button_limpiar.Name = "button_limpiar";
+            this.button_limpiar.Size = new System.Drawing.Size(141, 37);
+            this.button_limpiar.TabIndex = 15;
+            this.button_limpiar.Text = "Limpiar Campos";
+            this.button_limpiar.UseVisualStyleBackColor = true;
+            this.button_limpiar.Click += new System.EventHandler(this.button_limpiar_Click);
             // 
             // button_agregarItem
             // 
@@ -262,7 +272,7 @@ namespace AerolineaFrba.Compra
             // 
             // textBox_apellido
             // 
-            this.textBox_apellido.Location = new System.Drawing.Point(530, 35);
+            this.textBox_apellido.Location = new System.Drawing.Point(294, 33);
             this.textBox_apellido.Name = "textBox_apellido";
             this.textBox_apellido.Size = new System.Drawing.Size(170, 20);
             this.textBox_apellido.TabIndex = 5;
@@ -270,7 +280,7 @@ namespace AerolineaFrba.Compra
             // 
             // textBox_nombre
             // 
-            this.textBox_nombre.Location = new System.Drawing.Point(283, 35);
+            this.textBox_nombre.Location = new System.Drawing.Point(568, 33);
             this.textBox_nombre.Name = "textBox_nombre";
             this.textBox_nombre.Size = new System.Drawing.Size(161, 20);
             this.textBox_nombre.TabIndex = 4;
@@ -278,7 +288,7 @@ namespace AerolineaFrba.Compra
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(477, 38);
+            this.label3.Location = new System.Drawing.Point(241, 36);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(47, 13);
             this.label3.TabIndex = 3;
@@ -287,7 +297,7 @@ namespace AerolineaFrba.Compra
             // Nombre
             // 
             this.Nombre.AutoSize = true;
-            this.Nombre.Location = new System.Drawing.Point(230, 38);
+            this.Nombre.Location = new System.Drawing.Point(515, 36);
             this.Nombre.Name = "Nombre";
             this.Nombre.Size = new System.Drawing.Size(47, 13);
             this.Nombre.TabIndex = 2;
@@ -326,7 +336,7 @@ namespace AerolineaFrba.Compra
             this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Location = new System.Drawing.Point(22, 24);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(726, 119);
+            this.groupBox3.Size = new System.Drawing.Size(735, 119);
             this.groupBox3.TabIndex = 9;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Datos Encomienda";
@@ -364,16 +374,6 @@ namespace AerolineaFrba.Compra
             // 
             this.errorProvider_dni.ContainerControl = this;
             // 
-            // button_limpiar
-            // 
-            this.button_limpiar.Location = new System.Drawing.Point(421, 175);
-            this.button_limpiar.Name = "button_limpiar";
-            this.button_limpiar.Size = new System.Drawing.Size(141, 37);
-            this.button_limpiar.TabIndex = 15;
-            this.button_limpiar.Text = "Limpiar Campos";
-            this.button_limpiar.UseVisualStyleBackColor = true;
-            this.button_limpiar.Click += new System.EventHandler(this.button_limpiar_Click);
-            // 
             // errorProvider_dniDup
             // 
             this.errorProvider_dniDup.ContainerControl = this;
@@ -386,8 +386,8 @@ namespace AerolineaFrba.Compra
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(776, 406);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AgregarPasajeEncomienda";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
