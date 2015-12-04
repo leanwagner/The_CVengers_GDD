@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AerolineaFrba.Objetos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +14,7 @@ namespace AerolineaFrba.Compra
     public partial class Carrito : Form
     {
         int id;
+        static List<Cliente> ListaClientes;
 
 
         public Carrito(int id_viaje)
@@ -22,20 +24,15 @@ namespace AerolineaFrba.Compra
 
         }
 
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button_aEncomienda_Click(object sender, EventArgs e)
         {
-            AgregarEncomienda ventana = new AgregarEncomienda(id);
+            AgregarPasajeEncomienda ventana = new AgregarPasajeEncomienda(id,1);
             ventana.Show();
         }
 
         private void button_aPasaje_Click(object sender, EventArgs e)
         {
-            AgregarPasaje ventana = new AgregarPasaje(id);
+            AgregarPasajeEncomienda ventana = new AgregarPasajeEncomienda(id,0);
             ventana.Show();
         }
 

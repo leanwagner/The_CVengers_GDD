@@ -1,4 +1,5 @@
-﻿namespace AerolineaFrba.Compra
+﻿using AerolineaFrba.MyNumericUpDown;
+namespace AerolineaFrba.Compra
 {
     partial class Carrito
     {
@@ -34,6 +35,7 @@
             this.button_aEncomienda = new System.Windows.Forms.Button();
             this.button_confirmarItems = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button_eliminarItem = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button_terminarCompra = new System.Windows.Forms.Button();
@@ -42,29 +44,28 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.numericUpDown_telefono = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown_telefono = new NumericUpDownModified();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox_apellido = new System.Windows.Forms.TextBox();
             this.textBox_nombre = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.Nombre = new System.Windows.Forms.Label();
-            this.numericUpDown_dni = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown_dni = new NumericUpDownModified();
             this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_telefono)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_dni)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(41, 25);
+            this.listBox1.Location = new System.Drawing.Point(26, 38);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(236, 199);
+            this.listBox1.Size = new System.Drawing.Size(251, 186);
             this.listBox1.TabIndex = 0;
             // 
             // button_aPasaje
@@ -110,6 +111,15 @@
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Agregar Ítems al carrito";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::AerolineaFrba.Properties.Resources.carrito;
+            this.pictureBox1.Location = new System.Drawing.Point(483, 36);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(199, 188);
+            this.pictureBox1.TabIndex = 5;
+            this.pictureBox1.TabStop = false;
             // 
             // button_eliminarItem
             // 
@@ -207,7 +217,6 @@
             this.label4.Size = new System.Drawing.Size(52, 13);
             this.label4.TabIndex = 7;
             this.label4.Text = "Teléfono:";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label2
             // 
@@ -266,15 +275,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "DNI";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::AerolineaFrba.Properties.Resources.carrito;
-            this.pictureBox1.Location = new System.Drawing.Point(483, 36);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(199, 188);
-            this.pictureBox1.TabIndex = 5;
-            this.pictureBox1.TabStop = false;
-            // 
             // Carrito
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -287,11 +287,11 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Carrito de Compras";
             this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_telefono)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_dni)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -310,10 +310,10 @@
         private System.Windows.Forms.TextBox textBox_nombre;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label Nombre;
-        private System.Windows.Forms.NumericUpDown numericUpDown_dni;
+        private NumericUpDownModified numericUpDown_dni;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.NumericUpDown numericUpDown_telefono;
+        private NumericUpDownModified numericUpDown_telefono;
         private System.Windows.Forms.Button button_eliminarItem;
         private System.Windows.Forms.Button button_terminarCompra;
         private System.Windows.Forms.DateTimePicker dateTimePicker_nacimiento;
