@@ -40,6 +40,7 @@ namespace AerolineaFrba.Compra
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button_eliminarItem = new System.Windows.Forms.Button();
             this.groupBox_tarjeta = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -47,12 +48,13 @@ namespace AerolineaFrba.Compra
             this.radioButton_efectivo = new System.Windows.Forms.RadioButton();
             this.comboBox_tipoTarjeta = new System.Windows.Forms.ComboBox();
             this.numericUpDown_codigoTarjeta = new System.Windows.Forms.NumericUpDown();
-            this.dateTimePicker_vencimiento = new System.Windows.Forms.DateTimePicker();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.numericUpDown_numeroTarjeta = new System.Windows.Forms.NumericUpDown();
             this.label8 = new System.Windows.Forms.Label();
+            this.shapeContainer2 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
+            this.lineShape1 = new Microsoft.VisualBasic.PowerPacks.LineShape();
             this.numericUpDown_telefono = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown_dni = new System.Windows.Forms.NumericUpDown();
             this.button_terminarCompra = new System.Windows.Forms.Button();
@@ -68,9 +70,7 @@ namespace AerolineaFrba.Compra
             this.label3 = new System.Windows.Forms.Label();
             this.Nombre = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.lineShape1 = new Microsoft.VisualBasic.PowerPacks.LineShape();
-            this.shapeContainer2 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
-            this.button1 = new System.Windows.Forms.Button();
+            this.dateTimePicker_vencimiento = new System.Windows.Forms.DateTimePicker();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox_tarjeta.SuspendLayout();
@@ -205,6 +205,16 @@ namespace AerolineaFrba.Compra
             this.groupBox_tarjeta.TabStop = false;
             this.groupBox_tarjeta.Text = "Ingreso datos Comprador";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(602, 281);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(107, 23);
+            this.button1.TabIndex = 18;
+            this.button1.Text = "Volver a Ítems";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.comboBox1);
@@ -292,14 +302,6 @@ namespace AerolineaFrba.Compra
             this.numericUpDown_codigoTarjeta.Size = new System.Drawing.Size(63, 20);
             this.numericUpDown_codigoTarjeta.TabIndex = 5;
             // 
-            // dateTimePicker_vencimiento
-            // 
-            this.dateTimePicker_vencimiento.Enabled = false;
-            this.dateTimePicker_vencimiento.Location = new System.Drawing.Point(288, 98);
-            this.dateTimePicker_vencimiento.Name = "dateTimePicker_vencimiento";
-            this.dateTimePicker_vencimiento.Size = new System.Drawing.Size(107, 20);
-            this.dateTimePicker_vencimiento.TabIndex = 9;
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -348,6 +350,26 @@ namespace AerolineaFrba.Compra
             this.label8.Size = new System.Drawing.Size(47, 13);
             this.label8.TabIndex = 2;
             this.label8.Text = "Número:";
+            // 
+            // shapeContainer2
+            // 
+            this.shapeContainer2.Location = new System.Drawing.Point(3, 16);
+            this.shapeContainer2.Margin = new System.Windows.Forms.Padding(0);
+            this.shapeContainer2.Name = "shapeContainer2";
+            this.shapeContainer2.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
+            this.lineShape1});
+            this.shapeContainer2.Size = new System.Drawing.Size(486, 119);
+            this.shapeContainer2.TabIndex = 12;
+            this.shapeContainer2.TabStop = false;
+            // 
+            // lineShape1
+            // 
+            this.lineShape1.BorderColor = System.Drawing.SystemColors.ButtonShadow;
+            this.lineShape1.Name = "lineShape1";
+            this.lineShape1.X1 = 100;
+            this.lineShape1.X2 = 100;
+            this.lineShape1.Y1 = 5;
+            this.lineShape1.Y2 = 102;
             // 
             // numericUpDown_telefono
             // 
@@ -481,35 +503,13 @@ namespace AerolineaFrba.Compra
             this.label1.TabIndex = 0;
             this.label1.Text = "DNI";
             // 
-            // lineShape1
+            // dateTimePicker_vencimiento
             // 
-            this.lineShape1.BorderColor = System.Drawing.SystemColors.ButtonShadow;
-            this.lineShape1.Name = "lineShape1";
-            this.lineShape1.X1 = 100;
-            this.lineShape1.X2 = 100;
-            this.lineShape1.Y1 = 5;
-            this.lineShape1.Y2 = 102;
-            // 
-            // shapeContainer2
-            // 
-            this.shapeContainer2.Location = new System.Drawing.Point(3, 16);
-            this.shapeContainer2.Margin = new System.Windows.Forms.Padding(0);
-            this.shapeContainer2.Name = "shapeContainer2";
-            this.shapeContainer2.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
-            this.lineShape1});
-            this.shapeContainer2.Size = new System.Drawing.Size(486, 119);
-            this.shapeContainer2.TabIndex = 12;
-            this.shapeContainer2.TabStop = false;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(602, 281);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(107, 23);
-            this.button1.TabIndex = 18;
-            this.button1.Text = "Volver a Ítems";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.dateTimePicker_vencimiento.Enabled = false;
+            this.dateTimePicker_vencimiento.Location = new System.Drawing.Point(288, 98);
+            this.dateTimePicker_vencimiento.Name = "dateTimePicker_vencimiento";
+            this.dateTimePicker_vencimiento.Size = new System.Drawing.Size(107, 20);
+            this.dateTimePicker_vencimiento.TabIndex = 9;
             // 
             // Carrito
             // 
@@ -575,7 +575,6 @@ namespace AerolineaFrba.Compra
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ComboBox comboBox_tipoTarjeta;
         private System.Windows.Forms.NumericUpDown numericUpDown_codigoTarjeta;
-        private System.Windows.Forms.DateTimePicker dateTimePicker_vencimiento;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
@@ -584,6 +583,7 @@ namespace AerolineaFrba.Compra
         private System.Windows.Forms.Button button1;
         private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer2;
         private Microsoft.VisualBasic.PowerPacks.LineShape lineShape1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker_vencimiento;
 
     }
 }
