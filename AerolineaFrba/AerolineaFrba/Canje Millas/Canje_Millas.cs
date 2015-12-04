@@ -14,6 +14,8 @@ namespace AerolineaFrba.Canje_Millas
 {
     public partial class Canje_Millas : Form
     {
+        String idProd;
+        String idClie;
         decimal valorPremioElegido;
            Llenador.LlenadorDeTablas lleni = new Llenador.LlenadorDeTablas();
            SqlDataReader reader;
@@ -51,7 +53,7 @@ namespace AerolineaFrba.Canje_Millas
                 label9.Text = reader["CLIENTE_MAIL"].ToString();
                 label10.Visible = true;
                 label10.Text = DateTime.Parse(reader["CLIENTE_FECHA_NAC"].ToString()).Date.ToString("dd-MMM-yyyy");
-                String idClie = reader["CLIENTE_ID"].ToString();
+                idClie = reader["CLIENTE_ID"].ToString();
                 cmd.CommandText = "select THE_CVENGERS.consultarMillas(" + idClie + ") as m";
                 reader.Close();
                 reader = cmd.ExecuteReader();
@@ -97,7 +99,7 @@ namespace AerolineaFrba.Canje_Millas
             label9.Text = reader["CLIENTE_MAIL"].ToString();
             label10.Visible = true;
             label10.Text = DateTime.Parse(reader["CLIENTE_FECHA_NAC"].ToString()).Date.ToString("dd-MMM-yyyy");
-            String idClie = reader["CLIENTE_ID"].ToString();
+            idClie = reader["CLIENTE_ID"].ToString();
             cmd.CommandText = "select THE_CVENGERS.consultarMillas(" + idClie + ") as m";
             reader.Close();
             reader = cmd.ExecuteReader();
@@ -132,6 +134,7 @@ namespace AerolineaFrba.Canje_Millas
             canUpDown.Value = 0;
             canUpDown.Maximum = decimal.Parse(rd["PRODUCTO_STOCK"].ToString());
             valorPremioElegido = decimal.Parse(rd["PRODUCTO_MILLAS_NECESARIAS"].ToString());
+            idProd = rd["PRODUCTO_ID"].ToString();
             if (canUpDown.Maximum == 0)
                 errorNoStock.SetError(canUpDown, "No hay stock de ese producto");
             else errorNoStock.Clear();
