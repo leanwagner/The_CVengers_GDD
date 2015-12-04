@@ -23,5 +23,12 @@ namespace AerolineaFrba.Devolucion
        {
            return "N° " + numero+" - "+tipo + " - $" + precio; 
        }
+
+       public String getNumero() { return this.numero; }
+
+       public String getTipo() { return this.tipo; }
+
+       public String getPrecio() { return this.precio; }
+    
     }
 }

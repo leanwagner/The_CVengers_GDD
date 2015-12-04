@@ -21,7 +21,7 @@ namespace AerolineaFrba.Compra
         int viajeId;
         TipoCompra tipoActual;
 
-        public AgregarPasajeEncomienda(int id_viaje,TipoCompra tipo)
+        public AgregarPasajeEncomienda(int id_viaje, TipoCompra tipo)
         {
             tipoActual = tipo;
             viajeId = id_viaje;
@@ -30,7 +30,7 @@ namespace AerolineaFrba.Compra
             dateTimePicker_nacimiento.CustomFormat = "dd/MM/yyyy";
             dateTimePicker_nacimiento.MaxDate = DateTimeHandler.devolverFechaDB();
             numericUpDown_kilos.Maximum = Carrito.kgs_disponibles;
-            if (tipo == TipoCompra.Pasaje) { groupBox3.Visible = false;}
+            if (tipo == TipoCompra.Pasaje) { groupBox3.Visible = false; }
             else { groupBox1.Visible = false; this.Text = "Agregar Encomienda"; button_agregarItem.Text = "Agregar Encomienda"; }
             llenarComboBoxPisoAeronave(ref comboBox_piso);
             groupBox2.Enabled = false;
@@ -50,7 +50,7 @@ namespace AerolineaFrba.Compra
             reader.Read();
 
             cantidadPisos = Int32.Parse(reader["B"].ToString());
-            
+
             while (piso <= cantidadPisos)
             {
                 miCombo.Items.Add(piso);
@@ -72,10 +72,10 @@ namespace AerolineaFrba.Compra
             Collection<int> listina = new Collection<int>();
             llenador.llenarListaConCondicion(ref listina, tablas, "BUTACA_NRO", condicion);
 
-           List<int> both = Carrito.ListaButacas.Intersect(listina).ToList<int>();
-           both.Sort();
+            List<int> both = Carrito.ListaButacas.Intersect(listina).ToList<int>();
+            both.Sort();
             llenador.llenarComboBoxDeUnaCollection(ref both, ref miCombo);
-           }
+        }
 
         private void comboBox_piso_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -84,8 +84,8 @@ namespace AerolineaFrba.Compra
                 comboBox1.Items.Clear();
                 comboBox1.Enabled = true;
                 llenarComboBoxTipoAsiento(ref comboBox1);
-      
-            } 
+
+            }
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -100,39 +100,39 @@ namespace AerolineaFrba.Compra
                     errorProvider_disponibles.SetError(comboBox_butacasDisponibles, "No hay butacas disponibles");
                 else
                     errorProvider_disponibles.Clear();
-            } 
+            }
         }
 
         private void button_agregarItem_Click(object sender, EventArgs e)
         {
             Cliente cliente;
 
-            if(aplicarValidaciones()>0)
+            if (aplicarValidaciones() > 0)
                 return;
 
             switch (tipoActual)
             {
-                
-                case TipoCompra.Pasaje: 
-                    
-                    Pasaje pasaje = new Pasaje(Int32.Parse(comboBox_butacasDisponibles.SelectedItem.ToString()),this.viajeId);
-                    cliente = new Cliente((Int32)numericUpDown_dni.Value,textBox_nombre.Text,textBox_apellido.Text,textBox_direccion.Text,(Int32)numericUpDown_telefono.Value
-                    ,textBox_mail.Text,dateTimePicker_nacimiento.Value.ToString(),pasaje);
+
+                case TipoCompra.Pasaje:
+
+                    Pasaje pasaje = new Pasaje(Int32.Parse(comboBox_butacasDisponibles.SelectedItem.ToString()), this.viajeId);
+                    cliente = new Cliente((Int32)numericUpDown_dni.Value, textBox_nombre.Text, textBox_apellido.Text, textBox_direccion.Text, (Int32)numericUpDown_telefono.Value
+                    , textBox_mail.Text, dateTimePicker_nacimiento.Value.ToString(), pasaje);
                     Carrito.agregarCliente(cliente);
                     Carrito.ListaButacas.Remove(Int32.Parse(comboBox_butacasDisponibles.SelectedItem.ToString()));
                     break;
 
                 case TipoCompra.Encomienda:
-                    Encomienda encomienda = new Encomienda((Int32)numericUpDown_kilos.Value,this.viajeId);
+                    Encomienda encomienda = new Encomienda((Int32)numericUpDown_kilos.Value, this.viajeId);
 
-                    cliente = new Cliente((Int32)numericUpDown_dni.Value,textBox_nombre.Text,textBox_apellido.Text,textBox_direccion.Text,(Int32)numericUpDown_telefono.Value
-                    ,textBox_mail.Text,dateTimePicker_nacimiento.Value.ToString(),encomienda);
+                    cliente = new Cliente((Int32)numericUpDown_dni.Value, textBox_nombre.Text, textBox_apellido.Text, textBox_direccion.Text, (Int32)numericUpDown_telefono.Value
+                    , textBox_mail.Text, dateTimePicker_nacimiento.Value.ToString(), encomienda);
                     Carrito.agregarCliente(cliente);
                     Carrito.kgs_disponibles = Carrito.kgs_disponibles - (Int32)numericUpDown_kilos.Value;
                     break;
 
-              
-                    
+
+
             }
 
 
@@ -142,22 +142,61 @@ namespace AerolineaFrba.Compra
 
         private void numericUpDown_dni_KeyUp(object sender, KeyEventArgs e)
         {
-            if (numericUpDown_dni.Text.Length > 1)
+            List<String> apellidos = new List<string>();
+            if (numericUpDown_dni.Text.Length > 56)
             {
                 SqlCommand cmd = new SqlCommand("select * from THE_CVENGERS.CLIENTE where CLIENTE_DNI = " + numericUpDown_dni.Text, Conexion.getConexion());
                 SqlDataReader reader = cmd.ExecuteReader();
-                reader.Read();
-                if (reader.HasRows)
+                while (reader.Read())
                 {
-                    textBox_apellido.Text = reader["CLIENTE_APELLIDO"].ToString();
-                    textBox_nombre.Text = reader["CLIENTE_NOMBRE"].ToString();
-                    textBox_mail.Text = reader["CLIENTE_MAIL"].ToString();
-                    dateTimePicker_nacimiento.Text = DateTime.Parse(reader["CLIENTE_FECHA_NAC"].ToString()).Date.ToString("dd-MMM-yyyy");
-                    textBox_direccion.Text = reader["CLIENTE_DIR"].ToString();
-                    numericUpDown_telefono.Text = reader["CLIENTE_TELEFONO"].ToString();
-                }
-                reader.Close();
+                    if (reader.HasRows)
+                        apellidos.Add(reader["CLIENTE_APELLIDO"].ToString());
+                 }
+                switch(apellidos.Count){
+                    case 0:
+                        reader.Close();
+                        return;
 
+                case 1: 
+                    reader.Close();
+                        SqlDataReader readerAux = cmd.ExecuteReader();
+                        readerAux.Read();
+                        if (readerAux.HasRows)
+                        {
+                            textBox_apellido.Text = readerAux["CLIENTE_APELLIDO"].ToString();
+                            textBox_nombre.Text = readerAux["CLIENTE_NOMBRE"].ToString();
+                            textBox_mail.Text = readerAux["CLIENTE_MAIL"].ToString();
+                            dateTimePicker_nacimiento.Text = DateTime.Parse(readerAux["CLIENTE_FECHA_NAC"].ToString()).Date.ToString("dd-MMM-yyyy");
+                            textBox_direccion.Text = readerAux["CLIENTE_DIR"].ToString();
+                            numericUpDown_telefono.Text = readerAux["CLIENTE_TELEFONO"].ToString();
+                      
+                        }
+                        readerAux.Close();
+                            return;
+                    case 2: 
+                        reader.Close();
+                        if (textBox_apellido.Text.Length > 0)
+                        {
+                            SqlCommand sqlCmd = new SqlCommand("select * from THE_CVENGERS.CLIENTE where CLIENTE_DNI = " + numericUpDown_dni.Text + " AND CLIENTE_APELLIDO = '" + textBox_apellido.Text + "'", Conexion.getConexion());
+                            SqlDataReader leedor = sqlCmd.ExecuteReader();
+                            MessageBox.Show(sqlCmd.CommandText);
+
+                            leedor.Read();
+                            if (leedor.HasRows)
+                            {
+                                textBox_nombre.Text = leedor["CLIENTE_NOMBRE"].ToString();
+                                textBox_mail.Text = leedor["CLIENTE_MAIL"].ToString();
+                                dateTimePicker_nacimiento.Text = DateTime.Parse(leedor["CLIENTE_FECHA_NAC"].ToString()).Date.ToString("dd-MMM-yyyy");
+                                textBox_direccion.Text = leedor["CLIENTE_DIR"].ToString();
+                                numericUpDown_telefono.Text = leedor["CLIENTE_TELEFONO"].ToString();
+                                MessageBox.Show("Campeon este dni esta duplicado");
+
+                            }
+                            leedor.Close();
+                            return;
+                        }
+                        return;
+                }
             }
         }
 
@@ -176,7 +215,7 @@ namespace AerolineaFrba.Compra
 
         public int aplicarValidaciones()
         {
-            int flag=0;
+            int flag = 0;
 
             if (textBox_nombre.Text == "")
             {
@@ -211,6 +250,6 @@ namespace AerolineaFrba.Compra
         }
 
 
-        
+
     }
 }

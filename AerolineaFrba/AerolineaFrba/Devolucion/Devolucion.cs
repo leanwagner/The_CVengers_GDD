@@ -16,6 +16,7 @@ namespace AerolineaFrba.Devolucion
 
         Llenador.LlenadorDeTablas lleni = new Llenador.LlenadorDeTablas();
         String idClie;
+        String idComp;
         public Devolucion()
         {
             InitializeComponent();
@@ -95,7 +96,7 @@ namespace AerolineaFrba.Devolucion
                 
             }
             DataGridViewRow select = dataGridView1.SelectedRows[0];
-            String idComp = select.Cells[1].Value.ToString();
+            idComp= select.Cells[1].Value.ToString();
             SqlCommand cmd = new SqlCommand("select * from THE_CVENGERS.itemsDeCompra( "+idComp+")",Conexion.getConexion());
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
@@ -149,7 +150,40 @@ namespace AerolineaFrba.Devolucion
 
         private void buttonDev_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Todavia no esta el procedure");
+           // MessageBox.Show("Todavia no esta el procedure");
+
+            SqlTransaction transaction = Conexion.getConexion().BeginTransaction();
+            try
+            {
+                SqlCommand cmd = new SqlCommand("exec THE_CVENGERS.crearDevolucion @compra = " + idComp + ", @descripcion= '" + razonText.Text + "'", Conexion.getConexion());
+                cmd.Transaction = transaction;
+                cmd.ExecuteNonQuery();
+                //   MessageBox.Show(cmd.CommandText);
+                foreach (object dev in checkedListBox1.CheckedItems)
+                {
+                    cmd.CommandText = "exec THE_CVENGERS.devolverItem @item = " + ((ItemsDevolucion)dev).getNumero() + ", @tipoItem = '" + ((ItemsDevolucion)dev).getTipo() + "'";
+                    cmd.ExecuteNonQuery();
+                    //  MessageBox.Show(cmd.CommandText);
+                }
+                transaction.Commit();
+                razonText.ResetText();
+                for (int i = 0; i < checkedListBox1.Items.Count; i++)
+                    checkedListBox1.SetItemCheckState(i, (CheckState.Unchecked));
+                checkedListBox1.Refresh();
+                foreach (int it in checkedListBox1.CheckedIndices) { checkedListBox1.Items.RemoveAt(it); }
+
+            }
+            catch (Exception exc)
+            {
+                if(exc is SqlException)
+                transaction.Rollback();
+                MessageBox.Show(exc.Message, "Error", MessageBoxButtons.OK);
+
+            }
+            
+
+
+            
         }
     }
 }
