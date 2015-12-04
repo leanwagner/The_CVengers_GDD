@@ -207,8 +207,16 @@ namespace AerolineaFrba.Devolucion
                 mens += " sera retribuido en efectivo.";
             else
             {
-                
-                mens += " sera retribuido a la tarjeta";
+                cmd.CommandText = "select THE_CVENGERS.tipoTarjetaCompra(" + idComp + ") 't'";
+                rd = cmd.ExecuteReader();
+                rd.Read();
+                String tipoT = rd["t"].ToString();
+                rd.Close();
+                cmd.CommandText = "select THE_CVENGERS.numeroTarjetaCompra(" + idComp + ") 'n'";
+                rd = cmd.ExecuteReader();
+                String numT = rd["n"].ToString();
+                rd.Close();
+                mens += " sera retribuido a la tarjeta "+tipoT+" de numero "+numT;
             }
             MessageBox.Show(mens);
         }
