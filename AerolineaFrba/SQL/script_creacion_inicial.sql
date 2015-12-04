@@ -1141,6 +1141,25 @@ return(select top 5 CLIENTE_APELLIDO + ' ' + CLIENTE_NOMBRE 'Cliente', (select s
 		order by "Millas totales acumuladas" DESC)
 
 go
+create function THE_CVENGERS.destinosConMasPasajesCancelados(@anio as int, @semestre as int)
+returns table
+as
+return(select top 5  CIUDAD_NOMBRE 'Destino', (SELECT COUNT(*) 
+												FROM THE_CVENGERS.PASAJE
+												WHERE PASAJE_VIAJE_ID IN (SELECT VIAJE_ID 
+																			FROM THE_CVENGERS.VIAJE
+																			WHERE VIAJE_RUTA IN (SELECT RUTA_ID	
+																									FROM THE_CVENGERS.RUTA
+																									WHERE RUTA_DESTINO = CIUDAD_ID))
+												AND PASAJE_DEVOLUCION IS NOT NULL
+												AND PASAJE_DEVOLUCION IN (SELECT DEVOLUCION_ID FROM THE_CVENGERS.DEVOLUCION
+																			WHERE YEAR(DEVOLUCION_FECHA) = @anio AND MONTH(DEVOLUCION_FECHA) between (case when @semestre = 1 then 1 else 7 end) and (case when @semestre = 1 then 6 else 12 end)) ) 'Pasajes cancelados'
+
+		from THE_CVENGERS.CIUDAD
+		where CIUDAD_ID IN (SELECT RUTA_DESTINO FROM THE_CVENGERS.RUTA WHERE RUTA_ID IN (SELECT VIAJE_RUTA FROM THE_CVENGERS.VIAJE))
+		order by "Pasajes cancelados" DESC)
+
+go
 create function THE_CVENGERS.consultarMillas(@cli as numeric(18,0))
 returns int
 as
@@ -1439,5 +1458,6 @@ DROP FUNCTION [THE_CVENGERS].itemsDeCompra
 DROP PROCEDURE [THE_CVENGERS].crearDevolucion
 DROP PROCEDURE [THE_CVENGERS].devolverItem
 DROP PROCEDURE [THE_CVENGERS].ingresarOModificarCliente
+DROP FUNCTION [THE_CVENGERS].destinosConMasPasajesCancelados
 DROP PROCEDURE [THE_CVENGERS].getAll 
 DROP SCHEMA [THE_CVENGERS]*/
