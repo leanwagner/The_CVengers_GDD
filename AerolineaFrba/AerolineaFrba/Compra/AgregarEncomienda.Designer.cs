@@ -1,6 +1,6 @@
 ﻿namespace AerolineaFrba.Compra
 {
-    partial class Carrito
+    partial class AgregarEncomienda
     {
         /// <summary>
         /// Required designer variable.
@@ -28,15 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Carrito));
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.button_aPasaje = new System.Windows.Forms.Button();
-            this.button_aEncomienda = new System.Windows.Forms.Button();
-            this.button_confirmarItems = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button_eliminarItem = new System.Windows.Forms.Button();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AgregarEncomienda));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button_terminarCompra = new System.Windows.Forms.Button();
+            this.button_agregarEncomienda = new System.Windows.Forms.Button();
             this.dateTimePicker_nacimiento = new System.Windows.Forms.DateTimePicker();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -51,78 +45,19 @@
             this.Nombre = new System.Windows.Forms.Label();
             this.numericUpDown_dni = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.groupBox1.SuspendLayout();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.numericUpDown_kilos = new System.Windows.Forms.NumericUpDown();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_telefono)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_dni)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_kilos)).BeginInit();
             this.SuspendLayout();
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(41, 25);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(236, 199);
-            this.listBox1.TabIndex = 0;
-            // 
-            // button_aPasaje
-            // 
-            this.button_aPasaje.Location = new System.Drawing.Point(314, 99);
-            this.button_aPasaje.Name = "button_aPasaje";
-            this.button_aPasaje.Size = new System.Drawing.Size(143, 23);
-            this.button_aPasaje.TabIndex = 1;
-            this.button_aPasaje.Text = "Agregar Pasaje";
-            this.button_aPasaje.UseVisualStyleBackColor = true;
-            this.button_aPasaje.Click += new System.EventHandler(this.button_aPasaje_Click);
-            // 
-            // button_aEncomienda
-            // 
-            this.button_aEncomienda.Location = new System.Drawing.Point(314, 45);
-            this.button_aEncomienda.Name = "button_aEncomienda";
-            this.button_aEncomienda.Size = new System.Drawing.Size(143, 23);
-            this.button_aEncomienda.TabIndex = 2;
-            this.button_aEncomienda.Text = "Agregar Encomienda";
-            this.button_aEncomienda.UseVisualStyleBackColor = true;
-            this.button_aEncomienda.Click += new System.EventHandler(this.button_aEncomienda_Click);
-            // 
-            // button_confirmarItems
-            // 
-            this.button_confirmarItems.Location = new System.Drawing.Point(314, 201);
-            this.button_confirmarItems.Name = "button_confirmarItems";
-            this.button_confirmarItems.Size = new System.Drawing.Size(143, 23);
-            this.button_confirmarItems.TabIndex = 3;
-            this.button_confirmarItems.Text = "Confirmar Ítems";
-            this.button_confirmarItems.UseVisualStyleBackColor = true;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.pictureBox1);
-            this.groupBox1.Controls.Add(this.button_eliminarItem);
-            this.groupBox1.Controls.Add(this.listBox1);
-            this.groupBox1.Controls.Add(this.button_confirmarItems);
-            this.groupBox1.Controls.Add(this.button_aPasaje);
-            this.groupBox1.Controls.Add(this.button_aEncomienda);
-            this.groupBox1.Location = new System.Drawing.Point(35, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(704, 272);
-            this.groupBox1.TabIndex = 4;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Agregar Ítems al carrito";
-            // 
-            // button_eliminarItem
-            // 
-            this.button_eliminarItem.Location = new System.Drawing.Point(314, 146);
-            this.button_eliminarItem.Name = "button_eliminarItem";
-            this.button_eliminarItem.Size = new System.Drawing.Size(143, 23);
-            this.button_eliminarItem.TabIndex = 4;
-            this.button_eliminarItem.Text = "Eliminar Ítem";
-            this.button_eliminarItem.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.button_terminarCompra);
+            this.groupBox2.Controls.Add(this.button_agregarEncomienda);
             this.groupBox2.Controls.Add(this.dateTimePicker_nacimiento);
             this.groupBox2.Controls.Add(this.textBox2);
             this.groupBox2.Controls.Add(this.label6);
@@ -137,21 +72,21 @@
             this.groupBox2.Controls.Add(this.Nombre);
             this.groupBox2.Controls.Add(this.numericUpDown_dni);
             this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Location = new System.Drawing.Point(35, 307);
+            this.groupBox2.Location = new System.Drawing.Point(40, 122);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(704, 216);
-            this.groupBox2.TabIndex = 5;
+            this.groupBox2.Size = new System.Drawing.Size(682, 216);
+            this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Ingreso datos Comprador";
+            this.groupBox2.Text = "Ingreso datos ";
             // 
-            // button_terminarCompra
+            // button_agregarEncomienda
             // 
-            this.button_terminarCompra.Location = new System.Drawing.Point(525, 164);
-            this.button_terminarCompra.Name = "button_terminarCompra";
-            this.button_terminarCompra.Size = new System.Drawing.Size(141, 37);
-            this.button_terminarCompra.TabIndex = 14;
-            this.button_terminarCompra.Text = "Terminar Compra";
-            this.button_terminarCompra.UseVisualStyleBackColor = true;
+            this.button_agregarEncomienda.Location = new System.Drawing.Point(525, 164);
+            this.button_agregarEncomienda.Name = "button_agregarEncomienda";
+            this.button_agregarEncomienda.Size = new System.Drawing.Size(141, 37);
+            this.button_agregarEncomienda.TabIndex = 14;
+            this.button_agregarEncomienda.Text = "Agregar Encomienda";
+            this.button_agregarEncomienda.UseVisualStyleBackColor = true;
             // 
             // dateTimePicker_nacimiento
             // 
@@ -207,7 +142,6 @@
             this.label4.Size = new System.Drawing.Size(52, 13);
             this.label4.TabIndex = 7;
             this.label4.Text = "Teléfono:";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label2
             // 
@@ -266,44 +200,64 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "DNI";
             // 
-            // pictureBox1
+            // groupBox1
             // 
-            this.pictureBox1.Image = global::AerolineaFrba.Properties.Resources.carrito;
-            this.pictureBox1.Location = new System.Drawing.Point(483, 36);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(199, 188);
-            this.pictureBox1.TabIndex = 5;
-            this.pictureBox1.TabStop = false;
+            this.groupBox1.Controls.Add(this.numericUpDown_kilos);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Location = new System.Drawing.Point(40, 25);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(682, 72);
+            this.groupBox1.TabIndex = 8;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Datos Encomienda";
             // 
-            // Carrito
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(161, 34);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(138, 13);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Cantidad de kilos a mandar:";
+            // 
+            // numericUpDown_kilos
+            // 
+            this.numericUpDown_kilos.Location = new System.Drawing.Point(323, 32);
+            this.numericUpDown_kilos.Name = "numericUpDown_kilos";
+            this.numericUpDown_kilos.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDown_kilos.TabIndex = 1;
+            // 
+            // AgregarEncomienda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(802, 535);
-            this.Controls.Add(this.groupBox2);
+            this.ClientSize = new System.Drawing.Size(773, 393);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupBox2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Carrito";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Carrito de Compras";
-            this.groupBox1.ResumeLayout(false);
+            this.Name = "AgregarEncomienda";
+            this.Text = "Agregar Encomienda";
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_telefono)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_dni)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_kilos)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Button button_aPasaje;
-        private System.Windows.Forms.Button button_aEncomienda;
-        private System.Windows.Forms.Button button_confirmarItems;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button button_agregarEncomienda;
+        private System.Windows.Forms.DateTimePicker dateTimePicker_nacimiento;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.NumericUpDown numericUpDown_telefono;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox_apellido;
@@ -312,15 +266,8 @@
         private System.Windows.Forms.Label Nombre;
         private System.Windows.Forms.NumericUpDown numericUpDown_dni;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.NumericUpDown numericUpDown_telefono;
-        private System.Windows.Forms.Button button_eliminarItem;
-        private System.Windows.Forms.Button button_terminarCompra;
-        private System.Windows.Forms.DateTimePicker dateTimePicker_nacimiento;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.PictureBox pictureBox1;
-
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.NumericUpDown numericUpDown_kilos;
+        private System.Windows.Forms.Label label7;
     }
 }

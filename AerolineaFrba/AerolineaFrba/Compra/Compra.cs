@@ -1,10 +1,12 @@
 ﻿using AerolineaFrba.HoraDB;
 using AerolineaFrba.Llenador;
+using AerolineaFrba.Objetos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,17 +19,16 @@ namespace AerolineaFrba.Compra
         LlenadorDeTablas llenador = new LlenadorDeTablas();
         object elementoQuitadoTablaDestino;
         object elementoQuitadoTablaOrigen;
+        int id_viaje;
 
         public Compra()
         {
             InitializeComponent();
             this.mostrarViajes();
-            numericUpDown_encomiendas.Minimum = 0;
-            numericUpDown_pasajes.Minimum = 0;
             llenarCombosCiudad(ref comboBox_destino);
             llenarCombosCiudad(ref comboBox_origen);
-            numericUpDown_pasajes.Enabled = false;
-            numericUpDown_encomiendas.Enabled = false;
+            button_continuarCompra.Enabled = false;
+            
             mostrarServicios();
             
         }
@@ -184,14 +185,23 @@ namespace AerolineaFrba.Compra
 
         private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            numericUpDown_encomiendas.Enabled = true;
-            numericUpDown_pasajes.Enabled = true;
+            
             DataGridViewRow seleccionado = dataGridView1.SelectedRows[0];
-
-            numericUpDown_pasajes.Maximum = Int32.Parse(seleccionado.Cells[5].Value.ToString());
-            numericUpDown_encomiendas.Maximum = Int32.Parse(seleccionado.Cells[6].Value.ToString());
-
+            id_viaje = Int32.Parse(seleccionado.Cells[0].Value.ToString());
+            button_continuarCompra.Enabled = true;
         }
+
+
+        private void button_continuarCompra_Click(object sender, EventArgs e)
+        {
+            Carrito ventana = new Carrito(id_viaje);
+            
+
+
+           ventana.Show();
+        }
+
+        
 
     }
 }

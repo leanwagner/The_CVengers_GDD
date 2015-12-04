@@ -96,17 +96,29 @@
     <Compile Include="Canje Millas\Canje_Millas.Designer.cs">
       <DependentUpon>Canje_Millas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Compra\Carrito.cs">
+    <Compile Include="Compra\AgregarEncomienda.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Compra\Carrito.Designer.cs">
-      <DependentUpon>Carrito.cs</DependentUpon>
+    <Compile Include="Compra\AgregarEncomienda.Designer.cs">
+      <DependentUpon>AgregarEncomienda.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Compra\AgregarPasaje.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Compra\AgregarPasaje.Designer.cs">
+      <DependentUpon>AgregarPasaje.cs</DependentUpon>
     </Compile>
     <Compile Include="Compra\Compra.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Compra\Compra.Designer.cs">
       <DependentUpon>Compra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Compra\Carrito.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Compra\Carrito.Designer.cs">
+      <DependentUpon>Carrito.cs</DependentUpon>
     </Compile>
     <Compile Include="Conexion\Conexion.cs" />
     <Compile Include="Consulta Millas\Consulta_Millas.cs">
@@ -150,6 +162,9 @@
     <Compile Include="MyNumericUpDown\NumericUpDownModified.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Objetos\Cliente.cs" />
+    <Compile Include="Objetos\Encomienda.cs" />
+    <Compile Include="Objetos\Pasaje.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registro de Usuario\Registro_Usuario.cs">
@@ -192,11 +207,17 @@
     <EmbeddedResource Include="Canje Millas\Canje_Millas.resx">
       <DependentUpon>Canje_Millas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Compra\Carrito.resx">
-      <DependentUpon>Carrito.cs</DependentUpon>
+    <EmbeddedResource Include="Compra\AgregarEncomienda.resx">
+      <DependentUpon>AgregarEncomienda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Compra\AgregarPasaje.resx">
+      <DependentUpon>AgregarPasaje.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Compra\Compra.resx">
       <DependentUpon>Compra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Compra\Carrito.resx">
+      <DependentUpon>Carrito.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Consulta Millas\Consulta_Millas.resx">
       <DependentUpon>Consulta_Millas.cs</DependentUpon>
