@@ -82,6 +82,9 @@ namespace AerolineaFrba.Listado_Estadistico
                     achicarYCentrarDGV();
                     break;
                 case 2:
+                    llenu.llenarDataGridView(dataGridView1, "clientesConMasPuntosAcumulados(" + comboAnio.SelectedItem.ToString() + "," + comboSem.SelectedItem.ToString() + ")");
+                    achicarYCentrarDGV();
+                    break;
                 case 3: 
                 case 4:
                 default:

@@ -50,10 +50,12 @@
             this.label4 = new System.Windows.Forms.Label();
             this.errorDniDup = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorNoStock = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorPuntos = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.canUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorDniDup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorNoStock)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorPuntos)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -111,11 +113,12 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(48, 110);
+            this.label12.Location = new System.Drawing.Point(41, 110);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(147, 13);
             this.label12.TabIndex = 7;
             this.label12.Text = "*aca iria la cantidad de millas*";
+            this.label12.VisibleChanged += new System.EventHandler(this.label12_VisibleChanged);
             // 
             // label11
             // 
@@ -217,6 +220,7 @@
             this.nombreCombo.TabIndex = 9;
             this.nombreCombo.Visible = false;
             this.nombreCombo.SelectedIndexChanged += new System.EventHandler(this.nombreCombo_SelectedIndexChanged);
+            this.nombreCombo.VisibleChanged += new System.EventHandler(this.nombreCombo_VisibleChanged);
             // 
             // label4
             // 
@@ -236,6 +240,10 @@
             // errorNoStock
             // 
             this.errorNoStock.ContainerControl = this;
+            // 
+            // errorPuntos
+            // 
+            this.errorPuntos.ContainerControl = this;
             // 
             // Canje_Millas
             // 
@@ -261,6 +269,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.canUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorDniDup)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorNoStock)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorPuntos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -288,5 +297,6 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ErrorProvider errorNoStock;
+        private System.Windows.Forms.ErrorProvider errorPuntos;
     }
 }
