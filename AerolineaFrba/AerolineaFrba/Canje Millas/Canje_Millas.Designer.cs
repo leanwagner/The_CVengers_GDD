@@ -51,13 +51,11 @@
             this.errorDniDup = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorNoStock = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorPuntos = new System.Windows.Forms.ErrorProvider(this.components);
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.canUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorDniDup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorNoStock)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorPuntos)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -97,7 +95,6 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.numericUpDown1);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.label10);
@@ -248,13 +245,6 @@
             // 
             this.errorPuntos.ContainerControl = this;
             // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Location = new System.Drawing.Point(206, 42);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDown1.TabIndex = 8;
-            // 
             // Canje_Millas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -280,7 +270,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorDniDup)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorNoStock)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorPuntos)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -309,6 +298,5 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ErrorProvider errorNoStock;
         private System.Windows.Forms.ErrorProvider errorPuntos;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
     }
 }

@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -135,8 +136,8 @@ namespace AerolineaFrba.Generacion_Viaje
 
             sqlCmd.CommandText = "exec THE_CVENGERS.generarViaje @aeronave = " + idAero +
                 ", @ruta =" + select.Cells[0].Value.ToString() +
-                ", @salida = '" + (datePicker1.Value.Date + timePicker1.Value.TimeOfDay).ToString("yyyy-MM-dd hh:mm:ss") +
-                "', @llegadaest = '" + (datePicker2.Value.Date + timePicker2.Value.TimeOfDay).ToString("yyyy-MM-dd hh:mm:ss") + "'";
+                ", @salida = '" + (datePicker1.Value.Date + timePicker1.Value.TimeOfDay).ToString(CultureInfo.InvariantCulture) +
+                "', @llegadaest = '" + (datePicker2.Value.Date + timePicker2.Value.TimeOfDay).ToString(CultureInfo.InvariantCulture) + "'";
             //MessageBox.Show(sqlCmd.CommandText);
             try
             {
