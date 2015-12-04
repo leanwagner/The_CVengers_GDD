@@ -1,5 +1,6 @@
 ﻿using AerolineaFrba.HoraDB;
 using AerolineaFrba.Llenador;
+using AerolineaFrba.Objetos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -195,6 +196,8 @@ namespace AerolineaFrba.Compra
         {
             Carrito ventana = new Carrito(id_viaje);
             
+
+
            ventana.Show();
         }
 
