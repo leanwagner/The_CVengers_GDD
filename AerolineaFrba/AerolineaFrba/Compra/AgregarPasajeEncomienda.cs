@@ -119,25 +119,23 @@ namespace AerolineaFrba.Compra
 
                     Pasaje pasaje = new Pasaje(Int32.Parse(comboBox_butacasDisponibles.SelectedItem.ToString()), this.viajeId);
                     cliente = new Cliente(cli_id,(Int32)numericUpDown_dni.Value, textBox_nombre.Text, textBox_apellido.Text, textBox_direccion.Text, (Int32)numericUpDown_telefono.Value
-                    , textBox_mail.Text, dateTimePicker_nacimiento.Value.ToString(), pasaje);
+                    , textBox_mail.Text, dateTimePicker_nacimiento.Value.Date.ToString(), pasaje);
                     Carrito.agregarCliente(cliente);
                     Carrito.ListaButacas.Remove(Int32.Parse(comboBox_butacasDisponibles.SelectedItem.ToString()));
+                    cliente.persistirme();
                     break;
 
                 case TipoCompra.Encomienda:
                     Encomienda encomienda = new Encomienda((Int32)numericUpDown_kilos.Value, this.viajeId);
 
-                    cliente = new Cliente(cli_id,(Int32)numericUpDown_dni.Value, textBox_nombre.Text, textBox_apellido.Text, textBox_direccion.Text, (Int32)numericUpDown_telefono.Value
-                    , textBox_mail.Text, dateTimePicker_nacimiento.Value.ToString(), encomienda);
+                    cliente = new Cliente(cli_id, (Int32)numericUpDown_dni.Value, textBox_nombre.Text, textBox_apellido.Text, textBox_direccion.Text, (Int32)numericUpDown_telefono.Value
+                    , textBox_mail.Text, dateTimePicker_nacimiento.Value.Date.ToString(), encomienda);
                     Carrito.agregarCliente(cliente);
                     Carrito.kgs_disponibles = Carrito.kgs_disponibles - (Int32)numericUpDown_kilos.Value;
+                    cliente.persistirme();
                     break;
 
-
-
             }
-
-
 
             this.Close();
         }

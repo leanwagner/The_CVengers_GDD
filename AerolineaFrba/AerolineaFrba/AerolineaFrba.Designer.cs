@@ -88,9 +88,9 @@
             // 
             // boton_Compra
             // 
-            this.boton_Compra.Location = new System.Drawing.Point(166, 37);
+            this.boton_Compra.Location = new System.Drawing.Point(200, 70);
             this.boton_Compra.Name = "boton_Compra";
-            this.boton_Compra.Size = new System.Drawing.Size(94, 32);
+            this.boton_Compra.Size = new System.Drawing.Size(135, 64);
             this.boton_Compra.TabIndex = 5;
             this.boton_Compra.Text = "Compra";
             this.boton_Compra.UseVisualStyleBackColor = true;
@@ -98,9 +98,9 @@
             // 
             // boton_Consulta_Millas
             // 
-            this.boton_Consulta_Millas.Location = new System.Drawing.Point(344, 37);
+            this.boton_Consulta_Millas.Location = new System.Drawing.Point(370, 70);
             this.boton_Consulta_Millas.Name = "boton_Consulta_Millas";
-            this.boton_Consulta_Millas.Size = new System.Drawing.Size(146, 32);
+            this.boton_Consulta_Millas.Size = new System.Drawing.Size(145, 64);
             this.boton_Consulta_Millas.TabIndex = 6;
             this.boton_Consulta_Millas.Text = "Consulta Millas";
             this.boton_Consulta_Millas.UseVisualStyleBackColor = true;
@@ -148,9 +148,9 @@
             // 
             // boton_ABM_Aeronave
             // 
-            this.boton_ABM_Aeronave.Location = new System.Drawing.Point(350, 39);
+            this.boton_ABM_Aeronave.Location = new System.Drawing.Point(351, 39);
             this.boton_ABM_Aeronave.Name = "boton_ABM_Aeronave";
-            this.boton_ABM_Aeronave.Size = new System.Drawing.Size(163, 33);
+            this.boton_ABM_Aeronave.Size = new System.Drawing.Size(146, 33);
             this.boton_ABM_Aeronave.TabIndex = 12;
             this.boton_ABM_Aeronave.Text = "ABM Aeronave";
             this.boton_ABM_Aeronave.UseVisualStyleBackColor = true;
@@ -164,7 +164,7 @@
             this.groupKiosko.Location = new System.Drawing.Point(52, 29);
             this.groupKiosko.Name = "groupKiosko";
             this.groupKiosko.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.groupKiosko.Size = new System.Drawing.Size(622, 114);
+            this.groupKiosko.Size = new System.Drawing.Size(651, 180);
             this.groupKiosko.TabIndex = 13;
             this.groupKiosko.TabStop = false;
             this.groupKiosko.Text = "Ingreso Kiosko";
@@ -184,9 +184,9 @@
             this.groupUsuario.Controls.Add(this.boton_Listado_Estadistico);
             this.groupUsuario.Controls.Add(this.boton_Devolucion);
             this.groupUsuario.Controls.Add(this.boton_Generar_Viaje);
-            this.groupUsuario.Location = new System.Drawing.Point(29, 212);
+            this.groupUsuario.Location = new System.Drawing.Point(52, 230);
             this.groupUsuario.Name = "groupUsuario";
-            this.groupUsuario.Size = new System.Drawing.Size(677, 221);
+            this.groupUsuario.Size = new System.Drawing.Size(651, 219);
             this.groupUsuario.TabIndex = 14;
             this.groupUsuario.TabStop = false;
             this.groupUsuario.Text = "Ingreso Usuario";
@@ -196,7 +196,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(752, 463);
+            this.ClientSize = new System.Drawing.Size(743, 489);
             this.Controls.Add(this.groupUsuario);
             this.Controls.Add(this.groupKiosko);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

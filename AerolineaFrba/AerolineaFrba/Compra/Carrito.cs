@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using AerolineaFrba.MyNumericUpDown;
 using System.Data.SqlClient;
 using AerolineaFrba.Llenador;
+using AerolineaFrba.HoraDB;
 
 namespace AerolineaFrba.Compra
 {
@@ -34,7 +35,8 @@ namespace AerolineaFrba.Compra
             dateTimePicker_vencimiento.Format = DateTimePickerFormat.Custom;
             dateTimePicker_vencimiento.CustomFormat = "MMyy";
             groupBox_tarjeta.Enabled = false;
-            checkeoUsuario();           
+            checkeoUsuario();
+            seteoDateTime(ref dateTimePicker_vencimiento);
             
 
         }
@@ -48,6 +50,16 @@ namespace AerolineaFrba.Compra
             foreach (object value in aux.Items)
                 ListaButacas.Add(Int32.Parse(value.ToString()));
         }
+
+
+        public void seteoDateTime(ref DateTimePicker date) 
+        {
+
+            dateTimePicker_vencimiento.MinDate= DateTimeHandler.devolverFechaDB();
+        
+        
+        }
+
 
         public void checkeoUsuario()
         {
