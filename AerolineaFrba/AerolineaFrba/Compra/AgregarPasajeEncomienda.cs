@@ -100,28 +100,25 @@ namespace AerolineaFrba.Compra
                 
                 case TipoCompra.Pasaje: 
                     
-                    Pasaje pasaje = new Pasaje(Int32.Parse(comboBox_butacasDisponibles.SelectedItem.ToString()));
-
+                    Pasaje pasaje = new Pasaje(Int32.Parse(comboBox_butacasDisponibles.SelectedItem.ToString()),this.viajeId);
                     cliente = new Cliente((Int32)numericUpDown_dni.Value,textBox_nombre.Text,textBox_apellido.Text,textBox_direccion.Text,(Int32)numericUpDown_telefono.Value
                     ,textBox_mail.Text,dateTimePicker_nacimiento.Value.ToString(),pasaje);
-                   
+                    Carrito.agregarCliente(cliente);
                     break;
 
                 case TipoCompra.Encomienda:
-                    Encomienda encomienda = new Encomienda((Int32)numericUpDown_kilos.Value);
+                    Encomienda encomienda = new Encomienda((Int32)numericUpDown_kilos.Value,this.viajeId);
 
                     cliente = new Cliente((Int32)numericUpDown_dni.Value,textBox_nombre.Text,textBox_apellido.Text,textBox_direccion.Text,(Int32)numericUpDown_telefono.Value
                     ,textBox_mail.Text,dateTimePicker_nacimiento.Value.ToString(),encomienda);
-
-                   
+                    Carrito.agregarCliente(cliente);
                     break;
 
-                default: cliente = null;
-                    break;
+              
                     
             }
-            Carrito.ListaClientes.Add(cliente);
 
+            this.Close();
         }
 
 

@@ -128,7 +128,7 @@ namespace AerolineaFrba.Compra
         public void mostrarViajes()
         {
             llenador.llenarDGV_Compra(dataGridView1);
-            dataGridView1.Rows[0].Selected = false; // esto rompe al carajo si no tengo lleno el DGV
+            dataGridView1.ClearSelection(); // esto rompe al carajo si no tengo lleno el DGV
         }
 
         private void checkedListBox_servicios_SelectedIndexChanged(object sender, EventArgs e)
