@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AerolineaFrba.MyNumericUpDown;
+using System.Data.SqlClient;
 
 namespace AerolineaFrba.Compra
 {
@@ -71,6 +72,27 @@ namespace AerolineaFrba.Compra
             ListaClientes.Remove((Cliente)listBox1.SelectedItem);
             listBox1.Items.Remove(listBox1.SelectedItem);
             labelMonto.Text = calcularPrecioTotal().ToString("0.00");
+        }
+
+        private void numericUpDown_dni_ValueChanged(object sender, EventArgs e)
+        {
+            if (numericUpDown_dni.Text.Length > 1)
+            {
+                SqlCommand cmd = new SqlCommand("select * from THE_CVENGERS.CLIENTE where CLIENTE_DNI = " + numericUpDown_dni.Text, Conexion.getConexion());
+                SqlDataReader reader = cmd.ExecuteReader();
+                reader.Read();
+                if (reader.HasRows)
+                {
+                    textBox_apellido.Text = reader["CLIENTE_APELLIDO"].ToString();
+                    textBox_nombre.Text = reader["CLIENTE_NOMBRE"].ToString();
+                    textBox2.Text = reader["CLIENTE_MAIL"].ToString();
+                    dateTimePicker_nacimiento.Text = DateTime.Parse(reader["CLIENTE_FECHA_NAC"].ToString()).Date.ToString("dd-MMM-yyyy");
+                    textBox1.Text = reader["CLIENTE_DIR"].ToString();
+                    numericUpDown_telefono.Text = reader["CLIENTE_TELEFONO"].ToString();
+                }
+                reader.Close();
+
+            }
         }
        
     }
