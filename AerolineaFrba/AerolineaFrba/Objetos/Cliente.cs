@@ -33,6 +33,11 @@ namespace AerolineaFrba.Objetos
         
         }
 
+       override public String ToString()
+       {
+           return item.ToString();
+       }
+
        public Int32 getDni()
         {
             return this.Dni;

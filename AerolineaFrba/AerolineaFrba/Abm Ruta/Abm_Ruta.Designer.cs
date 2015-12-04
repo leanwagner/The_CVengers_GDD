@@ -50,14 +50,14 @@ namespace AerolineaFrba.Abm_Ruta
             this.label10 = new System.Windows.Forms.Label();
             this.comboBox_filtroOrigen = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.myNumericUpDown_codRuta = new NumericUpDownModified();
+            this.myNumericUpDown_codRuta = new System.Windows.Forms.NumericUpDown();
             this.label8 = new System.Windows.Forms.Label();
             this.button_filtrar = new System.Windows.Forms.Button();
             this.button_limpiar = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.button_eliminarRuta = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.numericUpDown3 = new NumericUpDownModified();
+            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
@@ -339,11 +339,6 @@ namespace AerolineaFrba.Abm_Ruta
             this.myNumericUpDown_codRuta.Name = "myNumericUpDown_codRuta";
             this.myNumericUpDown_codRuta.Size = new System.Drawing.Size(153, 20);
             this.myNumericUpDown_codRuta.TabIndex = 20;
-            this.myNumericUpDown_codRuta.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            -2147483648});
             // 
             // label8
             // 
@@ -647,7 +642,7 @@ namespace AerolineaFrba.Abm_Ruta
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.NumericUpDown numericUpDown2;
         private System.Windows.Forms.Label label6;
-        private NumericUpDownModified numericUpDown3;
+        private System.Windows.Forms.NumericUpDown numericUpDown3;
         private System.Windows.Forms.ErrorProvider errorProvider_ciudadOrigen;
         private System.Windows.Forms.ErrorProvider errorProvider_ciudadDestino;
         private System.Windows.Forms.ErrorProvider errorProvider_Servicios;
@@ -663,7 +658,7 @@ namespace AerolineaFrba.Abm_Ruta
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox comboBox_filtroOrigen;
         private System.Windows.Forms.Label label9;
-        private NumericUpDownModified myNumericUpDown_codRuta;
+        private System.Windows.Forms.NumericUpDown myNumericUpDown_codRuta;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.NumericUpDown numericUpDown_pasajeHasta;

@@ -9,13 +9,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AerolineaFrba.MyNumericUpDown;
 
 namespace AerolineaFrba.Compra
 {
     public partial class Carrito : Form
     {
         int id;
-        public static Collection<Cliente> ListaClientes;
+        public static Collection<Cliente> ListaClientes = new Collection<Cliente>();
 
 
         public Carrito(int id_viaje)
@@ -42,6 +43,34 @@ namespace AerolineaFrba.Compra
         public static void agregarCliente(Cliente cliente) 
         {
             ListaClientes.Add(cliente);
+        }
+
+        public float calcularPrecioTotal()
+        {
+            float retu = 0f;
+            foreach (Cliente cli in ListaClientes)
+            {
+               retu += cli.getItem().calcularPrecio();
+            }
+            return retu;
+        }
+
+        private void Carrito_Activated(object sender, EventArgs e)
+        {
+            listBox1.Items.Clear();
+            foreach (Cliente cli in ListaClientes)
+            {
+                listBox1.Items.Add(cli);
+            }
+
+            labelMonto.Text = calcularPrecioTotal().ToString();
+        }
+
+        private void button_eliminarItem_Click(object sender, EventArgs e)
+        {
+            ListaClientes.Remove((Cliente)listBox1.SelectedItem);
+            listBox1.Items.Remove(listBox1.SelectedItem);
+            labelMonto.Text = calcularPrecioTotal().ToString("0.00");
         }
        
     }
