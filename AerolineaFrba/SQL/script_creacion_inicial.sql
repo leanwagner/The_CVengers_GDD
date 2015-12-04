@@ -1278,6 +1278,49 @@ return(SELECT PASAJE_ID 'Número de item', 'Pasaje' 'Tipo', THE_CVENGERS.calcular
 	   SELECT ENCOMIENDA_ID 'Número de item', 'Encomienda' 'Tipo', THE_CVENGERS.calcularPrecioEncomienda(ENCOMIENDA_VIAJE_ID, ENCOMIENDA_KG) 'Precio' FROM THE_CVENGERS.ENCOMIENDA WHERE ENCOMIENDA_DEVOLUCION IS NULL AND ENCOMIENDA_COMPRA = @compra)
 
 
+go
+create procedure THE_CVENGERS.crearDevolucion(@compra as numeric(18,0), @descripcion as nvarchar(100))
+as
+begin
+insert into THE_CVENGERS.DEVOLUCION (DEVOLUCION_FECHA, DEVOLUCION_NUM_COMPRA, DEVOLUCION_DESCRIPCION)
+values (THE_CVENGERS.fechaReal(), @compra, @descripcion)
+end
+
+
+go
+create procedure THE_CVENGERS.devolverItem(@item as numeric(18,0), @tipoItem as nvarchar(25))
+as
+begin
+if(@tipoItem = 'Encomienda')
+begin
+update THE_CVENGERS.ENCOMIENDA SET ENCOMIENDA_DEVOLUCION = (SELECT TOP 1 DEVOLUCION_ID FROM THE_CVENGERS.DEVOLUCION WHERE DEVOLUCION_NUM_COMPRA = ENCOMIENDA_COMPRA ORDER BY DEVOLUCION_ID DESC) 
+WHERE ENCOMIENDA_ID = @item
+end
+if(@tipoItem = 'Pasaje')
+BEGIN
+update THE_CVENGERS.PASAJE SET PASAJE_DEVOLUCION = (SELECT TOP 1 DEVOLUCION_ID FROM THE_CVENGERS.DEVOLUCION WHERE DEVOLUCION_NUM_COMPRA = PASAJE_COMPRA ORDER BY DEVOLUCION_ID DESC) 
+WHERE PASAJE_ID = @item
+END
+END
+
+go
+create procedure THE_CVENGERS.ingresarOModificarCliente(@id as numeric(18,0),@nombre as nvarchar(100), @apellido as nvarchar(100),
+@dni as numeric(18,0), @dir as nvarchar(100), @telefono as numeric(18,0), @mail as nvarchar(100), @fechanac as datetime)
+as
+begin
+
+if(@id = 0)
+begin
+insert into THE_CVENGERS.CLIENTE (CLIENTE_APELLIDO,CLIENTE_NOMBRE,CLIENTE_DNI, CLIENTE_DIR, CLIENTE_FECHA_NAC, CLIENTE_MAIL, CLIENTE_TELEFONO)
+VALUES(@apellido,@nombre,@dni,@dir,@fechanac,@mail,@telefono)
+end
+else
+begin
+update THE_CVENGERS.CLIENTE SET CLIENTE_APELLIDO = @apellido, CLIENTE_NOMBRE = @nombre, CLIENTE_DNI = @dni,
+CLIENTE_DIR = @dir, CLIENTE_FECHA_NAC = @fechanac, CLIENTE_MAIL = @mail, CLIENTE_TELEFONO = @telefono
+WHERE CLIENTE_ID = @id
+END
+END
 
 /*DROP TABLE [THE_CVENGERS].MILLA
 DROP TABLE [THE_CVENGERS].FECHA
@@ -1346,5 +1389,8 @@ DROP FUNCTION [THE_CVENGERS].listadoMillas
 DROP FUNCTION [THE_CVENGERS].listadoCanjes
 DROP FUNCTION [THE_CVENGERS].comprasCliente
 DROP FUNCTION [THE_CVENGERS].itemsDeCompra
+DROP PROCEDURE [THE_CVENGERS].crearDevolucion
+DROP PROCEDURE [THE_CVENGERS].devolverItem
+DROP PROCEDURE [THE_CVENGERS].ingresarOModificarCliente
 DROP PROCEDURE [THE_CVENGERS].getAll 
 DROP SCHEMA [THE_CVENGERS]*/
