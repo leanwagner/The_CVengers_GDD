@@ -28,8 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AgregarPasaje));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBox_piso = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.comboBox_butacasDisponibles = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -49,15 +53,18 @@
             this.Nombre = new System.Windows.Forms.Label();
             this.numericUpDown_dni = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox_butacasDisponibles = new System.Windows.Forms.ComboBox();
+            this.errorProvider_disponibles = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_telefono)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_dni)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_disponibles)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.comboBox_piso);
+            this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.comboBox_butacasDisponibles);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.comboBox1);
@@ -69,10 +76,40 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos Pasaje";
             // 
+            // comboBox_piso
+            // 
+            this.comboBox_piso.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_piso.FormattingEnabled = true;
+            this.comboBox_piso.Location = new System.Drawing.Point(59, 40);
+            this.comboBox_piso.Name = "comboBox_piso";
+            this.comboBox_piso.Size = new System.Drawing.Size(121, 21);
+            this.comboBox_piso.Sorted = true;
+            this.comboBox_piso.TabIndex = 16;
+            this.comboBox_piso.SelectedIndexChanged += new System.EventHandler(this.comboBox_piso_SelectedIndexChanged);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(23, 43);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(30, 13);
+            this.label9.TabIndex = 15;
+            this.label9.Text = "Piso:";
+            // 
+            // comboBox_butacasDisponibles
+            // 
+            this.comboBox_butacasDisponibles.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_butacasDisponibles.Enabled = false;
+            this.comboBox_butacasDisponibles.FormattingEnabled = true;
+            this.comboBox_butacasDisponibles.Location = new System.Drawing.Point(533, 40);
+            this.comboBox_butacasDisponibles.Name = "comboBox_butacasDisponibles";
+            this.comboBox_butacasDisponibles.Size = new System.Drawing.Size(121, 21);
+            this.comboBox_butacasDisponibles.TabIndex = 3;
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(322, 38);
+            this.label8.Location = new System.Drawing.Point(423, 43);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(104, 13);
             this.label8.TabIndex = 2;
@@ -81,16 +118,19 @@
             // comboBox1
             // 
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.Enabled = false;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(147, 35);
+            this.comboBox1.Location = new System.Drawing.Point(285, 40);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.Sorted = true;
             this.comboBox1.TabIndex = 1;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(55, 38);
+            this.label7.Location = new System.Drawing.Point(193, 43);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(82, 13);
             this.label7.TabIndex = 0;
@@ -241,14 +281,9 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "DNI";
             // 
-            // comboBox_butacasDisponibles
+            // errorProvider_disponibles
             // 
-            this.comboBox_butacasDisponibles.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_butacasDisponibles.FormattingEnabled = true;
-            this.comboBox_butacasDisponibles.Location = new System.Drawing.Point(446, 35);
-            this.comboBox_butacasDisponibles.Name = "comboBox_butacasDisponibles";
-            this.comboBox_butacasDisponibles.Size = new System.Drawing.Size(121, 21);
-            this.comboBox_butacasDisponibles.TabIndex = 3;
+            this.errorProvider_disponibles.ContainerControl = this;
             // 
             // AgregarPasaje
             // 
@@ -259,6 +294,7 @@
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AgregarPasaje";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Agregar Pasaje";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -266,6 +302,7 @@
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_telefono)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_dni)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_disponibles)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -293,5 +330,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox comboBox_butacasDisponibles;
+        private System.Windows.Forms.ComboBox comboBox_piso;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ErrorProvider errorProvider_disponibles;
     }
 }

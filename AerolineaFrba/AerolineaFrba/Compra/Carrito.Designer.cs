@@ -1,4 +1,5 @@
-﻿namespace AerolineaFrba.Compra
+﻿using AerolineaFrba.MyNumericUpDown;
+namespace AerolineaFrba.Compra
 {
     partial class Carrito
     {
@@ -36,14 +37,14 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.numericUpDown_telefono = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown_telefono = new NumericUpDownModified();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox_apellido = new System.Windows.Forms.TextBox();
             this.textBox_nombre = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.Nombre = new System.Windows.Forms.Label();
-            this.numericUpDown_dni = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown_dni = new NumericUpDownModified();
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -297,10 +298,10 @@
         private System.Windows.Forms.TextBox textBox_nombre;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label Nombre;
-        private System.Windows.Forms.NumericUpDown numericUpDown_dni;
+        private NumericUpDownModified numericUpDown_dni;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.NumericUpDown numericUpDown_telefono;
+        private NumericUpDownModified numericUpDown_telefono;
         private System.Windows.Forms.Button button_eliminarItem;
         private System.Windows.Forms.Button button_terminarCompra;
         private System.Windows.Forms.DateTimePicker dateTimePicker_nacimiento;
