@@ -28,6 +28,36 @@ namespace AerolineaFrba.Llenador
         
         }
 
+        public void llenarComboBoxSemestre(ref ComboBox miCombo,int a, int lista)
+        {
+
+            SqlCommand sqlCmd = new SqlCommand("select distinct (case when MONTH(COMPRA_FECHA)>6 then 2 else 1 end) 's' from THE_CVENGERS.COMPRA where year(COMPRA_FECHA)=" + a, Conexion.getConexion());
+
+            switch (lista) 
+            { 
+                case 0:
+                    sqlCmd.CommandText = "select distinct (case when MONTH(COMPRA_FECHA)>6 then 2 else 1 end) 's' from THE_CVENGERS.COMPRA where year(COMPRA_FECHA)=" + a;
+                    break;
+                case 1:
+                    sqlCmd.CommandText = "select distinct (case when MONTH(COMPRA_FECHA)>6 then 2 else 1 end) 's' from THE_CVENGERS.COMPRA where year(COMPRA_FECHA)=" + a;
+                    break;
+                case 2:
+                case 3:
+                case 4:
+                    break;
+            }
+
+            SqlDataReader sqlReader = sqlCmd.ExecuteReader();
+
+            while (sqlReader.Read())
+            {
+                miCombo.Items.Add(sqlReader["s"].ToString());
+            }
+
+            sqlReader.Close();
+
+        }
+
         public void llenarComboBoxAnios(ref ComboBox miCombo)
         {
 

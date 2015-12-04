@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Listado_Estadistico));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -38,14 +39,16 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 9);
+            this.label1.Location = new System.Drawing.Point(85, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(44, 13);
             this.label1.TabIndex = 0;
@@ -54,7 +57,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(132, 45);
+            this.label2.Location = new System.Drawing.Point(132, 51);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(29, 13);
             this.label2.TabIndex = 1;
@@ -63,7 +66,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(242, 45);
+            this.label3.Location = new System.Drawing.Point(242, 51);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(54, 13);
             this.label3.TabIndex = 2;
@@ -72,7 +75,7 @@
             // comboLista
             // 
             this.comboLista.FormattingEnabled = true;
-            this.comboLista.Location = new System.Drawing.Point(59, 6);
+            this.comboLista.Location = new System.Drawing.Point(135, 12);
             this.comboLista.Name = "comboLista";
             this.comboLista.Size = new System.Drawing.Size(286, 21);
             this.comboLista.TabIndex = 3;
@@ -83,7 +86,7 @@
             this.comboAnio.DropDownHeight = 100;
             this.comboAnio.FormattingEnabled = true;
             this.comboAnio.IntegralHeight = false;
-            this.comboAnio.Location = new System.Drawing.Point(167, 42);
+            this.comboAnio.Location = new System.Drawing.Point(167, 48);
             this.comboAnio.Name = "comboAnio";
             this.comboAnio.Size = new System.Drawing.Size(69, 21);
             this.comboAnio.TabIndex = 4;
@@ -92,7 +95,7 @@
             // comboSem
             // 
             this.comboSem.FormattingEnabled = true;
-            this.comboSem.Location = new System.Drawing.Point(302, 42);
+            this.comboSem.Location = new System.Drawing.Point(302, 48);
             this.comboSem.Name = "comboSem";
             this.comboSem.Size = new System.Drawing.Size(43, 21);
             this.comboSem.TabIndex = 5;
@@ -110,14 +113,15 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(333, 147);
+            this.dataGridView1.Size = new System.Drawing.Size(458, 169);
             this.dataGridView1.TabIndex = 6;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(270, 70);
+            this.button1.Location = new System.Drawing.Point(395, 70);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 7;
@@ -130,11 +134,16 @@
             this.errorProvider1.ContainerControl = this;
             this.errorProvider1.RightToLeft = true;
             // 
+            // errorProvider2
+            // 
+            this.errorProvider2.ContainerControl = this;
+            this.errorProvider2.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider2.Icon")));
+            // 
             // Listado_Estadistico
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(357, 253);
+            this.ClientSize = new System.Drawing.Size(482, 277);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.comboSem);
@@ -149,6 +158,7 @@
             this.Load += new System.EventHandler(this.Listado_Estadistico_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -165,5 +175,6 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.ErrorProvider errorProvider2;
     }
 }
