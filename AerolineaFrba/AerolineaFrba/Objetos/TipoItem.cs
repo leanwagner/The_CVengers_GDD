@@ -11,5 +11,6 @@ namespace AerolineaFrba.Objetos
         void persistirItem();
         float calcularPrecio();
         String ToString();
+        void actualizarValoresCancelados();
     }
 }
