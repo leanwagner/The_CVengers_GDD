@@ -2,6 +2,7 @@
 using AerolineaFrba.Objetos;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
@@ -26,9 +27,11 @@ namespace AerolineaFrba.Compra
             InitializeComponent();
             dateTimePicker_nacimiento.Format = DateTimePickerFormat.Custom;
             dateTimePicker_nacimiento.CustomFormat = "dd/MM/yyyy";
+            numericUpDown_kilos.Maximum = Carrito.kgs_disponibles;
             if (tipo == TipoCompra.Pasaje) { groupBox3.Visible = false;}
             else { groupBox1.Visible = false; this.Text = "Agregar Encomienda"; button_agregarItem.Text = "Agregar Encomienda"; }
             llenarComboBoxPisoAeronave(ref comboBox_piso);
+            groupBox2.Enabled = false;
         }
 
         public void llenarComboBoxPisoAeronave(ref ComboBox miCombo)
@@ -63,8 +66,13 @@ namespace AerolineaFrba.Compra
         {
             String tablas = "AERONAVE A, THE_CVENGERS.VIAJE V, THE_CVENGERS.BUTACA B";
             String condicion = "V.VIAJE_ID = " + viajeId.ToString() + " AND A.AERONAVE_ID = V.VIAJE_AERONAVE AND B.BUTACA_AERONAVE = A.AERONAVE_ID AND B.BUTACA_PISO = " + comboBox_piso.SelectedItem.ToString() + " AND B.BUTACA_TIPO = '" + comboBox1.SelectedItem + "' ORDER BY B.BUTACA_NRO";
-            llenador.llenarComboBoxConCondicion(ref miCombo, tablas, "BUTACA_NRO", condicion);
-        }
+            Collection<int> listina = new Collection<int>();
+            llenador.llenarListaConCondicion(ref listina, tablas, "BUTACA_NRO", condicion);
+
+           List<int> both = Carrito.ListaButacas.Intersect(listina).ToList<int>();
+           both.Sort();
+            llenador.llenarComboBoxDeUnaCollection(ref both, ref miCombo);
+           }
 
         private void comboBox_piso_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -104,6 +112,7 @@ namespace AerolineaFrba.Compra
                     cliente = new Cliente((Int32)numericUpDown_dni.Value,textBox_nombre.Text,textBox_apellido.Text,textBox_direccion.Text,(Int32)numericUpDown_telefono.Value
                     ,textBox_mail.Text,dateTimePicker_nacimiento.Value.ToString(),pasaje);
                     Carrito.agregarCliente(cliente);
+                    Carrito.ListaButacas.Remove(Int32.Parse(comboBox_butacasDisponibles.SelectedItem.ToString()));
                     break;
 
                 case TipoCompra.Encomienda:
@@ -112,6 +121,7 @@ namespace AerolineaFrba.Compra
                     cliente = new Cliente((Int32)numericUpDown_dni.Value,textBox_nombre.Text,textBox_apellido.Text,textBox_direccion.Text,(Int32)numericUpDown_telefono.Value
                     ,textBox_mail.Text,dateTimePicker_nacimiento.Value.ToString(),encomienda);
                     Carrito.agregarCliente(cliente);
+                    Carrito.kgs_disponibles = Carrito.kgs_disponibles - (Int32)numericUpDown_kilos.Value;
                     break;
 
               
@@ -121,7 +131,7 @@ namespace AerolineaFrba.Compra
             this.Close();
         }
 
-        private void numericUpDown_dni_ValueChanged(object sender, EventArgs e)
+        private void numericUpDown_dni_KeyUp(object sender, KeyEventArgs e)
         {
             if (numericUpDown_dni.Text.Length > 1)
             {
@@ -138,8 +148,21 @@ namespace AerolineaFrba.Compra
                     numericUpDown_telefono.Text = reader["CLIENTE_TELEFONO"].ToString();
                 }
                 reader.Close();
-                
+
             }
+        }
+
+        private void comboBox_butacasDisponibles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            groupBox2.Enabled = true;
+        }
+
+        private void numericUpDown_kilos_ValueChanged(object sender, EventArgs e)
+        {
+            if (numericUpDown_kilos.Value > 0)
+                groupBox2.Enabled = true;
+            else
+                groupBox2.Enabled = false;
         }
 
 

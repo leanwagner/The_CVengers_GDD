@@ -70,6 +70,7 @@ namespace AerolineaFrba.Compra
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(346, 186);
             this.listBox1.TabIndex = 0;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // button_aPasaje
             // 
@@ -93,12 +94,14 @@ namespace AerolineaFrba.Compra
             // 
             // button_confirmarItems
             // 
+            this.button_confirmarItems.Enabled = false;
             this.button_confirmarItems.Location = new System.Drawing.Point(369, 184);
             this.button_confirmarItems.Name = "button_confirmarItems";
             this.button_confirmarItems.Size = new System.Drawing.Size(143, 23);
             this.button_confirmarItems.TabIndex = 3;
             this.button_confirmarItems.Text = "Confirmar Ítems";
             this.button_confirmarItems.UseVisualStyleBackColor = true;
+            this.button_confirmarItems.Click += new System.EventHandler(this.button_confirmarItems_Click);
             // 
             // groupBox1
             // 
@@ -148,6 +151,7 @@ namespace AerolineaFrba.Compra
             // 
             // button_eliminarItem
             // 
+            this.button_eliminarItem.Enabled = false;
             this.button_eliminarItem.Location = new System.Drawing.Point(369, 138);
             this.button_eliminarItem.Name = "button_eliminarItem";
             this.button_eliminarItem.Size = new System.Drawing.Size(143, 23);
@@ -203,7 +207,7 @@ namespace AerolineaFrba.Compra
             this.numericUpDown_dni.Name = "numericUpDown_dni";
             this.numericUpDown_dni.Size = new System.Drawing.Size(203, 20);
             this.numericUpDown_dni.TabIndex = 15;
-            this.numericUpDown_dni.ValueChanged += new System.EventHandler(this.numericUpDown_dni_ValueChanged);
+            this.numericUpDown_dni.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numericUpDown_dni_KeyUp);
             // 
             // button_terminarCompra
             // 

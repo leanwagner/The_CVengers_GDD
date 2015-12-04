@@ -20,6 +20,7 @@ namespace AerolineaFrba.Compra
         object elementoQuitadoTablaDestino;
         object elementoQuitadoTablaOrigen;
         int id_viaje;
+        int kgs_disponibles;
 
         public Compra()
         {
@@ -186,19 +187,26 @@ namespace AerolineaFrba.Compra
         private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             
-            DataGridViewRow seleccionado = dataGridView1.SelectedRows[0];
-            id_viaje = Int32.Parse(seleccionado.Cells[0].Value.ToString());
-            button_continuarCompra.Enabled = true;
+            
         }
 
 
         private void button_continuarCompra_Click(object sender, EventArgs e)
         {
-            Carrito ventana = new Carrito(id_viaje);
+           
+            Carrito ventana = new Carrito(id_viaje,kgs_disponibles);
             
 
 
            ventana.Show();
+        }
+
+        private void dataGridView1_CellMouseClick(object sender, EventArgs e)
+        {
+            DataGridViewRow seleccionado = dataGridView1.SelectedRows[0];
+            id_viaje = Int32.Parse(seleccionado.Cells[0].Value.ToString());
+            kgs_disponibles = Int32.Parse(seleccionado.Cells[6].Value.ToString());
+            button_continuarCompra.Enabled = true;
         }
 
         

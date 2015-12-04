@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -144,7 +145,7 @@ namespace AerolineaFrba.Llenador
         {
 
             SqlCommand sqlCmd = new SqlCommand("SELECT * FROM THE_CVENGERS." + nombreTabla + " where " + condicion, Conexion.getConexion());
-
+          
             SqlDataReader sqlReader = sqlCmd.ExecuteReader();
 
             while (sqlReader.Read())
@@ -172,7 +173,33 @@ namespace AerolineaFrba.Llenador
             sqlReader.Close();
 
         }
+        public void llenarComboBoxDeUnaCollection( ref List <int> colec,ref ComboBox miCombo)
+        {
+            
 
+            foreach (int id in colec)
+                miCombo.Items.Add(id); 
+
+        }
+        public void llenarListaConCondicion(ref Collection<int> lista, String nombreTabla, String nombreColumna, String condicion)
+        {
+
+            SqlCommand sqlCmd = new SqlCommand("SELECT * FROM THE_CVENGERS." + nombreTabla + " where " + condicion, Conexion.getConexion());
+
+            SqlDataReader sqlReader = sqlCmd.ExecuteReader();
+
+            //   MessageBox.Show(sqlCmd.CommandText);
+            while (sqlReader.Read())
+            {
+   
+                lista.Add(Int32.Parse(sqlReader[nombreColumna].ToString()));
+            }
+
+            sqlReader.Close();
+
+        }
+
+        
         public void llenarCheckedListBox(ref CheckedListBox miCombo, String nombreTabla, String nombreColumna)
         {
 
