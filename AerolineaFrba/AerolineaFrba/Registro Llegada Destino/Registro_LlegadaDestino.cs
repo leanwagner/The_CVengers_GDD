@@ -97,7 +97,7 @@ namespace AerolineaFrba.Registro_Llegada_Destino
         private void button1_Click(object sender, EventArgs e)
         {
 
-            var fechaFormateada = dateTimePicker1.Value.ToString("yyyy-MM-dd HH:mm:ss");
+            var fechaFormateada = dateTimePicker1.Value.ToString("dd/MM/yyyy HH:mm:ss");
             fechaFormateada = fechaFormateada + ".000";
 
 
@@ -147,7 +147,7 @@ namespace AerolineaFrba.Registro_Llegada_Destino
                 reader.Close();
 
                 groupBox3.Enabled = true;
-                dateTimePicker1.CustomFormat = "dd-MM-yyyy HH:mm:ss";
+                dateTimePicker1.CustomFormat = "dd/MM/yyyy HH:mm:ss";
 
                
 
@@ -168,10 +168,10 @@ namespace AerolineaFrba.Registro_Llegada_Destino
             comboBox_matricula.Items.Clear();
             llenarComboMatricula(ref comboBox_matricula);
             groupBox3.Enabled = false;
-            label_LlegadaEstimadaAeronave.Text = "** dd/mm/yyyy hh:mm**";
+            label_LlegadaEstimadaAeronave.Text = "** dd/MM/yyyy hh:mm**";
             label_MatriculaAeronave.Text = "**NRO**";
             label_ModeloAeronave.Text = "**Modelo**";
-            label_SalidaAeronave.Text = "**dd/mm/yyyy hh:mm**";
+            label_SalidaAeronave.Text = "**dd/MM/yyyy hh:mm**";
             label_TipoServicio.Text = "**Servicio**";
             dateTimePicker1.CustomFormat = " ";
         }

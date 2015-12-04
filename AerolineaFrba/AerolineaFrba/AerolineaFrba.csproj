@@ -114,6 +114,7 @@
     <Compile Include="Compra\Carrito.Designer.cs">
       <DependentUpon>Carrito.cs</DependentUpon>
     </Compile>
+    <Compile Include="Compra\TipoCompra.cs" />
     <Compile Include="Conexion\Conexion.cs" />
     <Compile Include="Consulta Millas\Consulta_Millas.cs">
       <SubType>Form</SubType>
@@ -159,6 +160,7 @@
     <Compile Include="Objetos\Cliente.cs" />
     <Compile Include="Objetos\Encomienda.cs" />
     <Compile Include="Objetos\Pasaje.cs" />
+    <Compile Include="Objetos\TipoItem.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registro de Usuario\Registro_Usuario.cs">
