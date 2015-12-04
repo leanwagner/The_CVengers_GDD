@@ -79,7 +79,7 @@ namespace AerolineaFrba.Consulta_Millas
 
             try
             {
-                adapter = new SqlDataAdapter("select MILLA_FECHA_ACREDITACION 'Fecha',(MILLA_GANADA - MILLA_GASTADA) 'Millas disponibles' from THE_CVENGERS.MILLA where MILLA_CLIENTE = " + idClie, Conexion.getConexion());
+                adapter = new SqlDataAdapter("select * from THE_CVENGERS.listadoMillas(" + idClie+") order by 'Fecha transacción'", Conexion.getConexion());
                 tabla = new DataTable();
 
                 adapter.Fill(tabla);
