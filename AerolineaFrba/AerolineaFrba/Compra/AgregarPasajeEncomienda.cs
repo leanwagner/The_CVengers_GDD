@@ -1,4 +1,5 @@
-﻿using AerolineaFrba.Llenador;
+﻿using AerolineaFrba.HoraDB;
+using AerolineaFrba.Llenador;
 using AerolineaFrba.Objetos;
 using System;
 using System.Collections.Generic;
@@ -27,11 +28,13 @@ namespace AerolineaFrba.Compra
             InitializeComponent();
             dateTimePicker_nacimiento.Format = DateTimePickerFormat.Custom;
             dateTimePicker_nacimiento.CustomFormat = "dd/MM/yyyy";
+            dateTimePicker_nacimiento.MaxDate = DateTimeHandler.devolverFechaDB();
             numericUpDown_kilos.Maximum = Carrito.kgs_disponibles;
             if (tipo == TipoCompra.Pasaje) { groupBox3.Visible = false;}
             else { groupBox1.Visible = false; this.Text = "Agregar Encomienda"; button_agregarItem.Text = "Agregar Encomienda"; }
             llenarComboBoxPisoAeronave(ref comboBox_piso);
             groupBox2.Enabled = false;
+
         }
 
         public void llenarComboBoxPisoAeronave(ref ComboBox miCombo)
@@ -103,6 +106,10 @@ namespace AerolineaFrba.Compra
         private void button_agregarItem_Click(object sender, EventArgs e)
         {
             Cliente cliente;
+
+            if(aplicarValidaciones()>0)
+                return;
+
             switch (tipoActual)
             {
                 
@@ -127,6 +134,8 @@ namespace AerolineaFrba.Compra
               
                     
             }
+
+
 
             this.Close();
         }
@@ -163,6 +172,42 @@ namespace AerolineaFrba.Compra
                 groupBox2.Enabled = true;
             else
                 groupBox2.Enabled = false;
+        }
+
+        public int aplicarValidaciones()
+        {
+            int flag=0;
+
+            if (textBox_nombre.Text == "")
+            {
+                errorProvider_nombre.SetError(textBox_nombre, "Por favor ingrese un Nombre");
+                flag += 1;
+            }
+            else
+                errorProvider_nombre.Clear();
+            if (textBox_apellido.Text == "")
+            {
+                errorProvider_apellido.SetError(textBox_apellido, "Por favor ingrese un Apellido");
+                flag += 1;
+            }
+            else
+                errorProvider_apellido.Clear();
+            if (textBox_direccion.Text == "")
+            {
+                errorProvider_direccion.SetError(textBox_direccion, "Por favor ingrese una Dirección");
+                flag += 1;
+            }
+            else
+                errorProvider_direccion.Clear();
+            if (numericUpDown_dni.Value.ToString().Count() < 5)
+            {
+                errorProvider_dni.SetError(numericUpDown_dni, "Por favor ingrese un DNI válido ");
+                flag += 1;
+            }
+            else
+                errorProvider_dni.Clear();
+
+            return flag;
         }
 
 
