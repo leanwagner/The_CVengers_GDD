@@ -203,6 +203,8 @@ namespace AerolineaFrba.Compra
 
         private void dataGridView1_CellMouseClick(object sender, EventArgs e)
         {
+            if (dataGridView1.SelectedRows.Count == 0)
+                return;
             DataGridViewRow seleccionado = dataGridView1.SelectedRows[0];
             id_viaje = Int32.Parse(seleccionado.Cells[0].Value.ToString());
             kgs_disponibles = Int32.Parse(seleccionado.Cells[6].Value.ToString());

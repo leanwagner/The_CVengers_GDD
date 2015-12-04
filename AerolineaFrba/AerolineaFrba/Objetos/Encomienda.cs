@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AerolineaFrba.Compra;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -41,6 +42,11 @@ namespace AerolineaFrba.Objetos
         override public String ToString()
         {
             return "Encomienda - Numero de viaje: " + viajeId + "- Peso: " + Encomienda_kg.ToString() +"Kg - Precio: $" + calcularPrecio().ToString("0.00");
+        }
+
+        public void actualizarValoresCancelados()
+        {
+            Carrito.kgs_disponibles += Encomienda_kg; 
         }
 
     }

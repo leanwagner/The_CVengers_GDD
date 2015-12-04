@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AerolineaFrba.Compra;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -40,6 +41,11 @@ namespace AerolineaFrba.Objetos
         override public String ToString()
         {
             return "Pasaje - Numero de viaje: " + viaje_id + "- Butaca: " + Pasaje_butaca.ToString() +"- Precio: $" + calcularPrecio().ToString("0.00"); 
+        }
+
+        public void actualizarValoresCancelados()
+        {
+            Carrito.ListaButacas.Add(Pasaje_butaca);
         }
 
     }
