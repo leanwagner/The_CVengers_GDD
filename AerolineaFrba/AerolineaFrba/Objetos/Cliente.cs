@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace AerolineaFrba.Objetos
 {
@@ -81,7 +83,17 @@ namespace AerolineaFrba.Objetos
         }
 
         public void persistirme() 
-        { 
+        {
+            string command = "EXEC THE_CVENGERS.ingresarOModificarCliente @id =" + clienteId.ToString() +
+                ", @nombre = '" + Nombre +
+                "', @apellido = '" + Apellido +
+                "', @dni = '" + Dni.ToString() +
+                "', @dir = '" + Direccion +
+                "', @telefono = '" + Telefono.ToString() +
+                "', @mail = '" + Mail +
+                "', @fechanac = '" + Fecha_nacimiento.ToString() + "'";
+            SqlCommand sqlCmd = new SqlCommand(command,Conexion.getConexion());
+            sqlCmd.ExecuteNonQuery();
         }
     }
 }
