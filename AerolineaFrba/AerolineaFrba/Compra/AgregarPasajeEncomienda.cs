@@ -2,6 +2,7 @@
 using AerolineaFrba.Objetos;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
@@ -65,13 +66,13 @@ namespace AerolineaFrba.Compra
         {
             String tablas = "AERONAVE A, THE_CVENGERS.VIAJE V, THE_CVENGERS.BUTACA B";
             String condicion = "V.VIAJE_ID = " + viajeId.ToString() + " AND A.AERONAVE_ID = V.VIAJE_AERONAVE AND B.BUTACA_AERONAVE = A.AERONAVE_ID AND B.BUTACA_PISO = " + comboBox_piso.SelectedItem.ToString() + " AND B.BUTACA_TIPO = '" + comboBox1.SelectedItem + "' ORDER BY B.BUTACA_NRO";
-            llenador.llenarComboBoxConCondicion(ref miCombo, tablas, "BUTACA_NRO", condicion);
-            foreach (object obj in miCombo.Items) // NO SE PUEDE SACAR COSAS DE ALGO QUE ESTAS RECORRIENDO
-            {
-                if (!Carrito.ListaButacas.Contains(Int32.Parse(obj.ToString()))) // ARREGLAR
-                    miCombo.Items.Remove(obj);
-            }
-        }
+            Collection<int> listina = new Collection<int>();
+            llenador.llenarListaConCondicion(ref listina, tablas, "BUTACA_NRO", condicion);
+
+           List<int> both = Carrito.ListaButacas.Intersect(listina).ToList<int>();
+           both.Sort();
+            llenador.llenarComboBoxDeUnaCollection(ref both, ref miCombo);
+           }
 
         private void comboBox_piso_SelectedIndexChanged(object sender, EventArgs e)
         {

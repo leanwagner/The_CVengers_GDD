@@ -43,9 +43,6 @@ namespace AerolineaFrba.Compra
             lloni.llenarListBoxConCondicion(ref aux, tablas, "BUTACA_NRO", condicion);
             foreach (object value in aux.Items)
                 ListaButacas.Add(Int32.Parse(value.ToString()));
-            MessageBox.Show(ListaButacas.Count.ToString());
-            
-
         }
 
         private void button_aEncomienda_Click(object sender, EventArgs e)
