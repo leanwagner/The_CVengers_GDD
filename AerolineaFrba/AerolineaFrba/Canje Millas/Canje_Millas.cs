@@ -166,7 +166,19 @@ namespace AerolineaFrba.Canje_Millas
 
         private void canjBoton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("todavia no lo hice porque no tenemos millas");
+            SqlCommand cmd = new SqlCommand("exec THE_CVENGERS.realizarCanje @cli =" + idClie + ", @prod= " + idProd + ", @cant = " + canUpDown.Value.ToString(), Conexion.getConexion());
+            //cmd.ExecuteNonQuery();
+           // MessageBox.Show("Canje realizado exitosamente");
+            MessageBox.Show(cmd.CommandText);
+            premioCombo.SelectedIndex = -1;
+            cmd.CommandText = "select THE_CVENGERS.consultarMillas(" + idClie + ") as m";
+            
+            reader = cmd.ExecuteReader();
+            reader.Read();
+           
+            label12.Text = reader["m"].ToString();
+            reader.Close();
+
         }
 
         private void label12_VisibleChanged(object sender, EventArgs e)
