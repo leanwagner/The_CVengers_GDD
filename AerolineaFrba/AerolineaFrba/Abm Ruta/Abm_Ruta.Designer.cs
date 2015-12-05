@@ -439,7 +439,7 @@ namespace AerolineaFrba.Abm_Ruta
             0,
             0,
             131072});
-            this.numericUpDown2.Location = new System.Drawing.Point(416, 105);
+            this.numericUpDown2.Location = new System.Drawing.Point(425, 106);
             this.numericUpDown2.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -457,7 +457,7 @@ namespace AerolineaFrba.Abm_Ruta
             0,
             0,
             131072});
-            this.numericUpDown1.Location = new System.Drawing.Point(416, 79);
+            this.numericUpDown1.Location = new System.Drawing.Point(425, 80);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -492,7 +492,7 @@ namespace AerolineaFrba.Abm_Ruta
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(303, 107);
+            this.label5.Location = new System.Drawing.Point(310, 108);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(102, 13);
             this.label5.TabIndex = 14;
@@ -501,7 +501,7 @@ namespace AerolineaFrba.Abm_Ruta
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(322, 81);
+            this.label4.Location = new System.Drawing.Point(329, 82);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(83, 13);
             this.label4.TabIndex = 12;
@@ -510,7 +510,7 @@ namespace AerolineaFrba.Abm_Ruta
             // checkedListBox_servicios
             // 
             this.checkedListBox_servicios.FormattingEnabled = true;
-            this.checkedListBox_servicios.Location = new System.Drawing.Point(416, 24);
+            this.checkedListBox_servicios.Location = new System.Drawing.Point(425, 24);
             this.checkedListBox_servicios.Name = "checkedListBox_servicios";
             this.checkedListBox_servicios.Size = new System.Drawing.Size(153, 49);
             this.checkedListBox_servicios.TabIndex = 3;
@@ -519,7 +519,7 @@ namespace AerolineaFrba.Abm_Ruta
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(352, 27);
+            this.label3.Location = new System.Drawing.Point(359, 27);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 13);
             this.label3.TabIndex = 9;
@@ -545,7 +545,7 @@ namespace AerolineaFrba.Abm_Ruta
             // 
             // button_agregarRuta
             // 
-            this.button_agregarRuta.Location = new System.Drawing.Point(494, 140);
+            this.button_agregarRuta.Location = new System.Drawing.Point(503, 140);
             this.button_agregarRuta.Name = "button_agregarRuta";
             this.button_agregarRuta.Size = new System.Drawing.Size(75, 23);
             this.button_agregarRuta.TabIndex = 6;
@@ -590,9 +590,10 @@ namespace AerolineaFrba.Abm_Ruta
             this.AutoScroll = true;
             this.AutoSize = true;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this.ClientSize = new System.Drawing.Size(680, 666);
+            this.ClientSize = new System.Drawing.Size(687, 668);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Abm_Ruta";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
