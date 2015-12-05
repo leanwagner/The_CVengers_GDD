@@ -50,7 +50,7 @@
             this.textBox_usuario.Location = new System.Drawing.Point(80, 23);
             this.textBox_usuario.Name = "textBox_usuario";
             this.textBox_usuario.Size = new System.Drawing.Size(151, 20);
-            this.textBox_usuario.TabIndex = 4;
+            this.textBox_usuario.TabIndex = 0;
             this.textBox_usuario.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.textBox_usuario.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_usuario_KeyDown);
             // 
@@ -71,7 +71,7 @@
             this.comboBox_roles.Name = "comboBox_roles";
             this.comboBox_roles.Size = new System.Drawing.Size(121, 21);
             this.comboBox_roles.Sorted = true;
-            this.comboBox_roles.TabIndex = 4;
+            this.comboBox_roles.TabIndex = 2;
             this.comboBox_roles.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label1
@@ -89,7 +89,7 @@
             this.textBox_contraseña.Name = "textBox_contraseña";
             this.textBox_contraseña.PasswordChar = '*';
             this.textBox_contraseña.Size = new System.Drawing.Size(151, 20);
-            this.textBox_contraseña.TabIndex = 5;
+            this.textBox_contraseña.TabIndex = 1;
             this.textBox_contraseña.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             this.textBox_contraseña.Enter += new System.EventHandler(this.textBox_contraseña_Enter);
             // 
@@ -108,7 +108,7 @@
             this.button1.Location = new System.Drawing.Point(241, 156);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(85, 23);
-            this.button1.TabIndex = 8;
+            this.button1.TabIndex = 3;
             this.button1.Text = "Iniciar Sesión";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
