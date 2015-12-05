@@ -156,6 +156,7 @@ namespace AerolineaFrba.Abm_Aeronave
         {
             groupBox3.Visible = true;
             groupBox3.Refresh();
+            groupBox2.Enabled = false;
             this.Refresh();
             Llenador.LlenadorDeTablas lleni = new Llenador.LlenadorDeTablas();
             lleni.llenarComboBox(ref comboBox4, "FABRICANTE", "FABRICANTE_NOMBRE");
@@ -181,6 +182,7 @@ namespace AerolineaFrba.Abm_Aeronave
             groupBox3.Visible = false;
             comboBox3.Items.Clear();
                 comboBox4.Items.Clear();
+                groupBox2.Enabled = true;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -211,14 +213,15 @@ namespace AerolineaFrba.Abm_Aeronave
 
             try
             {
-                sqlCmd.ExecuteNonQuery();
-                
+              //  sqlCmd.ExecuteNonQuery();
+                MessageBox.Show("No hace nada hasta que mike haga el procedure modificarAeronave. Descomentar las 3 lineas cerca de este message box cuando el procedure este hecho");  
             groupBox3.Visible = false;
-            listBox1.Items.RemoveAt(indiceSele);
-            listBox1.Items.Add(new Avion(textBox8.Text, comboBox3.Text, comboBox4.Text));
+            //listBox1.Items.RemoveAt(indiceSele);
+            //listBox1.Items.Add(new Avion(textBox8.Text, comboBox3.Text, comboBox4.Text));
             listBox1.Refresh();
             comboBox4.Items.Clear();
             comboBox3.Items.Clear();
+            groupBox2.Enabled = true;
             }
             catch (Exception ex)
             {
