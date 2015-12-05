@@ -871,17 +871,6 @@ select R.RUTA_ID 'Id', R.RUTA_CODIGO 'Código de Rutas', (select C.CIUDAD_NOMBRE
 from THE_CVENGERS.RUTA R
 where R.RUTA_ESTADO = 1
 
-GO
-create view THE_CVENGERS.listadoAeronaves
-as
-select A.AERONAVE_MATRICULA_AVION 'Matrícula', (SELECT FABRICANTE_NOMBRE 
-												FROM THE_CVENGERS.FABRICANTE
-												WHERE FABRICANTE_ID = A.AERONAVE_FABRICANTE_AVION ) 'Fabricante',(select SERVICIO_NOMBRE 
-																													FROM THE_CVENGERS.SERVICIO
-																													WHERE SERVICIO_ID = A.AERONAVE_SERVICIO) 'Servicio', a.AERONAVE_CANTIDAD_BUTACAS 'Cantidad de Butacas', (case WHEN A.AERONAVE_EN_TALLER = 1 THEN 'Sí' ELSE 'NO' END) 'Aeronave en taller',  a.AERONAVE_ESPACIO_ENCOMIENDAS 'Espacio para encomiendas', a.AERONAVE_FECHA_DE_ALTA 'Fecha de alta'
-from THE_CVENGERS.AERONAVE A
-where a.AERONAVE_ESTADO = 1
-
 go
 create procedure THE_CVENGERS.ingresoAeronave @matri as nvarchar(100), @model as nvarchar(100), @fabricante as numeric(18,0),
 												@serv as numeric(18,0), @butacas as numeric(18,0), @espacio as numeric(18,2),
