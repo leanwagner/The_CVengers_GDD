@@ -229,5 +229,14 @@ namespace AerolineaFrba.Abm_Aeronave
         }
 
         
+
+        private void boton_Eliminar_Aeronave_Click(object sender, EventArgs e)
+        {
+
+            BajaAeronave ventana = new BajaAeronave(((Avion)listBox1.SelectedItem).getMatricula());
+            ventana.Show();
+        }
+
+        
     }
 }
