@@ -2237,6 +2237,56 @@ return(SELECT * FROM THE_CVENGERS.AERONAVE where AERONAVE_ID <> @avion AND AERON
 					AND THE_CVENGERS.fechaReal() BETWEEN TALLER_FECHA_ENTRADA AND TALLER_FECHA_SALIDA)
 		AND THE_CVENGERS.aeronavePuedeReemplazarEsteLapsoFunc(@avion, AERONAVE_ID, @fecha) = 1)
 
+go
+create procedure THE_CVENGERS.crearAeronaveSuplente(@Id as numeric(18,0), @matricula as nvarchar(100))
+as
+begin
+
+if(exists(select AERONAVE_ID FROM THE_CVENGERS.AERONAVE WHERE AERONAVE_MATRICULA_AVION = @matricula))
+begin
+raiserror('Ya existe un avión con ese número de matrícula. Ingrese otra.',16,1)
+return
+end
+
+declare @butac numeric(18,0)
+declare @fabri numeric(18,0)
+declare @encom numeric(18,2)
+declare @model nvarchar(100)
+declare @serv numeric(18,0)
+
+set @butac = (select AERONAVE_CANTIDAD_BUTACAS from THE_CVENGERS.AERONAVE where AERONAVE_ID = @Id)
+set @fabri = (select AERONAVE_FABRICANTE_AVION from THE_CVENGERS.AERONAVE where AERONAVE_ID = @Id)
+set @encom = (select AERONAVE_ESPACIO_ENCOMIENDAS from THE_CVENGERS.AERONAVE where AERONAVE_ID = @Id)
+set @model = (select AERONAVE_MODELO_AVION from THE_CVENGERS.AERONAVE where AERONAVE_ID = @Id)
+set @serv = (select AERONAVE_SERVICIO from THE_CVENGERS.AERONAVE where AERONAVE_ID = @Id)
+
+insert into THE_CVENGERS.AERONAVE(AERONAVE_CANTIDAD_BUTACAS,AERONAVE_ESPACIO_ENCOMIENDAS, AERONAVE_FABRICANTE_AVION,
+									AERONAVE_MATRICULA_AVION, AERONAVE_MODELO_AVION, AERONAVE_SERVICIO)
+VALUES(@butac, @encom, @fabri, @matricula, @model, @serv)
+
+DECLARE @avionB numeric(18,0)
+set @avionB = (SELECT TOP 1 AERONAVE_ID FROM THE_CVENGERS.AERONAVE ORDER BY AERONAVE_ID DESC)
+
+declare @nro numeric(18,0)
+declare @tipo nvarchar(100)
+declare @piso numeric(18,0)
+
+declare butaquitas cursor
+for select BUTACA_NRO, BUTACA_TIPO, BUTACA_PISO from THE_CVENGERS.BUTACA where BUTACA_AERONAVE = @Id
+
+open butaquitas
+FETCH FROM butaquitas INTO @nro, @tipo, @piso
+WHILE @@FETCH_STATUS = 0
+BEGIN
+
+insert into THE_CVENGERS.BUTACA(BUTACA_AERONAVE, BUTACA_NRO, BUTACA_PISO, BUTACA_TIPO)
+VALUES (@avionB, @nro, @piso, @tipo)
+
+FETCH NEXT FROM butaquitas INTO @nro, @tipo, @piso
+END
+CLOSE butaquitas
+DEALLOCATE butaquitas
+END
 /*DROP TABLE [THE_CVENGERS].CUOTASXTARJETA
 DROP TABLE [THE_CVENGERS].MILLA
 DROP TABLE [THE_CVENGERS].FECHA
@@ -2338,5 +2388,6 @@ DROP FUNCTION [THE_CVENGERS].aeronavePuedeReemplazarEsteLapsoFunc
 DROP FUNCTION [THE_CVENGERS].aeronavesQuePuedenSuplantarDePorVida
 DROP FUNCTION [THE_CVENGERS].aeronavesQuePuedenSuplantarPorUnLapso
 DROP FUNCTION [THE_CVENGERS].aeronaveConViajesPendientesEnEseLapso
+DROP PROCEDURE [THE_CVENGERS].crearAeronaveSuplente
 DROP PROCEDURE [THE_CVENGERS].getAll 
 DROP SCHEMA [THE_CVENGERS]*/
