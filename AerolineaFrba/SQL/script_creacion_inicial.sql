@@ -1173,7 +1173,7 @@ create function THE_CVENGERS.consultarMillas(@cli as numeric(18,0))
 returns int
 as
 begin
-return (select sum(MILLA_GANADA - MILLA_GASTADA)
+return (select isnull(sum(MILLA_GANADA - MILLA_GASTADA), 0)
 		FROM THE_CVENGERS.MILLA
 		WHERE MILLA_CLIENTE = @cli
 		AND DATEDIFF(second,MILLA_FECHA_ACREDITACION, THE_CVENGERS.fechaReal()) <= 31536000)
