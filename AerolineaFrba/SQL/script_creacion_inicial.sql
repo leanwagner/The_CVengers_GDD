@@ -2103,7 +2103,7 @@ go
 CREATE FUNCTION THE_CVENGERS.aeronavesConMasDiasEnElTaller(@anio as int, @semestre as int)
 returns table
 as
-return(SELECT TOP 5 AERONAVE_MATRICULA_AVION 'Matrícula de la aeronave', (SELECT SUM(DATEDIFF(DAY, TALLER_FECHA_ENTRADA, TALLER_FECHA_SALIDA))
+return(SELECT TOP 5 AERONAVE_MATRICULA_AVION 'Matrícula de la aeronave', (SELECT SUM(isnull(DATEDIFF(DAY, TALLER_FECHA_ENTRADA, TALLER_FECHA_SALIDA),0))
 																			FROM THE_CVENGERS.TALLER
 																			WHERE TALLER_AERONAVE_ID = AERONAVE_ID
 																			AND ((YEAR(TALLER_FECHA_ENTRADA) = @anio AND (MONTH(TALLER_FECHA_ENTRADA) BETWEEN (case when @semestre = 1 then 1 else 7 end) and (case when @semestre = 1 then 6 else 12 end)))
