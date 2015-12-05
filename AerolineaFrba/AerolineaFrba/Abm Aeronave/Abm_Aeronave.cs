@@ -100,7 +100,7 @@ namespace AerolineaFrba.Abm_Aeronave
             comboBox1.SelectedIndex = 0;
             comboBox2.SelectedIndex = 0;
            
-            SqlCommand sqlCmd = new SqlCommand("SELECT * FROM THE_CVENGERS.AERONAVE, THE_CVENGERS.FABRICANTE, THE_CVENGERS.SERVICIO where AERONAVE_FABRICANTE_AVION = FABRICANTE_ID and AERONAVE_SERVICIO = SERVICIO_ID", Conexion.getConexion());
+            SqlCommand sqlCmd = new SqlCommand("SELECT * FROM THE_CVENGERS.AERONAVE, THE_CVENGERS.FABRICANTE, THE_CVENGERS.SERVICIO where AERONAVE_FABRICANTE_AVION = FABRICANTE_ID and AERONAVE_SERVICIO = SERVICIO_ID and AERONAVE_ESTADO = 1", Conexion.getConexion());
 
             SqlDataReader sqlReader = sqlCmd.ExecuteReader();
 
@@ -135,8 +135,9 @@ namespace AerolineaFrba.Abm_Aeronave
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-         
-           
+
+            if (listBox1.SelectedIndex == -1)
+                return;
             boton_Eliminar_Aeronave.Enabled = true;
 
             SqlCommand cmd = new SqlCommand("select case when exists(select * from THE_CVENGERS.VIAJE, THE_CVENGERS.AERONAVE where VIAJE_AERONAVE = AERONAVE_ID and AERONAVE_MATRICULA_AVION ='"+((Avion)listBox1.SelectedItem).matricula +"') then 1 else 0 end", Conexion.getConexion());
@@ -203,7 +204,7 @@ namespace AerolineaFrba.Abm_Aeronave
 
 
 
-            sqlCmd.CommandText = "exec modificarAeronave @matri = '" + textBox8.Text +
+            sqlCmd.CommandText = "exec THE_CVENGERS.modificarAeronave @matri = '" + textBox8.Text +
                 "',@model = '" + textBox7.Text +
                 "',@fabricante = " + idFab +
                 ",@serv = " + idServ +
@@ -217,12 +218,13 @@ namespace AerolineaFrba.Abm_Aeronave
             {
                sqlCmd.ExecuteNonQuery();
                // MessageBox.Show("No hace nada hasta que mike haga el procedure modificarAeronave. Descomentar las 3 lineas cerca de este message box cuando el procedure este hecho");  
-            groupBox3.Visible = false;
+               listBox1.SelectedIndex = -1;
             listBox1.Items.RemoveAt(indiceSele);
             listBox1.Items.Add(new Avion(textBox8.Text, comboBox3.Text, comboBox4.Text));
             listBox1.Refresh();
             comboBox4.Items.Clear();
             comboBox3.Items.Clear();
+            groupBox3.Visible = false;
             groupBox2.Enabled = true;
             }
             catch (Exception ex)
@@ -255,10 +257,46 @@ namespace AerolineaFrba.Abm_Aeronave
 
         private void boton_Eliminar_Aeronave_Click(object sender, EventArgs e)
         {
+            
 
-            BajaAeronave ventana = new BajaAeronave(((Avion)listBox1.SelectedItem).getMatricula());
-            ventana.Show();
+             try
+             {
+                 SqlCommand sqlCmd = new SqlCommand("SELECT THE_CVENGERS.aeronaveEnElAire (" + dameIdAeronave(((Avion)listBox1.SelectedItem).getMatricula()) + ")", Conexion.getConexion());
+
+
+
+                 if ((int)sqlCmd.ExecuteScalar() == 1)
+                {                    
+                     MessageBox.Show("No se puede dar de baja, la aeronave se encuentra en viaje", "Error");
+                }
+                else {
+
+                    BajaAeronave ventana = new BajaAeronave(((Avion)listBox1.SelectedItem).getMatricula());
+                    ventana.Show();
+                }
+                
+
+            }
+            catch
+            {
+                MessageBox.Show("Rompio algo", "Error", MessageBoxButtons.OK);
+            }
+
         }
+
+        private int dameIdAeronave(string matricula)
+        {
+            SqlCommand sqlCmd = new SqlCommand("select AERONAVE_ID from THE_CVENGERS.AERONAVE where AERONAVE_MATRICULA_AVION ='" + matricula + "'", Conexion.getConexion());
+            SqlDataReader sqlReader;
+            sqlReader = sqlCmd.ExecuteReader();
+            sqlReader.Read();
+            int id = Int32.Parse(sqlReader["AERONAVE_ID"].ToString());
+            sqlReader.Close();
+
+            return id;
+
+        }
+
 
         
     }

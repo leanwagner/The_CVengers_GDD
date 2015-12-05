@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,7 +32,102 @@ namespace AerolineaFrba.Abm_Aeronave
 
         private void button1_Click(object sender, EventArgs e) //Mandale cumbia acá
         {
-         
+            if (radioButton_bajaTaller.Checked) 
+            { 
+
+                try
+             {
+                 SqlCommand sqlCmd = new SqlCommand("SELECT THE_CVENGERS.aeronaveConViajesPendientes (" + dameIdAeronave(this.matricula_aeronave) + ")", Conexion.getConexion());
+
+
+
+                 if ((int)sqlCmd.ExecuteScalar() == 0)
+                 {
+                     try
+                     {
+                         SqlCommand sqlCmdf = new SqlCommand("EXEC THE_CVENGERS.puedeIrATaller @avion=" + dameIdAeronave(this.matricula_aeronave) + "", Conexion.getConexion());
+
+                         sqlCmdf.ExecuteScalar();
+
+
+                         try
+                         {
+                             MessageBox.Show("EXEC THE_CVENGERS.mandarATallerHastaFecha @avion=" + dameIdAeronave(this.matricula_aeronave) + ", @fecha=" + dateTimePicker_reinc.Value.ToString() + "");
+                             SqlCommand sqlCmds = new SqlCommand("EXEC THE_CVENGERS.mandarATallerHastaFecha @avion=" + dameIdAeronave(this.matricula_aeronave) + ", @fecha='"+dateTimePicker_reinc.Value.ToString(CultureInfo.InvariantCulture) +"'", Conexion.getConexion());
+                             
+                             sqlCmds.ExecuteScalar();
+                             
+                             MessageBox.Show("Se mandó de la aeronave "+this.matricula_aeronave+ " hasta el "+dateTimePicker_reinc.Value.ToString(), "Baja exitosa");
+                         }
+                         catch
+                         {
+                             MessageBox.Show("Rompio mandarATallerHastaFecha");
+                         }
+
+                     }
+                     catch(Exception ex)
+                     {
+                         MessageBox.Show(ex.Message);
+                     }
+
+                 }
+                 else
+                 {
+                     MessageBox.Show("La aeronave posee viajes pendientes", "Error");
+                 }
+
+            }
+            catch
+            {
+                MessageBox.Show("Rompio aeronaveConViajesPendientes");
+            }
+
+            }
+
+            if (radioButton_bajaTotal.Checked)
+            {
+
+                try
+                {
+                    SqlCommand sqlCmd = new SqlCommand("SELECT THE_CVENGERS.aeronaveConViajesPendientes (" + dameIdAeronave(this.matricula_aeronave) + ")", Conexion.getConexion());
+
+
+
+                    if ((int)sqlCmd.ExecuteScalar() == 0)
+                    {
+
+
+                        try
+                        {
+                            MessageBox.Show("EXEC THE_CVENGERS.darDeBajaVitaliciaAeronave @avion=" + dameIdAeronave(this.matricula_aeronave));
+                            SqlCommand sqlCmds = new SqlCommand("EXEC THE_CVENGERS.darDeBajaVitaliciaAeronave @avion=" + dameIdAeronave(this.matricula_aeronave) + "", Conexion.getConexion());
+
+                            sqlCmds.ExecuteScalar();
+
+                            MessageBox.Show("Se dio de baja la aeronave " + this.matricula_aeronave + " de manera vitalicia.", "Baja exitosa");
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Rompio darDeBajaVitaliciaAeronave");
+                        }
+
+                    }
+                    else
+                    {
+
+                        MessageBox.Show("La aeronave posee viajes pendientes", "Error");
+                 
+                    }
+
+
+                }
+                catch
+                {
+                    MessageBox.Show("Rompio aeronave con viajes pendientes");
+                }
+            }
+
+            this.Close();
         }
 
         private int dameIdAeronave(string matricula)
