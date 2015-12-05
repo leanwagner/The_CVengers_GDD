@@ -34,9 +34,9 @@
             this.button_cancelarTodo = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button_repro = new System.Windows.Forms.Button();
             this.comboBox_aeronaves = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.button_repro = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -70,6 +70,7 @@
             this.button_cancelarTodo.TabIndex = 0;
             this.button_cancelarTodo.Text = "Cancelar Pasajes";
             this.button_cancelarTodo.UseVisualStyleBackColor = true;
+            this.button_cancelarTodo.Click += new System.EventHandler(this.button_cancelarTodo_Click);
             // 
             // label1
             // 
@@ -93,6 +94,16 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Cambio";
             // 
+            // button_repro
+            // 
+            this.button_repro.Location = new System.Drawing.Point(125, 84);
+            this.button_repro.Name = "button_repro";
+            this.button_repro.Size = new System.Drawing.Size(103, 43);
+            this.button_repro.TabIndex = 2;
+            this.button_repro.Text = "Reprogramar";
+            this.button_repro.UseVisualStyleBackColor = true;
+            this.button_repro.Click += new System.EventHandler(this.button_repro_Click);
+            // 
             // comboBox_aeronaves
             // 
             this.comboBox_aeronaves.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -110,16 +121,6 @@
             this.label2.Size = new System.Drawing.Size(61, 13);
             this.label2.TabIndex = 0;
             this.label2.Text = "Aeronaves:";
-            // 
-            // button_repro
-            // 
-            this.button_repro.Location = new System.Drawing.Point(125, 84);
-            this.button_repro.Name = "button_repro";
-            this.button_repro.Size = new System.Drawing.Size(103, 43);
-            this.button_repro.TabIndex = 2;
-            this.button_repro.Text = "Reprogramar";
-            this.button_repro.UseVisualStyleBackColor = true;
-            this.button_repro.Click += new System.EventHandler(this.button_repro_Click);
             // 
             // DecisionAeronave
             // 

@@ -55,20 +55,113 @@ namespace AerolineaFrba.Abm_Aeronave
 
         private void button_repro_Click(object sender, EventArgs e)
         {
-            try
-                        {
-                            MessageBox.Show("EXEC THE_CVENGERS.suplirAeronaveEsteLapso @avion1 = " + id_aeronave + ", @avion2 = " + dameIdAeronave(comboBox_aeronaves.SelectedItem.ToString()) + ", @fecha = '" + fecha + "'");
-                            SqlCommand sqlCmds = new SqlCommand("EXEC THE_CVENGERS.suplirAeronaveEsteLapso @avion1 = " + id_aeronave + ", @avion2 = " + dameIdAeronave(comboBox_aeronaves.SelectedItem.ToString()) + ", @fecha = '" + fecha+"'", Conexion.getConexion());
+            if (fecha != "")
+            {
+                try
+                {
+                    SqlCommand sqlCmds = new SqlCommand("EXEC THE_CVENGERS.suplirAeronaveEsteLapso @avion1 = " + id_aeronave + ", @avion2 = " + dameIdAeronave(comboBox_aeronaves.SelectedItem.ToString()) + ", @fecha = '" + fecha + "'", Conexion.getConexion());
 
-                            sqlCmds.ExecuteScalar();
+                    sqlCmds.ExecuteScalar();
 
-                            MessageBox.Show("Se dio de baja la aeronave seleccionada por la de matrícula " + comboBox_aeronaves.SelectedItem.ToString(), "Baja exitosa",MessageBoxButtons.OK);
+                    SqlCommand sqlCmdr = new SqlCommand("EXEC THE_CVENGERS.mandarATallerHastaFecha @avion = " + id_aeronave + ", @fecha = '"+ fecha + "'", Conexion.getConexion());
+
+                    sqlCmdr.ExecuteScalar();
+
+
+
+                    MessageBox.Show("Se dio de baja la aeronave seleccionada mientras esté en el taller por la de matrícula " + comboBox_aeronaves.SelectedItem.ToString(), "Baja exitosa", MessageBoxButtons.OK);
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else {
+
+                try
+                {
+                    SqlCommand sqlCmds = new SqlCommand("EXEC THE_CVENGERS.aeronavePuedeReemplazarDePorVida @avion1 = " + id_aeronave + ", @avion2 = " + dameIdAeronave(comboBox_aeronaves.SelectedItem.ToString()), Conexion.getConexion());
+
+                    sqlCmds.ExecuteScalar();
+
+                   
+                            SqlCommand sqlCmdss = new SqlCommand("EXEC THE_CVENGERS.suplirAeronaveParaSiempre @avion1 = " + id_aeronave + ", @avion2 = " + dameIdAeronave(comboBox_aeronaves.SelectedItem.ToString()), Conexion.getConexion());
+
+                            sqlCmdss.ExecuteScalar();
+
+                            SqlCommand sqlCmdp = new SqlCommand("EXEC THE_CVENGERS.darDeBajaVitaliciaAeronave @avion = " + id_aeronave, Conexion.getConexion());
+
+                            sqlCmdp.ExecuteScalar();
+
+                            MessageBox.Show("Se dio de baja la aeronave seleccionada por la de matrícula " + comboBox_aeronaves.SelectedItem.ToString(), "Baja exitosa", MessageBoxButtons.OK);
                             this.Close();
-                        }
-                        catch(Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
-                        }
+                   
+
+                   
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                    
+            
+            
+            }
+
+        }
+
+        private void button_cancelarTodo_Click(object sender, EventArgs e)
+        {
+            if (fecha != "")
+            {
+                try
+                {
+                    SqlCommand sqlCmds = new SqlCommand("EXEC THE_CVENGERS.cancelarViajesParaUnLapso @avion = " + id_aeronave + ", @fecha = '" + fecha + "'", Conexion.getConexion());
+
+                    sqlCmds.ExecuteScalar();
+
+                    SqlCommand sqlCmdt = new SqlCommand("EXEC THE_CVENGERS.mandarATallerHastaFecha @avion = " + id_aeronave + ", @fecha = '" + fecha + "'", Conexion.getConexion());
+
+                    sqlCmdt.ExecuteScalar();
+
+
+                    MessageBox.Show("Se cancelaron todos los viajes para la aeronave seleccionada mientras esté en el taller y se hicieron las devoluciones correspondientes.", "Baja exitosa", MessageBoxButtons.OK);
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+            {
+                try
+                {
+                    SqlCommand sqlCmds = new SqlCommand("EXEC THE_CVENGERS.cancelarViajesDeAvión @avion = " + id_aeronave, Conexion.getConexion());
+
+                    sqlCmds.ExecuteScalar();
+
+                    SqlCommand sqlCmdp = new SqlCommand("EXEC THE_CVENGERS.darDeBajaVitaliciaAeronave @avion = " + id_aeronave, Conexion.getConexion());
+
+                    sqlCmdp.ExecuteScalar();
+
+
+                    MessageBox.Show("Se cancelaron todos los pasajes para la aeronave seleccionada. ", "Baja exitosa", MessageBoxButtons.OK);
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+ 
+
+
+
+            }
+
+
+
         }
 
     }
