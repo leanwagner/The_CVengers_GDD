@@ -102,7 +102,7 @@ namespace AerolineaFrba.Compra
             this.comboBox_piso.Name = "comboBox_piso";
             this.comboBox_piso.Size = new System.Drawing.Size(121, 21);
             this.comboBox_piso.Sorted = true;
-            this.comboBox_piso.TabIndex = 16;
+            this.comboBox_piso.TabIndex = 0;
             this.comboBox_piso.SelectedIndexChanged += new System.EventHandler(this.comboBox_piso_SelectedIndexChanged);
             // 
             // label9
@@ -122,7 +122,7 @@ namespace AerolineaFrba.Compra
             this.comboBox_butacasDisponibles.Location = new System.Drawing.Point(533, 40);
             this.comboBox_butacasDisponibles.Name = "comboBox_butacasDisponibles";
             this.comboBox_butacasDisponibles.Size = new System.Drawing.Size(121, 21);
-            this.comboBox_butacasDisponibles.TabIndex = 3;
+            this.comboBox_butacasDisponibles.TabIndex = 2;
             this.comboBox_butacasDisponibles.SelectedIndexChanged += new System.EventHandler(this.comboBox_butacasDisponibles_SelectedIndexChanged);
             // 
             // label8
@@ -186,7 +186,7 @@ namespace AerolineaFrba.Compra
             this.button_limpiar.Location = new System.Drawing.Point(421, 175);
             this.button_limpiar.Name = "button_limpiar";
             this.button_limpiar.Size = new System.Drawing.Size(141, 37);
-            this.button_limpiar.TabIndex = 15;
+            this.button_limpiar.TabIndex = 11;
             this.button_limpiar.Text = "Limpiar Campos";
             this.button_limpiar.UseVisualStyleBackColor = true;
             this.button_limpiar.Click += new System.EventHandler(this.button_limpiar_Click);
@@ -196,7 +196,7 @@ namespace AerolineaFrba.Compra
             this.button_agregarItem.Location = new System.Drawing.Point(568, 175);
             this.button_agregarItem.Name = "button_agregarItem";
             this.button_agregarItem.Size = new System.Drawing.Size(141, 37);
-            this.button_agregarItem.TabIndex = 14;
+            this.button_agregarItem.TabIndex = 10;
             this.button_agregarItem.Text = "Agregar Pasaje";
             this.button_agregarItem.UseVisualStyleBackColor = true;
             this.button_agregarItem.Click += new System.EventHandler(this.button_agregarItem_Click);
@@ -206,14 +206,14 @@ namespace AerolineaFrba.Compra
             this.dateTimePicker_nacimiento.Location = new System.Drawing.Point(469, 121);
             this.dateTimePicker_nacimiento.Name = "dateTimePicker_nacimiento";
             this.dateTimePicker_nacimiento.Size = new System.Drawing.Size(240, 20);
-            this.dateTimePicker_nacimiento.TabIndex = 13;
+            this.dateTimePicker_nacimiento.TabIndex = 9;
             // 
             // textBox_mail
             // 
             this.textBox_mail.Location = new System.Drawing.Point(58, 123);
             this.textBox_mail.Name = "textBox_mail";
             this.textBox_mail.Size = new System.Drawing.Size(219, 20);
-            this.textBox_mail.TabIndex = 12;
+            this.textBox_mail.TabIndex = 8;
             // 
             // label6
             // 
@@ -238,7 +238,7 @@ namespace AerolineaFrba.Compra
             this.textBox_direccion.Location = new System.Drawing.Point(84, 78);
             this.textBox_direccion.Name = "textBox_direccion";
             this.textBox_direccion.Size = new System.Drawing.Size(236, 20);
-            this.textBox_direccion.TabIndex = 9;
+            this.textBox_direccion.TabIndex = 6;
             // 
             // numericUpDown_telefono
             // 
@@ -250,7 +250,7 @@ namespace AerolineaFrba.Compra
             0});
             this.numericUpDown_telefono.Name = "numericUpDown_telefono";
             this.numericUpDown_telefono.Size = new System.Drawing.Size(151, 20);
-            this.numericUpDown_telefono.TabIndex = 8;
+            this.numericUpDown_telefono.TabIndex = 7;
             // 
             // label4
             // 
@@ -275,7 +275,7 @@ namespace AerolineaFrba.Compra
             this.textBox_apellido.Location = new System.Drawing.Point(294, 33);
             this.textBox_apellido.Name = "textBox_apellido";
             this.textBox_apellido.Size = new System.Drawing.Size(170, 20);
-            this.textBox_apellido.TabIndex = 5;
+            this.textBox_apellido.TabIndex = 4;
             this.textBox_apellido.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numericUpDown_dni_KeyUp);
             // 
             // textBox_nombre
@@ -283,7 +283,7 @@ namespace AerolineaFrba.Compra
             this.textBox_nombre.Location = new System.Drawing.Point(568, 33);
             this.textBox_nombre.Name = "textBox_nombre";
             this.textBox_nombre.Size = new System.Drawing.Size(161, 20);
-            this.textBox_nombre.TabIndex = 4;
+            this.textBox_nombre.TabIndex = 5;
             // 
             // label3
             // 
@@ -313,7 +313,7 @@ namespace AerolineaFrba.Compra
             0});
             this.numericUpDown_dni.Name = "numericUpDown_dni";
             this.numericUpDown_dni.Size = new System.Drawing.Size(134, 20);
-            this.numericUpDown_dni.TabIndex = 1;
+            this.numericUpDown_dni.TabIndex = 3;
             this.numericUpDown_dni.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numericUpDown_dni_KeyUp);
             // 
             // label1
@@ -386,8 +386,8 @@ namespace AerolineaFrba.Compra
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(776, 406);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupBox3);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AgregarPasajeEncomienda";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
