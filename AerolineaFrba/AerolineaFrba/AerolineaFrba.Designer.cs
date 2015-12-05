@@ -48,7 +48,7 @@
             this.boton_Rol.Location = new System.Drawing.Point(12, 12);
             this.boton_Rol.Name = "boton_Rol";
             this.boton_Rol.Size = new System.Drawing.Size(286, 33);
-            this.boton_Rol.TabIndex = 0;
+            this.boton_Rol.TabIndex = 9;
             this.boton_Rol.Text = "ABM Rol";
             this.boton_Rol.UseVisualStyleBackColor = true;
             this.boton_Rol.Visible = false;
@@ -59,7 +59,7 @@
             this.boton_ABM_Ciudad.Location = new System.Drawing.Point(12, 51);
             this.boton_ABM_Ciudad.Name = "boton_ABM_Ciudad";
             this.boton_ABM_Ciudad.Size = new System.Drawing.Size(286, 33);
-            this.boton_ABM_Ciudad.TabIndex = 1;
+            this.boton_ABM_Ciudad.TabIndex = 10;
             this.boton_ABM_Ciudad.Text = "ABM Ciudad";
             this.boton_ABM_Ciudad.UseVisualStyleBackColor = true;
             this.boton_ABM_Ciudad.Visible = false;
@@ -70,7 +70,7 @@
             this.boton_ABM_Ruta.Location = new System.Drawing.Point(12, 90);
             this.boton_ABM_Ruta.Name = "boton_ABM_Ruta";
             this.boton_ABM_Ruta.Size = new System.Drawing.Size(286, 33);
-            this.boton_ABM_Ruta.TabIndex = 3;
+            this.boton_ABM_Ruta.TabIndex = 7;
             this.boton_ABM_Ruta.Text = "ABM Ruta";
             this.boton_ABM_Ruta.UseVisualStyleBackColor = true;
             this.boton_ABM_Ruta.Visible = false;
@@ -81,7 +81,7 @@
             this.boton_Canje_Millas.Location = new System.Drawing.Point(12, 168);
             this.boton_Canje_Millas.Name = "boton_Canje_Millas";
             this.boton_Canje_Millas.Size = new System.Drawing.Size(286, 33);
-            this.boton_Canje_Millas.TabIndex = 4;
+            this.boton_Canje_Millas.TabIndex = 3;
             this.boton_Canje_Millas.Text = "Canje Millas";
             this.boton_Canje_Millas.UseVisualStyleBackColor = true;
             this.boton_Canje_Millas.Visible = false;
@@ -92,7 +92,7 @@
             this.boton_Devolucion.Location = new System.Drawing.Point(12, 207);
             this.boton_Devolucion.Name = "boton_Devolucion";
             this.boton_Devolucion.Size = new System.Drawing.Size(286, 33);
-            this.boton_Devolucion.TabIndex = 7;
+            this.boton_Devolucion.TabIndex = 1;
             this.boton_Devolucion.Text = "Devolución";
             this.boton_Devolucion.UseVisualStyleBackColor = true;
             this.boton_Devolucion.Visible = false;
@@ -103,7 +103,7 @@
             this.boton_Generar_Viaje.Location = new System.Drawing.Point(12, 285);
             this.boton_Generar_Viaje.Name = "boton_Generar_Viaje";
             this.boton_Generar_Viaje.Size = new System.Drawing.Size(286, 33);
-            this.boton_Generar_Viaje.TabIndex = 8;
+            this.boton_Generar_Viaje.TabIndex = 4;
             this.boton_Generar_Viaje.Text = "Generar Viaje";
             this.boton_Generar_Viaje.UseVisualStyleBackColor = true;
             this.boton_Generar_Viaje.Visible = false;
@@ -114,7 +114,7 @@
             this.boton_Listado_Estadistico.Location = new System.Drawing.Point(12, 246);
             this.boton_Listado_Estadistico.Name = "boton_Listado_Estadistico";
             this.boton_Listado_Estadistico.Size = new System.Drawing.Size(286, 33);
-            this.boton_Listado_Estadistico.TabIndex = 9;
+            this.boton_Listado_Estadistico.TabIndex = 6;
             this.boton_Listado_Estadistico.Text = "Listado Estadístico";
             this.boton_Listado_Estadistico.UseVisualStyleBackColor = true;
             this.boton_Listado_Estadistico.Visible = false;
@@ -125,7 +125,7 @@
             this.boton_Registro_Llegada.Location = new System.Drawing.Point(12, 324);
             this.boton_Registro_Llegada.Name = "boton_Registro_Llegada";
             this.boton_Registro_Llegada.Size = new System.Drawing.Size(286, 31);
-            this.boton_Registro_Llegada.TabIndex = 11;
+            this.boton_Registro_Llegada.TabIndex = 5;
             this.boton_Registro_Llegada.Text = "Registro Llegada a Destino";
             this.boton_Registro_Llegada.UseVisualStyleBackColor = true;
             this.boton_Registro_Llegada.Visible = false;
@@ -136,7 +136,7 @@
             this.boton_ABM_Aeronave.Location = new System.Drawing.Point(12, 129);
             this.boton_ABM_Aeronave.Name = "boton_ABM_Aeronave";
             this.boton_ABM_Aeronave.Size = new System.Drawing.Size(286, 33);
-            this.boton_ABM_Aeronave.TabIndex = 12;
+            this.boton_ABM_Aeronave.TabIndex = 8;
             this.boton_ABM_Aeronave.Text = "ABM Aeronave";
             this.boton_ABM_Aeronave.UseVisualStyleBackColor = true;
             this.boton_ABM_Aeronave.Visible = false;
@@ -147,7 +147,7 @@
             this.boton_Compra.Location = new System.Drawing.Point(12, 361);
             this.boton_Compra.Name = "boton_Compra";
             this.boton_Compra.Size = new System.Drawing.Size(286, 31);
-            this.boton_Compra.TabIndex = 5;
+            this.boton_Compra.TabIndex = 0;
             this.boton_Compra.Text = "Compra";
             this.boton_Compra.UseVisualStyleBackColor = true;
             this.boton_Compra.Visible = false;
@@ -158,7 +158,7 @@
             this.boton_Consulta_Millas.Location = new System.Drawing.Point(12, 398);
             this.boton_Consulta_Millas.Name = "boton_Consulta_Millas";
             this.boton_Consulta_Millas.Size = new System.Drawing.Size(286, 31);
-            this.boton_Consulta_Millas.TabIndex = 6;
+            this.boton_Consulta_Millas.TabIndex = 2;
             this.boton_Consulta_Millas.Text = "Consulta Millas";
             this.boton_Consulta_Millas.UseVisualStyleBackColor = true;
             this.boton_Consulta_Millas.Visible = false;
@@ -170,7 +170,7 @@
             this.linkLabel1.Location = new System.Drawing.Point(8, 409);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(90, 20);
-            this.linkLabel1.TabIndex = 13;
+            this.linkLabel1.TabIndex = 11;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Acerca de";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked_1);
