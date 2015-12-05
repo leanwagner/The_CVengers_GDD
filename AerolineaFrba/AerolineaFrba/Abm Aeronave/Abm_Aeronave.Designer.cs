@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Abm_Aeronave));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
@@ -64,6 +65,7 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.errorTieneViajes = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textBox4)).BeginInit();
@@ -72,6 +74,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.textBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textBox5)).BeginInit();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorTieneViajes)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -476,6 +479,10 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // errorTieneViajes
+            // 
+            this.errorTieneViajes.ContainerControl = this;
+            // 
             // Abm_Aeronave
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -501,6 +508,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.textBox5)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorTieneViajes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -547,6 +555,7 @@
         private System.Windows.Forms.NumericUpDown textBox3;
         private System.Windows.Forms.NumericUpDown numericUpDown2;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.ErrorProvider errorTieneViajes;
 
     }
 }

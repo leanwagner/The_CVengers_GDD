@@ -136,8 +136,20 @@ namespace AerolineaFrba.Abm_Aeronave
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
          
-            boton_Modificar_Aeronave.Enabled = true;
+           
             boton_Eliminar_Aeronave.Enabled = true;
+
+            SqlCommand cmd = new SqlCommand("select case when exists(select * from THE_CVENGERS.VIAJE, THE_CVENGERS.AERONAVE where VIAJE_AERONAVE = AERONAVE_ID and AERONAVE_MATRICULA_AVION ='"+((Avion)listBox1.SelectedItem).matricula +"') then 1 else 0 end", Conexion.getConexion());
+            if ((int)cmd.ExecuteScalar() == 0)
+            {
+                boton_Modificar_Aeronave.Enabled = true;
+                errorTieneViajes.Clear();
+            }
+            else
+            {
+                boton_Modificar_Aeronave.Enabled = false;
+                errorTieneViajes.SetError(boton_Modificar_Aeronave, "No se pueden modificar aeronaves que ya han viajado");
+            }
         }
 
         private void boton_Modificar_Aeronave_Click(object sender, EventArgs e)
@@ -189,7 +201,13 @@ namespace AerolineaFrba.Abm_Aeronave
 
 
 
-            sqlCmd.CommandText = "UPDATE THE_CVENGERS.AERONAVE set AERONAVE_CANTIDAD_BUTACAS = " + textBox6.Value.ToString() + ",AERONAVE_FABRICANTE_AVION = '" + idFab + "',AERONAVE_ESPACIO_ENCOMIENDAS = " + textBox5.Value.ToString(CultureInfo.InvariantCulture) + ",AERONAVE_MATRICULA_AVION = '" + textBox8.Text + "',AERONAVE_MODELO_AVION = '" + textBox7.Text + "',AERONAVE_SERVICIO = '" + idServ + "' where AERONAVE_ID = " + matAnt;
+            sqlCmd.CommandText = "exec modificarAeronave @butacas = " + textBox6.Value.ToString() + 
+                ",@fab = " + idFab + 
+                ",@espacio = " + textBox5.Value.ToString(CultureInfo.InvariantCulture) + 
+                ",@matricula = '" + textBox8.Text + 
+                "',@modelo = '" + textBox7.Text + 
+                "',@serv = " + idServ + 
+                ", @idAvion = " + matAnt;
 
             try
             {
@@ -202,9 +220,9 @@ namespace AerolineaFrba.Abm_Aeronave
             comboBox4.Items.Clear();
             comboBox3.Items.Clear();
             }
-            catch 
+            catch (Exception ex)
             {
-                MessageBox.Show("Ya existe un avion con esa matricula", "Error", MessageBoxButtons.OK);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
             }
    
         }
