@@ -235,7 +235,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(47, 13);
             this.label4.TabIndex = 10;
-            this.label4.Text = "Nombre:";
+            this.label4.Text = "Apellido:";
             this.label4.Visible = false;
             // 
             // errorDniDup
