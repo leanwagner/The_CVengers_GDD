@@ -175,6 +175,12 @@ namespace AerolineaFrba.Abm_Aeronave
             textBox5.Value = decimal.Parse(sqlReader["AERONAVE_ESPACIO_ENCOMIENDAS"].ToString());
             matAnt = sqlReader["AERONAVE_ID"].ToString();
             sqlReader.Close();
+            sqlCmd.CommandText = "select MAX(BUTACA_PISO) 'p' from THE_CVENGERS.BUTACA where BUTACA_AERONAVE =" + matAnt;
+            MessageBox.Show(sqlCmd.CommandText);
+            sqlReader = sqlCmd.ExecuteReader();
+            sqlReader.Read();
+            numericUpDown1.Value = decimal.Parse(sqlReader["p"].ToString());
+            sqlReader.Close();
             indiceSele = listBox1.SelectedIndex;
         }
 
@@ -210,9 +216,9 @@ namespace AerolineaFrba.Abm_Aeronave
                 ",@serv = " + idServ +
                 ",@butacas = " + textBox6.Value.ToString() +
                 ",@espacio = " + textBox5.Value.ToString(CultureInfo.InvariantCulture) +
-                ", @pisos =" + numericUpDown2.Value.ToString() +
+                ", @pisos =" + numericUpDown1.Value.ToString() +
                 ", @Id = " + matAnt;
-              
+            MessageBox.Show(sqlCmd.CommandText);  
 
             try
             {
