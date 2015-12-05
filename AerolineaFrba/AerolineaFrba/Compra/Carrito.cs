@@ -362,7 +362,7 @@ namespace AerolineaFrba.Compra
 
         public void persistirCompraTarjeta()
         {
-            string query = "EXEC THE_CVENGERS.crearCompraConTarjeta @user = '" + +
+            string query = "EXEC THE_CVENGERS.crearCompraConTarjeta @user = '" + 
                 "',@cli = '" + id_cliente.ToString() +
                 "',@tipoTar = '" + comboBox_tipoTarjeta.SelectedItem.ToString() +
                 "',@nro = '" + numericUpDown_numeroTarjeta.Value.ToString() +
