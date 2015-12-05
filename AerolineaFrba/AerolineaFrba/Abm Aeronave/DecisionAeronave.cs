@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,7 +29,12 @@ namespace AerolineaFrba.Abm_Aeronave
         {
             groupBox2.Enabled = true;
             LlenadorDeTablas lloni = new LlenadorDeTablas();
-            lloni.llenarComboBoxAeronaves(ref comboBox_aeronaves, this.id_aeronave);
+            lloni.llenarComboBoxAeronaves(ref comboBox_aeronaves, this.id_aeronave,this.fecha);
+            if (comboBox_aeronaves.Items.Count == 0)
+            {
+                groupBox2.Enabled = false;
+                groupBox3.Enabled = true;
+            }
 
                
 
@@ -160,6 +166,86 @@ namespace AerolineaFrba.Abm_Aeronave
 
             }
 
+
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox1.TextLength != 0) button1.Enabled = true;
+            else button1.Enabled = false;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SqlCommand cmd = new SqlCommand("", Conexion.getConexion());
+            cmd.CommandText = "EXEC THE_CVENGERS.crearAeronaveSuplente @Id ='" + id_aeronave + "', @matricula = '" + textBox1.Text + "'";
+            try
+            {
+                cmd.ExecuteNonQuery();
+                // MessageBox.Show(cmd.CommandText);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
+            }
+
+            //YA SE CREO EL REEMPLAZO
+
+            if (fecha != "")
+            {
+                try
+                {
+                    SqlCommand sqlCmds = new SqlCommand("EXEC THE_CVENGERS.suplirAeronaveEsteLapso @avion1 = " + id_aeronave + ", @avion2 = " + dameIdAeronave(textBox1.Text) + ", @fecha = '" + fecha + "'", Conexion.getConexion());
+
+                    sqlCmds.ExecuteScalar();
+
+                    SqlCommand sqlCmdr = new SqlCommand("EXEC THE_CVENGERS.mandarATallerHastaFecha @avion = " + id_aeronave + ", @fecha = '" + fecha + "'", Conexion.getConexion());
+
+                    sqlCmdr.ExecuteScalar();
+
+
+
+                    MessageBox.Show("Se dio de baja la aeronave seleccionada mientras esté en el taller. Ha sido reemplazada por la aeronave de matrícula " + textBox1.Text, "Baja exitosa", MessageBoxButtons.OK);
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+            {
+
+                try
+                {
+                    SqlCommand sqlCmds = new SqlCommand("EXEC THE_CVENGERS.aeronavePuedeReemplazarDePorVida @avion1 = " + id_aeronave + ", @avion2 = " + dameIdAeronave(textBox1.Text), Conexion.getConexion());
+                    MessageBox.Show(sqlCmds.CommandText);
+                    sqlCmds.ExecuteScalar();
+
+
+                    SqlCommand sqlCmdss = new SqlCommand("EXEC THE_CVENGERS.suplirAeronaveParaSiempre @avion1 = " + id_aeronave + ", @avion2 = " + dameIdAeronave(textBox1.Text), Conexion.getConexion());
+
+                    sqlCmdss.ExecuteScalar();
+
+                    SqlCommand sqlCmdp = new SqlCommand("EXEC THE_CVENGERS.darDeBajaVitaliciaAeronave @avion = " + id_aeronave, Conexion.getConexion());
+
+                    sqlCmdp.ExecuteScalar();
+
+                    MessageBox.Show("Se dio de baja la aeronave seleccionada. Ha sido reeplazada por la aeronave de matrícula " + textBox1.Text, "Baja exitosa", MessageBoxButtons.OK);
+                    this.Close();
+
+
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+
+
+            }
 
 
         }

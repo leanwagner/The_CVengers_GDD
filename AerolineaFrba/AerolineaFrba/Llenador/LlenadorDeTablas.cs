@@ -28,10 +28,13 @@ namespace AerolineaFrba.Llenador
             sqlReader.Close();
         
         }
-        public void llenarComboBoxAeronaves(ref ComboBox miCombo, int id_avion)
+        public void llenarComboBoxAeronaves(ref ComboBox miCombo, int id_avion,String fecha)
         {
 
-            SqlCommand sqlCmd = new SqlCommand("SELECT AERONAVE_MATRICULA_AVION FROM THE_CVENGERS.AERONAVE  WHERE AERONAVE_ESTADO = 1 AND AERONAVE_ID <> "+id_avion+" AND NOT EXISTS(SELECT TALLER_ID FROM THE_CVENGERS.TALLER WHERE TALLER_AERONAVE_ID = AERONAVE_ID AND THE_CVENGERS.fechaReal() BETWEEN TALLER_FECHA_ENTRADA AND TALLER_FECHA_SALIDA)", Conexion.getConexion());
+            SqlCommand sqlCmd = new SqlCommand("", Conexion.getConexion());
+
+            if (fecha == "") sqlCmd.CommandText = "select * from THE_CVENGERS.aeronavesQuePuedenSuplantarDePorVida(" + id_avion.ToString() + ")";
+            else sqlCmd.CommandText = "select * from THE_CVENGERS.aeronavesQuePuedenSuplantarPorUnLapso(" + id_avion.ToString() + "," + fecha + ")";
 
             SqlDataReader sqlReader = sqlCmd.ExecuteReader();
 

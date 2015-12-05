@@ -100,16 +100,7 @@ namespace AerolineaFrba.Abm_Aeronave
             comboBox1.SelectedIndex = 0;
             comboBox2.SelectedIndex = 0;
            
-            SqlCommand sqlCmd = new SqlCommand("SELECT * FROM THE_CVENGERS.AERONAVE, THE_CVENGERS.FABRICANTE, THE_CVENGERS.SERVICIO where AERONAVE_FABRICANTE_AVION = FABRICANTE_ID and AERONAVE_SERVICIO = SERVICIO_ID and AERONAVE_ESTADO = 1", Conexion.getConexion());
-
-            SqlDataReader sqlReader = sqlCmd.ExecuteReader();
-
-            while (sqlReader.Read())
-            {
-                listBox1.Items.Add(new Avion(sqlReader["AERONAVE_MATRICULA_AVION"].ToString(), sqlReader["SERVICIO_NOMBRE"].ToString(), sqlReader["FABRICANTE_NOMBRE"].ToString()));
-            }
-
-            sqlReader.Close();
+           
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
@@ -176,7 +167,7 @@ namespace AerolineaFrba.Abm_Aeronave
             matAnt = sqlReader["AERONAVE_ID"].ToString();
             sqlReader.Close();
             sqlCmd.CommandText = "select MAX(BUTACA_PISO) 'p' from THE_CVENGERS.BUTACA where BUTACA_AERONAVE =" + matAnt;
-            MessageBox.Show(sqlCmd.CommandText);
+            
             sqlReader = sqlCmd.ExecuteReader();
             sqlReader.Read();
             numericUpDown1.Value = decimal.Parse(sqlReader["p"].ToString());
@@ -218,13 +209,12 @@ namespace AerolineaFrba.Abm_Aeronave
                 ",@espacio = " + textBox5.Value.ToString(CultureInfo.InvariantCulture) +
                 ", @pisos =" + numericUpDown1.Value.ToString() +
                 ", @Id = " + matAnt;
-            MessageBox.Show(sqlCmd.CommandText);  
 
             try
             {
                sqlCmd.ExecuteNonQuery();
                // MessageBox.Show("No hace nada hasta que mike haga el procedure modificarAeronave. Descomentar las 3 lineas cerca de este message box cuando el procedure este hecho");  
-               listBox1.SelectedIndex = -1;
+               listBox1.ClearSelected();
             listBox1.Items.RemoveAt(indiceSele);
             listBox1.Items.Add(new Avion(textBox8.Text, comboBox3.Text, comboBox4.Text));
             listBox1.Refresh();
@@ -273,7 +263,7 @@ namespace AerolineaFrba.Abm_Aeronave
 
                  if ((int)sqlCmd.ExecuteScalar() == 1)
                 {                    
-                     MessageBox.Show("No se puede dar de baja, la aeronave se encuentra en viaje", "Error");
+                     MessageBox.Show("No se puede dar de baja, la aeronave se encuentra en viaje", "Error",MessageBoxButtons.OK);
                 }
                 else {
 
@@ -283,9 +273,9 @@ namespace AerolineaFrba.Abm_Aeronave
                 
 
             }
-            catch
+            catch(Exception exc)
             {
-                MessageBox.Show("Rompio algo", "Error", MessageBoxButtons.OK);
+                MessageBox.Show(exc.Message, "Error", MessageBoxButtons.OK);
             }
 
         }
@@ -301,6 +291,21 @@ namespace AerolineaFrba.Abm_Aeronave
 
             return id;
 
+        }
+
+        private void Abm_Aeronave_Activated(object sender, EventArgs e)
+        {
+            listBox1.Items.Clear();
+            SqlCommand sqlCmd = new SqlCommand("SELECT * FROM THE_CVENGERS.AERONAVE, THE_CVENGERS.FABRICANTE, THE_CVENGERS.SERVICIO where AERONAVE_FABRICANTE_AVION = FABRICANTE_ID and AERONAVE_SERVICIO = SERVICIO_ID and AERONAVE_ESTADO = 1", Conexion.getConexion());
+
+            SqlDataReader sqlReader = sqlCmd.ExecuteReader();
+
+            while (sqlReader.Read())
+            {
+                listBox1.Items.Add(new Avion(sqlReader["AERONAVE_MATRICULA_AVION"].ToString(), sqlReader["SERVICIO_NOMBRE"].ToString(), sqlReader["FABRICANTE_NOMBRE"].ToString()));
+            }
+
+            sqlReader.Close();
         }
 
 

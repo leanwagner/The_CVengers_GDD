@@ -2238,7 +2238,7 @@ return(SELECT * FROM THE_CVENGERS.AERONAVE where AERONAVE_ID <> @avion AND AERON
 		AND THE_CVENGERS.aeronavePuedeReemplazarEsteLapsoFunc(@avion, AERONAVE_ID, @fecha) = 1)
 
 go
-create procedure THE_CVENGERS.crearAeronaveSuplente(@Id as numeric(18,0), @matricula as nvarchar(100))
+create procedure THE_CVENGERS.crearAeronaveSuplente @Id as numeric(18,0), @matricula as nvarchar(100)
 as
 begin
 
@@ -2261,8 +2261,8 @@ set @model = (select AERONAVE_MODELO_AVION from THE_CVENGERS.AERONAVE where AERO
 set @serv = (select AERONAVE_SERVICIO from THE_CVENGERS.AERONAVE where AERONAVE_ID = @Id)
 
 insert into THE_CVENGERS.AERONAVE(AERONAVE_CANTIDAD_BUTACAS,AERONAVE_ESPACIO_ENCOMIENDAS, AERONAVE_FABRICANTE_AVION,
-									AERONAVE_MATRICULA_AVION, AERONAVE_MODELO_AVION, AERONAVE_SERVICIO)
-VALUES(@butac, @encom, @fabri, @matricula, @model, @serv)
+									AERONAVE_MATRICULA_AVION, AERONAVE_MODELO_AVION, AERONAVE_SERVICIO,AERONAVE_FECHA_DE_ALTA)
+VALUES(@butac, @encom, @fabri, @matricula, @model, @serv, THE_CVENGERS.fechaReal())
 
 DECLARE @avionB numeric(18,0)
 set @avionB = (SELECT TOP 1 AERONAVE_ID FROM THE_CVENGERS.AERONAVE ORDER BY AERONAVE_ID DESC)

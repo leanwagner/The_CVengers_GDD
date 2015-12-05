@@ -30,14 +30,14 @@ namespace AerolineaFrba.Abm_Aeronave
         
         }
 
-        private void button1_Click(object sender, EventArgs e) //Mandale cumbia acá
+        private void button1_Click(object sender, EventArgs e) 
         {
             if (radioButton_bajaTaller.Checked) 
             { 
 
                 try
              {
-                 SqlCommand sqlCmd = new SqlCommand("SELECT THE_CVENGERS.aeronaveConViajesPendientes (" + dameIdAeronave(this.matricula_aeronave) + ")", Conexion.getConexion());
+                 SqlCommand sqlCmd = new SqlCommand("SELECT THE_CVENGERS.aeronaveConViajesPendientesEnEseLapso (" + dameIdAeronave(this.matricula_aeronave) + ",'"+dateTimePicker_reinc.Value.ToString(CultureInfo.InvariantCulture)+"')", Conexion.getConexion());
 
 
 
