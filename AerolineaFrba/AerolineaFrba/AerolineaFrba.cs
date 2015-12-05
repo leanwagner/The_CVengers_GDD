@@ -16,7 +16,7 @@ namespace AerolineaFrba
 {
     public partial class AerolineaFrba : Form
     {
-        int[] posisionesBoton = new int[] { 12, 51, 90, 129, 168,207,246,285,324,361,398 };
+        int[] posisionesBoton = new int[] { 12, 51, 90, 129, 168,207,246,285,324,361,398,430 };
         Collection<String> funcionalidades = new Collection<String>();
         SqlDataReader reader;
         public AerolineaFrba()
@@ -121,6 +121,9 @@ namespace AerolineaFrba
                 boton_ABM_Ciudad.Location = new Point(12, posisionesBoton[proximoBoton]);
                 proximoBoton++;
             }
+
+            linkLabel1.Location = new Point(this.Width - linkLabel1.Width -22,posisionesBoton[proximoBoton]);
+            proximoBoton++;
 
             this.Size = new Size(this.Size.Width, posisionesBoton[proximoBoton - 1]);
             funcionalidades.Clear();

@@ -40,6 +40,7 @@
             this.boton_ABM_Aeronave = new System.Windows.Forms.Button();
             this.boton_Compra = new System.Windows.Forms.Button();
             this.boton_Consulta_Millas = new System.Windows.Forms.Button();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // boton_Rol
@@ -163,12 +164,23 @@
             this.boton_Consulta_Millas.Visible = false;
             this.boton_Consulta_Millas.Click += new System.EventHandler(this.boton_Consulta_Millas_Click);
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(8, 409);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(90, 20);
+            this.linkLabel1.TabIndex = 13;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Acerca de";
+            // 
             // AerolineaFrba
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(310, 434);
+            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.boton_Compra);
             this.Controls.Add(this.boton_Consulta_Millas);
             this.Controls.Add(this.boton_Rol);
@@ -190,6 +202,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AerolineaFrba_FormClosing);
             this.Load += new System.EventHandler(this.AerolineaFrba_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -211,6 +224,7 @@
         private System.Windows.Forms.Button boton_ABM_Aeronave;
         private System.Windows.Forms.Button boton_Compra;
         private System.Windows.Forms.Button boton_Consulta_Millas;
+        private System.Windows.Forms.LinkLabel linkLabel1;
 
 
     }
