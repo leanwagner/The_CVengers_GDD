@@ -620,6 +620,7 @@ DECLARE @USER numeric(18,0)
 DECLARE @PASS VARCHAR(100)
 SET @USER = (SELECT U.USR_ID FROM THE_CVENGERS.USUARIO U WHERE U.USR_USERNAME = @P1)
 SET @PASS = (SELECT U.USR_PASS FROM THE_CVENGERS.USUARIO U WHERE U.USR_USERNAME = @P1)
+
 IF (@USER IS NULL) 
 BEGIN
 RAISERROR('El usuario ingresado no existe',16,1)
@@ -1554,6 +1555,40 @@ VALUES (@cli, @tipo, @nro, @cod, @fechaven)
 
 END
 end
+
+go
+create procedure THE_CVENGERS.crearCompraConTarjeta @user as NUMERIC(18,0), @cli as numeric(18,0), @tipoTar as nvarchar(18), @nro as numeric(16,0),
+								@cod as numeric(18,0), @fechaven as datetime, @monto as numeric(18,2), @cuotas as numeric(18,0)
+as
+begin
+
+declare @tipo numeric(18,0)
+set @tipo = (select TIPO_TARJETA_ID FROM THE_CVENGERS.TIPO_TARJETA WHERE TIPO_TARJETA_DETALLE = @tipoTar)
+
+DECLARE @TARJ NUMERIC(18,0)
+SET @TARJ = (select TARJETA_ID FROM THE_CVENGERS.TARJETACREDITO WHERE TARJETA_NRO = @nro
+			and TARJETA_COD_SEGURIDAD = @cod AND TARJETA_FECHA_VENCIMIENTO = @fechaven 
+			AND TARJETA_TIPO = @tipo AND TARJETA_CLIENTE = @cli)
+
+insert into THE_CVENGERS.COMPRA (COMPRA_USUARIO_ID, COMPRA_CLIENTE, COMPRA_TARJETA, COMPRA_CANTIDAD_DE_CUOTAS,
+								COMPRA_FORMA_DE_PAGO, COMPRA_MONTO, COMPRA_FECHA)
+								VALUES
+								(@user, @cli, @TARJ, @cuotas, 1, @monto, THE_CVENGERS.fechaReal())
+END
+
+go
+create procedure THE_CVENGERS.crearCompraConEfectivo @user as NUMERIC(18,0), @cli as numeric(18,0), @monto as numeric(18,2)
+as
+begin
+
+insert into THE_CVENGERS.COMPRA (COMPRA_USUARIO_ID, COMPRA_CLIENTE, COMPRA_CANTIDAD_DE_CUOTAS,
+								COMPRA_FORMA_DE_PAGO, COMPRA_MONTO, COMPRA_FECHA)
+								VALUES
+								(@user, @cli, 1, 0, @monto, THE_CVENGERS.fechaReal())
+END
+
+
+
 /*DROP TABLE [THE_CVENGERS].CUOTASXTARJETA
 DROP TABLE [THE_CVENGERS].MILLA
 DROP TABLE [THE_CVENGERS].FECHA
@@ -1631,5 +1666,7 @@ DROP FUNCTION [THE_CVENGERS].tipoTarjetaCompra
 DROP FUNCTION [THE_CVENGERS].numeroTarjetaCompra
 DROP PROCEDURE [THE_CVENGERS].bajarRuta
 DROP PROCEDURE [THE_CVENGERS].ingresarTarjeta
+DROP PROCEDURE [THE_CVENGERS].crearCompraConTarjeta
+DROP PROCEDURE [THE_CVENGERS].crearCompraConEfectivo
 DROP PROCEDURE [THE_CVENGERS].getAll 
 DROP SCHEMA [THE_CVENGERS]*/
