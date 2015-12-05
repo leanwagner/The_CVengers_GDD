@@ -99,6 +99,12 @@
     <Compile Include="Abm Ruta\Abm_Ruta.Designer.cs">
       <DependentUpon>Abm_Ruta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Acerca De\Acercade.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Acerca De\Acercade.Designer.cs">
+      <DependentUpon>Acercade.cs</DependentUpon>
+    </Compile>
     <Compile Include="Canje Millas\Canje_Millas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -210,6 +216,9 @@
     <EmbeddedResource Include="Abm Ruta\RutaModificar.resx">
       <DependentUpon>RutaModificar.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Acerca De\Acercade.resx">
+      <DependentUpon>Acercade.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AerolineaFrba.resx">
       <DependentUpon>AerolineaFrba.cs</DependentUpon>
     </EmbeddedResource>
@@ -282,6 +291,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Images\carrito.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\12355131_10208214961037892_1719679362_n.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
