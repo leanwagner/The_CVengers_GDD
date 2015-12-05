@@ -1173,7 +1173,7 @@ create function THE_CVENGERS.consultarMillas(@cli as numeric(18,0))
 returns int
 as
 begin
-return (select sum(MILLA_GANADA - MILLA_GASTADA)
+return (select isnull(sum(MILLA_GANADA - MILLA_GASTADA), 0)
 		FROM THE_CVENGERS.MILLA
 		WHERE MILLA_CLIENTE = @cli
 		AND DATEDIFF(second,MILLA_FECHA_ACREDITACION, THE_CVENGERS.fechaReal()) <= 31536000)
@@ -1949,7 +1949,7 @@ CLOSE butacasAvion
 DEALLOCATE butacasAvion
 
 
-FETCH NEXT FROM butacasViaje INTO @Id
+FETCH NEXT FROM butacasViaje INTO @Id, @Piso1, @Tipo1
 END
 CLOSE butacasViaje
 DEALLOCATE butacasViaje
@@ -2020,7 +2020,7 @@ CREATE PROCEDURE [THE_CVENGERS].darDeBajaVitaliciaAeronave @avion as numeric(18,
 as
 begin
 
-update THE_CVENGERS.AERONAVE set AERONAVE_ESTADO = 0
+update THE_CVENGERS.AERONAVE set AERONAVE_ESTADO = 0, AERONAVE_FECHA_DE_BAJA = THE_CVENGERS.fechaReal()
 where AERONAVE_ID = @avion
 
 end
@@ -2056,7 +2056,7 @@ CREATE PROCEDURE THE_CVENGERS.modificarAeronave  @matri as nvarchar(100), @model
 as
 begin
 
-if(exists(select AERONAVE_ID FROM THE_CVENGERS.AERONAVE WHERE AERONAVE_MATRICULA_AVION = @matri))
+if(exists(select AERONAVE_ID FROM THE_CVENGERS.AERONAVE WHERE AERONAVE_MATRICULA_AVION = @matri and AERONAVE_ID <> @Id))
 begin
 raiserror('Ya existe un avión con ese número de matrícula.',16,1)
 return
@@ -2099,6 +2099,17 @@ set @numbut = @numbut +1
 end
 end
 
+go
+CREATE FUNCTION THE_CVENGERS.aeronavesConMasDiasEnElTaller(@anio as int, @semestre as int)
+returns table
+as
+return(SELECT TOP 5 AERONAVE_MATRICULA_AVION 'Matrícula de la aeronave', (SELECT SUM(isnull(DATEDIFF(DAY, TALLER_FECHA_ENTRADA, TALLER_FECHA_SALIDA),0))
+																			FROM THE_CVENGERS.TALLER
+																			WHERE TALLER_AERONAVE_ID = AERONAVE_ID
+																			AND ((YEAR(TALLER_FECHA_ENTRADA) = @anio AND (MONTH(TALLER_FECHA_ENTRADA) BETWEEN (case when @semestre = 1 then 1 else 7 end) and (case when @semestre = 1 then 6 else 12 end)))
+																					OR (YEAR(TALLER_FECHA_SALIDA) = @anio AND (MONTH(TALLER_FECHA_SALIDA) BETWEEN (case when @semestre = 1 then 1 else 7 end) and (case when @semestre = 1 then 6 else 12 end))))) 'Días en el taller'
+		FROM THE_CVENGERS.AERONAVE
+		ORDER BY "Días en el taller")
 /*DROP TABLE [THE_CVENGERS].CUOTASXTARJETA
 DROP TABLE [THE_CVENGERS].MILLA
 DROP TABLE [THE_CVENGERS].FECHA
@@ -2195,5 +2206,6 @@ DROP PROCEDURE [THE_CVENGERS].darDeBajaVitaliciaAeronave
 DROP PROCEDURE [THE_CVENGERS].mandarATallerHastaFecha
 DROP PROCEDURE [THE_CVENGERS].puedeIrATaller
 DROP PROCEDURE [THE_CVENGERS].modificarAeronave
+DROP FUNCTION [THE_CVENGERS].aeronavesConMasDiasEnElTaller
 DROP PROCEDURE [THE_CVENGERS].getAll 
 DROP SCHEMA [THE_CVENGERS]*/

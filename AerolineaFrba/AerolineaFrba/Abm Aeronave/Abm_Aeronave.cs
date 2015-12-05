@@ -135,8 +135,9 @@ namespace AerolineaFrba.Abm_Aeronave
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-         
-           
+
+            if (listBox1.SelectedIndex == -1)
+                return;
             boton_Eliminar_Aeronave.Enabled = true;
 
             SqlCommand cmd = new SqlCommand("select case when exists(select * from THE_CVENGERS.VIAJE, THE_CVENGERS.AERONAVE where VIAJE_AERONAVE = AERONAVE_ID and AERONAVE_MATRICULA_AVION ='"+((Avion)listBox1.SelectedItem).matricula +"') then 1 else 0 end", Conexion.getConexion());
@@ -174,6 +175,12 @@ namespace AerolineaFrba.Abm_Aeronave
             textBox5.Value = decimal.Parse(sqlReader["AERONAVE_ESPACIO_ENCOMIENDAS"].ToString());
             matAnt = sqlReader["AERONAVE_ID"].ToString();
             sqlReader.Close();
+            sqlCmd.CommandText = "select MAX(BUTACA_PISO) 'p' from THE_CVENGERS.BUTACA where BUTACA_AERONAVE =" + matAnt;
+            MessageBox.Show(sqlCmd.CommandText);
+            sqlReader = sqlCmd.ExecuteReader();
+            sqlReader.Read();
+            numericUpDown1.Value = decimal.Parse(sqlReader["p"].ToString());
+            sqlReader.Close();
             indiceSele = listBox1.SelectedIndex;
         }
 
@@ -203,26 +210,27 @@ namespace AerolineaFrba.Abm_Aeronave
 
 
 
-            sqlCmd.CommandText = "exec modificarAeronave @matri = '" + textBox8.Text +
+            sqlCmd.CommandText = "exec THE_CVENGERS.modificarAeronave @matri = '" + textBox8.Text +
                 "',@model = '" + textBox7.Text +
                 "',@fabricante = " + idFab +
                 ",@serv = " + idServ +
                 ",@butacas = " + textBox6.Value.ToString() +
                 ",@espacio = " + textBox5.Value.ToString(CultureInfo.InvariantCulture) +
-                ", @pisos =" + numericUpDown2.Value.ToString() +
+                ", @pisos =" + numericUpDown1.Value.ToString() +
                 ", @Id = " + matAnt;
-              
+            MessageBox.Show(sqlCmd.CommandText);  
 
             try
             {
                sqlCmd.ExecuteNonQuery();
                // MessageBox.Show("No hace nada hasta que mike haga el procedure modificarAeronave. Descomentar las 3 lineas cerca de este message box cuando el procedure este hecho");  
-            groupBox3.Visible = false;
+               listBox1.SelectedIndex = -1;
             listBox1.Items.RemoveAt(indiceSele);
             listBox1.Items.Add(new Avion(textBox8.Text, comboBox3.Text, comboBox4.Text));
             listBox1.Refresh();
             comboBox4.Items.Clear();
             comboBox3.Items.Clear();
+            groupBox3.Visible = false;
             groupBox2.Enabled = true;
             }
             catch (Exception ex)

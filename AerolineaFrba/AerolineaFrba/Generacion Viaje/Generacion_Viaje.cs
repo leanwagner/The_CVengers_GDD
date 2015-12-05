@@ -142,7 +142,7 @@ namespace AerolineaFrba.Generacion_Viaje
             try
             {
                 sqlCmd.ExecuteNonQuery();
-                MessageBox.Show("Viaje generado exitosamente");
+                MessageBox.Show("Viaje generado exitosamente","Información",MessageBoxButtons.OK);
                 comboBox1.SelectedIndex = -1;
                 datePicker1.Value = datePicker1.MinDate;
                 timePicker1.Value = timePicker1.MinDate;

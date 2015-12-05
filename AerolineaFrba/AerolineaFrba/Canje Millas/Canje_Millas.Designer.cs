@@ -74,7 +74,7 @@
             this.premioCombo.Location = new System.Drawing.Point(60, 164);
             this.premioCombo.Name = "premioCombo";
             this.premioCombo.Size = new System.Drawing.Size(154, 21);
-            this.premioCombo.TabIndex = 1;
+            this.premioCombo.TabIndex = 2;
             this.premioCombo.SelectedIndexChanged += new System.EventHandler(this.premioCombo_SelectedIndexChanged);
             // 
             // label2
@@ -96,7 +96,7 @@
             0});
             this.dniBox.Name = "dniBox";
             this.dniBox.Size = new System.Drawing.Size(100, 20);
-            this.dniBox.TabIndex = 3;
+            this.dniBox.TabIndex = 0;
             this.dniBox.TextChanged += new System.EventHandler(this.dniBox_TextChanged);
             // 
             // groupBox1
@@ -203,7 +203,7 @@
             this.canUpDown.Location = new System.Drawing.Point(293, 164);
             this.canUpDown.Name = "canUpDown";
             this.canUpDown.Size = new System.Drawing.Size(48, 20);
-            this.canUpDown.TabIndex = 6;
+            this.canUpDown.TabIndex = 3;
             this.canUpDown.ValueChanged += new System.EventHandler(this.canUpDown_ValueChanged);
             // 
             // canjBoton
@@ -212,7 +212,7 @@
             this.canjBoton.Location = new System.Drawing.Point(139, 203);
             this.canjBoton.Name = "canjBoton";
             this.canjBoton.Size = new System.Drawing.Size(75, 23);
-            this.canjBoton.TabIndex = 7;
+            this.canjBoton.TabIndex = 4;
             this.canjBoton.Text = "Canjear";
             this.canjBoton.UseVisualStyleBackColor = true;
             this.canjBoton.Click += new System.EventHandler(this.canjBoton_Click);
@@ -223,7 +223,7 @@
             this.nombreCombo.Location = new System.Drawing.Point(220, 5);
             this.nombreCombo.Name = "nombreCombo";
             this.nombreCombo.Size = new System.Drawing.Size(121, 21);
-            this.nombreCombo.TabIndex = 9;
+            this.nombreCombo.TabIndex = 1;
             this.nombreCombo.Visible = false;
             this.nombreCombo.SelectedIndexChanged += new System.EventHandler(this.nombreCombo_SelectedIndexChanged);
             this.nombreCombo.VisibleChanged += new System.EventHandler(this.nombreCombo_VisibleChanged);
@@ -235,7 +235,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(47, 13);
             this.label4.TabIndex = 10;
-            this.label4.Text = "Nombre:";
+            this.label4.Text = "Apellido:";
             this.label4.Visible = false;
             // 
             // errorDniDup
