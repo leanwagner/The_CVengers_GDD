@@ -1,4 +1,5 @@
-﻿using AerolineaFrba.TipoTerminal;
+﻿using AerolineaFrba.Acerca_De;
+using AerolineaFrba.TipoTerminal;
 using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
@@ -234,6 +235,12 @@ namespace AerolineaFrba
             boton_Rol.Visible = false;
             acomodarBotones();
             this.Refresh();
+        }
+
+        private void linkLabel1_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Acercade acer = new Acercade();
+            acer.Show();
         }
 
       

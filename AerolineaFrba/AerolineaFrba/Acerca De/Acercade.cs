@@ -16,5 +16,6 @@ namespace AerolineaFrba.Acerca_De
         {
             InitializeComponent();
         }
+
     }
 }
