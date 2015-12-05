@@ -78,7 +78,7 @@
             this.comboLista.Location = new System.Drawing.Point(135, 12);
             this.comboLista.Name = "comboLista";
             this.comboLista.Size = new System.Drawing.Size(286, 21);
-            this.comboLista.TabIndex = 3;
+            this.comboLista.TabIndex = 0;
             this.comboLista.SelectedIndexChanged += new System.EventHandler(this.comboLista_SelectedIndexChanged);
             // 
             // comboAnio
@@ -89,7 +89,7 @@
             this.comboAnio.Location = new System.Drawing.Point(167, 48);
             this.comboAnio.Name = "comboAnio";
             this.comboAnio.Size = new System.Drawing.Size(69, 21);
-            this.comboAnio.TabIndex = 4;
+            this.comboAnio.TabIndex = 1;
             this.comboAnio.SelectedIndexChanged += new System.EventHandler(this.comboLista_SelectedIndexChanged);
             // 
             // comboSem
@@ -98,7 +98,7 @@
             this.comboSem.Location = new System.Drawing.Point(302, 48);
             this.comboSem.Name = "comboSem";
             this.comboSem.Size = new System.Drawing.Size(43, 21);
-            this.comboSem.TabIndex = 5;
+            this.comboSem.TabIndex = 2;
             this.comboSem.SelectedIndexChanged += new System.EventHandler(this.comboLista_SelectedIndexChanged);
             // 
             // dataGridView1
@@ -124,7 +124,7 @@
             this.button1.Location = new System.Drawing.Point(395, 70);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 7;
+            this.button1.TabIndex = 3;
             this.button1.Text = "Calcular";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);

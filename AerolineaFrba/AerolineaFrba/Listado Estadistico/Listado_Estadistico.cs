@@ -30,11 +30,11 @@ namespace AerolineaFrba.Listado_Estadistico
             llenu.llenarComboBoxAnios(ref comboAnio);
             label3.Visible = false;
             comboSem.Visible = false;
-            comboLista.Items.Add("Destinos con mas pasajes comprados");
-            comboLista.Items.Add("Destinos con aeronaves mas vacias");
-            comboLista.Items.Add("Clientes con mas puntos acumulados");
-            comboLista.Items.Add("Destinos con pasajes mas cancelados");
-            comboLista.Items.Add("Aeronaves con mas cantidad de dias fuera de servicio");
+            comboLista.Items.Add("Destinos con más pasajes comprados");
+            comboLista.Items.Add("Destinos con aeronaves más vacias");
+            comboLista.Items.Add("Clientes con más puntos acumulados");
+            comboLista.Items.Add("Destinos con pasajes más cancelados");
+            comboLista.Items.Add("Aeronaves con más cantidad de días fuera de servicio");
             dataGridView1.Visible = false;
             this.Size = new Size(498,137);
             button1.Enabled = false;

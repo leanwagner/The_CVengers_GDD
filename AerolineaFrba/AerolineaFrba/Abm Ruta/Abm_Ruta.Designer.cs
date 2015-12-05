@@ -103,7 +103,7 @@ namespace AerolineaFrba.Abm_Ruta
             this.button_modificarRuta.Location = new System.Drawing.Point(413, 384);
             this.button_modificarRuta.Name = "button_modificarRuta";
             this.button_modificarRuta.Size = new System.Drawing.Size(75, 23);
-            this.button_modificarRuta.TabIndex = 7;
+            this.button_modificarRuta.TabIndex = 17;
             this.button_modificarRuta.Text = "Modificar";
             this.button_modificarRuta.UseVisualStyleBackColor = true;
             this.button_modificarRuta.Click += new System.EventHandler(this.boton_Modificar_Click);
@@ -123,7 +123,7 @@ namespace AerolineaFrba.Abm_Ruta
             this.dataGridView_listadoRutas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView_listadoRutas.ShowEditingIcon = false;
             this.dataGridView_listadoRutas.Size = new System.Drawing.Size(572, 177);
-            this.dataGridView_listadoRutas.TabIndex = 0;
+            this.dataGridView_listadoRutas.TabIndex = 16;
             this.dataGridView_listadoRutas.SelectionChanged += new System.EventHandler(this.dataGridView_listadoRutas_SelectionChanged);
             // 
             // groupBox1
@@ -182,7 +182,7 @@ namespace AerolineaFrba.Abm_Ruta
             0});
             this.numericUpDown_pasajeHasta.Name = "numericUpDown_pasajeHasta";
             this.numericUpDown_pasajeHasta.Size = new System.Drawing.Size(88, 20);
-            this.numericUpDown_pasajeHasta.TabIndex = 28;
+            this.numericUpDown_pasajeHasta.TabIndex = 13;
             // 
             // label15
             // 
@@ -209,7 +209,7 @@ namespace AerolineaFrba.Abm_Ruta
             0});
             this.numericUpDown_pasajeDesde.Name = "numericUpDown_pasajeDesde";
             this.numericUpDown_pasajeDesde.Size = new System.Drawing.Size(88, 20);
-            this.numericUpDown_pasajeDesde.TabIndex = 25;
+            this.numericUpDown_pasajeDesde.TabIndex = 12;
             // 
             // label16
             // 
@@ -245,7 +245,7 @@ namespace AerolineaFrba.Abm_Ruta
             0});
             this.numericUpDown_kgHasta.Name = "numericUpDown_kgHasta";
             this.numericUpDown_kgHasta.Size = new System.Drawing.Size(88, 20);
-            this.numericUpDown_kgHasta.TabIndex = 23;
+            this.numericUpDown_kgHasta.TabIndex = 11;
             // 
             // label12
             // 
@@ -272,7 +272,7 @@ namespace AerolineaFrba.Abm_Ruta
             0});
             this.numericUpDown_kgDesde.Name = "numericUpDown_kgDesde";
             this.numericUpDown_kgDesde.Size = new System.Drawing.Size(88, 20);
-            this.numericUpDown_kgDesde.TabIndex = 20;
+            this.numericUpDown_kgDesde.TabIndex = 10;
             // 
             // label11
             // 
@@ -291,7 +291,7 @@ namespace AerolineaFrba.Abm_Ruta
             this.comboBox_filtroDestino.Name = "comboBox_filtroDestino";
             this.comboBox_filtroDestino.Size = new System.Drawing.Size(153, 21);
             this.comboBox_filtroDestino.Sorted = true;
-            this.comboBox_filtroDestino.TabIndex = 20;
+            this.comboBox_filtroDestino.TabIndex = 9;
             this.comboBox_filtroDestino.SelectedIndexChanged += new System.EventHandler(this.comboBox_filtroDestino_SelectedIndexChanged);
             // 
             // label10
@@ -311,7 +311,7 @@ namespace AerolineaFrba.Abm_Ruta
             this.comboBox_filtroOrigen.Name = "comboBox_filtroOrigen";
             this.comboBox_filtroOrigen.Size = new System.Drawing.Size(153, 21);
             this.comboBox_filtroOrigen.Sorted = true;
-            this.comboBox_filtroOrigen.TabIndex = 20;
+            this.comboBox_filtroOrigen.TabIndex = 8;
             this.comboBox_filtroOrigen.SelectedIndexChanged += new System.EventHandler(this.comboBox_filtroOrigen_SelectedIndexChanged);
             // 
             // label9
@@ -338,7 +338,7 @@ namespace AerolineaFrba.Abm_Ruta
             -2147483648});
             this.myNumericUpDown_codRuta.Name = "myNumericUpDown_codRuta";
             this.myNumericUpDown_codRuta.Size = new System.Drawing.Size(153, 20);
-            this.myNumericUpDown_codRuta.TabIndex = 20;
+            this.myNumericUpDown_codRuta.TabIndex = 7;
             // 
             // label8
             // 
@@ -354,7 +354,7 @@ namespace AerolineaFrba.Abm_Ruta
             this.button_filtrar.Location = new System.Drawing.Point(503, 144);
             this.button_filtrar.Name = "button_filtrar";
             this.button_filtrar.Size = new System.Drawing.Size(75, 23);
-            this.button_filtrar.TabIndex = 11;
+            this.button_filtrar.TabIndex = 14;
             this.button_filtrar.Text = "Filtrar";
             this.button_filtrar.UseVisualStyleBackColor = true;
             this.button_filtrar.Click += new System.EventHandler(this.button1_Click_1);
@@ -364,7 +364,7 @@ namespace AerolineaFrba.Abm_Ruta
             this.button_limpiar.Location = new System.Drawing.Point(413, 144);
             this.button_limpiar.Name = "button_limpiar";
             this.button_limpiar.Size = new System.Drawing.Size(75, 23);
-            this.button_limpiar.TabIndex = 10;
+            this.button_limpiar.TabIndex = 15;
             this.button_limpiar.Text = "Limpiar";
             this.button_limpiar.UseVisualStyleBackColor = true;
             this.button_limpiar.Click += new System.EventHandler(this.button2_Click);
@@ -383,7 +383,7 @@ namespace AerolineaFrba.Abm_Ruta
             this.button_eliminarRuta.Location = new System.Drawing.Point(503, 384);
             this.button_eliminarRuta.Name = "button_eliminarRuta";
             this.button_eliminarRuta.Size = new System.Drawing.Size(75, 23);
-            this.button_eliminarRuta.TabIndex = 8;
+            this.button_eliminarRuta.TabIndex = 18;
             this.button_eliminarRuta.Text = "Eliminar";
             this.button_eliminarRuta.UseVisualStyleBackColor = true;
             this.button_eliminarRuta.Click += new System.EventHandler(this.button1_Click);

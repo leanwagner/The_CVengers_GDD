@@ -30,7 +30,7 @@ namespace AerolineaFrba.Abm_Ruta
             this.mostrarCiudad(ref comboBox_ciudadDestino);
             this.mostrarCiudad(ref comboBox_filtroOrigen);
             this.mostrarCiudad(ref comboBox_filtroDestino);
-            comboBox_ciudadOrigen.Focus();
+            numericUpDown3.Focus();
             this.mostrarRutas();
             
         }
