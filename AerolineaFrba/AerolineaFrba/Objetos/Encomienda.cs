@@ -27,9 +27,9 @@ namespace AerolineaFrba.Objetos
 
         public void persistirItem(int cliente_id)
         {
-            string query = "EXEC THE_CVENGERS.crearEncomienda @cli= '" + cliente_id.ToString() +
-                "', @viaje = '" + viajeId.ToString() +
-                "', @kg = '" + Encomienda_kg.ToString() + "'";
+            string query = "EXEC THE_CVENGERS.crearEncomienda @cli= " + cliente_id.ToString() +
+                ", @viaje = " + viajeId.ToString() +
+                ", @kg = " + Encomienda_kg.ToString() + "";
 
             SqlCommand sqlCmd = new SqlCommand(query, Conexion.getConexion());
             sqlCmd.Transaction = Carrito.tran;
