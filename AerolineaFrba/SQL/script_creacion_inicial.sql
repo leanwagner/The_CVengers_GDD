@@ -2126,10 +2126,9 @@ return(SELECT TOP 5 AERONAVE_MATRICULA_AVION 'Matrícula de la aeronave', (SELECT
 																			FROM THE_CVENGERS.TALLER
 																			WHERE TALLER_AERONAVE_ID = AERONAVE_ID
 																			AND ((YEAR(TALLER_FECHA_ENTRADA) = @anio AND (MONTH(TALLER_FECHA_ENTRADA) BETWEEN (case when @semestre = 1 then 1 else 7 end) and (case when @semestre = 1 then 6 else 12 end)))
-																					OR (YEAR(TALLER_FECHA_SALIDA) = @anio AND (MONTH(TALLER_FECHA_SALIDA) BETWEEN (case when @semestre = 1 then 1 else 7 end) and (case when @semestre = 1 then 6 else 12 end))))) 'Días en el taller'
+																					OR (YEAR(TALLER_FECHA_SALIDA) = @anio AND (MONTH(TALLER_FECHA_SALIDA) BETWEEN (case when @semestre = 1 then 1 else 7 end) and (case when @semestre = 1 then 6 else 12 end))))) 'Días en el taller' 
 		FROM THE_CVENGERS.AERONAVE
-		ORDER BY "Días en el taller")
-
+		ORDER BY "Días en el taller" desc)
 go
 create FUNCTION THE_CVENGERS.aeronavePuedeReemplazarDePorVidaFunc(@avion1 as numeric(18,0), @avion2 as numeric(18,0))
 RETURNS INT
