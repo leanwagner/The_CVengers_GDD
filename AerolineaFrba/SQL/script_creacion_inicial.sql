@@ -1949,7 +1949,7 @@ CLOSE butacasAvion
 DEALLOCATE butacasAvion
 
 
-FETCH NEXT FROM butacasViaje INTO @Id
+FETCH NEXT FROM butacasViaje INTO @Id, @Piso1, @Tipo1
 END
 CLOSE butacasViaje
 DEALLOCATE butacasViaje
