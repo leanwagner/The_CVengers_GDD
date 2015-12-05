@@ -2020,7 +2020,7 @@ CREATE PROCEDURE [THE_CVENGERS].darDeBajaVitaliciaAeronave @avion as numeric(18,
 as
 begin
 
-update THE_CVENGERS.AERONAVE set AERONAVE_ESTADO = 0
+update THE_CVENGERS.AERONAVE set AERONAVE_ESTADO = 0, AERONAVE_FECHA_DE_BAJA = THE_CVENGERS.fechaReal()
 where AERONAVE_ID = @avion
 
 end
