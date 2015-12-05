@@ -31,7 +31,18 @@ namespace AerolineaFrba.Abm_Aeronave
 
         private void button1_Click(object sender, EventArgs e) //Mandale cumbia acá
         {
-         
+            if (radioButton_bajaTaller.Checked) 
+            { 
+            
+            
+            }
+
+            if (radioButton_bajaTotal.Checked)
+            { 
+
+            }
+
+            this.Close();
         }
 
         private int dameIdAeronave(string matricula)
