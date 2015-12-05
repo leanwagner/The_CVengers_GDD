@@ -157,7 +157,7 @@ namespace AerolineaFrba
 
         private void boton_Devolucion_Click(object sender, EventArgs e)
         {
-            Devolucion.Devolucion Devolucion = new Devolucion.Devolucion();
+            Devolucion.Devolución Devolucion = new Devolucion.Devolución();
             Devolucion.Show();
         }
 

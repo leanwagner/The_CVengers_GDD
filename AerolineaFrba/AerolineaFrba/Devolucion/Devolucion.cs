@@ -11,13 +11,13 @@ using System.Windows.Forms;
 
 namespace AerolineaFrba.Devolucion
 {
-    public partial class Devolucion : Form
+    public partial class Devolución : Form
     {
 
         Llenador.LlenadorDeTablas lleni = new Llenador.LlenadorDeTablas();
         String idClie;
         String idComp;
-        public Devolucion()
+        public Devolución()
         {
             InitializeComponent();
             
