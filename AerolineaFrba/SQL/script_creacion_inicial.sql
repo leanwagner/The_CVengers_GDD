@@ -145,7 +145,6 @@ CREATE TABLE [THE_CVENGERS].AERONAVE(
 	AERONAVE_FABRICANTE_AVION NUMERIC(18,0) NOT NULL,
 	AERONAVE_ESPACIO_ENCOMIENDAS NUMERIC(18,2) NOT NULL,
 	AERONAVE_ESTADO BIT NOT NULL DEFAULT 1,
-	AERONAVE_EN_TALLER BIT NOT NULL DEFAULT 0,
 	AERONAVE_MATRICULA_AVION NVARCHAR(100) UNIQUE NOT NULL,
 	AERONAVE_MODELO_AVION NVARCHAR(100) NOT NULL,
 	AERONAVE_SERVICIO NUMERIC(18,0) NOT NULL,
@@ -1625,6 +1624,441 @@ insert into THE_CVENGERS.ENCOMIENDA (ENCOMIENDA_CLI_ID,ENCOMIENDA_CODIGO, ENCOMI
 values (@cli, @codE, @compra, @viaje, @kg)
  
 end
+
+go
+create function THE_CVENGERS.aeronaveConViajesPendientes(@avion as numeric(18,0))
+returns int
+as
+BEGIN
+
+declare @valor int
+
+if(exists(SELECT VIAJE_ID FROM THE_CVENGERS.VIAJE WHERE VIAJE_AERONAVE = @avion
+			AND VIAJE_FECHA_LLEGADA IS NULL
+			AND VIAJE_FECHA_SALIDA > THE_CVENGERS.fechaReal()))
+set @valor = 1
+ELSE 
+set @valor = 0
+return @valor
+END
+
+go
+create function THE_CVENGERS.aeronaveEnElAire(@avion as numeric(18,0))
+returns int
+as
+BEGIN
+
+declare @valor int
+
+if(exists(SELECT VIAJE_ID FROM THE_CVENGERS.VIAJE WHERE VIAJE_AERONAVE = @avion
+			AND VIAJE_FECHA_LLEGADA IS NULL
+			AND VIAJE_FECHA_SALIDA < THE_CVENGERS.fechaReal()))
+set @valor = 1
+ELSE 
+set @valor = 0
+return @valor
+END
+
+go
+create procedure THE_CVENGERS.cancelarViaje(@viaje as numeric(18,0))
+as
+begin
+
+declare @Id numeric(18,0)
+declare @Compra numeric(18,0)
+
+declare pasajesADevolver cursor
+for select PASAJE_ID, PASAJE_COMPRA from THE_CVENGERS.PASAJE
+	where PASAJE_DEVOLUCION IS NULL
+	AND PASAJE_VIAJE_ID = @viaje
+
+
+open pasajesADevolver
+FETCH FROM pasajesADevolver INTO @Id, @Compra
+WHILE @@FETCH_STATUS = 0
+BEGIN
+
+insert into THE_CVENGERS.DEVOLUCION (DEVOLUCION_FECHA,DEVOLUCION_NUM_COMPRA,DEVOLUCION_DESCRIPCION)
+VALUES (THE_CVENGERS.fechaReal(), @Compra, 'Baja de aeronave y cancelación de viaje')
+
+update THE_CVENGERS.PASAJE set PASAJE_DEVOLUCION = (select top 1 DEVOLUCION_ID FROM THE_CVENGERS.DEVOLUCION ORDER BY DEVOLUCION_ID DESC)
+WHERE PASAJE_ID = @Id
+
+UPDATE THE_CVENGERS.BUTACAXVIAJE SET BUTACAXVIAJE_PASAJE_ID = NULL
+WHERE BUTACAXVIAJE_PASAJE_ID = @Id
+
+FETCH NEXT FROM pasajesADevolver INTO @Id, @Compra 
+END
+CLOSE pasajesADevolver
+DEALLOCATE pasajesADevolver
+
+
+declare encomiendasADevolver cursor
+for select ENCOMIENDA_ID, ENCOMIENDA_COMPRA from THE_CVENGERS.ENCOMIENDA
+	where ENCOMIENDA_DEVOLUCION IS NULL
+	AND ENCOMIENDA_VIAJE_ID = @viaje
+
+
+open encomiendasADevolver
+FETCH FROM encomiendasADevolver INTO @Id, @Compra
+WHILE @@FETCH_STATUS = 0
+BEGIN
+
+insert into THE_CVENGERS.DEVOLUCION (DEVOLUCION_FECHA,DEVOLUCION_NUM_COMPRA,DEVOLUCION_DESCRIPCION)
+VALUES (THE_CVENGERS.fechaReal(), @Compra, 'Baja de aeronave y cancelación de aeronave')
+
+update THE_CVENGERS.ENCOMIENDA set ENCOMIENDA_DEVOLUCION = (select top 1 DEVOLUCION_ID FROM THE_CVENGERS.DEVOLUCION ORDER BY DEVOLUCION_ID DESC)
+WHERE ENCOMIENDA_ID = @Id
+
+FETCH NEXT FROM encomiendasADevolver INTO @Id, @Compra 
+END
+CLOSE encomiendasADevolver
+DEALLOCATE encomiendasADevolver
+
+update THE_CVENGERS.VIAJE set VIAJE_ESTADO = 0
+WHERE VIAJE_ID = @viaje
+
+
+end
+
+go
+CREATE PROCEDURE THE_CVENGERS.cancelarViajesDeAvión(@avion as numeric(18,0))
+as
+begin
+
+declare @Id numeric(18,0)
+
+DECLARE viajesFuturos CURSOR
+FOR SELECT VIAJE_ID FROM THE_CVENGERS.VIAJE WHERE VIAJE_AERONAVE = @avion
+			AND VIAJE_FECHA_LLEGADA IS NULL
+			AND VIAJE_FECHA_SALIDA > THE_CVENGERS.fechaReal()
+
+
+open viajesFuturos
+FETCH FROM viajesFuturos INTO @Id
+WHILE @@FETCH_STATUS = 0
+BEGIN
+
+EXEC THE_CVENGERS.cancelarViaje @viaje = @Id
+
+FETCH NEXT FROM viajesFuturos INTO @Id
+END
+CLOSE viajesFuturos
+DEALLOCATE viajesFuturos
+
+end
+
+go
+create function THE_CVENGERS.avionesCompatiblesFisicamente(@avion1 as numeric(18,0), @avion2 as numeric(18,0))
+returns int
+as
+begin
+
+declare @serv numeric(18,0)
+set @serv = (select AERONAVE_SERVICIO FROM THE_CVENGERS.AERONAVE WHERE AERONAVE_ID = @avion1)
+
+declare @fabr numeric(18,0)
+set @fabr = (select AERONAVE_FABRICANTE_AVION FROM THE_CVENGERS.AERONAVE WHERE AERONAVE_ID = @avion1)
+
+declare @mod nvarchar(100)
+set @mod = (select AERONAVE_MODELO_AVION FROM THE_CVENGERS.AERONAVE WHERE AERONAVE_ID = @avion1)
+
+declare @espa numeric(18,0)
+set @espa = (select AERONAVE_ESPACIO_ENCOMIENDAS FROM THE_CVENGERS.AERONAVE WHERE AERONAVE_ID = @avion1)
+
+declare @butac numeric(18,0)
+set @butac = (select AERONAVE_CANTIDAD_BUTACAS FROM THE_CVENGERS.AERONAVE WHERE AERONAVE_ID = @avion1)
+
+
+declare @serv2 numeric(18,0)
+set @serv2 = (select AERONAVE_SERVICIO FROM THE_CVENGERS.AERONAVE WHERE AERONAVE_ID = @avion2)
+
+declare @fabr2 numeric(18,0)
+set @fabr2 = (select AERONAVE_FABRICANTE_AVION FROM THE_CVENGERS.AERONAVE WHERE AERONAVE_ID = @avion2)
+
+declare @mod2 nvarchar(100)
+set @mod2 = (select AERONAVE_MODELO_AVION FROM THE_CVENGERS.AERONAVE WHERE AERONAVE_ID = @avion2)
+
+declare @espa2 numeric(18,0)
+set @espa2 = (select AERONAVE_ESPACIO_ENCOMIENDAS FROM THE_CVENGERS.AERONAVE WHERE AERONAVE_ID = @avion2)
+
+declare @butac2 numeric(18,0)
+set @butac2 = (select AERONAVE_CANTIDAD_BUTACAS FROM THE_CVENGERS.AERONAVE WHERE AERONAVE_ID = @avion2)
+
+IF(@butac=@butac2 AND @serv = @serv2 AND @fabr=@fabr2 AND @mod=@mod2 AND @espa=@espa2 AND (SELECT MAX(BUTACA_PISO) FROM THE_CVENGERS.BUTACA WHERE BUTACA_AERONAVE = @avion1)=(SELECT MAX(BUTACA_PISO) FROM THE_CVENGERS.BUTACA WHERE BUTACA_AERONAVE = @avion2))
+BEGIN
+IF((SELECT COUNT(*) FROM THE_CVENGERS.BUTACA WHERE BUTACA_AERONAVE = @avion1 AND BUTACA_TIPO = 'Pasillo')
+	=
+	(SELECT COUNT(*) FROM THE_CVENGERS.BUTACA WHERE BUTACA_AERONAVE = @avion2 AND BUTACA_TIPO = 'Pasillo'))
+begin
+return 1
+end
+else return 0
+END
+RETURN 0
+end
+
+go
+create procedure THE_CVENGERS.aeronavePuedeReemplazarDePorVida @avion1 as numeric(18,0), @avion2 as numeric(18,0)
+as
+begin
+
+if (THE_CVENGERS.avionesCompatiblesFisicamente(@avion1, @avion2) = 0)
+begin
+RAISERROR('No se puede reemplazar la aeronave a bajar por la aeronave seleccionada. No es compatible.',16,1)
+return
+end
+
+declare @fechasa datetime
+declare @Id numeric(18,0)
+
+DECLARE viajesFuturos CURSOR
+FOR SELECT VIAJE_ID FROM THE_CVENGERS.VIAJE WHERE VIAJE_AERONAVE = @avion1
+			AND VIAJE_FECHA_LLEGADA IS NULL
+			AND VIAJE_FECHA_SALIDA > THE_CVENGERS.fechaReal()
+
+
+open viajesFuturos
+FETCH FROM viajesFuturos INTO @Id
+WHILE @@FETCH_STATUS = 0
+BEGIN
+
+set @fechasa = (SELECT VIAJE_FECHA_SALIDA FROM THE_CVENGERS.VIAJE
+					WHERE VIAJE_ID = @Id) 
+
+if (exists(SELECT VIAJE_ID FROM THE_CVENGERS.VIAJE
+           WHERE VIAJE_AERONAVE = @avion2
+		   AND datediff(day,VIAJE_FECHA_SALIDA, @fechasa) <= 1))
+begin
+RAISERROR('No se puede reemplazar la aeronave a bajar por la aeronave seleccionada. No es compatible.',16,1)
+RETURN
+END
+
+FETCH NEXT FROM viajesFuturos INTO @Id
+END
+CLOSE viajesFuturos
+DEALLOCATE viajesFuturos
+
+
+end
+
+GO
+CREATE PROCEDURE THE_CVENGERS.aeronavePuedeReemplazarEsteLapso @avion1 as numeric(18,0), @avion2 as numeric(18,0),
+																@fecha as datetime
+as
+begin
+
+if (THE_CVENGERS.avionesCompatiblesFisicamente(@avion1, @avion2) = 0)
+begin
+RAISERROR('No se puede reemplazar la aeronave a bajar por la aeronave seleccionada. No es compatible.',16,1)
+return
+end
+
+declare @fechasa datetime
+declare @Id numeric(18,0)
+
+DECLARE viajesFuturos CURSOR
+FOR SELECT VIAJE_ID FROM THE_CVENGERS.VIAJE WHERE VIAJE_AERONAVE = @avion1
+			AND VIAJE_FECHA_LLEGADA IS NULL
+			AND VIAJE_FECHA_SALIDA between THE_CVENGERS.fechaReal() and @fecha
+
+
+open viajesFuturos
+FETCH FROM viajesFuturos INTO @Id
+WHILE @@FETCH_STATUS = 0
+BEGIN
+
+set @fechasa = (SELECT VIAJE_FECHA_SALIDA FROM THE_CVENGERS.VIAJE
+					WHERE VIAJE_ID = @Id) 
+
+if (exists(SELECT VIAJE_ID FROM THE_CVENGERS.VIAJE
+           WHERE VIAJE_AERONAVE = @avion2
+		   AND datediff(day,VIAJE_FECHA_SALIDA, @fechasa) <= 1))
+begin
+RAISERROR('No se puede reemplazar la aeronave a bajar por la aeronave seleccionada. No es compatible.',16,1)
+RETURN
+END
+
+FETCH NEXT FROM viajesFuturos INTO @Id
+END
+CLOSE viajesFuturos
+DEALLOCATE viajesFuturos
+
+end
+
+GO
+CREATE PROCEDURE THE_CVENGERS.cancelarViajesParaUnLapso @avion as numeric(18,0), @fecha as datetime
+as
+begin
+
+declare @Id numeric(18,0)
+
+DECLARE viajesFuturos CURSOR
+FOR SELECT VIAJE_ID FROM THE_CVENGERS.VIAJE WHERE VIAJE_AERONAVE = @avion
+			AND VIAJE_FECHA_LLEGADA IS NULL
+			AND VIAJE_FECHA_SALIDA between THE_CVENGERS.fechaReal() and @fecha
+
+
+open viajesFuturos
+FETCH FROM viajesFuturos INTO @Id
+WHILE @@FETCH_STATUS = 0
+BEGIN
+
+EXEC THE_CVENGERS.cancelarViaje @viaje = @Id
+
+FETCH NEXT FROM viajesFuturos INTO @Id
+END
+CLOSE viajesFuturos
+DEALLOCATE viajesFuturos
+
+end
+
+go
+create procedure THE_CVENGERS.suplirViaje @viaje as numeric(18,0), @avion as numeric(18,0)
+as
+begin
+
+declare @Id numeric(18,0)
+declare @IdBut numeric(18,0)
+declare @Piso numeric(18,0)
+declare @Tipo nvarchar(100)
+declare @Piso1 numeric(18,0)
+declare @Tipo1 nvarchar(100)
+
+declare butacasViaje cursor
+for SELECT BUTACA_ID, BUTACA_PISO, BUTACA_TIPO FROM THE_CVENGERS.BUTACA WHERE BUTACA_ID IN (select BUTACAXVIAJE_BUTACA_ID from THE_CVENGERS.BUTACAXVIAJE WHERE BUTACAXVIAJE_VIAJE_ID = @viaje)
+
+open butacasViaje
+FETCH FROM butacasViaje INTO @Id, @Piso1, @Tipo1
+WHILE @@FETCH_STATUS = 0
+BEGIN
+
+declare butacasAvion cursor
+for select BUTACA_ID, BUTACA_PISO, BUTACA_TIPO from THE_CVENGERS.BUTACA where BUTACA_AERONAVE = @avion order by BUTACA_NRO
+
+open butacasAvion
+FETCH FROM butacasAvion INTO @IdBut, @Piso, @Tipo
+WHILE @@FETCH_STATUS = 0
+BEGIN
+
+if(not exists(select BUTACAXVIAJE_BUTACA_ID  FROM THE_CVENGERS.BUTACAXVIAJE WHERE BUTACAXVIAJE_BUTACA_ID = @IdBut AND BUTACAXVIAJE_VIAJE_ID = @viaje))
+BEGIN
+
+if(@Piso = @Piso1 and @Tipo = @Tipo1)
+begin
+
+update THE_CVENGERS.BUTACAXVIAJE set BUTACAXVIAJE_BUTACA_ID = @IdBut
+where BUTACAXVIAJE_BUTACA_ID = @Id and BUTACAXVIAJE_VIAJE_ID = @viaje
+
+end
+
+END
+
+FETCH NEXT FROM butacasAvion INTO @IdBut, @Piso, @Tipo
+END
+CLOSE butacasAvion
+DEALLOCATE butacasAvion
+
+
+FETCH NEXT FROM butacasViaje INTO @Id
+END
+CLOSE butacasViaje
+DEALLOCATE butacasViaje
+
+update THE_CVENGERS.VIAJE set VIAJE_AERONAVE = @avion
+where VIAJE_ID = @viaje
+
+end
+
+GO
+CREATE PROCEDURE THE_CVENGERS.suplirAeronaveParaSiempre @avion1 as numeric(18,0), @avion2 as numeric(18,0)
+as
+begin
+
+declare @Id numeric(18,0)
+
+DECLARE viajesFuturos CURSOR
+FOR SELECT VIAJE_ID FROM THE_CVENGERS.VIAJE WHERE VIAJE_AERONAVE = @avion1
+			AND VIAJE_FECHA_LLEGADA IS NULL
+			AND VIAJE_FECHA_SALIDA > THE_CVENGERS.fechaReal()
+
+
+open viajesFuturos
+FETCH FROM viajesFuturos INTO @Id
+WHILE @@FETCH_STATUS = 0
+BEGIN
+
+EXEC THE_CVENGERS.suplirViaje @viaje = @Id, @avion = @avion2
+
+
+FETCH NEXT FROM viajesFuturos INTO @Id
+END
+CLOSE viajesFuturos
+DEALLOCATE viajesFuturos
+
+end
+
+go
+CREATE PROCEDURE [THE_CVENGERS].suplirAeronaveEsteLapso @avion1 as numeric(18,0), @avion2 as numeric(18,0), @fecha as datetime
+as
+begin
+
+declare @Id numeric(18,0)
+
+DECLARE viajesFuturos CURSOR
+FOR SELECT VIAJE_ID FROM THE_CVENGERS.VIAJE WHERE VIAJE_AERONAVE = @avion1
+			AND VIAJE_FECHA_LLEGADA IS NULL
+			AND VIAJE_FECHA_SALIDA between THE_CVENGERS.fechaReal() and @fecha
+
+
+open viajesFuturos
+FETCH FROM viajesFuturos INTO @Id
+WHILE @@FETCH_STATUS = 0
+BEGIN
+
+EXEC THE_CVENGERS.suplirViaje @viaje = @Id, @avion = @avion2
+
+
+FETCH NEXT FROM viajesFuturos INTO @Id
+END
+CLOSE viajesFuturos
+DEALLOCATE viajesFuturos
+
+end
+
+go
+CREATE PROCEDURE [THE_CVENGERS].darDeBajaVitaliciaAeronave @avion as numeric(18,0)
+as
+begin
+
+update THE_CVENGERS.AERONAVE set AERONAVE_ESTADO = 0
+where AERONAVE_ID = @avion
+
+end
+
+go
+CREATE PROCEDURE THE_CVENGERS.mandarATallerHastaFecha @avion as numeric(18,0), @fecha as datetime
+as
+begin
+
+insert into THE_CVENGERS.TALLER (TALLER_AERONAVE_ID, TALLER_FECHA_ENTRADA, TALLER_FECHA_SALIDA)
+VALUES (@avion, THE_CVENGERS.fechaReal(), @fecha)
+
+end 
+
+
+GO
+CREATE PROCEDURE THE_CVENGERS.puedeIrATaller @avion as numeric(18,0)
+as 
+begin
+
+IF(exists(select TALLER_ID FROM THE_CVENGERS.TALLER WHERE TALLER_AERONAVE_ID = @avion AND THE_CVENGERS.fechaReal() BETWEEN TALLER_FECHA_ENTRADA AND TALLER_FECHA_SALIDA))
+BEGIN
+RAISERROR('Esa aeronave ya se encuentra en este momento en el taller', 16, 1)
+return
+end
+
+end
 /*DROP TABLE [THE_CVENGERS].CUOTASXTARJETA
 DROP TABLE [THE_CVENGERS].MILLA
 DROP TABLE [THE_CVENGERS].FECHA
@@ -1706,5 +2140,19 @@ DROP PROCEDURE [THE_CVENGERS].crearCompraConTarjeta
 DROP PROCEDURE [THE_CVENGERS].crearCompraConEfectivo
 DROP PROCEDURE [THE_CVENGERS].crearPasaje
 DROP PROCEDURE [THE_CVENGERS].crearEncomienda
+DROP FUNCTION [THE_CVENGERS].aeronaveConViajesPendientes
+DROP FUNCTION [THE_CVENGERS].aeronaveEnElAire
+DROP PROCEDURE [THE_CVENGERS].cancelarViaje
+DROP PROCEDURE [THE_CVENGERS].cancelarViajesDeAvión
+DROP FUNCTION [THE_CVENGERS].avionesCompatiblesFisicamente
+DROP PROCEDURE [THE_CVENGERS].aeronavePuedeReemplazarDePorVida
+DROP PROCEDURE [THE_CVENGERS].aeronavePuedeReemplazarEsteLapso
+DROP PROCEDURE [THE_CVENGERS].cancelarViajesParaUnLapso
+DROP PROCEDURE [THE_CVENGERS].suplirViaje
+DROP PROCEDURE [THE_CVENGERS].suplirAeronaveParaSiempre
+DROP PROCEDURE [THE_CVENGERS].suplirAeronaveEsteLapso
+DROP PROCEDURE [THE_CVENGERS].darDeBajaVitaliciaAeronave
+DROP PROCEDURE [THE_CVENGERS].mandarATallerHastaFecha
+DROP PROCEDURE [THE_CVENGERS].puedeIrATaller
 DROP PROCEDURE [THE_CVENGERS].getAll 
 DROP SCHEMA [THE_CVENGERS]*/
