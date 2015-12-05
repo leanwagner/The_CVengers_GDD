@@ -269,9 +269,9 @@
             this.groupBox2.Controls.Add(this.listBox1);
             this.groupBox2.Controls.Add(this.boton_Modificar_Aeronave);
             this.groupBox2.Controls.Add(this.boton_Eliminar_Aeronave);
-            this.groupBox2.Location = new System.Drawing.Point(28, 363);
+            this.groupBox2.Location = new System.Drawing.Point(20, 382);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(302, 195);
+            this.groupBox2.Size = new System.Drawing.Size(310, 192);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Listado Aeronaves";
@@ -279,7 +279,7 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(3, 16);
+            this.listBox1.Location = new System.Drawing.Point(12, 16);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(284, 134);
             this.listBox1.Sorted = true;
@@ -482,7 +482,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this.ClientSize = new System.Drawing.Size(342, 566);
+            this.ClientSize = new System.Drawing.Size(342, 579);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);

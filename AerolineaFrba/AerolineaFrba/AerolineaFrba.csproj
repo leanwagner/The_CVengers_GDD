@@ -62,6 +62,7 @@
     <Compile Include="Abm Aeronave\Butacas.Designer.cs">
       <DependentUpon>Butacas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Abm Aeronave\Avion.cs" />
     <Compile Include="Abm Ciudad\Abm_Ciudad.cs">
       <SubType>Form</SubType>
     </Compile>
