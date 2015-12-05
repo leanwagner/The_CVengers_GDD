@@ -178,6 +178,7 @@ namespace AerolineaFrba.Compra
                         readerAux.Close();
                         return;
                     case 2:
+                    default:
                         reader.Close();
 
                         errorProvider_dniDup.SetError(numericUpDown_dni,"No se puede identificar univocamente a un cliente con ese DNI. Ingrese un Apellido");
@@ -262,6 +263,7 @@ namespace AerolineaFrba.Compra
 
         private void button_limpiar_Click(object sender, EventArgs e)
         {
+            cli_id = 0;
             estaTodoAutocompletado = false;
             numericUpDown_dni.Value = 0;
             textBox_nombre.Text = "";

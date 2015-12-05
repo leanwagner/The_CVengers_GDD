@@ -97,7 +97,7 @@ namespace AerolineaFrba.Objetos
             return item;
         }
 
-        public void persistirme() 
+        public int persistirme() 
         {
             string command = "EXEC THE_CVENGERS.ingresarOModificarCliente @id =" + clienteId.ToString() +
                 ", @nombre = '" + Nombre +
@@ -110,6 +110,8 @@ namespace AerolineaFrba.Objetos
             SqlCommand sqlCmd = new SqlCommand(command,Conexion.getConexion());
             sqlCmd.Transaction = Carrito.tran;
             sqlCmd.ExecuteNonQuery();
+            sqlCmd.CommandText = "select CLIENTE_ID from THE_CVENGERS.CLIENTE where CLIENTE_NOMBRE ='" + Nombre + "' and CLIENTE_APELLIDO =  '" + Apellido + "' and CLIENTE_DNI = " + Dni;
+            return Int32.Parse(sqlCmd.ExecuteScalar().ToString());
         }
     }
 }

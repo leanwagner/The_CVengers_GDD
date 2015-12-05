@@ -47,6 +47,8 @@ namespace AerolineaFrba.Abm_Ruta
         {
             int flag = 0;
 
+           
+
             String servicio1 = "NULL";
             String servicio2 = "NULL";
             String servicio3 = "NULL";
@@ -66,7 +68,7 @@ namespace AerolineaFrba.Abm_Ruta
             else
                 flag += 1;
 
-            if (numericUpDown_precioKG.Value > 0 && numericUpDown_precioPasaje.Value > 0 && flag > 0)
+            if (numericUpDown_precioKG.Value > 0 && numericUpDown_precioPasaje.Value > 0 && flag < 3)
             {
                 errorProvider_precioKg.Clear();
                 errorProvider_precioPasaje.Clear();
@@ -76,13 +78,15 @@ namespace AerolineaFrba.Abm_Ruta
              try
                 {
                        SqlCommand sqlCmd = new SqlCommand("EXEC THE_CVENGERS.modificacionRuta @P0=" + ID_Ruta +" ,@P1 = " + numericUpDown_codRuta.Value +
-                        "', @P4 = " +  numericUpDown_precioKG.Value.ToString(CultureInfo.InvariantCulture)+
+                        ", @P4 = " +  numericUpDown_precioKG.Value.ToString(CultureInfo.InvariantCulture)+
                         ", @P5 = " + numericUpDown_precioPasaje.Value.ToString(CultureInfo.InvariantCulture) +
                         ", @P6 = '" + servicio1 +
                         "', @P7 = '" + servicio2 +
-                        "', @P8 = '" + servicio3+"';", Conexion.getConexion());
+                        "', @P8 = '" + servicio3+"'", Conexion.getConexion());
 
-                    sqlCmd.ExecuteScalar();
+                      
+
+                    sqlCmd.ExecuteNonQuery();
 
                     MessageBox.Show("La Ruta ha sido modificada con éxito.");
 

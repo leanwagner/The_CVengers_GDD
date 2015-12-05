@@ -184,18 +184,13 @@ namespace AerolineaFrba.Abm_Aeronave
             {
                 cmd.ExecuteNonQuery();
                 // MessageBox.Show(cmd.CommandText);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
-            }
 
-            //YA SE CREO EL REEMPLAZO
 
-            if (fecha != "")
-            {
-                try
+                //YA SE CREO EL REEMPLAZO
+
+                if (fecha != "")
                 {
+
                     SqlCommand sqlCmds = new SqlCommand("EXEC THE_CVENGERS.suplirAeronaveEsteLapso @avion1 = " + id_aeronave + ", @avion2 = " + dameIdAeronave(textBox1.Text) + ", @fecha = '" + fecha + "'", Conexion.getConexion());
 
                     sqlCmds.ExecuteScalar();
@@ -208,19 +203,15 @@ namespace AerolineaFrba.Abm_Aeronave
 
                     MessageBox.Show("Se dio de baja la aeronave seleccionada mientras esté en el taller. Ha sido reemplazada por la aeronave de matrícula " + textBox1.Text, "Baja exitosa", MessageBoxButtons.OK);
                     this.Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-            else
-            {
 
-                try
+
+                }
+                else
                 {
+
+
                     SqlCommand sqlCmds = new SqlCommand("EXEC THE_CVENGERS.aeronavePuedeReemplazarDePorVida @avion1 = " + id_aeronave + ", @avion2 = " + dameIdAeronave(textBox1.Text), Conexion.getConexion());
-                    MessageBox.Show(sqlCmds.CommandText);
+                    
                     sqlCmds.ExecuteScalar();
 
 
@@ -237,14 +228,15 @@ namespace AerolineaFrba.Abm_Aeronave
 
 
 
+
+
+
+
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-
-
-
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
 
 

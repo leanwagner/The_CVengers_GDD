@@ -49,6 +49,7 @@ namespace AerolineaFrba.Abm_Ruta
 
         private void button3_Click(object sender, EventArgs e)
         {
+            
             SqlCommand sqlCmd = new SqlCommand("select * from THE_CVENGERS.ROL where ROL_NOMBRE ='" + listBox1.SelectedItem.ToString() + "'", Conexion.getConexion());
             SqlDataReader sqlReader;
             sqlReader = sqlCmd.ExecuteReader();
@@ -116,14 +117,30 @@ namespace AerolineaFrba.Abm_Ruta
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            button2.Enabled = true;
-            button3.Enabled = true;
+            if (listBox1.SelectedIndex != -1)
+            {
+                button2.Enabled = true;
+                button3.Enabled = true;
+            }
+            else
+            {
+                button2.Enabled = false;
+                button3.Enabled = false;
+            }
         }
 
         private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            button4.Enabled = true;
-            button5.Enabled = true;
+            if (listBox2.SelectedIndex != -1)
+            {
+                button4.Enabled = true;
+                button5.Enabled = true;
+            }
+            else
+            {
+                button4.Enabled = false;
+                button5.Enabled = false;
+            }
         }
 
        

@@ -248,8 +248,13 @@ namespace AerolineaFrba.Abm_Ruta
 
         private void button1_Click(object sender, System.EventArgs e)
         {
+            button3.Enabled = false;
 
-           
+            button2.Enabled = false;
+
+            button4.Enabled = false;
+
+            button5.Enabled = false;
             SqlCommand sqlCmd = new SqlCommand("insert into THE_CVENGERS.ROL(ROL_NOMBRE,ROL_ESTADO) values ('"+ textBox1.Text+"',1)", Conexion.getConexion());
             SqlDataReader sqlReader;
             try

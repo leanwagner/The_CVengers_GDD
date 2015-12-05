@@ -358,9 +358,9 @@ namespace AerolineaFrba.Compra
         {
             if (aplicarValidaciones() > 0)
                 return;
-            
-           new Cliente(id_cliente,(int)numericUpDown_dni.Value, textBox_nombre.Text, textBox_apellido.Text, textBox1.Text, (int)numericUpDown_telefono.Value, textBox2.Text, dateTimePicker_nacimiento.Value.Date.ToString()).persistirme();
-           
+
+            id_cliente = new Cliente(id_cliente, (int)numericUpDown_dni.Value, textBox_nombre.Text, textBox_apellido.Text, textBox1.Text, (int)numericUpDown_telefono.Value, textBox2.Text, dateTimePicker_nacimiento.Value.Date.ToString()).persistirme();
+        
             tran = Conexion.getConexion().BeginTransaction();   
            try
            {
@@ -380,9 +380,7 @@ namespace AerolineaFrba.Compra
                MessageBox.Show("La compra fue realizada Exitosamente. Su código de compra es el " + obtenerCompraId(), "Información", MessageBoxButtons.OK);
 
                this.Close();
-           }
-
-           catch(Exception ex)
+           } catch(Exception ex)
            {
                MessageBox.Show("La compra no pudo finalizar correctamente" + ex.Message, "Error", MessageBoxButtons.OK);
                tran.Rollback();
@@ -436,14 +434,11 @@ namespace AerolineaFrba.Compra
 
             SqlCommand sqlCmd = new SqlCommand(query,Conexion.getConexion());
             sqlCmd.Transaction = tran;
-            try
-            {
+            
                 sqlCmd.ExecuteNonQuery();
-            }
-            catch (Exception ex) 
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);    
-            }
+          
+             
+           
         }
         public string buscarUsuarioId()
         {

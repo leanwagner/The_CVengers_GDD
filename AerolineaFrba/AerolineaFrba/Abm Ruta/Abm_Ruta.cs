@@ -58,6 +58,8 @@ namespace AerolineaFrba.Abm_Ruta
 
         private void button1_Click(object sender, EventArgs e)
         {
+
+            
             DataGridViewRow seleccionada = dataGridView_listadoRutas.SelectedRows[0];
 
 
@@ -68,6 +70,7 @@ namespace AerolineaFrba.Abm_Ruta
                                 try
                                 {
                                     sqlCmd.ExecuteNonQuery();
+                                    MessageBox.Show("La ruta ha sido dada de baja con exito");
                                 }
                                 catch (Exception ex)
                                 {
@@ -84,7 +87,7 @@ namespace AerolineaFrba.Abm_Ruta
 
             RutaModificar rutaAModificar = new RutaModificar(Int32.Parse(seleccionado.Cells[0].Value.ToString()), Int32.Parse(seleccionado.Cells[1].Value.ToString()), seleccionado.Cells[2].Value.ToString(), seleccionado.Cells[3].Value.ToString(), System.Convert.ToDecimal(seleccionado.Cells[4].Value.ToString()), System.Convert.ToDecimal(seleccionado.Cells[5].Value.ToString()), seleccionado.Cells[6].Value.ToString(), seleccionado.Cells[7].Value.ToString(),seleccionado.Cells[8].Value.ToString());
 
-            MessageBox.Show(seleccionado.Cells[0].Value.ToString());
+            //MessageBox.Show(seleccionado.Cells[0].Value.ToString());
 
             rutaAModificar.Show();
 
@@ -92,7 +95,7 @@ namespace AerolineaFrba.Abm_Ruta
 
         private void Abm_Ruta_Load(object sender, EventArgs e)
         {
-            
+            myNumericUpDown_codRuta.Value = -1;
         }
 
         public void mostrarServicios()
@@ -249,7 +252,7 @@ namespace AerolineaFrba.Abm_Ruta
                 errorProvider_precioPasajeHasta.SetError(numericUpDown_pasajeHasta, "El valor del Campo Hasta debe ser mayor al del campo Desde");
 
 
-            if (myNumericUpDown_codRuta.Text != "")
+            if (myNumericUpDown_codRuta.Value != -1)
                 sqlQuery = sqlQuery + " AND [Código de Rutas] = " + myNumericUpDown_codRuta.Value.ToString();
 
             llenador.filtrarDataGridView(dataGridView_listadoRutas, sqlQuery);
@@ -314,7 +317,16 @@ namespace AerolineaFrba.Abm_Ruta
 
         private void dataGridView_listadoRutas_SelectionChanged(object sender, EventArgs e)
         {
-            button_modificarRuta.Enabled = true;
+            if (dataGridView_listadoRutas.SelectedRows.Count != 0)
+            {
+                button_eliminarRuta.Enabled = true;
+                button_modificarRuta.Enabled = true;
+            }
+            else
+            {
+                button_eliminarRuta.Enabled = false;
+                button_modificarRuta.Enabled = false;
+            }
         }
 
     }

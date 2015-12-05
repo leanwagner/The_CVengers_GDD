@@ -52,6 +52,7 @@ namespace AerolineaFrba.Abm_Aeronave
 
         private void boton_Agregar_Aeronave_Click(object sender, EventArgs e)
         {
+            indiceSele = listBox1.SelectedIndex;
             SqlCommand sqlCmd = new SqlCommand("select * from THE_CVENGERS.FABRICANTE where FABRICANTE_NOMBRE ='" + comboBox1.SelectedItem.ToString() + "'", Conexion.getConexion());
             SqlDataReader sqlReader;
             sqlReader = sqlCmd.ExecuteReader();
@@ -75,20 +76,22 @@ namespace AerolineaFrba.Abm_Aeronave
             try
             {
                 sqlCmd.ExecuteNonQuery();
+                MessageBox.Show("Aeronave creada exitosamente");
                // MessageBox.Show(sqlCmd.CommandText);
             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message,"Error",MessageBoxButtons.OK);
             }
-            MessageBox.Show("Aeronave creada exitosamente");
-            listBox1.Items.Add(new Avion(textBox1.Text,comboBox2.Text,comboBox1.Text));
+            
+            numericUpDown2.Value = 1;
+          //  listBox1.Items.Add(new Avion(textBox1.Text,comboBox2.Text,comboBox1.Text));
             listBox1.Refresh();
 
             textBox1.ResetText();
             textBox2.ResetText();
-            textBox3.ResetText();
-            textBox4.ResetText();
+            textBox3.Value = 0;
+            textBox4.Value = 0;
             
         }
 
@@ -181,6 +184,7 @@ namespace AerolineaFrba.Abm_Aeronave
             comboBox3.Items.Clear();
                 comboBox4.Items.Clear();
                 groupBox2.Enabled = true;
+              
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -222,6 +226,9 @@ namespace AerolineaFrba.Abm_Aeronave
             comboBox3.Items.Clear();
             groupBox3.Visible = false;
             groupBox2.Enabled = true;
+                 boton_Eliminar_Aeronave.Enabled = false;
+                 boton_Modificar_Aeronave.Enabled = false;
+
             }
             catch (Exception ex)
             {
@@ -296,6 +303,7 @@ namespace AerolineaFrba.Abm_Aeronave
         private void Abm_Aeronave_Activated(object sender, EventArgs e)
         {
             listBox1.Items.Clear();
+            boton_Eliminar_Aeronave.Enabled = false;
             SqlCommand sqlCmd = new SqlCommand("SELECT * FROM THE_CVENGERS.AERONAVE, THE_CVENGERS.FABRICANTE, THE_CVENGERS.SERVICIO where AERONAVE_FABRICANTE_AVION = FABRICANTE_ID and AERONAVE_SERVICIO = SERVICIO_ID and AERONAVE_ESTADO = 1", Conexion.getConexion());
 
             SqlDataReader sqlReader = sqlCmd.ExecuteReader();
