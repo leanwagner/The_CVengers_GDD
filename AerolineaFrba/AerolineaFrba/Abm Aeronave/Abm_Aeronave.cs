@@ -257,10 +257,46 @@ namespace AerolineaFrba.Abm_Aeronave
 
         private void boton_Eliminar_Aeronave_Click(object sender, EventArgs e)
         {
+            
 
-            BajaAeronave ventana = new BajaAeronave(((Avion)listBox1.SelectedItem).getMatricula());
-            ventana.Show();
+             try
+             {
+                 SqlCommand sqlCmd = new SqlCommand("SELECT THE_CVENGERS.aeronaveEnElAire (" + dameIdAeronave(((Avion)listBox1.SelectedItem).getMatricula()) + ")", Conexion.getConexion());
+
+
+
+                 if ((int)sqlCmd.ExecuteScalar() == 1)
+                {                    
+                     MessageBox.Show("No se puede dar de baja, la aeronave se encuentra en viaje", "Error");
+                }
+                else {
+
+                    BajaAeronave ventana = new BajaAeronave(((Avion)listBox1.SelectedItem).getMatricula());
+                    ventana.Show();
+                }
+                
+
+            }
+            catch
+            {
+                MessageBox.Show("Rompio algo", "Error", MessageBoxButtons.OK);
+            }
+
         }
+
+        private int dameIdAeronave(string matricula)
+        {
+            SqlCommand sqlCmd = new SqlCommand("select AERONAVE_ID from THE_CVENGERS.AERONAVE where AERONAVE_MATRICULA_AVION ='" + matricula + "'", Conexion.getConexion());
+            SqlDataReader sqlReader;
+            sqlReader = sqlCmd.ExecuteReader();
+            sqlReader.Read();
+            int id = Int32.Parse(sqlReader["AERONAVE_ID"].ToString());
+            sqlReader.Close();
+
+            return id;
+
+        }
+
 
         
     }

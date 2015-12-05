@@ -114,7 +114,7 @@ namespace AerolineaFrba.Abm_Ruta
             this.dataGridView_listadoRutas.AllowUserToDeleteRows = false;
             this.dataGridView_listadoRutas.AllowUserToResizeColumns = false;
             this.dataGridView_listadoRutas.AllowUserToResizeRows = false;
-            this.dataGridView_listadoRutas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_listadoRutas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView_listadoRutas.Location = new System.Drawing.Point(19, 185);
             this.dataGridView_listadoRutas.MultiSelect = false;
             this.dataGridView_listadoRutas.Name = "dataGridView_listadoRutas";
