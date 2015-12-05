@@ -38,10 +38,10 @@
             this.dniBox = new System.Windows.Forms.NumericUpDown();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
-            this.buttonDev = new System.Windows.Forms.Button();
-            this.razonText = new System.Windows.Forms.RichTextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.razonText = new System.Windows.Forms.RichTextBox();
+            this.buttonDev = new System.Windows.Forms.Button();
+            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.errorRazon = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorList = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -141,14 +141,24 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Detalle de compra";
             // 
-            // checkedListBox1
+            // label3
             // 
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(6, 19);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(240, 154);
-            this.checkedListBox1.TabIndex = 0;
-            this.checkedListBox1.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBox1_ItemCheck);
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 177);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(180, 13);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "¿Cual es el motivo de la devolucion?";
+            // 
+            // razonText
+            // 
+            this.razonText.Location = new System.Drawing.Point(6, 193);
+            this.razonText.MaxLength = 100;
+            this.razonText.Name = "razonText";
+            this.razonText.Size = new System.Drawing.Size(240, 44);
+            this.razonText.TabIndex = 2;
+            this.razonText.Text = "";
+            this.razonText.TextChanged += new System.EventHandler(this.razonText_TextChanged);
             // 
             // buttonDev
             // 
@@ -161,24 +171,14 @@
             this.buttonDev.UseVisualStyleBackColor = true;
             this.buttonDev.Click += new System.EventHandler(this.buttonDev_Click);
             // 
-            // razonText
+            // checkedListBox1
             // 
-            this.razonText.Location = new System.Drawing.Point(6, 193);
-            this.razonText.MaxLength = 100;
-            this.razonText.Name = "razonText";
-            this.razonText.Size = new System.Drawing.Size(240, 44);
-            this.razonText.TabIndex = 2;
-            this.razonText.Text = "";
-            this.razonText.TextChanged += new System.EventHandler(this.razonText_TextChanged);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 177);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(180, 13);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "¿Cual es el motivo de la devolucion?";
+            this.checkedListBox1.FormattingEnabled = true;
+            this.checkedListBox1.Location = new System.Drawing.Point(6, 19);
+            this.checkedListBox1.Name = "checkedListBox1";
+            this.checkedListBox1.Size = new System.Drawing.Size(240, 154);
+            this.checkedListBox1.TabIndex = 0;
+            this.checkedListBox1.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBox1_ItemCheck);
             // 
             // errorRazon
             // 

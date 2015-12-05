@@ -50,8 +50,10 @@ namespace AerolineaFrba.Devolucion
                 reader.Close();
                 lleni.llenarDataGridViewDevolucion(dataGridView1, idClie);
                 dataGridView1.ClearSelection();
-               
-               // this.Size = new Size(226, 332);
+                if (dataGridView1.RowCount == 0) MessageBox.Show("No hay compras que se puedan devolver");
+
+
+                // this.Size = new Size(226, 332);
             }
             else
             {
@@ -72,7 +74,9 @@ namespace AerolineaFrba.Devolucion
             reader.Close();
             lleni.llenarDataGridViewDevolucion(dataGridView1, idClie);
             dataGridView1.ClearSelection();
-          
+            if (dataGridView1.RowCount == 0) MessageBox.Show("No hay compras que se puedan devolver");
+
+           
           //  this.Size = new Size(226, 332);
             
           
@@ -166,11 +170,16 @@ namespace AerolineaFrba.Devolucion
                     //  MessageBox.Show(cmd.CommandText);
                 }
                 transaction.Commit();
+                mandarMensajeDeExito();
                 razonText.ResetText();
                 for (int i = 0; i < checkedListBox1.Items.Count; i++)
                     checkedListBox1.SetItemCheckState(i, (CheckState.Unchecked));
                 checkedListBox1.Refresh();
                 foreach (int it in checkedListBox1.CheckedIndices) { checkedListBox1.Items.RemoveAt(it); }
+                lleni.llenarDataGridViewDevolucion(dataGridView1, idClie);
+                dataGridView1.ClearSelection();
+
+
 
             }
             catch (Exception exc)
@@ -185,5 +194,37 @@ namespace AerolineaFrba.Devolucion
 
             
         }
+
+
+        public void mandarMensajeDeExito()
+        {
+            SqlCommand cmd = new SqlCommand("select * from THE_CVENGERS.COMPRA where COMPRA_ID = "+ idComp, Conexion.getConexion());
+            SqlDataReader rd = cmd.ExecuteReader();
+            rd.Read();
+           bool sw = bool.Parse(rd["COMPRA_FORMA_DE_PAGO"].ToString());
+            rd.Close();
+            float monto = 0f;
+             foreach (int it in checkedListBox1.CheckedIndices) { monto += float.Parse(((ItemsDevolucion)checkedListBox1.Items[it]).getPrecio()); }
+            
+            String mens = "La devolucion se ha realizado con exito. El monto de $"+ monto.ToString();
+            if (!sw)
+                mens += " sera retribuido en efectivo.";
+            else
+            {
+                cmd.CommandText = "select THE_CVENGERS.tipoTarjetaCompra(" + idComp + ") 't'";
+                rd = cmd.ExecuteReader();
+                rd.Read();
+                String tipoT = rd["t"].ToString();
+                rd.Close();
+                cmd.CommandText = "select THE_CVENGERS.numeroTarjetaCompra(" + idComp + ") 'n'";
+                rd = cmd.ExecuteReader();
+                String numT = rd["n"].ToString();
+                rd.Close();
+                mens += " sera retribuido a la tarjeta "+tipoT+" de numero "+numT;
+            }
+            MessageBox.Show(mens);
+        }
+
     }
+
 }

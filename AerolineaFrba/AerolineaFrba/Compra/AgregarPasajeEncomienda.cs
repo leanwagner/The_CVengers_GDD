@@ -152,6 +152,7 @@ namespace AerolineaFrba.Compra
                     if (reader.HasRows)
                         apellidos.Add(reader["CLIENTE_APELLIDO"].ToString());
                 }
+
                 switch (apellidos.Count)
                 {
                     case 0:

@@ -37,6 +37,19 @@ namespace AerolineaFrba.Objetos
         
         }
 
+       public Cliente(int id, Int32 dni, string nombre, string apellido, string direccion, Int32 telefono, string mail, string fecha_nacimiento)
+       {
+
+           this.clienteId = id;
+           this.Dni = dni;
+           this.Nombre = nombre;
+           this.Apellido = apellido;
+           this.Direccion = direccion;
+           this.Telefono = telefono;
+           this.Mail = mail;
+           this.Fecha_nacimiento = fecha_nacimiento;
+       }
+
        override public String ToString()
        {
            return item.ToString();
