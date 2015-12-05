@@ -377,7 +377,9 @@ namespace AerolineaFrba.Compra
 
                tran.Commit();
 
-               MessageBox.Show("La compra fue realizada Exitosamente", "Información", MessageBoxButtons.OK);
+               MessageBox.Show("La compra fue realizada Exitosamente. Su código de compra es el " + obtenerCompraId(), "Información", MessageBoxButtons.OK);
+
+               this.Close();
            }
 
            catch(Exception ex)
@@ -463,6 +465,18 @@ namespace AerolineaFrba.Compra
 
             return resultado;
 
+        }
+
+        public string obtenerCompraId()
+        {
+            string query = "SELECT MAX(COMPRA_ID) AS C FROM THE_CVENGERS.COMPRA";
+            SqlCommand sqlCmd = new SqlCommand(query,Conexion.getConexion());
+            sqlCmd.Transaction = tran;
+            SqlDataReader reader = sqlCmd.ExecuteReader();
+            reader.Read();
+            string resultado = reader["C"].ToString();
+            reader.Close();
+            return resultado;
         }
         
     }

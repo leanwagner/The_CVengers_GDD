@@ -307,8 +307,9 @@
             this.boton_Eliminar_Aeronave.Name = "boton_Eliminar_Aeronave";
             this.boton_Eliminar_Aeronave.Size = new System.Drawing.Size(75, 23);
             this.boton_Eliminar_Aeronave.TabIndex = 1;
-            this.boton_Eliminar_Aeronave.Text = "Eliminar";
+            this.boton_Eliminar_Aeronave.Text = "Baja";
             this.boton_Eliminar_Aeronave.UseVisualStyleBackColor = true;
+            this.boton_Eliminar_Aeronave.Click += new System.EventHandler(this.boton_Eliminar_Aeronave_Click);
             // 
             // textBox8
             // 
