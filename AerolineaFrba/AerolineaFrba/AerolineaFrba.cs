@@ -18,7 +18,7 @@ namespace AerolineaFrba
     {
         int[] posisionesBoton = new int[] { 12, 51, 90, 129, 168,207,246,285,324,361,398 };
         Collection<String> funcionalidades = new Collection<String>();
-
+        SqlDataReader reader;
         public AerolineaFrba()
         {
             InitializeComponent();
@@ -34,7 +34,7 @@ namespace AerolineaFrba
         private void acomodarBotones()
         {
             SqlCommand cmd = new SqlCommand("select * from THE_CVENGERS.ROLXUSUARIO rxu, THE_CVENGERS.ROL r, THE_CVENGERS.USUARIO u, THE_CVENGERS.FUNCIONXROL fxr, THE_CVENGERS.FUNCIONALIDAD f where rxu.ROLXUSUARIO_ROL = r.ROL_ID and rxu.ROLXUSUARIO_USUARIO = u.USR_ID and FXR_ROL_ID = r.ROL_ID and f.FUNC_ID = fxr.FXR_FUNC_ID and u.USR_USERNAME = '" + Program.usuarioLogeado + "'", Conexion.getConexion());
-            SqlDataReader reader = cmd.ExecuteReader();
+            reader = cmd.ExecuteReader();
             while (reader.Read())
             {
                 funcionalidades.Add(reader["FUNC_NOMBRE"].ToString());

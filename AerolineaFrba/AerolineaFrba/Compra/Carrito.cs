@@ -13,6 +13,7 @@ using AerolineaFrba.MyNumericUpDown;
 using System.Data.SqlClient;
 using AerolineaFrba.Llenador;
 using AerolineaFrba.HoraDB;
+using System.Globalization;
 
 namespace AerolineaFrba.Compra
 {
@@ -389,14 +390,14 @@ namespace AerolineaFrba.Compra
         public void persistirCompraTarjeta()
         {
 
-            string query = "EXEC THE_CVENGERS.crearCompraConTarjeta @user = '" + buscarUsuarioId() +
-                "',@cli = '" + id_cliente.ToString() +
-                "',@tipoTar = '" + comboBox_tipoTarjeta.SelectedItem.ToString() +
-                "',@nro = '" + numericUpDown_numeroTarjeta.Value.ToString() +
-                "',@cod = '" + numericUpDown_codigoTarjeta.Value.ToString() +
-                "',@fechaVen = '" + dateTimePicker_vencimiento.Value.Date.ToString() +
-                "',@monto = '" + labelMonto.Text + 
-                "',@cuotas = '" + comboBox1.SelectedItem.ToString() + "'";
+            string query = "EXEC THE_CVENGERS.crearCompraConTarjeta @user = " + buscarUsuarioId() +
+                ",@cli = " + id_cliente.ToString() +
+                ",@tipoTar = '" + comboBox_tipoTarjeta.SelectedItem.ToString() +
+                "',@nro = " + numericUpDown_numeroTarjeta.Value.ToString() +
+                ",@cod = " + numericUpDown_codigoTarjeta.Value.ToString() +
+                ",@fechaVen = '" + dateTimePicker_vencimiento.Value.Date.ToString(CultureInfo.InvariantCulture) +
+                "',@monto = " + float.Parse(labelMonto.Text).ToString(CultureInfo.InvariantCulture) + 
+                ",@cuotas = " + comboBox1.SelectedItem.ToString() + "";
 
             SqlCommand sqlCmd = new SqlCommand(query, Conexion.getConexion());
             sqlCmd.Transaction = tran;
@@ -406,9 +407,9 @@ namespace AerolineaFrba.Compra
 
         public void persistirCompraEfectivo()
         {
-            string query = "EXEC THE_CVENGERS.crearCompraConEfectivo @user = '" + buscarUsuarioId() +
-                "',@cli = '" + id_cliente.ToString() +
-                "',@monto = '" + labelMonto.Text + "'";
+            string query = "EXEC THE_CVENGERS.crearCompraConEfectivo @user = " + buscarUsuarioId() +
+                ",@cli = " + id_cliente.ToString() +
+                ",@monto = " + float.Parse(labelMonto.Text).ToString(CultureInfo.InvariantCulture) + "";
              
             SqlCommand sqlCmd = new SqlCommand(query, Conexion.getConexion());
             sqlCmd.Transaction = tran;
@@ -425,11 +426,11 @@ namespace AerolineaFrba.Compra
 
         public void persistirTarjetaCredito()
         {
-            string query = "EXEC THE_CVENGERS.ingresarTarjeta @cli = '" + id_cliente.ToString() + 
-                "' ,@tipoTar = '" + comboBox_tipoTarjeta.SelectedItem.ToString() +
-                "' ,@nro = '" + numericUpDown_numeroTarjeta.Value.ToString() +
-                "' ,@cod = '" + numericUpDown_codigoTarjeta.Value.ToString() +
-                "' ,@fechaVen = '" + dateTimePicker_vencimiento.Value.Date.ToString() + "'";
+            string query = "EXEC THE_CVENGERS.ingresarTarjeta @cli = " + id_cliente.ToString() + 
+                " ,@tipoTar = '" + comboBox_tipoTarjeta.SelectedItem.ToString() +
+                "' ,@nro = " + numericUpDown_numeroTarjeta.Value.ToString() +
+                " ,@cod = " + numericUpDown_codigoTarjeta.Value.ToString() +
+                " ,@fechaVen = '" + dateTimePicker_vencimiento.Value.Date.ToString(CultureInfo.InvariantCulture) + "'";
 
             SqlCommand sqlCmd = new SqlCommand(query,Conexion.getConexion());
             sqlCmd.Transaction = tran;
