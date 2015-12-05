@@ -2056,7 +2056,7 @@ CREATE PROCEDURE THE_CVENGERS.modificarAeronave  @matri as nvarchar(100), @model
 as
 begin
 
-if(exists(select AERONAVE_ID FROM THE_CVENGERS.AERONAVE WHERE AERONAVE_MATRICULA_AVION = @matri))
+if(exists(select AERONAVE_ID FROM THE_CVENGERS.AERONAVE WHERE AERONAVE_MATRICULA_AVION = @matri and AERONAVE_ID <> @Id))
 begin
 raiserror('Ya existe un avión con ese número de matrícula.',16,1)
 return
