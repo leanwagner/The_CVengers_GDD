@@ -1,6 +1,8 @@
 ﻿using AerolineaFrba.TipoTerminal;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
@@ -14,26 +16,43 @@ namespace AerolineaFrba
 {
     public partial class AerolineaFrba : Form
     {
-        public AerolineaFrba(Terminal tipoTerminal )
+        int[] posisionesBoton = new int[] { 12, 51, 90, 129, 168,207,246,285,324,361,398 };
+        Collection<String> funcionalidades = new Collection<String>();
+
+        public AerolineaFrba()
         {
             InitializeComponent();
-
-            switch (tipoTerminal)
-            {
-
-                case Terminal.Kiosco: groupUsuario.Visible = false;
-                    break;
-
-                case Terminal.Usuario: groupKiosko.Visible = true;
-                    break;
-
-            }
          }
 
         private void AerolineaFrba_Load(object sender, EventArgs e)
         {
-            //this.AutoSize = true;
             this.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            //this.AutoSize = true;
+            SqlCommand cmd = new SqlCommand("select * from THE_CVENGERS.ROLXUSUARIO rxu, THE_CVENGERS.ROL r, THE_CVENGERS.USUARIO u, THE_CVENGERS.FUNCIONXROL fxr, THE_CVENGERS.FUNCIONALIDAD f where rxu.ROLXUSUARIO_ROL = r.ROL_ID and rxu.ROLXUSUARIO_USUARIO = u.USR_ID and FXR_ROL_ID = r.ROL_ID and f.FUNC_ID = fxr.FXR_FUNC_ID and u.USR_USERNAME = '"+Program.usuarioLogeado+"'",Conexion.getConexion());
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                funcionalidades.Add(reader["FUNC_NOMBRE"].ToString()); 
+            }
+
+            int proximoBoton = 0;
+
+            if (funcionalidades.Contains("ABM Ruta"))
+            {
+                boton_ABM_Ruta.Visible = true;
+                boton_ABM_Ruta.Location = new Point(12, posisionesBoton[proximoBoton]);
+                proximoBoton++;
+            }
+
+            if (funcionalidades.Contains("ABM Aeronave"))
+            {
+                boton_ABM_Aeronave.Visible = true;
+                boton_ABM_Aeronave.Location new Point(12,posisionesBoton[proximoBoton]);
+                proximoBoton++;
+            }
+
+
+            
 
         }
 
