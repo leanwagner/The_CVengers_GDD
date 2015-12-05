@@ -50,8 +50,10 @@ namespace AerolineaFrba.Devolucion
                 reader.Close();
                 lleni.llenarDataGridViewDevolucion(dataGridView1, idClie);
                 dataGridView1.ClearSelection();
-               
-               // this.Size = new Size(226, 332);
+                if (dataGridView1.RowCount == 0) MessageBox.Show("No hay compras que se puedan devolver");
+
+
+                // this.Size = new Size(226, 332);
             }
             else
             {
@@ -72,7 +74,9 @@ namespace AerolineaFrba.Devolucion
             reader.Close();
             lleni.llenarDataGridViewDevolucion(dataGridView1, idClie);
             dataGridView1.ClearSelection();
-          
+            if (dataGridView1.RowCount == 0) MessageBox.Show("No hay compras que se puedan devolver");
+
+           
           //  this.Size = new Size(226, 332);
             
           
