@@ -45,7 +45,7 @@ namespace AerolineaFrba.Login
             }
             else
             {
-                AerolineaFrba pantallaInicial = new AerolineaFrba(Terminal.Kiosco);
+                AerolineaFrba pantallaInicial = new AerolineaFrba();
                 pantallaInicial.Show();
                 this.Hide();
 
@@ -103,7 +103,8 @@ namespace AerolineaFrba.Login
                 try
                 {
                     sqlCmd.ExecuteScalar();
-                    AerolineaFrba pantallaInicial = new AerolineaFrba(Terminal.Usuario);
+                    AerolineaFrba pantallaInicial = new AerolineaFrba();
+                    Program.usuarioLogeado = textBox_usuario.Text;
                     pantallaInicial.Show();
                     this.Hide();
                 }
