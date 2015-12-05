@@ -186,6 +186,7 @@
             this.Name = "AerolineaFrba";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AerolineaFRBA";
+            this.Activated += new System.EventHandler(this.AerolineaFrba_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AerolineaFrba_FormClosing);
             this.Load += new System.EventHandler(this.AerolineaFrba_Load);
             this.ResumeLayout(false);
