@@ -73,7 +73,8 @@ namespace AerolineaFrba.Abm_Aeronave
                  }
                  else
                  {
-                     MessageBox.Show("La aeronave posee viajes pendientes", "Error");
+                     DecisionAeronave ventana = new DecisionAeronave(dameIdAeronave(this.matricula_aeronave), dateTimePicker_reinc.Value.ToString());
+                     ventana.Show();
                  }
 
             }
@@ -99,7 +100,6 @@ namespace AerolineaFrba.Abm_Aeronave
 
                         try
                         {
-                            MessageBox.Show("EXEC THE_CVENGERS.darDeBajaVitaliciaAeronave @avion=" + dameIdAeronave(this.matricula_aeronave));
                             SqlCommand sqlCmds = new SqlCommand("EXEC THE_CVENGERS.darDeBajaVitaliciaAeronave @avion=" + dameIdAeronave(this.matricula_aeronave) + "", Conexion.getConexion());
 
                             sqlCmds.ExecuteScalar();
@@ -115,7 +115,8 @@ namespace AerolineaFrba.Abm_Aeronave
                     else
                     {
 
-                        MessageBox.Show("La aeronave posee viajes pendientes", "Error");
+                        DecisionAeronave ventana = new DecisionAeronave(dameIdAeronave(this.matricula_aeronave),"");
+                        ventana.Show();
                  
                     }
 
