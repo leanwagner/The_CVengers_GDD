@@ -2048,6 +2048,57 @@ return
 end
 
 end
+
+go
+CREATE PROCEDURE THE_CVENGERS.modificarAeronave  @matri as nvarchar(100), @model as nvarchar(100), @fabricante as numeric(18,0),
+												@serv as numeric(18,0), @butacas as numeric(18,0), @espacio as numeric(18,2),
+												@pisos as numeric(3,0), @Id as numeric(18,0) 
+as
+begin
+
+if(exists(select AERONAVE_ID FROM THE_CVENGERS.AERONAVE WHERE AERONAVE_MATRICULA_AVION = @matri))
+begin
+raiserror('Ya existe un avión con ese número de matrícula.',16,1)
+return
+end
+
+update THE_CVENGERS.AERONAVE set AERONAVE_MATRICULA_AVION = @matri, AERONAVE_CANTIDAD_BUTACAS = @butacas,
+								AERONAVE_ESPACIO_ENCOMIENDAS = @espacio, AERONAVE_FABRICANTE_AVION = @fabricante,
+								AERONAVE_MODELO_AVION = @model, AERONAVE_SERVICIO = @serv
+where AERONAVE_ID = @Id
+
+DELETE FROM THE_CVENGERS.BUTACA
+WHERE BUTACA_AERONAVE = @Id
+
+declare @aeronave numeric(18,0)
+set @aeronave = (select AERONAVE_ID  from THE_CVENGERS.AERONAVE where AERONAVE_MATRICULA_AVION = @matri)
+
+declare @numbut numeric(10,0)
+set @numbut = 0
+
+declare @numpiso numeric(10,0)
+set @numpiso = 1
+
+declare @butacasXpiso numeric(10,0)
+set @butacasXpiso = @butacas/@pisos
+
+declare @tipobut numeric(10,0)
+set @tipobut = 0
+
+while @numbut < @butacas
+begin
+
+if(@numbut = @butacasXpiso) set @numpiso = @numpiso + 1
+
+insert into THE_CVENGERS.BUTACA (BUTACA_AERONAVE,BUTACA_NRO, BUTACA_PISO, BUTACA_TIPO)
+values (@aeronave, @numbut, @numpiso, (case when @tipobut = 0 then 'Ventanilla' else 'Pasillo' end))
+
+if(@tipobut = 1) set @tipobut = 0 else set @tipobut = 1
+ 
+set @numbut = @numbut +1
+end
+end
+
 /*DROP TABLE [THE_CVENGERS].CUOTASXTARJETA
 DROP TABLE [THE_CVENGERS].MILLA
 DROP TABLE [THE_CVENGERS].FECHA
@@ -2143,5 +2194,6 @@ DROP PROCEDURE [THE_CVENGERS].suplirAeronaveEsteLapso
 DROP PROCEDURE [THE_CVENGERS].darDeBajaVitaliciaAeronave
 DROP PROCEDURE [THE_CVENGERS].mandarATallerHastaFecha
 DROP PROCEDURE [THE_CVENGERS].puedeIrATaller
+DROP PROCEDURE [THE_CVENGERS].modificarAeronave
 DROP PROCEDURE [THE_CVENGERS].getAll 
 DROP SCHEMA [THE_CVENGERS]*/
