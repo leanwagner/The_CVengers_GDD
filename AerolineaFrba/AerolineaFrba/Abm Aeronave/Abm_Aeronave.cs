@@ -100,7 +100,7 @@ namespace AerolineaFrba.Abm_Aeronave
             comboBox1.SelectedIndex = 0;
             comboBox2.SelectedIndex = 0;
            
-            SqlCommand sqlCmd = new SqlCommand("SELECT * FROM THE_CVENGERS.AERONAVE, THE_CVENGERS.FABRICANTE, THE_CVENGERS.SERVICIO where AERONAVE_FABRICANTE_AVION = FABRICANTE_ID and AERONAVE_SERVICIO = SERVICIO_ID", Conexion.getConexion());
+            SqlCommand sqlCmd = new SqlCommand("SELECT * FROM THE_CVENGERS.AERONAVE, THE_CVENGERS.FABRICANTE, THE_CVENGERS.SERVICIO where AERONAVE_FABRICANTE_AVION = FABRICANTE_ID and AERONAVE_SERVICIO = SERVICIO_ID and AERONAVE_ESTADO = 1", Conexion.getConexion());
 
             SqlDataReader sqlReader = sqlCmd.ExecuteReader();
 
