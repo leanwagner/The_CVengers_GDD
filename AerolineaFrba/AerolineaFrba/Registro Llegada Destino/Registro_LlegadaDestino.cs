@@ -28,6 +28,7 @@ namespace AerolineaFrba.Registro_Llegada_Destino
             llenarComboMatricula(ref comboBox_matricula);
             errorProvider_buscarAeronave.SetError(button_BuscarAeronave, "Para desbloquear el boton deben haberse llenado todos los campos");
             groupBox3.Enabled = false;
+            visibilidadTextos(false);
 
 
         }
@@ -106,6 +107,7 @@ namespace AerolineaFrba.Registro_Llegada_Destino
 
         private void button_BuscarAeronave_Click(object sender, EventArgs e)
         {
+            SqlDataReader reader = null;
             try
             {
                 SqlCommand sqlCmd = new SqlCommand("SELECT THE_CVENGERS.viajeARegistrar ('" + comboBox_matricula.SelectedItem.ToString() +
@@ -113,7 +115,7 @@ namespace AerolineaFrba.Registro_Llegada_Destino
                 "', '" + comboBox_AeropuertoLlegada.SelectedItem.ToString().Substring(1) + "') AS resultado ", Conexion.getConexion());
 
 
-                SqlDataReader reader = sqlCmd.ExecuteReader();
+                reader = sqlCmd.ExecuteReader();
 
                 reader.Read();
 
@@ -149,12 +151,13 @@ namespace AerolineaFrba.Registro_Llegada_Destino
                 groupBox3.Enabled = true;
                 dateTimePicker1.CustomFormat = "dd/MM/yyyy HH:mm:ss";
 
-               
+                visibilidadTextos(true);
 
             }
-            catch 
+            catch
             {
-                MessageBox.Show("No hay ningún viaje en proceso de esa Aeronave sobre esa ruta.", "Error", MessageBoxButtons.OK);
+                reader.Close();
+                MessageBox.Show("No hay ningún viaje en proceso de esa Aeronave sobre esa ruta. ", "Error", MessageBoxButtons.OK);
             }
 
         }
@@ -168,11 +171,7 @@ namespace AerolineaFrba.Registro_Llegada_Destino
             comboBox_matricula.Items.Clear();
             llenarComboMatricula(ref comboBox_matricula);
             groupBox3.Enabled = false;
-            label_LlegadaEstimadaAeronave.Text = "** dd/MM/yyyy hh:mm**";
-            label_MatriculaAeronave.Text = "**NRO**";
-            label_ModeloAeronave.Text = "**Modelo**";
-            label_SalidaAeronave.Text = "**dd/MM/yyyy hh:mm**";
-            label_TipoServicio.Text = "**Servicio**";
+            visibilidadTextos(false);
             dateTimePicker1.CustomFormat = " ";
         }
 
@@ -195,6 +194,15 @@ namespace AerolineaFrba.Registro_Llegada_Destino
             {
                 MessageBox.Show("No se pudo registrar el viaje seleccionado.", "Error", MessageBoxButtons.OK);
             }
+        }
+
+        public void visibilidadTextos(bool flag)
+        {
+            label_LlegadaEstimadaAeronave.Visible = flag;
+            label_MatriculaAeronave.Visible = flag;
+            label_ModeloAeronave.Visible = flag;
+            label_SalidaAeronave.Visible = flag;
+            label_TipoServicio.Visible = flag;
         }
 
     }
