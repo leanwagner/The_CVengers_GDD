@@ -211,6 +211,13 @@ namespace AerolineaFrba.Compra
             button_continuarCompra.Enabled = true;
         }
 
+        private void Compra_Activated(object sender, EventArgs e)
+        {
+            this.mostrarViajes();
+            dataGridView1.ClearSelection();
+        }
+
+
         
 
     }
