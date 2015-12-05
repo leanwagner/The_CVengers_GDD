@@ -1,6 +1,6 @@
 ﻿namespace AerolineaFrba.Devolucion
 {
-    partial class Devolucion
+    partial class Devolución
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Devolucion));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Devolución));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.nombreCombo = new System.Windows.Forms.ComboBox();
@@ -148,7 +148,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(180, 13);
             this.label3.TabIndex = 3;
-            this.label3.Text = "¿Cual es el motivo de la devolucion?";
+            this.label3.Text = "¿Cuál es el motivo de la devolución?";
             // 
             // razonText
             // 
@@ -167,7 +167,7 @@
             this.buttonDev.Name = "buttonDev";
             this.buttonDev.Size = new System.Drawing.Size(202, 23);
             this.buttonDev.TabIndex = 1;
-            this.buttonDev.Text = "Confirmar devolucion";
+            this.buttonDev.Text = "Confirmar devolución";
             this.buttonDev.UseVisualStyleBackColor = true;
             this.buttonDev.Click += new System.EventHandler(this.buttonDev_Click);
             // 
@@ -188,7 +188,7 @@
             // 
             this.errorList.ContainerControl = this;
             // 
-            // Devolucion
+            // Devolución
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -199,9 +199,10 @@
             this.Controls.Add(this.nombreCombo);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "Devolucion";
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "Devolución";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Devolucion";
+            this.Text = "Devolución";
             this.Load += new System.EventHandler(this.Devolucion_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorDniDup)).EndInit();

@@ -58,7 +58,22 @@ namespace AerolineaFrba.Abm_Ruta
 
         private void button1_Click(object sender, EventArgs e)
         {
+            DataGridViewRow seleccionada = dataGridView_listadoRutas.SelectedRows[0];
 
+
+        
+                
+                SqlCommand sqlCmd = new SqlCommand("EXEC THE_CVENGERS.bajarRuta @ruta =" + dataGridView_listadoRutas.SelectedRows[0].Cells[0].Value, Conexion.getConexion());
+
+                                try
+                                {
+                                    sqlCmd.ExecuteNonQuery();
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
+                                }
+                                mostrarRutas();
         }
 
         private void boton_Modificar_Click(object sender, EventArgs e)
@@ -68,6 +83,8 @@ namespace AerolineaFrba.Abm_Ruta
             DataGridViewRow seleccionado = dataGridView_listadoRutas.SelectedRows[0];
 
             RutaModificar rutaAModificar = new RutaModificar(Int32.Parse(seleccionado.Cells[0].Value.ToString()), Int32.Parse(seleccionado.Cells[1].Value.ToString()), seleccionado.Cells[2].Value.ToString(), seleccionado.Cells[3].Value.ToString(), System.Convert.ToDecimal(seleccionado.Cells[4].Value.ToString()), System.Convert.ToDecimal(seleccionado.Cells[5].Value.ToString()), seleccionado.Cells[6].Value.ToString(), seleccionado.Cells[7].Value.ToString(),seleccionado.Cells[8].Value.ToString());
+
+            MessageBox.Show(seleccionado.Cells[0].Value.ToString());
 
             rutaAModificar.Show();
 

@@ -16,6 +16,7 @@ namespace AerolineaFrba.Abm_Aeronave
     {
 
         String matAnt;
+        int indiceSele;
         public Abm_Aeronave()
         {
             InitializeComponent();
@@ -81,7 +82,7 @@ namespace AerolineaFrba.Abm_Aeronave
                 MessageBox.Show(ex.Message,"Error",MessageBoxButtons.OK);
             }
             MessageBox.Show("Aeronave creada exitosamente");
-            listBox1.Items.Add(textBox1.Text);
+            listBox1.Items.Add(new Avion(textBox1.Text,comboBox2.Text,comboBox1.Text));
             listBox1.Refresh();
 
             textBox1.ResetText();
@@ -98,7 +99,17 @@ namespace AerolineaFrba.Abm_Aeronave
             lleni.llenarComboBox(ref comboBox2, "SERVICIO","SERVICIO_NOMBRE");
             comboBox1.SelectedIndex = 0;
             comboBox2.SelectedIndex = 0;
-            lleni.llenarListBox(ref listBox1, "AERONAVE", "AERONAVE_MATRICULA_AVION");
+           
+            SqlCommand sqlCmd = new SqlCommand("SELECT * FROM THE_CVENGERS.AERONAVE, THE_CVENGERS.FABRICANTE, THE_CVENGERS.SERVICIO where AERONAVE_FABRICANTE_AVION = FABRICANTE_ID and AERONAVE_SERVICIO = SERVICIO_ID", Conexion.getConexion());
+
+            SqlDataReader sqlReader = sqlCmd.ExecuteReader();
+
+            while (sqlReader.Read())
+            {
+                listBox1.Items.Add(new Avion(sqlReader["AERONAVE_MATRICULA_AVION"].ToString(), sqlReader["SERVICIO_NOMBRE"].ToString(), sqlReader["FABRICANTE_NOMBRE"].ToString()));
+            }
+
+            sqlReader.Close();
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
@@ -125,20 +136,33 @@ namespace AerolineaFrba.Abm_Aeronave
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
          
-            boton_Modificar_Aeronave.Enabled = true;
+           
             boton_Eliminar_Aeronave.Enabled = true;
+
+            SqlCommand cmd = new SqlCommand("select case when exists(select * from THE_CVENGERS.VIAJE, THE_CVENGERS.AERONAVE where VIAJE_AERONAVE = AERONAVE_ID and AERONAVE_MATRICULA_AVION ='"+((Avion)listBox1.SelectedItem).matricula +"') then 1 else 0 end", Conexion.getConexion());
+            if ((int)cmd.ExecuteScalar() == 0)
+            {
+                boton_Modificar_Aeronave.Enabled = true;
+                errorTieneViajes.Clear();
+            }
+            else
+            {
+                boton_Modificar_Aeronave.Enabled = false;
+                errorTieneViajes.SetError(boton_Modificar_Aeronave, "No se pueden modificar aeronaves que ya han viajado");
+            }
         }
 
         private void boton_Modificar_Aeronave_Click(object sender, EventArgs e)
         {
             groupBox3.Visible = true;
             groupBox3.Refresh();
+            groupBox2.Enabled = false;
             this.Refresh();
             Llenador.LlenadorDeTablas lleni = new Llenador.LlenadorDeTablas();
             lleni.llenarComboBox(ref comboBox4, "FABRICANTE", "FABRICANTE_NOMBRE");
             lleni.llenarComboBox(ref comboBox3, "SERVICIO", "SERVICIO_NOMBRE");
 
-            SqlCommand sqlCmd = new SqlCommand("select * from THE_CVENGERS.AERONAVE, THE_CVENGERS.SERVICIO, THE_CVENGERS.FABRICANTE where AERONAVE_FABRICANTE_AVION = FABRICANTE_ID and AERONAVE_SERVICIO = SERVICIO_ID and AERONAVE_MATRICULA_AVION ='" + listBox1.SelectedItem.ToString() + "'", Conexion.getConexion());
+            SqlCommand sqlCmd = new SqlCommand("select * from THE_CVENGERS.AERONAVE, THE_CVENGERS.SERVICIO, THE_CVENGERS.FABRICANTE where AERONAVE_FABRICANTE_AVION = FABRICANTE_ID and AERONAVE_SERVICIO = SERVICIO_ID and AERONAVE_MATRICULA_AVION ='" + ((Avion)listBox1.SelectedItem).getMatricula() + "'", Conexion.getConexion());
             SqlDataReader sqlReader;
             sqlReader = sqlCmd.ExecuteReader();
             sqlReader.Read();
@@ -150,11 +174,15 @@ namespace AerolineaFrba.Abm_Aeronave
             textBox5.Value = decimal.Parse(sqlReader["AERONAVE_ESPACIO_ENCOMIENDAS"].ToString());
             matAnt = sqlReader["AERONAVE_ID"].ToString();
             sqlReader.Close();
+            indiceSele = listBox1.SelectedIndex;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             groupBox3.Visible = false;
+            comboBox3.Items.Clear();
+                comboBox4.Items.Clear();
+                groupBox2.Enabled = true;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -175,17 +203,31 @@ namespace AerolineaFrba.Abm_Aeronave
 
 
 
-            sqlCmd.CommandText = "UPDATE THE_CVENGERS.AERONAVE set AERONAVE_CANTIDAD_BUTACAS = " + textBox6.Value.ToString() + ",AERONAVE_FABRICANTE_AVION = '" + idFab + "',AERONAVE_ESPACIO_ENCOMIENDAS = " + textBox5.Value.ToString(CultureInfo.InvariantCulture) + ",AERONAVE_MATRICULA_AVION = '" + textBox8.Text + "',AERONAVE_MODELO_AVION = '" + textBox7.Text + "',AERONAVE_SERVICIO = '" + idServ + "' where AERONAVE_ID = " + matAnt;
+            sqlCmd.CommandText = "exec modificarAeronave @butacas = " + textBox6.Value.ToString() + 
+                ",@fab = " + idFab + 
+                ",@espacio = " + textBox5.Value.ToString(CultureInfo.InvariantCulture) + 
+                ",@matricula = '" + textBox8.Text + 
+                "',@modelo = '" + textBox7.Text + 
+                "',@serv = " + idServ + 
+                ", @idAvion = " + matAnt;
 
             try
             {
-                sqlCmd.ExecuteNonQuery();
-            }
-            catch 
-            {
-                MessageBox.Show("Ya existe un avion con esa matricula", "Error", MessageBoxButtons.OK);
-            }
+              //  sqlCmd.ExecuteNonQuery();
+                MessageBox.Show("No hace nada hasta que mike haga el procedure modificarAeronave. Descomentar las 3 lineas cerca de este message box cuando el procedure este hecho");  
             groupBox3.Visible = false;
+            //listBox1.Items.RemoveAt(indiceSele);
+            //listBox1.Items.Add(new Avion(textBox8.Text, comboBox3.Text, comboBox4.Text));
+            listBox1.Refresh();
+            comboBox4.Items.Clear();
+            comboBox3.Items.Clear();
+            groupBox2.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
+            }
+   
         }
 
         private void textBox8_TextChanged(object sender, EventArgs e)
@@ -205,6 +247,15 @@ namespace AerolineaFrba.Abm_Aeronave
         private void label13_Click(object sender, EventArgs e)
         {
 
+        }
+
+        
+
+        private void boton_Eliminar_Aeronave_Click(object sender, EventArgs e)
+        {
+
+            BajaAeronave ventana = new BajaAeronave(((Avion)listBox1.SelectedItem).getMatricula());
+            ventana.Show();
         }
 
         

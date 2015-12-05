@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Abm_Aeronave));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
@@ -64,6 +65,7 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.errorTieneViajes = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textBox4)).BeginInit();
@@ -72,6 +74,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.textBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textBox5)).BeginInit();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorTieneViajes)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -269,9 +272,9 @@
             this.groupBox2.Controls.Add(this.listBox1);
             this.groupBox2.Controls.Add(this.boton_Modificar_Aeronave);
             this.groupBox2.Controls.Add(this.boton_Eliminar_Aeronave);
-            this.groupBox2.Location = new System.Drawing.Point(28, 363);
+            this.groupBox2.Location = new System.Drawing.Point(20, 382);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(302, 195);
+            this.groupBox2.Size = new System.Drawing.Size(310, 192);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Listado Aeronaves";
@@ -279,7 +282,7 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(3, 16);
+            this.listBox1.Location = new System.Drawing.Point(12, 16);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(284, 134);
             this.listBox1.Sorted = true;
@@ -304,8 +307,9 @@
             this.boton_Eliminar_Aeronave.Name = "boton_Eliminar_Aeronave";
             this.boton_Eliminar_Aeronave.Size = new System.Drawing.Size(75, 23);
             this.boton_Eliminar_Aeronave.TabIndex = 1;
-            this.boton_Eliminar_Aeronave.Text = "Eliminar";
+            this.boton_Eliminar_Aeronave.Text = "Baja";
             this.boton_Eliminar_Aeronave.UseVisualStyleBackColor = true;
+            this.boton_Eliminar_Aeronave.Click += new System.EventHandler(this.boton_Eliminar_Aeronave_Click);
             // 
             // textBox8
             // 
@@ -476,13 +480,17 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // errorTieneViajes
+            // 
+            this.errorTieneViajes.ContainerControl = this;
+            // 
             // Abm_Aeronave
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this.ClientSize = new System.Drawing.Size(342, 566);
+            this.ClientSize = new System.Drawing.Size(342, 579);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -501,6 +509,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.textBox5)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorTieneViajes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -547,6 +556,7 @@
         private System.Windows.Forms.NumericUpDown textBox3;
         private System.Windows.Forms.NumericUpDown numericUpDown2;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.ErrorProvider errorTieneViajes;
 
     }
 }

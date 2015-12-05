@@ -213,6 +213,7 @@ namespace AerolineaFrba.Compra
         private void comboBox_butacasDisponibles_SelectedIndexChanged(object sender, EventArgs e)
         {
             groupBox2.Enabled = true;
+            
         }
 
         private void numericUpDown_kilos_ValueChanged(object sender, EventArgs e)

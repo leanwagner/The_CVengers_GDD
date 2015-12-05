@@ -30,6 +30,14 @@ namespace AerolineaFrba.Abm_Rol
         private void ModificarRol_Load(object sender, EventArgs e)
         {
             this.Text = rol;
+            if (rol == "Administrador" || rol == "Cliente") 
+            {
+                label1.Enabled = false;
+                textBox1.Enabled = false;
+                button3.Enabled = false;
+                errorProvider1.SetError(label1, "El nombre de los roles 'Administrador' y 'Cliente' no puede ser modificado");
+            }
+
             Llenador.LlenadorDeTablas llenu = new Llenador.LlenadorDeTablas();
             llenu.llenarListBoxConCondicion(ref listBox1, "FUNCIONALIDAD f, THE_CVENGERS.FUNCIONXROL fxr, THE_CVENGERS.ROL r", "FUNC_NOMBRE", "fxr.FXR_FUNC_ID = f.FUNC_ID and fxr.FXR_ROL_ID = r.ROL_ID and r.ROL_NOMBRE = '" + rol + "'");
             llenu.llenarListBoxSacandoLosDelOtro(ref listBox2,ref listBox1, "FUNCIONALIDAD", "FUNC_NOMBRE");

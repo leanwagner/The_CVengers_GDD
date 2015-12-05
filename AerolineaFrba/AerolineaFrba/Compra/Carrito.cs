@@ -13,6 +13,7 @@ using AerolineaFrba.MyNumericUpDown;
 using System.Data.SqlClient;
 using AerolineaFrba.Llenador;
 using AerolineaFrba.HoraDB;
+using System.Globalization;
 
 namespace AerolineaFrba.Compra
 {
@@ -25,6 +26,7 @@ namespace AerolineaFrba.Compra
         public static Collection<int> ListaButacas = new Collection<int>();
         LlenadorDeTablas lloni = new LlenadorDeTablas();
         bool estaTodoAutocompletado = false;
+        public static SqlTransaction tran; 
 
         public Carrito(int id_viaje, int kgs)
         {
@@ -41,7 +43,7 @@ namespace AerolineaFrba.Compra
             checkeoUsuario();
             seteoDateTime(ref dateTimePicker_vencimiento);
             llenarComboBoxTarjetas(ref comboBox_tipoTarjeta);
-
+            radioButton_tarjeta.Checked = true;
 
         }
 
@@ -75,9 +77,15 @@ namespace AerolineaFrba.Compra
 
         public void checkeoUsuario()
         {
-
-            radioButton_tarjeta.Checked = true;
-            radioButton_efectivo.Enabled = false;
+            if (Program.usuarioLogeado == "Guest")
+            {
+                radioButton_tarjeta.Checked = true;
+                radioButton_efectivo.Enabled = false;
+            }
+            else {
+                radioButton_efectivo.Enabled = true;
+                
+            }
 
         }
         private void button_aEncomienda_Click(object sender, EventArgs e)
@@ -166,6 +174,7 @@ namespace AerolineaFrba.Compra
             if (numericUpDown_dni.Text.Length > 5 && !estaTodoAutocompletado)
             {
                 SqlCommand cmd = new SqlCommand("select * from THE_CVENGERS.CLIENTE where CLIENTE_DNI = " + numericUpDown_dni.Text, Conexion.getConexion());
+                cmd.Transaction = tran;
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
@@ -205,6 +214,7 @@ namespace AerolineaFrba.Compra
                         if (textBox_apellido.Text.Length > 0)
                         {
                             SqlCommand sqlCmd = new SqlCommand("select * from THE_CVENGERS.CLIENTE where CLIENTE_DNI = " + numericUpDown_dni.Text + " AND CLIENTE_APELLIDO COLLATE Latin1_General_CI_AI like '" + textBox_apellido.Text + "' COLLATE Latin1_General_CI_AI", Conexion.getConexion());
+                            sqlCmd.Transaction = tran;
                             SqlDataReader leedor = sqlCmd.ExecuteReader();
 
 
@@ -348,43 +358,65 @@ namespace AerolineaFrba.Compra
         {
             if (aplicarValidaciones() > 0)
                 return;
-
+            
            new Cliente(id_cliente,(int)numericUpDown_dni.Value, textBox_nombre.Text, textBox_apellido.Text, textBox1.Text, (int)numericUpDown_telefono.Value, textBox2.Text, dateTimePicker_nacimiento.Value.Date.ToString()).persistirme();
+           
+            tran = Conexion.getConexion().BeginTransaction();   
+           try
+           {
+               if (radioButton_tarjeta.Checked)
+               {
+                   persistirTarjetaCredito();
+                   persistirCompraTarjeta();
+               }
+               else
+                   persistirCompraEfectivo();
 
-           persistirTarjetaCredito();
+               foreach (Cliente cli in ListaClientes)
+                   cli.getItem().persistirItem(id_cliente);
 
-           if (radioButton_tarjeta.Checked)
-               persistirCompraTarjeta();
-           else
-               persistirCompraEfectivo();
+               tran.Commit();
 
+               MessageBox.Show("La compra fue realizada Exitosamente. Su código de compra es el " + obtenerCompraId(), "Información", MessageBoxButtons.OK);
+
+               this.Close();
+           }
+
+           catch(Exception ex)
+           {
+               MessageBox.Show("La compra no pudo finalizar correctamente" + ex.Message, "Error", MessageBoxButtons.OK);
+               tran.Rollback();
+           }
         }
 
         public void persistirCompraTarjeta()
         {
-            string query = "EXEC THE_CVENGERS.crearCompraConTarjeta @user = '" + +
-                "',@cli = '" + id_cliente.ToString() +
-                "',@tipoTar = '" + comboBox_tipoTarjeta.SelectedItem.ToString() +
-                "',@nro = '" + numericUpDown_numeroTarjeta.Value.ToString() +
-                "',@cod = '" + numericUpDown_codigoTarjeta.Value.ToString() +
-                "',@fechaVen = '" + dateTimePicker_vencimiento.Value.Date.ToString() +
-                "',@monto = '" + labelMonto.Text + 
-                "',@cuotas = '" + comboBox1.SelectedItem.ToString() + "'";
+
+            string query = "EXEC THE_CVENGERS.crearCompraConTarjeta @user = " + buscarUsuarioId() +
+                ",@cli = " + id_cliente.ToString() +
+                ",@tipoTar = '" + comboBox_tipoTarjeta.SelectedItem.ToString() +
+                "',@nro = " + numericUpDown_numeroTarjeta.Value.ToString() +
+                ",@cod = " + numericUpDown_codigoTarjeta.Value.ToString() +
+                ",@fechaVen = '" + dateTimePicker_vencimiento.Value.Date.ToString(CultureInfo.InvariantCulture) +
+                "',@monto = " + float.Parse(labelMonto.Text).ToString(CultureInfo.InvariantCulture) + 
+                ",@cuotas = " + comboBox1.SelectedItem.ToString() + "";
 
             SqlCommand sqlCmd = new SqlCommand(query, Conexion.getConexion());
-            MessageBox.Show(sqlCmd.CommandText);
-            
+            sqlCmd.Transaction = tran;
             sqlCmd.ExecuteNonQuery();
 
         }
 
         public void persistirCompraEfectivo()
         {
-            string query = "";
+            string query = "EXEC THE_CVENGERS.crearCompraConEfectivo @user = " + buscarUsuarioId() +
+                ",@cli = " + id_cliente.ToString() +
+                ",@monto = " + float.Parse(labelMonto.Text).ToString(CultureInfo.InvariantCulture) + "";
+             
             SqlCommand sqlCmd = new SqlCommand(query, Conexion.getConexion());
-            MessageBox.Show(sqlCmd.CommandText);
-
+            sqlCmd.Transaction = tran;
             sqlCmd.ExecuteNonQuery();
+
         }
 
         private void comboBox_tipoTarjeta_SelectedIndexChanged(object sender, EventArgs e)
@@ -396,16 +428,14 @@ namespace AerolineaFrba.Compra
 
         public void persistirTarjetaCredito()
         {
-            string query = "EXEC THE_CVENGERS.ingresarTarjeta @cli = '" + id_cliente.ToString() + 
-                "' ,@tipoTar = '" + comboBox_tipoTarjeta.SelectedItem.ToString() +
-                "' ,@nro = '" + numericUpDown_numeroTarjeta.Value.ToString() +
-                "' ,@cod = '" + numericUpDown_codigoTarjeta.Value.ToString() +
-                "' ,@fechaVen = '" + dateTimePicker_vencimiento.Value.Date.ToString() + "'";
+            string query = "EXEC THE_CVENGERS.ingresarTarjeta @cli = " + id_cliente.ToString() + 
+                " ,@tipoTar = '" + comboBox_tipoTarjeta.SelectedItem.ToString() +
+                "' ,@nro = " + numericUpDown_numeroTarjeta.Value.ToString() +
+                " ,@cod = " + numericUpDown_codigoTarjeta.Value.ToString() +
+                " ,@fechaVen = '" + dateTimePicker_vencimiento.Value.Date.ToString(CultureInfo.InvariantCulture) + "'";
 
             SqlCommand sqlCmd = new SqlCommand(query,Conexion.getConexion());
-
-            MessageBox.Show(sqlCmd.CommandText);
-
+            sqlCmd.Transaction = tran;
             try
             {
                 sqlCmd.ExecuteNonQuery();
@@ -414,6 +444,39 @@ namespace AerolineaFrba.Compra
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);    
             }
+        }
+        public string buscarUsuarioId()
+        {
+            string command = "SELECT * FROM THE_CVENGERS.USUARIO WHERE USR_USERNAME = '" + Program.usuarioLogeado + "'";
+            string resultado = "";
+
+            SqlCommand sqlCmd = new SqlCommand(command,Conexion.getConexion());
+
+            sqlCmd.Transaction = tran;
+
+            SqlDataReader reader = sqlCmd.ExecuteReader();
+
+            reader.Read();
+
+            if (reader.HasRows)
+               resultado = reader["USR_ID"].ToString();
+            
+            reader.Close();
+
+            return resultado;
+
+        }
+
+        public string obtenerCompraId()
+        {
+            string query = "SELECT MAX(COMPRA_ID) AS C FROM THE_CVENGERS.COMPRA";
+            SqlCommand sqlCmd = new SqlCommand(query,Conexion.getConexion());
+            sqlCmd.Transaction = tran;
+            SqlDataReader reader = sqlCmd.ExecuteReader();
+            reader.Read();
+            string resultado = reader["C"].ToString();
+            reader.Close();
+            return resultado;
         }
         
     }

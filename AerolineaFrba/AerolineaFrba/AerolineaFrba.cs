@@ -16,9 +16,9 @@ namespace AerolineaFrba
 {
     public partial class AerolineaFrba : Form
     {
-        int[] posisionesBoton = new int[] { 12, 51, 90, 129, 168,207,246,285,324,361,398 };
+        int[] posisionesBoton = new int[] { 12, 51, 90, 129, 168,207,246,285,324,361,398,430 };
         Collection<String> funcionalidades = new Collection<String>();
-
+        SqlDataReader reader;
         public AerolineaFrba()
         {
             InitializeComponent();
@@ -26,13 +26,19 @@ namespace AerolineaFrba
 
         private void AerolineaFrba_Load(object sender, EventArgs e)
         {
-            this.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            //this.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             //this.AutoSize = true;
-            SqlCommand cmd = new SqlCommand("select * from THE_CVENGERS.ROLXUSUARIO rxu, THE_CVENGERS.ROL r, THE_CVENGERS.USUARIO u, THE_CVENGERS.FUNCIONXROL fxr, THE_CVENGERS.FUNCIONALIDAD f where rxu.ROLXUSUARIO_ROL = r.ROL_ID and rxu.ROLXUSUARIO_USUARIO = u.USR_ID and FXR_ROL_ID = r.ROL_ID and f.FUNC_ID = fxr.FXR_FUNC_ID and u.USR_USERNAME = '"+Program.usuarioLogeado+"'",Conexion.getConexion());
-            SqlDataReader reader = cmd.ExecuteReader();
+            acomodarBotones();
+        }
+
+        private void acomodarBotones()
+        {
+            SqlCommand cmd = new SqlCommand("select * from THE_CVENGERS.ROLXUSUARIO rxu, THE_CVENGERS.ROL r, THE_CVENGERS.USUARIO u, THE_CVENGERS.FUNCIONXROL fxr, THE_CVENGERS.FUNCIONALIDAD f where rxu.ROLXUSUARIO_ROL = r.ROL_ID and rxu.ROLXUSUARIO_USUARIO = u.USR_ID and FXR_ROL_ID = r.ROL_ID and f.FUNC_ID = fxr.FXR_FUNC_ID and u.USR_USERNAME = '" + Program.usuarioLogeado + "'", Conexion.getConexion());
+            reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                funcionalidades.Add(reader["FUNC_NOMBRE"].ToString()); 
+                funcionalidades.Add(reader["FUNC_NOMBRE"].ToString());
+               
             }
             reader.Close();
             int proximoBoton = 0;
@@ -115,8 +121,12 @@ namespace AerolineaFrba
                 boton_ABM_Ciudad.Location = new Point(12, posisionesBoton[proximoBoton]);
                 proximoBoton++;
             }
-            
 
+            linkLabel1.Location = new Point(this.Width - linkLabel1.Width -22,posisionesBoton[proximoBoton]);
+            proximoBoton++;
+
+            this.Size = new Size(this.Size.Width, posisionesBoton[proximoBoton - 1]);
+            funcionalidades.Clear();
         }
 
         private void boton_ABM_Rol_Click(object sender, EventArgs e)
@@ -157,7 +167,7 @@ namespace AerolineaFrba
 
         private void boton_Devolucion_Click(object sender, EventArgs e)
         {
-            Devolucion.Devolucion Devolucion = new Devolucion.Devolucion();
+            Devolucion.Devolución Devolucion = new Devolucion.Devolución();
             Devolucion.Show();
         }
 
@@ -207,6 +217,23 @@ namespace AerolineaFrba
                 Environment.Exit(1);
             //}
             //else { e.Cancel = true; }  <--- comentado para hacer mas rapido el testing, descomentar despues
+        }
+
+        private void AerolineaFrba_Activated(object sender, EventArgs e)
+        {
+            boton_ABM_Aeronave.Visible = false;
+            boton_ABM_Ciudad.Visible = false;
+            boton_ABM_Ruta.Visible = false;
+            boton_Canje_Millas.Visible = false;
+            boton_Compra.Visible = false;
+            boton_Consulta_Millas.Visible = false;
+            boton_Devolucion.Visible = false;
+            boton_Generar_Viaje.Visible = false;
+            boton_Listado_Estadistico.Visible = false;
+            boton_Registro_Llegada.Visible = false;
+            boton_Rol.Visible = false;
+            acomodarBotones();
+            this.Refresh();
         }
 
       

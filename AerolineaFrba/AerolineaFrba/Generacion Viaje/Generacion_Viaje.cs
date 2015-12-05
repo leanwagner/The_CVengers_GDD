@@ -85,7 +85,7 @@ namespace AerolineaFrba.Generacion_Viaje
                     cond = cond + "or AERONAVE_SERVICIO = 3";
                 }
 
-                cond = cond + ") and AERONAVE_ESTADO = 1 and AERONAVE_EN_TALLER = 0";
+                cond = cond + ") and AERONAVE_ESTADO = 1 and not exists(select * from THE_CVENGERS.TALLER where TALLER_AERONAVE_ID = AERONAVE_ID and THE_CVENGERS.fechaReal() between TALLER_FECHA_ENTRADA and TALLER_FECHA_SALIDA)";
 
                 lleni.llenarComboBoxConCondicion(ref comboBox1, "AERONAVE", "AERONAVE_MATRICULA_AVION", cond);
                 errorProvider1.Clear();
