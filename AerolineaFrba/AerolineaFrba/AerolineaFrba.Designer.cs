@@ -50,6 +50,7 @@
             this.boton_Rol.TabIndex = 0;
             this.boton_Rol.Text = "ABM Rol";
             this.boton_Rol.UseVisualStyleBackColor = true;
+            this.boton_Rol.Visible = false;
             this.boton_Rol.Click += new System.EventHandler(this.boton_ABM_Rol_Click);
             // 
             // boton_ABM_Ciudad
@@ -60,6 +61,7 @@
             this.boton_ABM_Ciudad.TabIndex = 1;
             this.boton_ABM_Ciudad.Text = "ABM Ciudad";
             this.boton_ABM_Ciudad.UseVisualStyleBackColor = true;
+            this.boton_ABM_Ciudad.Visible = false;
             this.boton_ABM_Ciudad.Click += new System.EventHandler(this.boton_ABM_Ciudad_Click);
             // 
             // boton_ABM_Ruta
@@ -70,6 +72,7 @@
             this.boton_ABM_Ruta.TabIndex = 3;
             this.boton_ABM_Ruta.Text = "ABM Ruta";
             this.boton_ABM_Ruta.UseVisualStyleBackColor = true;
+            this.boton_ABM_Ruta.Visible = false;
             this.boton_ABM_Ruta.Click += new System.EventHandler(this.boton_ABM_Ruta_Click);
             // 
             // boton_Canje_Millas
@@ -80,6 +83,7 @@
             this.boton_Canje_Millas.TabIndex = 4;
             this.boton_Canje_Millas.Text = "Canje Millas";
             this.boton_Canje_Millas.UseVisualStyleBackColor = true;
+            this.boton_Canje_Millas.Visible = false;
             this.boton_Canje_Millas.Click += new System.EventHandler(this.boton_Canje_Millas_Click);
             // 
             // boton_Devolucion
@@ -90,6 +94,7 @@
             this.boton_Devolucion.TabIndex = 7;
             this.boton_Devolucion.Text = "Devolución";
             this.boton_Devolucion.UseVisualStyleBackColor = true;
+            this.boton_Devolucion.Visible = false;
             this.boton_Devolucion.Click += new System.EventHandler(this.boton_Devolucion_Click);
             // 
             // boton_Generar_Viaje
@@ -100,6 +105,7 @@
             this.boton_Generar_Viaje.TabIndex = 8;
             this.boton_Generar_Viaje.Text = "Generar Viaje";
             this.boton_Generar_Viaje.UseVisualStyleBackColor = true;
+            this.boton_Generar_Viaje.Visible = false;
             this.boton_Generar_Viaje.Click += new System.EventHandler(this.boton_Generar_Viaje_Click);
             // 
             // boton_Listado_Estadistico
@@ -110,6 +116,7 @@
             this.boton_Listado_Estadistico.TabIndex = 9;
             this.boton_Listado_Estadistico.Text = "Listado Estadístico";
             this.boton_Listado_Estadistico.UseVisualStyleBackColor = true;
+            this.boton_Listado_Estadistico.Visible = false;
             this.boton_Listado_Estadistico.Click += new System.EventHandler(this.boton_Listado_Estadistico_Click);
             // 
             // boton_Registro_Llegada
@@ -120,6 +127,7 @@
             this.boton_Registro_Llegada.TabIndex = 11;
             this.boton_Registro_Llegada.Text = "Registro Llegada a Destino";
             this.boton_Registro_Llegada.UseVisualStyleBackColor = true;
+            this.boton_Registro_Llegada.Visible = false;
             this.boton_Registro_Llegada.Click += new System.EventHandler(this.boton_Registro_Llegada_Click);
             // 
             // boton_ABM_Aeronave
@@ -130,6 +138,7 @@
             this.boton_ABM_Aeronave.TabIndex = 12;
             this.boton_ABM_Aeronave.Text = "ABM Aeronave";
             this.boton_ABM_Aeronave.UseVisualStyleBackColor = true;
+            this.boton_ABM_Aeronave.Visible = false;
             this.boton_ABM_Aeronave.Click += new System.EventHandler(this.boton_ABM_Aeronave_Click);
             // 
             // boton_Compra
@@ -140,6 +149,7 @@
             this.boton_Compra.TabIndex = 5;
             this.boton_Compra.Text = "Compra";
             this.boton_Compra.UseVisualStyleBackColor = true;
+            this.boton_Compra.Visible = false;
             this.boton_Compra.Click += new System.EventHandler(this.boton_Compra_Click);
             // 
             // boton_Consulta_Millas
@@ -150,6 +160,7 @@
             this.boton_Consulta_Millas.TabIndex = 6;
             this.boton_Consulta_Millas.Text = "Consulta Millas";
             this.boton_Consulta_Millas.UseVisualStyleBackColor = true;
+            this.boton_Consulta_Millas.Visible = false;
             this.boton_Consulta_Millas.Click += new System.EventHandler(this.boton_Consulta_Millas_Click);
             // 
             // AerolineaFrba

@@ -12,7 +12,7 @@ namespace AerolineaFrba
     static class Program
     {
 
-        public static String usuarioLogeado;
+        public static String usuarioLogeado = "Guest";
         /// <summary>
         /// Punto de entrada principal para la aplicación.
         /// </summary>
