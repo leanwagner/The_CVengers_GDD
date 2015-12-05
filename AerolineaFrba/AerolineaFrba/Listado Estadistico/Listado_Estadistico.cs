@@ -90,6 +90,9 @@ namespace AerolineaFrba.Listado_Estadistico
                     achicarYCentrarDGV();
                     break;
                 case 4:
+                    llenu.llenarDataGridView(dataGridView1, "aeronavesConMasDiasEnElTaller(" + comboAnio.SelectedItem.ToString() + "," + comboSem.SelectedItem.ToString() + ")");
+                    achicarYCentrarDGV();
+                    break;
                 default:
                     break;
             }
@@ -100,6 +103,7 @@ namespace AerolineaFrba.Listado_Estadistico
             int nuevoLargo = dataGridView1.Columns.Cast<DataGridViewColumn>().Sum(x => x.Width) + (dataGridView1.RowHeadersVisible ? dataGridView1.RowHeadersWidth : 0) + 3;
             if (nuevoLargo < origWidth)
                 dataGridView1.Width = nuevoLargo;
+            else dataGridView1.Width = origWidth;
             dataGridView1.Location = new Point(this.Size.Width / 2 - dataGridView1.Width / 2, dataGridView1.Location.Y);
                    
         }
