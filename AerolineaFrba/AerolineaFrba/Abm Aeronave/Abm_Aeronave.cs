@@ -100,7 +100,7 @@ namespace AerolineaFrba.Abm_Aeronave
             comboBox1.SelectedIndex = 0;
             comboBox2.SelectedIndex = 0;
            
-            SqlCommand sqlCmd = new SqlCommand("SELECT * FROM THE_CVENGERS.AERONAVE, THE_CVENGERS.FABRICANTE, THE_CVENGERS.SERVICIO where AERONAVE_FABRICANTE_AVION = FABRICANTE_ID and AERONAVE_SERVICIO = SERVICIO_ID", Conexion.getConexion());
+            SqlCommand sqlCmd = new SqlCommand("SELECT * FROM THE_CVENGERS.AERONAVE, THE_CVENGERS.FABRICANTE, THE_CVENGERS.SERVICIO where AERONAVE_FABRICANTE_AVION = FABRICANTE_ID and AERONAVE_SERVICIO = SERVICIO_ID and AERONAVE_ESTADO = 1", Conexion.getConexion());
 
             SqlDataReader sqlReader = sqlCmd.ExecuteReader();
 
@@ -203,21 +203,23 @@ namespace AerolineaFrba.Abm_Aeronave
 
 
 
-            sqlCmd.CommandText = "exec modificarAeronave @butacas = " + textBox6.Value.ToString() + 
-                ",@fab = " + idFab + 
-                ",@espacio = " + textBox5.Value.ToString(CultureInfo.InvariantCulture) + 
-                ",@matricula = '" + textBox8.Text + 
-                "',@modelo = '" + textBox7.Text + 
-                "',@serv = " + idServ + 
-                ", @idAvion = " + matAnt;
+            sqlCmd.CommandText = "exec modificarAeronave @matri = '" + textBox8.Text +
+                "',@model = '" + textBox7.Text +
+                "',@fabricante = " + idFab +
+                ",@serv = " + idServ +
+                ",@butacas = " + textBox6.Value.ToString() +
+                ",@espacio = " + textBox5.Value.ToString(CultureInfo.InvariantCulture) +
+                ", @pisos =" + numericUpDown2.Value.ToString() +
+                ", @Id = " + matAnt;
+              
 
             try
             {
-              //  sqlCmd.ExecuteNonQuery();
-                MessageBox.Show("No hace nada hasta que mike haga el procedure modificarAeronave. Descomentar las 3 lineas cerca de este message box cuando el procedure este hecho");  
+               sqlCmd.ExecuteNonQuery();
+               // MessageBox.Show("No hace nada hasta que mike haga el procedure modificarAeronave. Descomentar las 3 lineas cerca de este message box cuando el procedure este hecho");  
             groupBox3.Visible = false;
-            //listBox1.Items.RemoveAt(indiceSele);
-            //listBox1.Items.Add(new Avion(textBox8.Text, comboBox3.Text, comboBox4.Text));
+            listBox1.Items.RemoveAt(indiceSele);
+            listBox1.Items.Add(new Avion(textBox8.Text, comboBox3.Text, comboBox4.Text));
             listBox1.Refresh();
             comboBox4.Items.Clear();
             comboBox3.Items.Clear();
