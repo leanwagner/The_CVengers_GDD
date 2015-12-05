@@ -192,6 +192,7 @@ CREATE TABLE [THE_CVENGERS].VIAJE(
 	VIAJE_FECHA_SALIDA DATETIME NOT NULL,
 	VIAJE_FECHA_LLEGADA DATETIME,
 	VIAJE_FECHA_LLEGADA_ESTIMADA DATETIME NOT NULL,
+	VIAJE_ESTADO BIT NOT NULL DEFAULT 1,
 	VIAJE_AERONAVE NUMERIC(18,0) NOT NULL,
 	VIAJE_RUTA NUMERIC(18,0) NOT NULL,
 	CONSTRAINT FK_VIAJE_1 FOREIGN KEY (VIAJE_AERONAVE) REFERENCES [THE_CVENGERS].AERONAVE (AERONAVE_ID),
@@ -619,6 +620,7 @@ DECLARE @USER numeric(18,0)
 DECLARE @PASS VARCHAR(100)
 SET @USER = (SELECT U.USR_ID FROM THE_CVENGERS.USUARIO U WHERE U.USR_USERNAME = @P1)
 SET @PASS = (SELECT U.USR_PASS FROM THE_CVENGERS.USUARIO U WHERE U.USR_USERNAME = @P1)
+
 IF (@USER IS NULL) 
 BEGIN
 RAISERROR('El usuario ingresado no existe',16,1)
@@ -694,6 +696,19 @@ if(@P6 = 'NULL') SET @P6 = NULL
 if(@P7 = 'NULL') SET @P7 = NULL
 if(@P8 = 'NULL') SET @P8 = NULL
 
+
+if(@P1 = 0)
+BEGIN
+RAISERROR('Por favor, ingrese un código de ruta válido.',16,1)
+return
+END 
+
+if(@P6 IS NULL AND @P7 IS NULL AND @P8 IS NULL)
+BEGIN
+RAISERROR('La ruta debe tener por lo menos un tipo de servicio asignado.',16,1)
+return
+END 
+
 SET @ORIGEN = (SELECT C.CIUDAD_ID FROM [THE_CVENGERS].CIUDAD C WHERE C.CIUDAD_NOMBRE like ('_' + @P2))
 SET @DESTINO = (SELECT C.CIUDAD_ID FROM THE_CVENGERS.CIUDAD C WHERE C.CIUDAD_NOMBRE like ('_' + @P3))
 SET @SERV1 = (SELECT S.SERVICIO_ID FROM THE_CVENGERS.SERVICIO S WHERE S.SERVICIO_NOMBRE = @P6)
@@ -735,11 +750,9 @@ return
 end
 
 go
-CREATE PROCEDURE THE_CVENGERS.modificacionRuta @P0 as numeric(18,0), @P1 as numeric(18,0), @P2 as nvarchar(100), @P3 as nvarchar(100), @P4 as numeric(18,2), @P5 as numeric(18,2), @P6 as nvarchar(100), @P7 as nvarchar(100), @P8 as nvarchar(100)
+CREATE PROCEDURE THE_CVENGERS.modificacionRuta @P0 as numeric(18,0), @P1 as numeric(18,0), @P4 as numeric(18,2), @P5 as numeric(18,2), @P6 as nvarchar(100), @P7 as nvarchar(100), @P8 as nvarchar(100)
 as 
 begin
-DECLARE @ORIGEN NUMERIC(18,0)
-DECLARE @DESTINO NUMERIC(18,0)
 DECLARE @SERV1 NUMERIC(18,0)
 DECLARE @SERV2 NUMERIC(18,0)
 DECLARE @SERV3 NUMERIC(18,0)
@@ -748,8 +761,18 @@ if(@P6 = 'NULL') SET @P6 = NULL
 if(@P7 = 'NULL') SET @P7 = NULL
 if(@P8 = 'NULL') SET @P8 = NULL
 
-SET @ORIGEN = (SELECT C.CIUDAD_ID FROM THE_CVENGERS.CIUDAD C WHERE C.CIUDAD_NOMBRE like ('_' + @P2))
-SET @DESTINO = (SELECT C.CIUDAD_ID FROM THE_CVENGERS.CIUDAD C WHERE C.CIUDAD_NOMBRE like ('_' + @P3))
+if(@P1 = 0)
+BEGIN
+RAISERROR('Por favor, ingrese un código de ruta válido.',16,1)
+return
+END 
+
+if(@P6 IS NULL AND @P7 IS NULL AND @P8 IS NULL)
+BEGIN
+RAISERROR('La ruta debe tener por lo menos un tipo de servicio asignado.',16,1)
+return
+END 
+
 SET @SERV1 = (SELECT S.SERVICIO_ID FROM THE_CVENGERS.SERVICIO S WHERE S.SERVICIO_NOMBRE = @P6)
 SET @SERV2 = (SELECT S.SERVICIO_ID FROM THE_CVENGERS.SERVICIO S WHERE S.SERVICIO_NOMBRE = @P7)
 SET @SERV3 = (SELECT S.SERVICIO_ID FROM THE_CVENGERS.SERVICIO S WHERE S.SERVICIO_NOMBRE = @P8)
@@ -760,13 +783,8 @@ RAISERROR('No se puede modificar esta ruta debido a que existen viajes en curso 
 return
 END
 
-if(exists(select R.RUTA_ID FROM THE_CVENGERS.RUTA R WHERE R.RUTA_ORIGEN = @ORIGEN AND R.RUTA_DESTINO = @DESTINO AND R.RUTA_ESTADO = 1 and r.RUTA_ID <> @P0))
-BEGIN
-RAISERROR('Ya existe una ruta con ese mismo origen y destino.',16,1)
-return
-end
 
-update THE_CVENGERS.RUTA SET RUTA_CODIGO = @P1, RUTA_ORIGEN = @ORIGEN, RUTA_DESTINO = @DESTINO, RUTA_PRECIO_BASE_POR_KILO = @P4, RUTA_PRECIO_BASE_POR_PASAJE = @P5
+update THE_CVENGERS.RUTA SET RUTA_CODIGO = @P1, RUTA_PRECIO_BASE_POR_KILO = @P4, RUTA_PRECIO_BASE_POR_PASAJE = @P5
 WHERE RUTA_ID = @P0
 
 if(@SERV1 is not null)
@@ -925,7 +943,7 @@ set @viajeBuscado = (select V.VIAJE_ID
 																where c.CIUDAD_NOMBRE like ('_'+ @origen))
 										and r.RUTA_DESTINO = (SELECT C.CIUDAD_ID 
 																from THE_CVENGERS.CIUDAD C
-																where c.CIUDAD_NOMBRE like ('_'+ @destino))) and V.VIAJE_AERONAVE = (select AERONAVE_ID from THE_CVENGERS.AERONAVE where AERONAVE_MATRICULA_AVION = @matricula) and V.VIAJE_FECHA_SALIDA < THE_CVENGERS.fechaReal() and v.VIAJE_FECHA_LLEGADA is NULL)
+																where c.CIUDAD_NOMBRE like ('_'+ @destino))) and V.VIAJE_AERONAVE = (select AERONAVE_ID from THE_CVENGERS.AERONAVE where AERONAVE_MATRICULA_AVION = @matricula) and V.VIAJE_FECHA_SALIDA < THE_CVENGERS.fechaReal() and v.VIAJE_FECHA_LLEGADA is NULL and V.VIAJE_ESTADO = 1)
 
 if(@viajeBuscado is NULL)
 begin
@@ -1059,7 +1077,7 @@ select V.VIAJE_ID 'Id', (select CIUDAD_NOMBRE
 																																																																																																	from THE_CVENGERS.ENCOMIENDA
 																																																																																																	where ENCOMIENDA_VIAJE_ID = VIAJE_ID AND ENCOMIENDA_DEVOLUCION IS NULL)) 'Kg disponibles'
 from THE_CVENGERS.VIAJE V
-WHERE V.VIAJE_FECHA_LLEGADA IS NULL AND V.VIAJE_FECHA_SALIDA > THE_CVENGERS.fechaReal()
+WHERE V.VIAJE_FECHA_LLEGADA IS NULL AND V.VIAJE_FECHA_SALIDA > THE_CVENGERS.fechaReal() AND VIAJE_ESTADO = 1
 
 go
 create function THE_CVENGERS.destinosConMasPasajesComprados(@anio as int, @semestre as int)
@@ -1094,7 +1112,7 @@ return (select top 5 CIUDAD_NOMBRE 'Destino', (SELECT COUNT(*)
 																										WHERE RUTA_DESTINO = CIUDAD_ID)
 																				AND VIAJE_FECHA_LLEGADA IS NOT NULL
 																				AND YEAR(VIAJE_FECHA_LLEGADA) = @anio
-																				AND month(VIAJE_FECHA_LLEGADA) between (case when @semestre = 1 then 1 else 7 end) and (case when @semestre = 1 then 6 else 12 end))) 'Total pasajes disponibles',  (SELECT COUNT(*) 
+																				AND month(VIAJE_FECHA_LLEGADA) between (case when @semestre = 1 then 1 else 7 end) and (case when @semestre = 1 then 6 else 12 end) AND VIAJE_ESTADO = 1)) 'Total pasajes disponibles',  (SELECT COUNT(*) 
 																																																														from THE_CVENGERS.BUTACAXVIAJE
 																																																														WHERE BUTACAXVIAJE_VIAJE_ID IN (SELECT VIAJE_ID	
 																																																																						FROM VIAJE
@@ -1103,7 +1121,7 @@ return (select top 5 CIUDAD_NOMBRE 'Destino', (SELECT COUNT(*)
 																																																																												WHERE RUTA_DESTINO = CIUDAD_ID)
 																																																																						AND VIAJE_FECHA_LLEGADA IS NOT NULL
 																																																																						AND YEAR(VIAJE_FECHA_LLEGADA) = @anio
-																																																																						AND month(VIAJE_FECHA_LLEGADA) between (case when @semestre = 1 then 1 else 7 end) and (case when @semestre = 1 then 6 else 12 end))
+																																																																						AND month(VIAJE_FECHA_LLEGADA) between (case when @semestre = 1 then 1 else 7 end) and (case when @semestre = 1 then 6 else 12 end) AND VIAJE_ESTADO = 1)
 																																																																						and BUTACAXVIAJE_PASAJE_ID IS NOT NULL) 'Total pasajes comprados', 100 - (((SELECT COUNT(*) 
 																																																																																								from THE_CVENGERS.BUTACAXVIAJE
 																																																																																								WHERE BUTACAXVIAJE_VIAJE_ID IN (SELECT VIAJE_ID	
@@ -1113,7 +1131,7 @@ return (select top 5 CIUDAD_NOMBRE 'Destino', (SELECT COUNT(*)
 																																																																																																						WHERE RUTA_DESTINO = CIUDAD_ID)
 																																																																																																AND VIAJE_FECHA_LLEGADA IS NOT NULL
 																																																																																																AND YEAR(VIAJE_FECHA_LLEGADA) = @anio
-																																																																																																AND month(VIAJE_FECHA_LLEGADA) between (case when @semestre = 1 then 1 else 7 end) and (case when @semestre = 1 then 6 else 12 end))
+																																																																																																AND month(VIAJE_FECHA_LLEGADA) between (case when @semestre = 1 then 1 else 7 end) and (case when @semestre = 1 then 6 else 12 end) AND VIAJE_ESTADO = 1)
 																																																																																																and BUTACAXVIAJE_PASAJE_ID IS NOT NULL) / (SELECT COUNT(*) 
 																																																																																																																	from THE_CVENGERS.BUTACAXVIAJE
 																																																																																																																	WHERE BUTACAXVIAJE_VIAJE_ID IN (SELECT VIAJE_ID	
@@ -1123,7 +1141,7 @@ return (select top 5 CIUDAD_NOMBRE 'Destino', (SELECT COUNT(*)
 																																																																																																																															WHERE RUTA_DESTINO = CIUDAD_ID)
 																																																																																																																									AND VIAJE_FECHA_LLEGADA IS NOT NULL
 																																																																																																																									AND YEAR(VIAJE_FECHA_LLEGADA) = @anio
-																																																																																																																									AND month(VIAJE_FECHA_LLEGADA) between (case when @semestre = 1 then 1 else 7 end) and (case when @semestre = 1 then 6 else 12 end))))*100) 'Porcentaje de desocupación'
+																																																																																																																									AND month(VIAJE_FECHA_LLEGADA) between (case when @semestre = 1 then 1 else 7 end) and (case when @semestre = 1 then 6 else 12 end) AND VIAJE_ESTADO = 1)))*100) 'Porcentaje de desocupación'
 from THE_CVENGERS.CIUDAD
 where CIUDAD_ID IN (SELECT RUTA_DESTINO FROM THE_CVENGERS.RUTA WHERE RUTA_ID IN (SELECT VIAJE_RUTA FROM THE_CVENGERS.VIAJE))
 ORDER BY "Porcentaje de desocupación" DESC, "Total pasajes disponibles" DESC, "Total pasajes comprados" DESC)
@@ -1407,6 +1425,161 @@ return (SELECT TARJETA_NRO FROM THE_CVENGERS.TARJETACREDITO
 									WHERE TARJETA_ID = (SELECT COMPRA_TARJETA FROM THE_CVENGERS.COMPRA
 														WHERE COMPRA_ID = @compra))
 end
+
+go
+create procedure THE_CVENGERS.bajarRuta(@ruta as numeric(18,0))
+as 
+begin
+
+declare @Id numeric(18,0)
+declare @Compra numeric(18,0)
+
+declare pasajesADevolver cursor
+for select PASAJE_ID, PASAJE_COMPRA from THE_CVENGERS.PASAJE
+	where PASAJE_DEVOLUCION IS NULL
+	AND PASAJE_VIAJE_ID IN (SELECT VIAJE_ID	
+							FROM THE_CVENGERS.VIAJE
+							WHERE VIAJE_RUTA = @ruta
+							AND VIAJE_FECHA_LLEGADA IS NULL
+							AND VIAJE_FECHA_SALIDA > THE_CVENGERS.fechaReal())
+
+
+open pasajesADevolver
+FETCH FROM pasajesADevolver INTO @Id, @Compra
+WHILE @@FETCH_STATUS = 0
+BEGIN
+
+insert into THE_CVENGERS.DEVOLUCION (DEVOLUCION_FECHA,DEVOLUCION_NUM_COMPRA,DEVOLUCION_DESCRIPCION)
+VALUES (THE_CVENGERS.fechaReal(), @Compra, 'Baja de ruta')
+
+update THE_CVENGERS.PASAJE set PASAJE_DEVOLUCION = (select top 1 DEVOLUCION_ID FROM THE_CVENGERS.DEVOLUCION ORDER BY DEVOLUCION_ID DESC)
+WHERE PASAJE_ID = @Id
+
+UPDATE THE_CVENGERS.BUTACAXVIAJE SET BUTACAXVIAJE_PASAJE_ID = NULL
+WHERE BUTACAXVIAJE_PASAJE_ID = @Id
+
+FETCH NEXT FROM pasajesADevolver INTO @Id, @Compra 
+END
+CLOSE pasajesADevolver
+DEALLOCATE pasajesADevolver
+
+
+declare encomiendasADevolver cursor
+for select ENCOMIENDA_ID, ENCOMIENDA_COMPRA from THE_CVENGERS.ENCOMIENDA
+	where ENCOMIENDA_DEVOLUCION IS NULL
+	AND ENCOMIENDA_VIAJE_ID IN (SELECT VIAJE_ID	
+							FROM THE_CVENGERS.VIAJE
+							WHERE VIAJE_RUTA = @ruta
+							AND VIAJE_FECHA_LLEGADA IS NULL
+							AND VIAJE_FECHA_SALIDA > THE_CVENGERS.fechaReal())
+
+
+open encomiendasADevolver
+FETCH FROM encomiendasADevolver INTO @Id, @Compra
+WHILE @@FETCH_STATUS = 0
+BEGIN
+
+insert into THE_CVENGERS.DEVOLUCION (DEVOLUCION_FECHA,DEVOLUCION_NUM_COMPRA,DEVOLUCION_DESCRIPCION)
+VALUES (THE_CVENGERS.fechaReal(), @Compra, 'Baja de ruta')
+
+update THE_CVENGERS.ENCOMIENDA set ENCOMIENDA_DEVOLUCION = (select top 1 DEVOLUCION_ID FROM THE_CVENGERS.DEVOLUCION ORDER BY DEVOLUCION_ID DESC)
+WHERE ENCOMIENDA_ID = @Id
+
+FETCH NEXT FROM encomiendasADevolver INTO @Id, @Compra 
+END
+CLOSE encomiendasADevolver
+DEALLOCATE encomiendasADevolver
+
+UPDATE THE_CVENGERS.RUTA SET RUTA_ESTADO = 0
+WHERE RUTA_ID = @ruta
+
+declare viajesACancelar cursor
+for SELECT VIAJE_ID	
+	FROM THE_CVENGERS.VIAJE
+	WHERE VIAJE_RUTA = @ruta
+	AND VIAJE_FECHA_LLEGADA IS NULL
+	AND VIAJE_FECHA_SALIDA > THE_CVENGERS.fechaReal()
+
+
+open viajesACancelar
+FETCH FROM viajesACancelar INTO @Id
+WHILE @@FETCH_STATUS = 0
+BEGIN
+
+update THE_CVENGERS.VIAJE set VIAJE_ESTADO = 0
+WHERE VIAJE_ID = @Id
+
+FETCH NEXT FROM viajesACancelar INTO @Id
+END
+CLOSE viajesACancelar
+DEALLOCATE viajesACancelar
+
+end
+
+go
+create procedure THE_CVENGERS.ingresarTarjeta @cli as numeric(18,0), @tipoTar as nvarchar(18), @nro as numeric(16,0),
+								@cod as numeric(18,0), @fechaven as datetime
+as
+begin
+
+declare @tipo numeric(18,0)
+set @tipo = (select TIPO_TARJETA_ID FROM THE_CVENGERS.TIPO_TARJETA WHERE TIPO_TARJETA_DETALLE = @tipoTar)
+
+declare @tarId numeric(18,0)
+set @tarId = (select TARJETA_ID FROM THE_CVENGERS.TARJETACREDITO WHERE TARJETA_NRO = @nro
+			and TARJETA_COD_SEGURIDAD = @cod AND TARJETA_FECHA_VENCIMIENTO = @fechaven 
+			AND TARJETA_TIPO = @tipo)
+
+if (@tarId is not null)
+BEGIN
+IF ((SELECT TARJETA_CLIENTE FROM THE_CVENGERS.TARJETACREDITO WHERE TARJETA_ID = @tarId) <> @cli)
+begin
+RAISERROR('La tarjeta de crédito ingresada no pertenece al cliente que está realizando la compra', 16, 1)
+return
+end
+end
+else
+begin
+
+insert into THE_CVENGERS.TARJETACREDITO (TARJETA_CLIENTE, TARJETA_TIPO, TARJETA_NRO, TARJETA_COD_SEGURIDAD, TARJETA_FECHA_VENCIMIENTO)
+VALUES (@cli, @tipo, @nro, @cod, @fechaven)
+
+END
+end
+
+go
+create procedure THE_CVENGERS.crearCompraConTarjeta @user as NUMERIC(18,0), @cli as numeric(18,0), @tipoTar as nvarchar(18), @nro as numeric(16,0),
+								@cod as numeric(18,0), @fechaven as datetime, @monto as numeric(18,2), @cuotas as numeric(18,0)
+as
+begin
+
+declare @tipo numeric(18,0)
+set @tipo = (select TIPO_TARJETA_ID FROM THE_CVENGERS.TIPO_TARJETA WHERE TIPO_TARJETA_DETALLE = @tipoTar)
+
+DECLARE @TARJ NUMERIC(18,0)
+SET @TARJ = (select TARJETA_ID FROM THE_CVENGERS.TARJETACREDITO WHERE TARJETA_NRO = @nro
+			and TARJETA_COD_SEGURIDAD = @cod AND TARJETA_FECHA_VENCIMIENTO = @fechaven 
+			AND TARJETA_TIPO = @tipo AND TARJETA_CLIENTE = @cli)
+
+insert into THE_CVENGERS.COMPRA (COMPRA_USUARIO_ID, COMPRA_CLIENTE, COMPRA_TARJETA, COMPRA_CANTIDAD_DE_CUOTAS,
+								COMPRA_FORMA_DE_PAGO, COMPRA_MONTO, COMPRA_FECHA)
+								VALUES
+								(@user, @cli, @TARJ, @cuotas, 1, @monto, THE_CVENGERS.fechaReal())
+END
+
+go
+create procedure THE_CVENGERS.crearCompraConEfectivo @user as NUMERIC(18,0), @cli as numeric(18,0), @monto as numeric(18,2)
+as
+begin
+
+insert into THE_CVENGERS.COMPRA (COMPRA_USUARIO_ID, COMPRA_CLIENTE, COMPRA_CANTIDAD_DE_CUOTAS,
+								COMPRA_FORMA_DE_PAGO, COMPRA_MONTO, COMPRA_FECHA)
+								VALUES
+								(@user, @cli, 1, 0, @monto, THE_CVENGERS.fechaReal())
+END
+
+
+
 /*DROP TABLE [THE_CVENGERS].CUOTASXTARJETA
 DROP TABLE [THE_CVENGERS].MILLA
 DROP TABLE [THE_CVENGERS].FECHA
@@ -1482,5 +1655,9 @@ DROP PROCEDURE [THE_CVENGERS].ingresarOModificarCliente
 DROP FUNCTION [THE_CVENGERS].destinosConMasPasajesCancelados
 DROP FUNCTION [THE_CVENGERS].tipoTarjetaCompra
 DROP FUNCTION [THE_CVENGERS].numeroTarjetaCompra
+DROP PROCEDURE [THE_CVENGERS].bajarRuta
+DROP PROCEDURE [THE_CVENGERS].ingresarTarjeta
+DROP PROCEDURE [THE_CVENGERS].crearCompraConTarjeta
+DROP PROCEDURE [THE_CVENGERS].crearCompraConEfectivo
 DROP PROCEDURE [THE_CVENGERS].getAll 
 DROP SCHEMA [THE_CVENGERS]*/

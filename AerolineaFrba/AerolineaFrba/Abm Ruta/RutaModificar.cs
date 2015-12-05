@@ -16,8 +16,6 @@ namespace AerolineaFrba.Abm_Ruta
     public partial class RutaModificar : Form
        {
         LlenadorDeTablas llenador = new LlenadorDeTablas();
-        object elementoQuitadoTablaDestino;
-        object elementoQuitadoTablaOrigen;
         int ID_Ruta;
         
 
@@ -26,23 +24,11 @@ namespace AerolineaFrba.Abm_Ruta
         {
             InitializeComponent();
             ID_Ruta = ruta_id;
-            this.mostrarCiudad(ref comboBox_ciudadOrigen);
-            this.mostrarCiudad(ref comboBox_ciudadDestino);
             this.mostrarServicios(ref checkedListBox_servicios,tipo_primera,tipo_eco,tipo_turista); 
-            comboBox_ciudadDestino.SelectedItem= ciudad_destino; // SETEOS PARA LEVANTAR la vista
-            comboBox_ciudadOrigen.SelectedItem = ciudad_origen;
             numericUpDown_codRuta.Value = cod_ruta;
             numericUpDown_precioKG.Value = precio_KG;
             numericUpDown_precioPasaje.Value = precio_pasaje;
             
-            
-            
-        }
-
-        public void mostrarCiudad(ref ComboBox miCombo)
-        {
-            llenador.llenarComboBox(ref miCombo, "CIUDAD", "CIUDAD_NOMBRE");
-
         }
 
         public void mostrarServicios(ref CheckedListBox  miCombo,  string t_primera,string t_eco,string t_turista)
@@ -57,54 +43,31 @@ namespace AerolineaFrba.Abm_Ruta
             if (t_turista == "Sí") { miCombo.SetItemCheckState(2, CheckState.Checked); }        
         } 
 
-        private void comboBox_ciudadOrigen_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            if (elementoQuitadoTablaDestino != null)
-                comboBox_ciudadDestino.Items.Add(elementoQuitadoTablaDestino);
-
-            int indiceElegido = comboBox_ciudadDestino.Items.IndexOf(comboBox_ciudadOrigen.SelectedItem);
-            elementoQuitadoTablaDestino = comboBox_ciudadOrigen.SelectedItem;
-
-            comboBox_ciudadDestino.Items.RemoveAt(indiceElegido);
-
-            comboBox_ciudadDestino.Refresh();
-        }
-
-
-      
-        private void comboBox_ciudadDestino_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (elementoQuitadoTablaOrigen != null)
-                comboBox_ciudadOrigen.Items.Add(elementoQuitadoTablaOrigen);
-
-            int indiceElegido = comboBox_ciudadOrigen.Items.IndexOf(comboBox_ciudadDestino.SelectedItem);
-            elementoQuitadoTablaOrigen = comboBox_ciudadDestino.SelectedItem;
-
-            comboBox_ciudadOrigen.Items.RemoveAt(indiceElegido);
-
-            comboBox_ciudadOrigen.Refresh();
-        }
-
         private void boton_Agregar_Ciudad_Click(object sender, EventArgs e)
         {
+            int flag = 0;
+
             String servicio1 = "NULL";
             String servicio2 = "NULL";
             String servicio3 = "NULL";
 
-            if(checkedListBox_servicios.CheckedItems.Contains(checkedListBox_servicios.Items[0]))
+            if (checkedListBox_servicios.CheckedItems.Contains(checkedListBox_servicios.Items[0]))
                 servicio1 = checkedListBox_servicios.Items[0].ToString();
+            else
+                flag += 1;
 
-            if(checkedListBox_servicios.CheckedItems.Contains(checkedListBox_servicios.Items[1]))
+            if (checkedListBox_servicios.CheckedItems.Contains(checkedListBox_servicios.Items[1]))
                 servicio2 = checkedListBox_servicios.Items[1].ToString();
+            else
+                flag += 1;
 
-            if(checkedListBox_servicios.CheckedItems.Contains(checkedListBox_servicios.Items[2]))
+            if (checkedListBox_servicios.CheckedItems.Contains(checkedListBox_servicios.Items[2]))
                 servicio3 = checkedListBox_servicios.Items[2].ToString();
+            else
+                flag += 1;
 
-            if (comboBox_ciudadOrigen.SelectedItem != null && comboBox_ciudadDestino.SelectedItem != null && numericUpDown_precioKG.Value > 0 && numericUpDown_precioPasaje.Value > 0)
+            if (numericUpDown_precioKG.Value > 0 && numericUpDown_precioPasaje.Value > 0 && flag > 0)
             {
-                errorProvider_ciudadDestino.Clear();
-                errorProvider_ciudadOrigen.Clear();
                 errorProvider_precioKg.Clear();
                 errorProvider_precioPasaje.Clear();
                 errorProvider_Servicios.Clear();
@@ -113,8 +76,6 @@ namespace AerolineaFrba.Abm_Ruta
              try
                 {
                        SqlCommand sqlCmd = new SqlCommand("EXEC THE_CVENGERS.modificacionRuta @P0=" + ID_Ruta +" ,@P1 = " + numericUpDown_codRuta.Value +
-                        ", @P2 = '" + comboBox_ciudadOrigen.SelectedItem.ToString().Substring(1) +
-                        "', @P3 = '" + comboBox_ciudadDestino.SelectedItem.ToString().Substring(1) +
                         "', @P4 = " +  numericUpDown_precioKG.Value.ToString(CultureInfo.InvariantCulture)+
                         ", @P5 = " + numericUpDown_precioPasaje.Value.ToString(CultureInfo.InvariantCulture) +
                         ", @P6 = '" + servicio1 +
@@ -138,15 +99,6 @@ namespace AerolineaFrba.Abm_Ruta
 
             else
             {
-                if (comboBox_ciudadOrigen.SelectedItem == null)
-                    errorProvider_ciudadOrigen.SetError(comboBox_ciudadOrigen, "Por favor seleccione una ciudad de Origen");
-                else errorProvider_ciudadOrigen.Clear();
-
-
-                if (comboBox_ciudadDestino.SelectedItem == null)
-                    errorProvider_ciudadDestino.SetError(comboBox_ciudadDestino, "Por favor seleccione una ciudad de Destino");
-                else errorProvider_ciudadDestino.Clear();
-
                 if (checkedListBox_servicios.CheckedItems.Count == 0)
                     errorProvider_Servicios.SetError(checkedListBox_servicios, "Por favor seleccione al menos un servicio");
                 else errorProvider_Servicios.Clear();
