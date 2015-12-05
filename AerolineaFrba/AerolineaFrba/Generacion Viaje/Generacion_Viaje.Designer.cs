@@ -84,7 +84,7 @@
             this.datePicker1.Location = new System.Drawing.Point(103, 200);
             this.datePicker1.Name = "datePicker1";
             this.datePicker1.Size = new System.Drawing.Size(117, 20);
-            this.datePicker1.TabIndex = 2;
+            this.datePicker1.TabIndex = 1;
             this.datePicker1.ValueChanged += new System.EventHandler(this.datePicker1_ValueChanged);
             // 
             // label2
@@ -110,7 +110,7 @@
             this.datePicker2.Location = new System.Drawing.Point(459, 198);
             this.datePicker2.Name = "datePicker2";
             this.datePicker2.Size = new System.Drawing.Size(117, 20);
-            this.datePicker2.TabIndex = 5;
+            this.datePicker2.TabIndex = 3;
             this.datePicker2.ValueChanged += new System.EventHandler(this.datePicker1_ValueChanged);
             // 
             // label4
@@ -129,7 +129,7 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(117, 21);
             this.comboBox1.Sorted = true;
-            this.comboBox1.TabIndex = 7;
+            this.comboBox1.TabIndex = 5;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // button1
@@ -137,7 +137,7 @@
             this.button1.Location = new System.Drawing.Point(528, 258);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(149, 23);
-            this.button1.TabIndex = 8;
+            this.button1.TabIndex = 6;
             this.button1.Text = "Generar viaje";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -147,7 +147,7 @@
             this.timePicker1.Location = new System.Drawing.Point(226, 200);
             this.timePicker1.Name = "timePicker1";
             this.timePicker1.Size = new System.Drawing.Size(84, 20);
-            this.timePicker1.TabIndex = 9;
+            this.timePicker1.TabIndex = 2;
             this.timePicker1.ValueChanged += new System.EventHandler(this.datePicker1_ValueChanged);
             // 
             // timePicker2
@@ -155,7 +155,7 @@
             this.timePicker2.Location = new System.Drawing.Point(582, 198);
             this.timePicker2.Name = "timePicker2";
             this.timePicker2.Size = new System.Drawing.Size(84, 20);
-            this.timePicker2.TabIndex = 10;
+            this.timePicker2.TabIndex = 4;
             this.timePicker2.ValueChanged += new System.EventHandler(this.datePicker1_ValueChanged);
             // 
             // errorProvider1
