@@ -45,7 +45,7 @@ namespace AerolineaFrba.Login
             }
             else
             {
-                AerolineaFrba pantallaInicial = new AerolineaFrba(Terminal.Kiosco);
+                AerolineaFrba pantallaInicial = new AerolineaFrba();
                 pantallaInicial.Show();
                 this.Hide();
 
