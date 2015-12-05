@@ -1617,6 +1617,23 @@ values (@cli, @codE, @compra, @viaje, @kg)
 end
 
 go
+create function THE_CVENGERS.aeronaveConViajesPendientesEnEseLapso(@avion as numeric(18,0), @fecha as datetime)
+returns int
+as
+BEGIN
+
+declare @valor int
+
+if(exists(SELECT VIAJE_ID FROM THE_CVENGERS.VIAJE WHERE VIAJE_AERONAVE = @avion
+			AND VIAJE_FECHA_LLEGADA IS NULL
+			AND VIAJE_FECHA_SALIDA between THE_CVENGERS.fechaReal() and @fecha))
+set @valor = 1
+ELSE 
+set @valor = 0
+return @valor
+END
+
+go
 create function THE_CVENGERS.aeronaveConViajesPendientes(@avion as numeric(18,0))
 returns int
 as
@@ -2320,5 +2337,6 @@ DROP FUNCTION [THE_CVENGERS].aeronavePuedeReemplazarDePorVidaFunc
 DROP FUNCTION [THE_CVENGERS].aeronavePuedeReemplazarEsteLapsoFunc
 DROP FUNCTION [THE_CVENGERS].aeronavesQuePuedenSuplantarDePorVida
 DROP FUNCTION [THE_CVENGERS].aeronavesQuePuedenSuplantarPorUnLapso
+DROP FUNCTION [THE_CVENGERS].aeronaveConViajesPendientesEnEseLapso
 DROP PROCEDURE [THE_CVENGERS].getAll 
 DROP SCHEMA [THE_CVENGERS]*/
