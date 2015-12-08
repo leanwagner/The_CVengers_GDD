@@ -359,7 +359,7 @@ namespace AerolineaFrba.Compra
             if (aplicarValidaciones() > 0)
                 return;
 
-            id_cliente = new Cliente(id_cliente, (int)numericUpDown_dni.Value, textBox_nombre.Text, textBox_apellido.Text, textBox1.Text, (int)numericUpDown_telefono.Value, textBox2.Text, dateTimePicker_nacimiento.Value.Date.ToString()).persistirme();
+            id_cliente = new Cliente(id_cliente, (int)numericUpDown_dni.Value, textBox_nombre.Text, textBox_apellido.Text, textBox1.Text, (int)numericUpDown_telefono.Value, textBox2.Text, dateTimePicker_nacimiento.Value.Date.ToString(CultureInfo.InvariantCulture)).persistirme();
         
             tran = Conexion.getConexion().BeginTransaction();   
            try

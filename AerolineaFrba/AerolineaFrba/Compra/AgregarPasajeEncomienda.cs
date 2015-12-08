@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -119,7 +120,7 @@ namespace AerolineaFrba.Compra
 
                     Pasaje pasaje = new Pasaje(Int32.Parse(comboBox_butacasDisponibles.SelectedItem.ToString()), this.viajeId);
                     cliente = new Cliente(cli_id,(Int32)numericUpDown_dni.Value, textBox_nombre.Text, textBox_apellido.Text, textBox_direccion.Text, (Int32)numericUpDown_telefono.Value
-                    , textBox_mail.Text, dateTimePicker_nacimiento.Value.Date.ToString(), pasaje);
+                    , textBox_mail.Text, dateTimePicker_nacimiento.Value.Date.ToString(CultureInfo.InvariantCulture), pasaje);
                     Carrito.agregarCliente(cliente);
                     Carrito.ListaButacas.Remove(Int32.Parse(comboBox_butacasDisponibles.SelectedItem.ToString()));
                     cliente.persistirme();
@@ -129,7 +130,7 @@ namespace AerolineaFrba.Compra
                     Encomienda encomienda = new Encomienda((Int32)numericUpDown_kilos.Value, this.viajeId);
 
                     cliente = new Cliente(cli_id, (Int32)numericUpDown_dni.Value, textBox_nombre.Text, textBox_apellido.Text, textBox_direccion.Text, (Int32)numericUpDown_telefono.Value
-                    , textBox_mail.Text, dateTimePicker_nacimiento.Value.Date.ToString(), encomienda);
+                    , textBox_mail.Text, dateTimePicker_nacimiento.Value.Date.ToString(CultureInfo.InvariantCulture), encomienda);
                     Carrito.agregarCliente(cliente);
                     Carrito.kgs_disponibles = Carrito.kgs_disponibles - (Int32)numericUpDown_kilos.Value;
                     cliente.persistirme();
