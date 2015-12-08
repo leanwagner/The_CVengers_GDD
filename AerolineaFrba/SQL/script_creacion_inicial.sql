@@ -549,7 +549,7 @@ insert into [THE_CVENGERS].FUNCIONALIDAD (FUNC_NOMBRE, FUNC_DESCRIPCION) values 
 																				 ('Consultar Millas', 'Autorizacion para consultar millas'),
 																				 ('Canje Millas', 'Autorizacion para canjear millas'),
 																				 ('Listado Estadístico', 'Autorizacion para ver el listado estadístico'),
-																				 ('ABM Ciudad', 'Crear, modificar y eliminar Ciudadades (próxima a implementarse)')
+																				 ('ABM Ciudad', 'Crear, modificar y eliminar Ciudadades')
 go
 insert into [THE_CVENGERS].FUNCIONXROL (FXR_ROL_ID, FXR_FUNC_ID) values (1,1),
 																		(1,2),
@@ -566,10 +566,10 @@ insert into [THE_CVENGERS].FUNCIONXROL (FXR_ROL_ID, FXR_FUNC_ID) values (1,1),
 																		(2,8)
 
 go
-insert into THE_CVENGERS.USUARIO (USR_USERNAME) values ('Pepe'), ('Carlos'), ('Ricardo'), ('Guest')
+insert into THE_CVENGERS.USUARIO (USR_USERNAME) values ('Pepe'), ('Carlos'), ('Ricardo'), ('Guest'), ('admin')
 
 go
-insert into THE_CVENGERS.ROLXUSUARIO (ROLXUSUARIO_ROL, ROLXUSUARIO_USUARIO) values (1,1), (1,2), (1,3), (2,4)
+insert into THE_CVENGERS.ROLXUSUARIO (ROLXUSUARIO_ROL, ROLXUSUARIO_USUARIO) values (1,1), (1,2), (1,3), (2,4), (1,5)
 
 go
 insert into THE_CVENGERS.PRODUCTO (PRODUCTO_NOMBRE, PRODUCTO_STOCK, PRODUCTO_MILLAS_NECESARIAS) values ('Skate', 20, 1000),
@@ -2304,20 +2304,20 @@ create procedure THE_CVENGERS.ingresarCiudad @ciudad as nvarchar(100)
 as
 begin
 
-if(exists(SELECT * FROM THE_CVENGERS.CIUDAD WHERE CIUDAD_NOMBRE = @ciudad and CIUDAD_ESTADO = 1))
+if(exists(SELECT * FROM THE_CVENGERS.CIUDAD WHERE CIUDAD_NOMBRE like ('_' + @ciudad) and CIUDAD_ESTADO = 1))
 BEGIN
 RAISERROR('Ese nombre de ciudad ya existe, por favor ingrese uno nuevo', 16, 1)
 return
 END
 
-if(not exists(select * from THE_CVENGERS.CIUDAD where CIUDAD_NOMBRE = @ciudad))
+if(not exists(select * from THE_CVENGERS.CIUDAD where CIUDAD_NOMBRE like ('_' + @ciudad)))
 begin
-insert into THE_CVENGERS.CIUDAD (CIUDAD_NOMBRE) VALUES (@ciudad)
+insert into THE_CVENGERS.CIUDAD (CIUDAD_NOMBRE) VALUES (' '+@ciudad)
 end
 else
 begin
 update THE_CVENGERS.CIUDAD set CIUDAD_ESTADO = 1
-WHERE CIUDAD_NOMBRE = @ciudad
+WHERE CIUDAD_NOMBRE like ('_' + @ciudad)
 end
 end
 
@@ -2334,6 +2334,29 @@ END
 
 update THE_CVENGERS.CIUDAD SET CIUDAD_ESTADO = 0
 WHERE CIUDAD_ID = @ciudad
+
+end
+
+go
+create procedure THE_CVENGERS.modificarCiudad @idCiudad as numeric(18,0), @nombreNuevo as nvarchar(100)
+as
+begin
+
+if(exists(SELECT * FROM THE_CVENGERS.RUTA WHERE RUTA_ESTADO = 1 AND (RUTA_ORIGEN = @idCiudad OR RUTA_DESTINO = @idCiudad)))
+BEGIN
+RAISERROR('No se puede modificar esta ciudad ya que existen una o más rutas activas que utilizan la misma', 16, 1)
+return
+END
+
+if(not exists(select * from THE_CVENGERS.CIUDAD where CIUDAD_NOMBRE like ('_' + @nombreNuevo)))
+begin
+update THE_CVENGERS.CIUDAD set CIUDAD_NOMBRE = ' '+@nombreNuevo WHERE CIUDAD_ID = @idCiudad
+end
+else
+begin
+RAISERROR('Ese nombre ya fue utilizado para nombrar otra Ciudad, por favor ingrese un nombre distinto', 16,1)
+return
+end
 
 end
 /*DROP TABLE [THE_CVENGERS].CUOTASXTARJETA
@@ -2440,5 +2463,6 @@ DROP FUNCTION [THE_CVENGERS].aeronaveConViajesPendientesEnEseLapso
 DROP PROCEDURE [THE_CVENGERS].crearAeronaveSuplente
 DROP PROCEDURE [THE_CVENGERS].ingresarCiudad
 DROP PROCEDURE [THE_CVENGERS].bajarCiudad
+DROP PROCEDURE [THE_CVENGERS].modificarCiudad
 DROP PROCEDURE [THE_CVENGERS].getAll 
 DROP SCHEMA [THE_CVENGERS]*/
