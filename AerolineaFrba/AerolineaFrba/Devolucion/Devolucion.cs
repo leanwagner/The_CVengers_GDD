@@ -169,19 +169,7 @@ namespace AerolineaFrba.Devolucion
                     cmd.ExecuteNonQuery();
                     //  MessageBox.Show(cmd.CommandText);
                 }
-                transaction.Commit();
-                mandarMensajeDeExito();
-                razonText.ResetText();
-                for (int i = 0; i < checkedListBox1.Items.Count; i++)
-                    checkedListBox1.SetItemCheckState(i, (CheckState.Unchecked));
-                checkedListBox1.Refresh();
-                foreach (int it in checkedListBox1.CheckedIndices) { checkedListBox1.Items.RemoveAt(it); }
-                lleni.llenarDataGridViewDevolucion(dataGridView1, idClie);
-                dataGridView1.ClearSelection();
-
-
-
-            }
+                transaction.Commit();            }
             catch (Exception exc)
             {
                 if(exc is SqlException)
@@ -189,7 +177,14 @@ namespace AerolineaFrba.Devolucion
                 MessageBox.Show(exc.Message, "Error", MessageBoxButtons.OK);
 
             }
-            
+            mandarMensajeDeExito();
+            razonText.ResetText();
+            for (int i = 0; i < checkedListBox1.Items.Count; i++)
+                checkedListBox1.SetItemCheckState(i, (CheckState.Unchecked));
+            checkedListBox1.Refresh();
+            foreach (int it in checkedListBox1.CheckedIndices) { checkedListBox1.Items.RemoveAt(it); }
+            lleni.llenarDataGridViewDevolucion(dataGridView1, idClie);
+            dataGridView1.ClearSelection();
 
 
             
@@ -218,6 +213,7 @@ namespace AerolineaFrba.Devolucion
                 rd.Close();
                 cmd.CommandText = "select THE_CVENGERS.numeroTarjetaCompra(" + idComp + ") 'n'";
                 rd = cmd.ExecuteReader();
+                rd.Read();
                 String numT = rd["n"].ToString();
                 rd.Close();
                 mens += " sera retribuido a la tarjeta "+tipoT+" de numero "+numT;
