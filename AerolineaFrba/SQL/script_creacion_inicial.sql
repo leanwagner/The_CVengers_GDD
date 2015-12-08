@@ -707,7 +707,7 @@ RAISERROR('Por favor, ingrese un código de ruta válido.',16,1)
 return
 END
 
-if(@P1 IN (SELECT RUTA_CODIGO FROM THE_CVENGERS.RUTA))
+if(@P1 IN (SELECT RUTA_CODIGO FROM THE_CVENGERS.RUTA where RUTA_ESTADO = 1))
 BEGIN
 RAISERROR('Ese código de ruta ya existe, por favor ingrese uno distinto',16,1)
 return
