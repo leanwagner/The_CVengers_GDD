@@ -254,6 +254,28 @@ namespace AerolineaFrba.Llenador
             
             }
         }
+        public void llenarDataGridViewABMCiudad(DataGridView dgv)
+        {
+            SqlDataAdapter adapter;
+            DataTable tabla;
+
+            try
+            {
+                adapter = new SqlDataAdapter("select CIUDAD_ID as 'Id Ciudad', CIUDAD_NOMBRE as 'Nombre Ciudad' from [THE_CVENGERS].CIUDAD WHERE CIUDAD_ESTADO=1", Conexion.getConexion());
+                tabla = new DataTable();
+
+                adapter.Fill(tabla);
+                dgv.DataSource = tabla;
+                dgv.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+                adapter.Dispose();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("rompe mostrando ciudades");
+
+            }
+        }
 
         public void llenarDataGridViewDevolucion(DataGridView dgv,String idCl)
         {

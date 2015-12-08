@@ -63,7 +63,8 @@ GO
 
 CREATE TABLE [THE_CVENGERS].CIUDAD(
 	CIUDAD_ID NUMERIC(18,0) IDENTITY PRIMARY KEY,
-	CIUDAD_NOMBRE NVARCHAR(100) NOT NULL
+	CIUDAD_NOMBRE NVARCHAR(100) NOT NULL,
+	CIUDAD_ESTADO BIT DEFAULT 1
 )
 GO
 
@@ -548,7 +549,7 @@ insert into [THE_CVENGERS].FUNCIONALIDAD (FUNC_NOMBRE, FUNC_DESCRIPCION) values 
 																				 ('Consultar Millas', 'Autorizacion para consultar millas'),
 																				 ('Canje Millas', 'Autorizacion para canjear millas'),
 																				 ('Listado Estadístico', 'Autorizacion para ver el listado estadístico'),
-																				 ('ABM Ciudad', 'Crear, modificar y eliminar Ciudadades (próxima a implementarse)')
+																				 ('ABM Ciudad', 'Crear, modificar y eliminar Ciudadades')
 go
 insert into [THE_CVENGERS].FUNCIONXROL (FXR_ROL_ID, FXR_FUNC_ID) values (1,1),
 																		(1,2),
@@ -565,10 +566,10 @@ insert into [THE_CVENGERS].FUNCIONXROL (FXR_ROL_ID, FXR_FUNC_ID) values (1,1),
 																		(2,8)
 
 go
-insert into THE_CVENGERS.USUARIO (USR_USERNAME) values ('Pepe'), ('Carlos'), ('Ricardo'), ('Guest')
+insert into THE_CVENGERS.USUARIO (USR_USERNAME) values ('Pepe'), ('Carlos'), ('Ricardo'), ('Guest'), ('admin')
 
 go
-insert into THE_CVENGERS.ROLXUSUARIO (ROLXUSUARIO_ROL, ROLXUSUARIO_USUARIO) values (1,1), (1,2), (1,3), (2,4)
+insert into THE_CVENGERS.ROLXUSUARIO (ROLXUSUARIO_ROL, ROLXUSUARIO_USUARIO) values (1,1), (1,2), (1,3), (2,4), (1,5)
 
 go
 insert into THE_CVENGERS.PRODUCTO (PRODUCTO_NOMBRE, PRODUCTO_STOCK, PRODUCTO_MILLAS_NECESARIAS) values ('Skate', 20, 1000),
@@ -874,9 +875,11 @@ create view THE_CVENGERS.RutasDisponibles
 as
 select R.RUTA_ID 'Id', R.RUTA_CODIGO 'Código de Rutas', (select C.CIUDAD_NOMBRE 
 										FROM THE_CVENGERS.CIUDAD C 
-										WHERE C.CIUDAD_ID = R.RUTA_ORIGEN) 'Origen', (select C.CIUDAD_NOMBRE 
+										WHERE C.CIUDAD_ID = R.RUTA_ORIGEN
+										AND CIUDAD_ESTADO = 1) 'Origen', (select C.CIUDAD_NOMBRE 
 																						FROM THE_CVENGERS.CIUDAD C 
-																						WHERE C.CIUDAD_ID = R.RUTA_DESTINO) 'Destino', R.RUTA_PRECIO_BASE_POR_KILO 'Precio Base por Kilo', R.RUTA_PRECIO_BASE_POR_PASAJE 'Precio Base por Pasaje', isnull((SELECT 'Sí' from THE_CVENGERS.SERVICIOXRUTA WHERE SERVICIOXRUTA_RUTA = R.RUTA_ID AND SERVICIOXRUTA_SERVICIO = 1), 'No') 'Primera Clase', isnull((SELECT 'Sí' from THE_CVENGERS.SERVICIOXRUTA WHERE SERVICIOXRUTA_RUTA = R.RUTA_ID AND SERVICIOXRUTA_SERVICIO = 2), 'No') 'Ejecutivo', isnull((SELECT 'Sí' from THE_CVENGERS.SERVICIOXRUTA WHERE SERVICIOXRUTA_RUTA = R.RUTA_ID AND SERVICIOXRUTA_SERVICIO = 3), 'No') 'Turista'
+																						WHERE C.CIUDAD_ID = R.RUTA_DESTINO
+																						AND CIUDAD_ESTADO = 1) 'Destino', R.RUTA_PRECIO_BASE_POR_KILO 'Precio Base por Kilo', R.RUTA_PRECIO_BASE_POR_PASAJE 'Precio Base por Pasaje', isnull((SELECT 'Sí' from THE_CVENGERS.SERVICIOXRUTA WHERE SERVICIOXRUTA_RUTA = R.RUTA_ID AND SERVICIOXRUTA_SERVICIO = 1), 'No') 'Primera Clase', isnull((SELECT 'Sí' from THE_CVENGERS.SERVICIOXRUTA WHERE SERVICIOXRUTA_RUTA = R.RUTA_ID AND SERVICIOXRUTA_SERVICIO = 2), 'No') 'Ejecutivo', isnull((SELECT 'Sí' from THE_CVENGERS.SERVICIOXRUTA WHERE SERVICIOXRUTA_RUTA = R.RUTA_ID AND SERVICIOXRUTA_SERVICIO = 3), 'No') 'Turista'
 from THE_CVENGERS.RUTA R
 where R.RUTA_ESTADO = 1
 
@@ -939,10 +942,11 @@ set @viajeBuscado = (select V.VIAJE_ID
 										FROM THE_CVENGERS.RUTA R
 										WHERE R.RUTA_ORIGEN = (SELECT C.CIUDAD_ID 
 																from THE_CVENGERS.CIUDAD C
-																where c.CIUDAD_NOMBRE like ('_'+ @origen))
+																where c.CIUDAD_NOMBRE like ('_'+ @origen)
+																AND c.CIUDAD_ESTADO = 1)
 										and r.RUTA_DESTINO = (SELECT C.CIUDAD_ID 
 																from THE_CVENGERS.CIUDAD C
-																where c.CIUDAD_NOMBRE like ('_'+ @destino))) and V.VIAJE_AERONAVE = (select AERONAVE_ID from THE_CVENGERS.AERONAVE where AERONAVE_MATRICULA_AVION = @matricula) and V.VIAJE_FECHA_SALIDA < THE_CVENGERS.fechaReal() and v.VIAJE_FECHA_LLEGADA is NULL and V.VIAJE_ESTADO = 1)
+																where c.CIUDAD_NOMBRE like ('_'+ @destino)AND c.CIUDAD_ESTADO = 1) ) and V.VIAJE_AERONAVE = (select AERONAVE_ID from THE_CVENGERS.AERONAVE where AERONAVE_MATRICULA_AVION = @matricula) and V.VIAJE_FECHA_SALIDA < THE_CVENGERS.fechaReal() and v.VIAJE_FECHA_LLEGADA is NULL and V.VIAJE_ESTADO = 1)
 
 if(@viajeBuscado is NULL)
 begin
@@ -1059,7 +1063,8 @@ select V.VIAJE_ID 'Id', (select CIUDAD_NOMBRE
 							from THE_CVENGERS.CIUDAD
 							where CIUDAD_ID = (select RUTA_ORIGEN
 												from THE_CVENGERS.RUTA
-												where RUTA_ID = V.VIAJE_RUTA)) 'Origen', (select CIUDAD_NOMBRE
+												where RUTA_ID = V.VIAJE_RUTA)
+												AND CIUDAD_ESTADO = 1) 'Origen', (select CIUDAD_NOMBRE
 																							from THE_CVENGERS.CIUDAD
 																							where CIUDAD_ID = (select RUTA_DESTINO
 																												from THE_CVENGERS.RUTA
@@ -1146,17 +1151,18 @@ where CIUDAD_ID IN (SELECT RUTA_DESTINO FROM THE_CVENGERS.RUTA WHERE RUTA_ID IN 
 ORDER BY "Porcentaje de desocupación" DESC, "Total pasajes disponibles" DESC, "Total pasajes comprados" DESC)
 
 go
-create function THE_CVENGERS.clientesConMasPuntosAcumulados(@anio as int, @semestre as int)
+create function THE_CVENGERS.clientesConMasPuntosAcumulados(@anio as varchar(4), @semestre as int)
 returns table
 as
-
-return(select top 5 CLIENTE_APELLIDO + ' ' + CLIENTE_NOMBRE 'Cliente', (select sum(MILLA_GANADA)
+return(select top 5 CLIENTE_APELLIDO + ' ' + CLIENTE_NOMBRE 'Cliente', (select sum(MILLA_GANADA - MILLA_GASTADA)
 																		FROM THE_CVENGERS.MILLA
 																		WHERE MILLA_CLIENTE = CLIENTE_ID
-																		AND YEAR(MILLA_FECHA_ACREDITACION) <= @anio
-																		AND month(MILLA_FECHA_ACREDITACION) IN ((case when YEAR(MILLA_FECHA_ACREDITACION) = @anio and @semestre = 1 then 1  else 1 end), (case when YEAR(MILLA_FECHA_ACREDITACION) = @anio and @semestre = 1 then 2  else 2 end),(case when YEAR(MILLA_FECHA_ACREDITACION) = @anio and @semestre = 1 then 3 else 3 end),(case when YEAR(MILLA_FECHA_ACREDITACION) = @anio and @semestre = 1 then 4 else 4 end),(case when YEAR(MILLA_FECHA_ACREDITACION) = @anio and @semestre = 1 then 5  else 5 end),(case when YEAR(MILLA_FECHA_ACREDITACION) = @anio and @semestre = 1 then 6 else 6 end),(case when YEAR(MILLA_FECHA_ACREDITACION) = @anio and @semestre = 1 then 0 ELSE 7 end),(case when YEAR(MILLA_FECHA_ACREDITACION) = @anio and @semestre = 1 then 0  else 8 end),(case when YEAR(MILLA_FECHA_ACREDITACION) = @anio and @semestre = 1 then 0  else 9 end),(case when YEAR(MILLA_FECHA_ACREDITACION) = @anio and @semestre = 1 then 0 else 10 end),(case when YEAR(MILLA_FECHA_ACREDITACION) = @anio and @semestre = 1 then 0 else 11 end),(case when YEAR(MILLA_FECHA_ACREDITACION) = @anio and @semestre = 1 then 0 else 12 end))) 'Millas totales acumuladas'
+																		AND MILLA_FECHA_ACREDITACION < (case when @semestre = 1 then (cast((@anio+'-06-30 23:59:59.000') as datetime)) else (cast((@anio+'-12-31 23:59:59.000') as datetime)) end)
+																		AND (DATEDIFF(second,MILLA_FECHA_ACREDITACION, (case when @semestre = 1 then (cast((@anio+'-06-30 23:59:59.000') as datetime)) else (cast((@anio+'-12-31 23:59:59.000') as datetime)) end)) <= 31536000 or DATEDIFF(second,MILLA_FECHA_ACREDITACION, (case when @semestre = 1 then (cast((@anio+'-01-01 00:00:00.000') as datetime)) else (cast((@anio+'-07-01 00:00:00.000') as datetime)) end)) <= 31536000)
+																		) 'Millas totales acumuladas'
 		from THE_CVENGERS.CLIENTE
 		order by "Millas totales acumuladas" DESC)
+
 
 go
 create function THE_CVENGERS.destinosConMasPasajesCancelados(@anio as int, @semestre as int)
@@ -2129,13 +2135,14 @@ go
 CREATE FUNCTION THE_CVENGERS.aeronavesConMasDiasEnElTaller(@anio as int, @semestre as int)
 returns table
 as
-return(SELECT TOP 5 AERONAVE_MATRICULA_AVION 'Matrícula de la aeronave', (SELECT ISNULL(SUM(isnull(DATEDIFF(DAY, TALLER_FECHA_ENTRADA, TALLER_FECHA_SALIDA),0)),0)
+return(SELECT TOP 5 AERONAVE_MATRICULA_AVION 'Matrícula de la aeronave', (SELECT ISNULL(SUM(DATEDIFF(DAY, TALLER_FECHA_ENTRADA, TALLER_FECHA_SALIDA)),0)
 																			FROM THE_CVENGERS.TALLER
 																			WHERE TALLER_AERONAVE_ID = AERONAVE_ID
 																			AND ((YEAR(TALLER_FECHA_ENTRADA) = @anio AND (MONTH(TALLER_FECHA_ENTRADA) BETWEEN (case when @semestre = 1 then 1 else 7 end) and (case when @semestre = 1 then 6 else 12 end)))
 																					OR (YEAR(TALLER_FECHA_SALIDA) = @anio AND (MONTH(TALLER_FECHA_SALIDA) BETWEEN (case when @semestre = 1 then 1 else 7 end) and (case when @semestre = 1 then 6 else 12 end))))) 'Días en el taller' 
 		FROM THE_CVENGERS.AERONAVE
-		ORDER BY "Días en el taller" desc)
+		ORDER BY "Días en el taller" DESC)
+
 go
 create FUNCTION THE_CVENGERS.aeronavePuedeReemplazarDePorVidaFunc(@avion1 as numeric(18,0), @avion2 as numeric(18,0))
 RETURNS INT
@@ -2293,6 +2300,67 @@ END
 CLOSE butaquitas
 DEALLOCATE butaquitas
 END
+
+go
+create procedure THE_CVENGERS.ingresarCiudad @ciudad as nvarchar(100)
+as
+begin
+
+if(exists(SELECT * FROM THE_CVENGERS.CIUDAD WHERE CIUDAD_NOMBRE like ('_' + @ciudad) and CIUDAD_ESTADO = 1))
+BEGIN
+RAISERROR('Ese nombre de ciudad ya existe, por favor ingrese uno nuevo', 16, 1)
+return
+END
+
+if(not exists(select * from THE_CVENGERS.CIUDAD where CIUDAD_NOMBRE like ('_' + @ciudad)))
+begin
+insert into THE_CVENGERS.CIUDAD (CIUDAD_NOMBRE) VALUES (' '+@ciudad)
+end
+else
+begin
+update THE_CVENGERS.CIUDAD set CIUDAD_ESTADO = 1
+WHERE CIUDAD_NOMBRE like ('_' + @ciudad)
+end
+end
+
+go
+create procedure THE_CVENGERS.bajarCiudad @ciudad as numeric(18,0)
+as
+begin
+
+if(exists(SELECT * FROM THE_CVENGERS.RUTA WHERE RUTA_ESTADO = 1 AND (RUTA_ORIGEN = @ciudad OR RUTA_DESTINO = @ciudad)))
+BEGIN
+RAISERROR('No se puede dar de baja esta ciudad ya que existen una o más rutas activas que utilizan la misma', 16, 1)
+return
+END
+
+update THE_CVENGERS.CIUDAD SET CIUDAD_ESTADO = 0
+WHERE CIUDAD_ID = @ciudad
+
+end
+
+go
+create procedure THE_CVENGERS.modificarCiudad @idCiudad as numeric(18,0), @nombreNuevo as nvarchar(100)
+as
+begin
+
+if(exists(SELECT * FROM THE_CVENGERS.RUTA WHERE RUTA_ESTADO = 1 AND (RUTA_ORIGEN = @idCiudad OR RUTA_DESTINO = @idCiudad)))
+BEGIN
+RAISERROR('No se puede modificar esta ciudad ya que existen una o más rutas activas que utilizan la misma', 16, 1)
+return
+END
+
+if(not exists(select * from THE_CVENGERS.CIUDAD where CIUDAD_NOMBRE like ('_' + @nombreNuevo)))
+begin
+update THE_CVENGERS.CIUDAD set CIUDAD_NOMBRE = ' '+@nombreNuevo WHERE CIUDAD_ID = @idCiudad
+end
+else
+begin
+RAISERROR('Ese nombre ya fue utilizado para nombrar otra Ciudad, por favor ingrese un nombre distinto', 16,1)
+return
+end
+
+end
 /*DROP TABLE [THE_CVENGERS].CUOTASXTARJETA
 DROP TABLE [THE_CVENGERS].MILLA
 DROP TABLE [THE_CVENGERS].FECHA
@@ -2395,5 +2463,8 @@ DROP FUNCTION [THE_CVENGERS].aeronavesQuePuedenSuplantarDePorVida
 DROP FUNCTION [THE_CVENGERS].aeronavesQuePuedenSuplantarPorUnLapso
 DROP FUNCTION [THE_CVENGERS].aeronaveConViajesPendientesEnEseLapso
 DROP PROCEDURE [THE_CVENGERS].crearAeronaveSuplente
+DROP PROCEDURE [THE_CVENGERS].ingresarCiudad
+DROP PROCEDURE [THE_CVENGERS].bajarCiudad
+DROP PROCEDURE [THE_CVENGERS].modificarCiudad
 DROP PROCEDURE [THE_CVENGERS].getAll 
 DROP SCHEMA [THE_CVENGERS]*/
