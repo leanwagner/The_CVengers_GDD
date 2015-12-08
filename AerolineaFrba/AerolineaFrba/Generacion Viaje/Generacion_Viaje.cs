@@ -183,6 +183,11 @@ namespace AerolineaFrba.Generacion_Viaje
             timePicker2.MinDate = timePicker1.MinDate.AddMinutes(5);
         }
 
+        private void timePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            timePicker2.MinDate = timePicker1.Value.AddMinutes(5);
+        }
+
         
     }
 }

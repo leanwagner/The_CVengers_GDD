@@ -148,6 +148,7 @@
             this.timePicker1.Name = "timePicker1";
             this.timePicker1.Size = new System.Drawing.Size(84, 20);
             this.timePicker1.TabIndex = 2;
+            this.timePicker1.ValueChanged += new System.EventHandler(this.timePicker1_ValueChanged);
             // 
             // timePicker2
             // 
