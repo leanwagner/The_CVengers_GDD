@@ -24,7 +24,7 @@ namespace AerolineaFrba.Abm_Ciudad
         private void Abm_Ciudad_Load(object sender, EventArgs e)
         {
            
-            llenador.llenarDataGridView(dataGridView1, "CIUDAD");
+            llenador.llenarDataGridViewABMCiudad(dataGridView1);
         }
 
         private void boton_Agregar_Ciudad_Click(object sender, EventArgs e)
@@ -55,19 +55,20 @@ namespace AerolineaFrba.Abm_Ciudad
         private void boton_Agregar_Ciudad_Click_1(object sender, EventArgs e)
         {
             //sino ver de hacer un PROC que inserte si no existe esa ciudad
-             SqlCommand sqlCmd = new SqlCommand("insert into THE_CVENGERS.CIUDAD(CIUDAD_NOMBRE) values ('"+textBox1.Text+"')", Conexion.getConexion());
-            
+              
             try
             {
+                SqlCommand sqlCmd = new SqlCommand("EXEC THE_CVENGERS.ingresarCiudad @ciudad='" + textBox1.Text + "'", Conexion.getConexion());
+           
                 sqlCmd.ExecuteNonQuery();
 
-                llenador.llenarDataGridView(dataGridView1, "CIUDAD");
+                llenador.llenarDataGridViewABMCiudad(dataGridView1);
                 textBox1.Text = "";
 
             }
             
                 catch(Exception ex){
-                 MessageBox.Show(ex.ToString());
+                 MessageBox.Show(ex.Message);
                 
                 }
         }
@@ -79,11 +80,18 @@ namespace AerolineaFrba.Abm_Ciudad
             
             if (dialogResult == DialogResult.Yes)
             {
-                //deletear si se puede
-                SqlCommand sqlCmd = new SqlCommand("", Conexion.getConexion());
-                sqlCmd.ExecuteNonQuery();
-                llenador.llenarDataGridView(dataGridView1, "CIUDAD");
+                
+                  try
+                {
+                    SqlCommand sqlCmd = new SqlCommand("EXEC THE_CVENGERS.bajarCiudad @ciudad=" + seleccionado.Cells[0].Value.ToString() + "", Conexion.getConexion());
 
+                    sqlCmd.ExecuteNonQuery();
+                    llenador.llenarDataGridViewABMCiudad(dataGridView1);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 
@@ -93,7 +101,7 @@ namespace AerolineaFrba.Abm_Ciudad
             DataGridViewRow seleccionado = dataGridView1.SelectedRows[0];
             SqlCommand sqlCmd = new SqlCommand("UPDATE THE_CVENGERS.CIUDAD SET CIUDAD_NOMBRE='" + textBox2.Text + "' WHERE CIUDAD_ID=" + seleccionado.Cells[0].Value.ToString() + ";", Conexion.getConexion());
             sqlCmd.ExecuteNonQuery();
-            llenador.llenarDataGridView(dataGridView1, "CIUDAD");
+            llenador.llenarDataGridViewABMCiudad(dataGridView1);
             textBox2.Text = "";
             groupBox3.Enabled = false;
             groupBox2.Enabled = true;

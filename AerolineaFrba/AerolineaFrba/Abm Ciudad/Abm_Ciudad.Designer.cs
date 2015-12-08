@@ -38,9 +38,9 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.boton_Agregar_Ciudad = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.button_modificarTotal = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.button_modificarTotal = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -54,13 +54,13 @@
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(62, 30);
+            this.dataGridView1.Location = new System.Drawing.Point(79, 33);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.ShowEditingIcon = false;
-            this.dataGridView1.Size = new System.Drawing.Size(236, 177);
+            this.dataGridView1.Size = new System.Drawing.Size(193, 177);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -151,15 +151,12 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Modificar Ciudad";
             // 
-            // button_modificarTotal
+            // textBox2
             // 
-            this.button_modificarTotal.Location = new System.Drawing.Point(264, 36);
-            this.button_modificarTotal.Name = "button_modificarTotal";
-            this.button_modificarTotal.Size = new System.Drawing.Size(75, 23);
-            this.button_modificarTotal.TabIndex = 0;
-            this.button_modificarTotal.Text = "Modificar";
-            this.button_modificarTotal.UseVisualStyleBackColor = true;
-            this.button_modificarTotal.Click += new System.EventHandler(this.button_modificarTotal_Click);
+            this.textBox2.Location = new System.Drawing.Point(92, 38);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(153, 20);
+            this.textBox2.TabIndex = 2;
             // 
             // label2
             // 
@@ -170,12 +167,15 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Nombre:";
             // 
-            // textBox2
+            // button_modificarTotal
             // 
-            this.textBox2.Location = new System.Drawing.Point(92, 38);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(153, 20);
-            this.textBox2.TabIndex = 2;
+            this.button_modificarTotal.Location = new System.Drawing.Point(264, 36);
+            this.button_modificarTotal.Name = "button_modificarTotal";
+            this.button_modificarTotal.Size = new System.Drawing.Size(75, 23);
+            this.button_modificarTotal.TabIndex = 0;
+            this.button_modificarTotal.Text = "Modificar";
+            this.button_modificarTotal.UseVisualStyleBackColor = true;
+            this.button_modificarTotal.Click += new System.EventHandler(this.button_modificarTotal_Click);
             // 
             // Abm_Ciudad
             // 
