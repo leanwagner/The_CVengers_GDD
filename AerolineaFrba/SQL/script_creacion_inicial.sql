@@ -63,7 +63,8 @@ GO
 
 CREATE TABLE [THE_CVENGERS].CIUDAD(
 	CIUDAD_ID NUMERIC(18,0) IDENTITY PRIMARY KEY,
-	CIUDAD_NOMBRE NVARCHAR(100) NOT NULL
+	CIUDAD_NOMBRE NVARCHAR(100) NOT NULL,
+	CIUDAD_ESTADO BIT DEFAULT 1
 )
 GO
 
@@ -874,9 +875,11 @@ create view THE_CVENGERS.RutasDisponibles
 as
 select R.RUTA_ID 'Id', R.RUTA_CODIGO 'Código de Rutas', (select C.CIUDAD_NOMBRE 
 										FROM THE_CVENGERS.CIUDAD C 
-										WHERE C.CIUDAD_ID = R.RUTA_ORIGEN) 'Origen', (select C.CIUDAD_NOMBRE 
+										WHERE C.CIUDAD_ID = R.RUTA_ORIGEN
+										AND CIUDAD_ESTADO = 1) 'Origen', (select C.CIUDAD_NOMBRE 
 																						FROM THE_CVENGERS.CIUDAD C 
-																						WHERE C.CIUDAD_ID = R.RUTA_DESTINO) 'Destino', R.RUTA_PRECIO_BASE_POR_KILO 'Precio Base por Kilo', R.RUTA_PRECIO_BASE_POR_PASAJE 'Precio Base por Pasaje', isnull((SELECT 'Sí' from THE_CVENGERS.SERVICIOXRUTA WHERE SERVICIOXRUTA_RUTA = R.RUTA_ID AND SERVICIOXRUTA_SERVICIO = 1), 'No') 'Primera Clase', isnull((SELECT 'Sí' from THE_CVENGERS.SERVICIOXRUTA WHERE SERVICIOXRUTA_RUTA = R.RUTA_ID AND SERVICIOXRUTA_SERVICIO = 2), 'No') 'Ejecutivo', isnull((SELECT 'Sí' from THE_CVENGERS.SERVICIOXRUTA WHERE SERVICIOXRUTA_RUTA = R.RUTA_ID AND SERVICIOXRUTA_SERVICIO = 3), 'No') 'Turista'
+																						WHERE C.CIUDAD_ID = R.RUTA_DESTINO
+																						AND CIUDAD_ESTADO = 1) 'Destino', R.RUTA_PRECIO_BASE_POR_KILO 'Precio Base por Kilo', R.RUTA_PRECIO_BASE_POR_PASAJE 'Precio Base por Pasaje', isnull((SELECT 'Sí' from THE_CVENGERS.SERVICIOXRUTA WHERE SERVICIOXRUTA_RUTA = R.RUTA_ID AND SERVICIOXRUTA_SERVICIO = 1), 'No') 'Primera Clase', isnull((SELECT 'Sí' from THE_CVENGERS.SERVICIOXRUTA WHERE SERVICIOXRUTA_RUTA = R.RUTA_ID AND SERVICIOXRUTA_SERVICIO = 2), 'No') 'Ejecutivo', isnull((SELECT 'Sí' from THE_CVENGERS.SERVICIOXRUTA WHERE SERVICIOXRUTA_RUTA = R.RUTA_ID AND SERVICIOXRUTA_SERVICIO = 3), 'No') 'Turista'
 from THE_CVENGERS.RUTA R
 where R.RUTA_ESTADO = 1
 
@@ -939,10 +942,11 @@ set @viajeBuscado = (select V.VIAJE_ID
 										FROM THE_CVENGERS.RUTA R
 										WHERE R.RUTA_ORIGEN = (SELECT C.CIUDAD_ID 
 																from THE_CVENGERS.CIUDAD C
-																where c.CIUDAD_NOMBRE like ('_'+ @origen))
+																where c.CIUDAD_NOMBRE like ('_'+ @origen)
+																AND c.CIUDAD_ESTADO = 1)
 										and r.RUTA_DESTINO = (SELECT C.CIUDAD_ID 
 																from THE_CVENGERS.CIUDAD C
-																where c.CIUDAD_NOMBRE like ('_'+ @destino))) and V.VIAJE_AERONAVE = (select AERONAVE_ID from THE_CVENGERS.AERONAVE where AERONAVE_MATRICULA_AVION = @matricula) and V.VIAJE_FECHA_SALIDA < THE_CVENGERS.fechaReal() and v.VIAJE_FECHA_LLEGADA is NULL and V.VIAJE_ESTADO = 1)
+																where c.CIUDAD_NOMBRE like ('_'+ @destino)AND c.CIUDAD_ESTADO = 1) ) and V.VIAJE_AERONAVE = (select AERONAVE_ID from THE_CVENGERS.AERONAVE where AERONAVE_MATRICULA_AVION = @matricula) and V.VIAJE_FECHA_SALIDA < THE_CVENGERS.fechaReal() and v.VIAJE_FECHA_LLEGADA is NULL and V.VIAJE_ESTADO = 1)
 
 if(@viajeBuscado is NULL)
 begin
@@ -1059,7 +1063,8 @@ select V.VIAJE_ID 'Id', (select CIUDAD_NOMBRE
 							from THE_CVENGERS.CIUDAD
 							where CIUDAD_ID = (select RUTA_ORIGEN
 												from THE_CVENGERS.RUTA
-												where RUTA_ID = V.VIAJE_RUTA)) 'Origen', (select CIUDAD_NOMBRE
+												where RUTA_ID = V.VIAJE_RUTA)
+												AND CIUDAD_ESTADO = 1) 'Origen', (select CIUDAD_NOMBRE
 																							from THE_CVENGERS.CIUDAD
 																							where CIUDAD_ID = (select RUTA_DESTINO
 																												from THE_CVENGERS.RUTA
@@ -2293,6 +2298,44 @@ END
 CLOSE butaquitas
 DEALLOCATE butaquitas
 END
+
+go
+create procedure THE_CVENGERS.ingresarCiudad @ciudad as nvarchar(100)
+as
+begin
+
+if(exists(SELECT * FROM THE_CVENGERS.CIUDAD WHERE CIUDAD_NOMBRE = @ciudad and CIUDAD_ESTADO = 1))
+BEGIN
+RAISERROR('Ese nombre de ciudad ya existe, por favor ingrese uno nuevo', 16, 1)
+return
+END
+
+if(not exists(select * from THE_CVENGERS.CIUDAD where CIUDAD_NOMBRE = @ciudad))
+begin
+insert into THE_CVENGERS.CIUDAD (CIUDAD_NOMBRE) VALUES (@ciudad)
+end
+else
+begin
+update THE_CVENGERS.CIUDAD set CIUDAD_ESTADO = 1
+WHERE CIUDAD_NOMBRE = @ciudad
+end
+end
+
+go
+create procedure THE_CVENGERS.bajarCiudad @ciudad as numeric(18,0)
+as
+begin
+
+if(exists(SELECT * FROM THE_CVENGERS.RUTA WHERE RUTA_ESTADO = 1 AND (RUTA_ORIGEN = @ciudad OR RUTA_DESTINO = @ciudad)))
+BEGIN
+RAISERROR('No se puede dar de baja esta ciudad ya que existen una o más rutas activas que utilizan la misma', 16, 1)
+return
+END
+
+update THE_CVENGERS.CIUDAD SET CIUDAD_ESTADO = 0
+WHERE CIUDAD_ID = @ciudad
+
+end
 /*DROP TABLE [THE_CVENGERS].CUOTASXTARJETA
 DROP TABLE [THE_CVENGERS].MILLA
 DROP TABLE [THE_CVENGERS].FECHA
@@ -2395,5 +2438,7 @@ DROP FUNCTION [THE_CVENGERS].aeronavesQuePuedenSuplantarDePorVida
 DROP FUNCTION [THE_CVENGERS].aeronavesQuePuedenSuplantarPorUnLapso
 DROP FUNCTION [THE_CVENGERS].aeronaveConViajesPendientesEnEseLapso
 DROP PROCEDURE [THE_CVENGERS].crearAeronaveSuplente
+DROP PROCEDURE [THE_CVENGERS].ingresarCiudad
+DROP PROCEDURE [THE_CVENGERS].bajarCiudad
 DROP PROCEDURE [THE_CVENGERS].getAll 
 DROP SCHEMA [THE_CVENGERS]*/
