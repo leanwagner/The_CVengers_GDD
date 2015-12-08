@@ -1410,7 +1410,7 @@ END
 
 go
 create function THE_CVENGERS.tipoTarjetaCompra(@compra as numeric(18,0))
-returns nvarchar
+returns nvarchar(20)
 as
 begin
 return (select TIPO_TARJETA_DETALLE FROM THE_CVENGERS.TIPO_TARJETA
@@ -1421,7 +1421,7 @@ end
 
 go
 create function THE_CVENGERS.numeroTarjetaCompra(@compra as numeric(18,0))
-returns nvarchar
+returns numeric
 as
 begin
 return (SELECT TARJETA_NRO FROM THE_CVENGERS.TARJETACREDITO

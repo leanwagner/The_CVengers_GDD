@@ -58,9 +58,9 @@ namespace AerolineaFrba.Abm_Aeronave
                              
                              MessageBox.Show("Se mandó la aeronave "+this.matricula_aeronave+ " hasta el "+dateTimePicker_reinc.Value.ToString(CultureInfo.InvariantCulture), "Baja exitosa");
                          }
-                         catch
+                         catch(Exception exc)
                          {
-                             MessageBox.Show("Rompio mandarATallerHastaFecha");
+                             MessageBox.Show("Rompio mandarATallerHastaFecha "+exc.Message);
                          }
 
                      }
@@ -77,9 +77,9 @@ namespace AerolineaFrba.Abm_Aeronave
                  }
 
             }
-            catch
+            catch(Exception exc)
             {
-                MessageBox.Show("Rompio aeronaveConViajesPendientes");
+                MessageBox.Show("Rompio aeronaveConViajesPendientes " + exc.Message);
             }
 
             }
@@ -105,9 +105,9 @@ namespace AerolineaFrba.Abm_Aeronave
 
                             MessageBox.Show("Se dio de baja la aeronave " + this.matricula_aeronave + " de manera vitalicia.", "Baja exitosa");
                         }
-                        catch
+                        catch(Exception ex)
                         {
-                            MessageBox.Show("Rompio darDeBajaVitaliciaAeronave");
+                            MessageBox.Show("Rompio darDeBajaVitaliciaAeronave "+ex.Message);
                         }
 
                     }
@@ -121,9 +121,9 @@ namespace AerolineaFrba.Abm_Aeronave
 
 
                 }
-                catch
+                catch(Exception ex)
                 {
-                    MessageBox.Show("Rompio aeronave con viajes pendientes");
+                    MessageBox.Show("Rompio aeronave con viajes pendientes "+ex.Message);
                 }
             }
 
