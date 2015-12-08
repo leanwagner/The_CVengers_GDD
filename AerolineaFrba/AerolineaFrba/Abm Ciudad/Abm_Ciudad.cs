@@ -68,7 +68,7 @@ namespace AerolineaFrba.Abm_Ciudad
             }
             
                 catch(Exception ex){
-                 MessageBox.Show(ex.Message);
+                 MessageBox.Show(ex.Message,"Error en el alta");
                 
                 }
         }
@@ -90,21 +90,31 @@ namespace AerolineaFrba.Abm_Ciudad
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show(ex.Message,"Error en la baja");
                 }
             }
         }
 
         private void button_modificarTotal_Click(object sender, EventArgs e)
         {
-                        
-            DataGridViewRow seleccionado = dataGridView1.SelectedRows[0];
-            SqlCommand sqlCmd = new SqlCommand("UPDATE THE_CVENGERS.CIUDAD SET CIUDAD_NOMBRE='" + textBox2.Text + "' WHERE CIUDAD_ID=" + seleccionado.Cells[0].Value.ToString() + ";", Conexion.getConexion());
-            sqlCmd.ExecuteNonQuery();
-            llenador.llenarDataGridViewABMCiudad(dataGridView1);
-            textBox2.Text = "";
-            groupBox3.Enabled = false;
-            groupBox2.Enabled = true;
-        }
+            try
+            {
+                DataGridViewRow seleccionado = dataGridView1.SelectedRows[0];
+                SqlCommand sqlCmd = new SqlCommand("EXEC THE_CVENGERS.modificarCiudad @idCiudad='" + seleccionado.Cells[0].Value.ToString() + "', @nombreNuevo='" + textBox2.Text + "';", Conexion.getConexion());
+                sqlCmd.ExecuteNonQuery();
+                llenador.llenarDataGridViewABMCiudad(dataGridView1);
+                textBox2.Text = "";
+                groupBox3.Enabled = false;
+                groupBox2.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message,"Error en la modificación");
+                llenador.llenarDataGridViewABMCiudad(dataGridView1);
+                textBox2.Text = "";
+                groupBox3.Enabled = false;
+                groupBox2.Enabled = true;
+            }
+      }
     }
 }
