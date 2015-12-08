@@ -1151,17 +1151,18 @@ where CIUDAD_ID IN (SELECT RUTA_DESTINO FROM THE_CVENGERS.RUTA WHERE RUTA_ID IN 
 ORDER BY "Porcentaje de desocupación" DESC, "Total pasajes disponibles" DESC, "Total pasajes comprados" DESC)
 
 go
-create function THE_CVENGERS.clientesConMasPuntosAcumulados(@anio as int, @semestre as int)
+create function THE_CVENGERS.clientesConMasPuntosAcumulados(@anio as varchar(4), @semestre as int)
 returns table
 as
-
-return(select top 5 CLIENTE_APELLIDO + ' ' + CLIENTE_NOMBRE 'Cliente', (select sum(MILLA_GANADA)
+return(select top 5 CLIENTE_APELLIDO + ' ' + CLIENTE_NOMBRE 'Cliente', (select sum(MILLA_GANADA - MILLA_GASTADA)
 																		FROM THE_CVENGERS.MILLA
 																		WHERE MILLA_CLIENTE = CLIENTE_ID
-																		AND YEAR(MILLA_FECHA_ACREDITACION) <= @anio
-																		AND month(MILLA_FECHA_ACREDITACION) IN ((case when YEAR(MILLA_FECHA_ACREDITACION) = @anio and @semestre = 1 then 1  else 1 end), (case when YEAR(MILLA_FECHA_ACREDITACION) = @anio and @semestre = 1 then 2  else 2 end),(case when YEAR(MILLA_FECHA_ACREDITACION) = @anio and @semestre = 1 then 3 else 3 end),(case when YEAR(MILLA_FECHA_ACREDITACION) = @anio and @semestre = 1 then 4 else 4 end),(case when YEAR(MILLA_FECHA_ACREDITACION) = @anio and @semestre = 1 then 5  else 5 end),(case when YEAR(MILLA_FECHA_ACREDITACION) = @anio and @semestre = 1 then 6 else 6 end),(case when YEAR(MILLA_FECHA_ACREDITACION) = @anio and @semestre = 1 then 0 ELSE 7 end),(case when YEAR(MILLA_FECHA_ACREDITACION) = @anio and @semestre = 1 then 0  else 8 end),(case when YEAR(MILLA_FECHA_ACREDITACION) = @anio and @semestre = 1 then 0  else 9 end),(case when YEAR(MILLA_FECHA_ACREDITACION) = @anio and @semestre = 1 then 0 else 10 end),(case when YEAR(MILLA_FECHA_ACREDITACION) = @anio and @semestre = 1 then 0 else 11 end),(case when YEAR(MILLA_FECHA_ACREDITACION) = @anio and @semestre = 1 then 0 else 12 end))) 'Millas totales acumuladas'
+																		AND MILLA_FECHA_ACREDITACION < (case when @semestre = 1 then (cast((@anio+'-06-30 23:59:59.000') as datetime)) else (cast((@anio+'-12-31 23:59:59.000') as datetime)) end)
+																		AND (DATEDIFF(second,MILLA_FECHA_ACREDITACION, (case when @semestre = 1 then (cast((@anio+'-06-30 23:59:59.000') as datetime)) else (cast((@anio+'-12-31 23:59:59.000') as datetime)) end)) <= 31536000 or DATEDIFF(second,MILLA_FECHA_ACREDITACION, (case when @semestre = 1 then (cast((@anio+'-01-01 00:00:00.000') as datetime)) else (cast((@anio+'-07-01 00:00:00.000') as datetime)) end)) <= 31536000)
+																		) 'Millas totales acumuladas'
 		from THE_CVENGERS.CLIENTE
 		order by "Millas totales acumuladas" DESC)
+
 
 go
 create function THE_CVENGERS.destinosConMasPasajesCancelados(@anio as int, @semestre as int)
@@ -2134,13 +2135,14 @@ go
 CREATE FUNCTION THE_CVENGERS.aeronavesConMasDiasEnElTaller(@anio as int, @semestre as int)
 returns table
 as
-return(SELECT TOP 5 AERONAVE_MATRICULA_AVION 'Matrícula de la aeronave', (SELECT ISNULL(SUM(isnull(DATEDIFF(DAY, TALLER_FECHA_ENTRADA, TALLER_FECHA_SALIDA),0)),0)
+return(SELECT TOP 5 AERONAVE_MATRICULA_AVION 'Matrícula de la aeronave', (SELECT ISNULL(SUM(DATEDIFF(DAY, TALLER_FECHA_ENTRADA, TALLER_FECHA_SALIDA)),0)
 																			FROM THE_CVENGERS.TALLER
 																			WHERE TALLER_AERONAVE_ID = AERONAVE_ID
 																			AND ((YEAR(TALLER_FECHA_ENTRADA) = @anio AND (MONTH(TALLER_FECHA_ENTRADA) BETWEEN (case when @semestre = 1 then 1 else 7 end) and (case when @semestre = 1 then 6 else 12 end)))
 																					OR (YEAR(TALLER_FECHA_SALIDA) = @anio AND (MONTH(TALLER_FECHA_SALIDA) BETWEEN (case when @semestre = 1 then 1 else 7 end) and (case when @semestre = 1 then 6 else 12 end))))) 'Días en el taller' 
 		FROM THE_CVENGERS.AERONAVE
-		ORDER BY "Días en el taller" desc)
+		ORDER BY "Días en el taller" DESC)
+
 go
 create FUNCTION THE_CVENGERS.aeronavePuedeReemplazarDePorVidaFunc(@avion1 as numeric(18,0), @avion2 as numeric(18,0))
 RETURNS INT
