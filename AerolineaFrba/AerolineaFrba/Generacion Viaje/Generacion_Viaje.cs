@@ -110,8 +110,24 @@ namespace AerolineaFrba.Generacion_Viaje
 
         private void datePicker1_ValueChanged(object sender, EventArgs e)
         {
+            
+            if (datePicker1.Value.Date != DateTimeHandler.devolverFechaDB().Date)
+            {
+                timePicker1.MinDate = datePicker1.Value.Date;
+                timePicker2.MinDate = datePicker2.Value.Date;
+                
+                timer1.Enabled = false;
+            }
+            else {
+                timePicker1.MinDate = DateTimeHandler.devolverFechaDB();
+                timePicker1.Value = timePicker1.MinDate;
+                timePicker2.MinDate = DateTimeHandler.devolverFechaDB();
+                timePicker2.Value = timePicker2.MinDate;
+                timer1.Enabled = true;
+            }
+
             datePicker2.MinDate = datePicker1.Value.AddMinutes(5);
-            timePicker2.MinDate = datePicker1.Value.AddMinutes(5);
+            timePicker2.MinDate = datePicker1.Value.Date.AddMinutes(5);
            // datePicker2.MaxDate = datePicker1.Value.AddDays(1);
            // timePicker2.MaxDate = datePicker1.Value.AddDays(1);
 
@@ -162,8 +178,9 @@ namespace AerolineaFrba.Generacion_Viaje
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            datePicker1.MinDate = datePicker1.MinDate.AddSeconds(1);
+           // datePicker1.MinDate = datePicker1.MinDate.AddSeconds(1);
             timePicker1.MinDate = timePicker1.MinDate.AddSeconds(1);
+            timePicker2.MinDate = timePicker1.MinDate.AddMinutes(5);
         }
 
         
