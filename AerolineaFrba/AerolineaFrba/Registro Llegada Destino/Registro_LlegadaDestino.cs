@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -180,7 +181,7 @@ namespace AerolineaFrba.Registro_Llegada_Destino
             try
             {
                 SqlCommand sqlCmd = new SqlCommand("EXEC THE_CVENGERS.registrarLlegada @viaje ='" + viajeId +
-                    "', @fecha ='" + dateTimePicker1.Value.ToString() + "'" , Conexion.getConexion());
+                    "', @fecha ='" + dateTimePicker1.Value.ToString(CultureInfo.InvariantCulture) + "'" , Conexion.getConexion());
 
 
                 sqlCmd.ExecuteNonQuery();

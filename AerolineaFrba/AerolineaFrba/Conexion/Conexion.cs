@@ -23,13 +23,15 @@ namespace AerolineaFrba
                 {
                     conexionDB = new SqlConnection(ConfigurationManager.AppSettings["confSQL"].ToString());
                     conexionDB.Open();
+                    SqlCommand cmd = new SqlCommand("SET DATEFORMAT mdy", conexionDB);
+                    cmd.ExecuteNonQuery();
                     inicializarFechaSistema();
                     return conexionDB;
                 }
 
-                catch 
+                catch (Exception ex)
                 {
-                    MessageBox.Show("No se pudo establecer conexion con la base de datos","Error",MessageBoxButtons.OK);
+                    MessageBox.Show(ex.Message,"Error",MessageBoxButtons.OK);
                     Environment.Exit(1);
                 }
 

@@ -56,7 +56,7 @@ namespace AerolineaFrba.Abm_Aeronave
                              
                              sqlCmds.ExecuteScalar();
                              
-                             MessageBox.Show("Se mandó la aeronave "+this.matricula_aeronave+ " hasta el "+dateTimePicker_reinc.Value.ToString(), "Baja exitosa");
+                             MessageBox.Show("Se mandó la aeronave "+this.matricula_aeronave+ " hasta el "+dateTimePicker_reinc.Value.ToString(CultureInfo.InvariantCulture), "Baja exitosa");
                          }
                          catch
                          {
@@ -72,7 +72,7 @@ namespace AerolineaFrba.Abm_Aeronave
                  }
                  else
                  {
-                     DecisionAeronave ventana = new DecisionAeronave(dameIdAeronave(this.matricula_aeronave), dateTimePicker_reinc.Value.ToString());
+                     DecisionAeronave ventana = new DecisionAeronave(dameIdAeronave(this.matricula_aeronave), dateTimePicker_reinc.Value.ToString(CultureInfo.InvariantCulture));
                      ventana.Show();
                  }
 
