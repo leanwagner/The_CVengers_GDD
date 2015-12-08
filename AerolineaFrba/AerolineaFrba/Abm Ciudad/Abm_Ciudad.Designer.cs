@@ -30,16 +30,21 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Abm_Ciudad));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.boton_Cerrar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button_eliminar = new System.Windows.Forms.Button();
             this.boton_Modificar = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.boton_Agregar_Ciudad = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.button_modificarTotal = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -49,7 +54,7 @@
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(64, 39);
+            this.dataGridView1.Location = new System.Drawing.Point(62, 30);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
@@ -59,26 +64,28 @@
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
-            // boton_Cerrar
-            // 
-            this.boton_Cerrar.Location = new System.Drawing.Point(334, 379);
-            this.boton_Cerrar.Name = "boton_Cerrar";
-            this.boton_Cerrar.Size = new System.Drawing.Size(75, 23);
-            this.boton_Cerrar.TabIndex = 1;
-            this.boton_Cerrar.Text = "Cerrar";
-            this.boton_Cerrar.UseVisualStyleBackColor = true;
-            this.boton_Cerrar.Click += new System.EventHandler(this.boton_Agregar_Ciudad_Click);
-            // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button_eliminar);
             this.groupBox1.Controls.Add(this.boton_Modificar);
             this.groupBox1.Controls.Add(this.dataGridView1);
-            this.groupBox1.Location = new System.Drawing.Point(32, 103);
+            this.groupBox1.Location = new System.Drawing.Point(32, 210);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(377, 255);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Listado de Ciudades";
+            // 
+            // button_eliminar
+            // 
+            this.button_eliminar.Enabled = false;
+            this.button_eliminar.Location = new System.Drawing.Point(176, 225);
+            this.button_eliminar.Name = "button_eliminar";
+            this.button_eliminar.Size = new System.Drawing.Size(75, 23);
+            this.button_eliminar.TabIndex = 2;
+            this.button_eliminar.Text = "Eliminar";
+            this.button_eliminar.UseVisualStyleBackColor = true;
+            this.button_eliminar.Click += new System.EventHandler(this.button_eliminar_Click);
             // 
             // boton_Modificar
             // 
@@ -129,15 +136,55 @@
             this.boton_Agregar_Ciudad.TabIndex = 0;
             this.boton_Agregar_Ciudad.Text = "Agregar";
             this.boton_Agregar_Ciudad.UseVisualStyleBackColor = true;
+            this.boton_Agregar_Ciudad.Click += new System.EventHandler(this.boton_Agregar_Ciudad_Click_1);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.textBox2);
+            this.groupBox3.Controls.Add(this.label2);
+            this.groupBox3.Controls.Add(this.button_modificarTotal);
+            this.groupBox3.Enabled = false;
+            this.groupBox3.Location = new System.Drawing.Point(32, 103);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(377, 77);
+            this.groupBox3.TabIndex = 4;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Modificar Ciudad";
+            // 
+            // button_modificarTotal
+            // 
+            this.button_modificarTotal.Location = new System.Drawing.Point(264, 36);
+            this.button_modificarTotal.Name = "button_modificarTotal";
+            this.button_modificarTotal.Size = new System.Drawing.Size(75, 23);
+            this.button_modificarTotal.TabIndex = 0;
+            this.button_modificarTotal.Text = "Modificar";
+            this.button_modificarTotal.UseVisualStyleBackColor = true;
+            this.button_modificarTotal.Click += new System.EventHandler(this.button_modificarTotal_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(29, 41);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(47, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Nombre:";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(92, 38);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(153, 20);
+            this.textBox2.TabIndex = 2;
             // 
             // Abm_Ciudad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(440, 414);
+            this.ClientSize = new System.Drawing.Size(439, 530);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.boton_Cerrar);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Abm_Ciudad";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -147,6 +194,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -154,13 +203,17 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button boton_Cerrar;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button boton_Agregar_Ciudad;
         private System.Windows.Forms.Button boton_Modificar;
+        private System.Windows.Forms.Button button_eliminar;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button_modificarTotal;
 
     }
 }
