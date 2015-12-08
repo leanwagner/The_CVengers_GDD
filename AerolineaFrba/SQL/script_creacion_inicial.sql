@@ -705,7 +705,13 @@ if(@P1 = 0)
 BEGIN
 RAISERROR('Por favor, ingrese un código de ruta válido.',16,1)
 return
-END 
+END
+
+if(@P1 IN (SELECT RUTA_CODIGO FROM THE_CVENGERS.RUTA))
+BEGIN
+RAISERROR('Ese código de ruta ya existe, por favor ingrese uno distinto',16,1)
+return
+END
 
 if(@P6 IS NULL AND @P7 IS NULL AND @P8 IS NULL)
 BEGIN
