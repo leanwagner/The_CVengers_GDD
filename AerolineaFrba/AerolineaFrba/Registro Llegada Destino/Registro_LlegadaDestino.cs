@@ -43,7 +43,7 @@ namespace AerolineaFrba.Registro_Llegada_Destino
 
         public void llenarCombosCiudad(ref ComboBox miCombo)
         {
-            llenador.llenarComboBox(ref miCombo, "CIUDAD", "CIUDAD_NOMBRE");
+            llenador.llenarComboBoxConCondicion(ref miCombo, "CIUDAD", "CIUDAD_NOMBRE","CIUDAD_ESTADO = 1");
         }
 
         public void llenarComboMatricula(ref ComboBox miCombo)

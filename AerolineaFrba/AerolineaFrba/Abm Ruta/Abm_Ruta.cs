@@ -107,7 +107,7 @@ namespace AerolineaFrba.Abm_Ruta
 
         public void mostrarCiudad(ref ComboBox miCombo)
         {
-            llenador.llenarComboBox(ref miCombo, "CIUDAD", "CIUDAD_NOMBRE");
+            llenador.llenarComboBoxConCondicion(ref miCombo, "CIUDAD", "CIUDAD_NOMBRE","CIUDAD_ESTADO = 1");
 
         }
 

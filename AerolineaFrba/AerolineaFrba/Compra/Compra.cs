@@ -36,7 +36,7 @@ namespace AerolineaFrba.Compra
 
         private void llenarCombosCiudad(ref ComboBox mi_combo)
         {
-            llenador.llenarComboBox(ref mi_combo, "CIUDAD", "CIUDAD_NOMBRE");
+            llenador.llenarComboBoxConCondicion(ref mi_combo, "CIUDAD", "CIUDAD_NOMBRE","CIUDAD_ESTADO = 1");
         }
 
         private void comboBox_origen_SelectedIndexChanged(object sender, EventArgs e)
