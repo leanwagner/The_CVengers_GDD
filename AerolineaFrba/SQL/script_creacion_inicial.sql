@@ -1024,7 +1024,7 @@ create procedure THE_CVENGERS.generarViaje @aeronave as numeric(18,0), @ruta as 
 as
 begin
 
-if(exists(select viaje_id from THE_CVENGERS.VIAJE where VIAJE_AERONAVE = @aeronave and datediff(day,VIAJE_FECHA_SALIDA, @salida) <= 1 and VIAJE_FECHA_LLEGADA is null))
+if(exists(select viaje_id from THE_CVENGERS.VIAJE where VIAJE_AERONAVE = @aeronave and (CASE WHEN @salida > VIAJE_FECHA_SALIDA then datediff(DAY,VIAJE_FECHA_SALIDA , @salida) ELSE datediff(DAY,@salida , VIAJE_FECHA_SALIDA) end) <= 1 and VIAJE_FECHA_LLEGADA is null))
 begin
 raiserror('Esa aeronave ya tiene un viaje asignado en ese lapso de tiempo', 16, 1)
 return
@@ -1156,7 +1156,7 @@ return(select top 5 CLIENTE_APELLIDO + ' ' + CLIENTE_NOMBRE 'Cliente', (select s
 																		FROM THE_CVENGERS.MILLA
 																		WHERE MILLA_CLIENTE = CLIENTE_ID
 																		AND MILLA_FECHA_ACREDITACION < (case when @semestre = 1 then (cast((@anio+'-06-30 23:59:59.000') as datetime)) else (cast((@anio+'-12-31 23:59:59.000') as datetime)) end)
-																		AND (DATEDIFF(second,MILLA_FECHA_ACREDITACION, (case when @semestre = 1 then (cast((@anio+'-06-30 23:59:59.000') as datetime)) else (cast((@anio+'-12-31 23:59:59.000') as datetime)) end)) <= 31536000 or DATEDIFF(second,MILLA_FECHA_ACREDITACION, (case when @semestre = 1 then (cast((@anio+'-01-01 00:00:00.000') as datetime)) else (cast((@anio+'-07-01 00:00:00.000') as datetime)) end)) <= 31536000)
+																		AND (DATEDIFF(second,MILLA_FECHA_ACREDITACION, (case when @semestre = 1 then (cast((@anio+'-06-30 23:59:59.000') as datetime)) else (cast((@anio+'-12-31 23:59:59.000') as datetime)) end)) <= 31536000 or DATEDIFF(second, (case when @semestre = 1 then (cast((@anio+'-01-01 00:00:00.000') as datetime)) else (cast((@anio+'-07-01 00:00:00.000') as datetime)) end) ,MILLA_FECHA_ACREDITACION) <= 31536000)
 																		) 'Millas totales acumuladas'
 		from THE_CVENGERS.CLIENTE
 		order by "Millas totales acumuladas" DESC)
@@ -1847,7 +1847,7 @@ set @fechasa = (SELECT VIAJE_FECHA_SALIDA FROM THE_CVENGERS.VIAJE
 
 if (exists(SELECT VIAJE_ID FROM THE_CVENGERS.VIAJE
            WHERE VIAJE_AERONAVE = @avion2
-		   AND datediff(day,VIAJE_FECHA_SALIDA, @fechasa) <= 1))
+		   AND (case when VIAJE_FECHA_SALIDA < @fechasa THEN datediff(day,VIAJE_FECHA_SALIDA, @fechasa) ELSE  datediff(day,@fechasa, VIAJE_FECHA_SALIDA) END)<= 1))
 begin
 RAISERROR('No se puede reemplazar la aeronave a bajar por la aeronave seleccionada. No es compatible.',16,1)
 RETURN
@@ -1892,7 +1892,7 @@ set @fechasa = (SELECT VIAJE_FECHA_SALIDA FROM THE_CVENGERS.VIAJE
 
 if (exists(SELECT VIAJE_ID FROM THE_CVENGERS.VIAJE
            WHERE VIAJE_AERONAVE = @avion2
-		   AND datediff(day,VIAJE_FECHA_SALIDA, @fechasa) <= 1))
+		   AND (case when VIAJE_FECHA_SALIDA < @fechasa THEN datediff(day,VIAJE_FECHA_SALIDA, @fechasa) ELSE datediff(day,@fechasa, VIAJE_FECHA_SALIDA) END) <= 1))
 begin
 RAISERROR('No se puede reemplazar la aeronave a bajar por la aeronave seleccionada. No es compatible.',16,1)
 RETURN
@@ -2171,7 +2171,7 @@ set @fechasa = (SELECT VIAJE_FECHA_SALIDA FROM THE_CVENGERS.VIAJE
 
 if (exists(SELECT VIAJE_ID FROM THE_CVENGERS.VIAJE
            WHERE VIAJE_AERONAVE = @avion2
-		   AND datediff(day,VIAJE_FECHA_SALIDA, @fechasa) <= 1))
+		   AND (case when VIAJE_FECHA_SALIDA < @fechasa THEN datediff(day,VIAJE_FECHA_SALIDA, @fechasa) ELSE datediff(day,@fechasa, VIAJE_FECHA_SALIDA) END) <= 1))
 begin
 RETURN 0
 END
@@ -2215,7 +2215,7 @@ set @fechasa = (SELECT VIAJE_FECHA_SALIDA FROM THE_CVENGERS.VIAJE
 
 if (exists(SELECT VIAJE_ID FROM THE_CVENGERS.VIAJE
            WHERE VIAJE_AERONAVE = @avion2
-		   AND datediff(day,VIAJE_FECHA_SALIDA, @fechasa) <= 1))
+		   AND (case when VIAJE_FECHA_SALIDA < @fechasa THEN datediff(day,VIAJE_FECHA_SALIDA, @fechasa) ELSE datediff(day,@fechasa, VIAJE_FECHA_SALIDA) END) <= 1))
 begin
 RETURN 0
 END
