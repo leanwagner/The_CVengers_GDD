@@ -50,7 +50,7 @@ namespace AerolineaFrba.Devolucion
                 reader.Close();
                 lleni.llenarDataGridViewDevolucion(dataGridView1, idClie);
                 dataGridView1.ClearSelection();
-                if (dataGridView1.RowCount == 0) MessageBox.Show("No hay compras que se puedan devolver");
+                if (dataGridView1.RowCount == 0) MessageBox.Show("No hay compras que se puedan devolver","Información",MessageBoxButtons.OK);
 
 
                 // this.Size = new Size(226, 332);
@@ -74,7 +74,7 @@ namespace AerolineaFrba.Devolucion
             reader.Close();
             lleni.llenarDataGridViewDevolucion(dataGridView1, idClie);
             dataGridView1.ClearSelection();
-            if (dataGridView1.RowCount == 0) MessageBox.Show("No hay compras que se puedan devolver");
+            if (dataGridView1.RowCount == 0) MessageBox.Show("No hay compras que se puedan devolver","Información",MessageBoxButtons.OK);
 
            
           //  this.Size = new Size(226, 332);
@@ -218,7 +218,7 @@ namespace AerolineaFrba.Devolucion
                 rd.Close();
                 mens += " sera retribuido a la tarjeta "+tipoT+" de numero "+numT;
             }
-            MessageBox.Show(mens);
+            MessageBox.Show(mens,"Información",MessageBoxButtons.OK);
         }
 
     }

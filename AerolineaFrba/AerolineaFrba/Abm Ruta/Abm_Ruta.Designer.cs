@@ -331,11 +331,6 @@ namespace AerolineaFrba.Abm_Ruta
             0,
             0,
             0});
-            this.myNumericUpDown_codRuta.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            -2147483648});
             this.myNumericUpDown_codRuta.Name = "myNumericUpDown_codRuta";
             this.myNumericUpDown_codRuta.Size = new System.Drawing.Size(153, 20);
             this.myNumericUpDown_codRuta.TabIndex = 7;

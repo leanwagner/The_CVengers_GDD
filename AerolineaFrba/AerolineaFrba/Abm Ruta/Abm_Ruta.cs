@@ -95,7 +95,7 @@ namespace AerolineaFrba.Abm_Ruta
 
         private void Abm_Ruta_Load(object sender, EventArgs e)
         {
-            myNumericUpDown_codRuta.Value = -1;
+            myNumericUpDown_codRuta.Value = 0;
         }
 
         public void mostrarServicios()
@@ -241,7 +241,7 @@ namespace AerolineaFrba.Abm_Ruta
                 sqlQuery = sqlQuery + " AND [Precio Base Por Kilo] BETWEEN " + numericUpDown_kgDesde.Value.ToString(CultureInfo.InvariantCulture) + " AND " + numericUpDown_kgHasta.Value.ToString(CultureInfo.InvariantCulture);
             }
             else
-                errorProvider_precioKgHasta.SetError(numericUpDown_kgHasta, "El valor del Campo Hasta debe ser mayor al del campo Desde");
+                errorProvider_precioKgHasta.SetError(numericUpDown_kgHasta, "Para activar este filtro, el valor del Campo Hasta debe ser mayor al del campo Desde");
 
             if (numericUpDown_pasajeHasta.Value > numericUpDown_pasajeDesde.Value)
             {
@@ -249,10 +249,10 @@ namespace AerolineaFrba.Abm_Ruta
                 sqlQuery = sqlQuery + " AND [Precio Base Por Pasaje] BETWEEN " + numericUpDown_pasajeDesde.Value.ToString(CultureInfo.InvariantCulture) + " AND " + numericUpDown_pasajeHasta.Value.ToString(CultureInfo.InvariantCulture);
             }
             else
-                errorProvider_precioPasajeHasta.SetError(numericUpDown_pasajeHasta, "El valor del Campo Hasta debe ser mayor al del campo Desde");
+                errorProvider_precioPasajeHasta.SetError(numericUpDown_pasajeHasta, "Para activar este filtro, el valor del Campo Hasta debe ser mayor al del campo Desde");
 
 
-            if (myNumericUpDown_codRuta.Value != -1)
+            if (myNumericUpDown_codRuta.Value != 0)
                 sqlQuery = sqlQuery + " AND [Código de Rutas] = " + myNumericUpDown_codRuta.Value.ToString();
 
             llenador.filtrarDataGridView(dataGridView_listadoRutas, sqlQuery);
@@ -266,7 +266,7 @@ namespace AerolineaFrba.Abm_Ruta
             numericUpDown_kgHasta.Value = 0;
             numericUpDown_pasajeDesde.Value = 0;
             numericUpDown_pasajeHasta.Value = 0;
-            myNumericUpDown_codRuta.Value = -1;
+            myNumericUpDown_codRuta.Value = 0;
 
             comboBox_filtroDestino.Items.Clear();
             mostrarCiudad(ref comboBox_filtroDestino);

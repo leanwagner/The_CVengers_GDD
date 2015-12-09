@@ -76,7 +76,7 @@ namespace AerolineaFrba.Abm_Aeronave
             try
             {
                 sqlCmd.ExecuteNonQuery();
-                MessageBox.Show("Aeronave creada exitosamente");
+                MessageBox.Show("Aeronave creada exitosamente","Información",MessageBoxButtons.OK);
                // MessageBox.Show(sqlCmd.CommandText);
             }
             catch(Exception ex)
