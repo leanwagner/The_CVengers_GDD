@@ -105,6 +105,7 @@
             this.comboBox_destino.Location = new System.Drawing.Point(454, 19);
             this.comboBox_destino.Name = "comboBox_destino";
             this.comboBox_destino.Size = new System.Drawing.Size(159, 21);
+            this.comboBox_destino.Sorted = true;
             this.comboBox_destino.TabIndex = 1;
             this.comboBox_destino.SelectedIndexChanged += new System.EventHandler(this.comboBox_destino_SelectedIndexChanged_1);
             // 
@@ -162,6 +163,7 @@
             this.comboBox_origen.Location = new System.Drawing.Point(141, 19);
             this.comboBox_origen.Name = "comboBox_origen";
             this.comboBox_origen.Size = new System.Drawing.Size(159, 21);
+            this.comboBox_origen.Sorted = true;
             this.comboBox_origen.TabIndex = 0;
             this.comboBox_origen.SelectedIndexChanged += new System.EventHandler(this.comboBox_origen_SelectedIndexChanged);
             // 
