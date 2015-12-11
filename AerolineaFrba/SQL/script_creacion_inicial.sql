@@ -507,16 +507,20 @@ create procedure THE_CVENGERS.setearFecha @P1 as datetime
 as
 begin
 
+
+if(not exists(select * from THE_CVENGERS.FECHA))
+begin
+
 if(@P1 < (SELECT  TOP 1 VIAJE_FECHA_LLEGADA FROM THE_CVENGERS.VIAJE WHERE VIAJE_FECHA_LLEGADA IS NOT NULL ORDER BY VIAJE_FECHA_LLEGADA DESC))
 BEGIN
 RAISERROR('La fecha ingresada desde el archivo app.conf es inválida ya que representa una fecha pasada respecto a los viajes realizados, por favor ingrese una fecha posterior', 16,1)
 return
 END
 
-if(not exists(select * from THE_CVENGERS.FECHA))
-begin
 INSERT INTO THE_CVENGERS.FECHA (FECHA_RECIBIDA, FECHA_REFERENCIA)
 VALUES (@P1,getdate())
+
+
 end
 
 end
