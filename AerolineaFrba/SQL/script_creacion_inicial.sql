@@ -511,9 +511,14 @@ begin
 if(not exists(select * from THE_CVENGERS.FECHA))
 begin
 
-if(@P1 < (SELECT  TOP 1 VIAJE_FECHA_LLEGADA FROM THE_CVENGERS.VIAJE WHERE VIAJE_FECHA_LLEGADA IS NOT NULL ORDER BY VIAJE_FECHA_LLEGADA DESC))
+DECLARE @fechaMaxima DATETIME
+set @fechaMaxima = (SELECT  TOP 1 VIAJE_FECHA_LLEGADA FROM THE_CVENGERS.VIAJE WHERE VIAJE_FECHA_LLEGADA IS NOT NULL ORDER BY VIAJE_FECHA_LLEGADA DESC)
+
+if(@P1 < @fechaMaxima)
 BEGIN
-RAISERROR('La fecha ingresada desde el archivo app.conf es inválida ya que representa una fecha pasada respecto a los viajes realizados, por favor ingrese una fecha posterior', 16,1)
+DECLARE @ErrorMessage NVARCHAR(255)
+SET @ErrorMessage = 'La fecha ingresada desde el archivo App.config es inválida ya que representa una fecha pasada respecto a los viajes realizados, por favor ingrese una fecha posterior a: ' + (SELECT CONVERT(varchar,@fechaMaxima))
+RAISERROR(@ErrorMessage, 16,1)
 return
 END
 
