@@ -506,11 +506,19 @@ go
 create procedure THE_CVENGERS.setearFecha @P1 as datetime
 as
 begin
+
+if(@P1 < (SELECT  TOP 1 VIAJE_FECHA_LLEGADA FROM THE_CVENGERS.VIAJE WHERE VIAJE_FECHA_LLEGADA IS NOT NULL ORDER BY VIAJE_FECHA_LLEGADA DESC))
+BEGIN
+RAISERROR('La fecha ingresada desde el archivo app.conf es inválida ya que representa una fecha pasada respecto a los viajes realizados, por favor ingrese una fecha posterior', 16,1)
+return
+END
+
 if(not exists(select * from THE_CVENGERS.FECHA))
 begin
 INSERT INTO THE_CVENGERS.FECHA (FECHA_RECIBIDA, FECHA_REFERENCIA)
 VALUES (@P1,getdate())
 end
+
 end
 
 go
@@ -2139,8 +2147,9 @@ return(SELECT TOP 5 AERONAVE_MATRICULA_AVION 'Matrícula de la aeronave', (SELECT
 																			AND ((YEAR(TALLER_FECHA_ENTRADA) = @anio AND (MONTH(TALLER_FECHA_ENTRADA) BETWEEN (case when @semestre = 1 then 1 else 7 end) and (case when @semestre = 1 then 6 else 12 end)))
 																					OR (YEAR(TALLER_FECHA_SALIDA) = @anio AND (MONTH(TALLER_FECHA_SALIDA) BETWEEN (case when @semestre = 1 then 1 else 7 end) and (case when @semestre = 1 then 6 else 12 end))))) 'Días en el taller' 
 		FROM THE_CVENGERS.AERONAVE
+		WHERE AERONAVE_ID IN (SELECT TALLER_AERONAVE_ID FROM THE_CVENGERS.TALLER)
 		ORDER BY "Días en el taller" DESC)
-
+		
 go
 create FUNCTION THE_CVENGERS.aeronavePuedeReemplazarDePorVidaFunc(@avion1 as numeric(18,0), @avion2 as numeric(18,0))
 RETURNS INT
