@@ -60,7 +60,7 @@ namespace AerolineaFrba.Abm_Aeronave
                          }
                          catch(Exception exc)
                          {
-                             MessageBox.Show("Rompio mandarATallerHastaFecha "+exc.Message);
+                             MessageBox.Show(exc.Message);
                          }
 
                      }
@@ -79,7 +79,7 @@ namespace AerolineaFrba.Abm_Aeronave
             }
             catch(Exception exc)
             {
-                MessageBox.Show("Rompio aeronaveConViajesPendientes " + exc.Message);
+                MessageBox.Show(exc.Message);
             }
 
             }
@@ -107,7 +107,7 @@ namespace AerolineaFrba.Abm_Aeronave
                         }
                         catch(Exception ex)
                         {
-                            MessageBox.Show("Rompio darDeBajaVitaliciaAeronave "+ex.Message);
+                            MessageBox.Show(ex.Message);
                         }
 
                     }
@@ -123,7 +123,7 @@ namespace AerolineaFrba.Abm_Aeronave
                 }
                 catch(Exception ex)
                 {
-                    MessageBox.Show("Rompio aeronave con viajes pendientes "+ex.Message);
+                    MessageBox.Show(ex.Message);
                 }
             }
 

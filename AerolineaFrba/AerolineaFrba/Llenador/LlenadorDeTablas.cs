@@ -250,7 +250,7 @@ namespace AerolineaFrba.Llenador
             }
             catch (Exception ex) {
 
-                MessageBox.Show("Rompe mostrando tabla " + nombreTabla + ex);
+                MessageBox.Show(ex.Message);
             
             }
         }
@@ -272,7 +272,7 @@ namespace AerolineaFrba.Llenador
             catch (Exception ex)
             {
 
-                MessageBox.Show("rompe mostrando ciudades");
+               
 
             }
         }
@@ -295,7 +295,7 @@ namespace AerolineaFrba.Llenador
             catch (Exception ex)
             {
 
-                MessageBox.Show("Rompe mostrando tabla " + ex);
+                MessageBox.Show(ex.Message);
 
             }
         }
